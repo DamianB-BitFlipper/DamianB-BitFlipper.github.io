@@ -2,25 +2,27 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Software Engineer — Bachelors and Masters in Computer Science, MIT
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: damian.jpg
   image_circular: false # crops the image to make it circular
   address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Strassburger Str. 7g</p>
+    <p>Berlin, 10405</p>
+    <p>Germany</p>
 
-news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
+news: false  # includes a list of news items
+latest_posts: false  # includes a list of the newest posts
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+Hey, thanks for stopping by! 👋
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I am a machine learning engineer at [QuantCo](https://www.quantco.com/). Before QuantCo, I studied Computer Science and Engineering (6-3) at MIT. My computing interests focus around systems programming, software design and performance engineering.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I proudly contribute to the open-source community. Projects that I have written, open-sourced and actively maintain include [`groupstorm`](https://github.com/Quantco/groupstorm), [`algopytest`](https://github.com/DamianB-BitFlipper/algopytest) and [`conda-comply`](https://github.com/Quantco/conda-comply). I have also opened issues and written bug patches to `Pandas`, `Pyarrow` and `Eigen`.
+
+Aside from computer science, teaching has always been important to me. All throughout university, I have taught and assisted various courses such as: graduate level Theory of Computation ([18.404](http://catalog.mit.edu/search/?P=18.404)), undergraduate level Computability and Complexity Theory ([6.045](http://catalog.mit.edu/search/?P=6.1400)), Software Performance Engineering ([6.172](http://catalog.mit.edu/search/?P=6.1060)) and Computation Structures ([6.004](http://catalog.mit.edu/search/?P=6.1910)).

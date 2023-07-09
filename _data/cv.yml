@@ -2,64 +2,91 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Damian Barabonkov
+    - name: Email
+      value: damianb@alum.mit.edu
+    - name: Phone
+      value: +49 1522 2600 341
+    - name: Address
+      value: Strassburger Str 7g, Berlin, Germany, 10405
     - name: Languages
-      value: English, German
+      value: English, German, Spanish, Russian, Bulgarian
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Masters of Engineering (MEng)
+      institution: Massachusetts Institute of Technology
+      year: 2020 - 2021
+      location: Cambridge, MA, USA
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Computer Science
+        - title: Masters Thesis
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+            - <a href="https://pdos.csail.mit.edu/papers/barabonkov-meng.pdf">Guarda</a> — A web application firewall for WebAuthn transaction authentication
+        - GPA 5.0/5.0            
+    - title: Bachelor of Science
+      institution: Massachusetts Institute of Technology
+      year: 2016 - 2020
+      location: Cambridge, MA, USA
       description:
-        - Description 1.
-        - Description 2.
+        - Computer Science and Engineering
+        - GPA 4.9/5.0
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Machine Learning Engineer
+      institution: QuantCo Inc.
+      year: 2021 - present
+      location: Berlin, DE
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - title: "<i>Project:</i> Develop internal feature engineering framework"
+          contents:
+            - Profiled existing code to address performance pain points
+            - Diagnose, isolate, report and resolve bugs throughout the entire tech stack
+            - "Open-source contributions to Python packages: <code>Pandas</code>, <code>Numpy</code>, <code>Kartothek</code>"
+            - Increased productivity of data scientists using framework with a near <em>10x</em> performance gain when performing incremental feature computations
+        - title: "<i>Project:</i> <a href=\"https://github.com/Quantco/groupstorm\"><code>groupstorm</code></a> — open-source, hyper-fast and flexible DataFrame group by"
           contents:
             - Sub-description 1.
             - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - title: "<i>Project:</i> Automate recruiting coding challenge takehome submissions"
+          contents:
+            - LOL
+    - title: Machine Learning Engineer
+      institution: QuantCo Inc.
+      year: 2020
+      location: Karlsruhe, DE (remote)
       description:
-        - Description 1.
-        - Description 2.
+        - title: "<i>Project:</i> Optimize data pipelines of Python machine learning framework"
+          contents:
+            - Profiled existing code to identify and resolve performance bottlenecks
+            - Improved speed of pipelines by <em>470%</em> in best cast and <em>115%</em> in worst case
+            - Contributed to Python language codebase and Joblib Python library
+            - Led active communication to ensure efficient development velocity
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Supply Chain Researcher
+      institution: Singapore — MIT Alliance for Research and Technology
+      year: 2019
+      location: Singapore, SG
       description:
+        - title: "<i>Project:</i> Design mixed integer programming model to optimize redistribution strategies for dockless bike sharing within Singapore"
+          contents:
+            - Employed statistical processes and mixed integer programming for optimization to find best redistribution configurations
+            - Submitted publication to <i>Transportation Research Board</i> (TRB) journal
+            - Accepted and exhibited as a poster presentation at TRB conference
+            - Collaborated in a team of three members respective of strengths and abilities
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Performance and Capacity Engineer
+      institution: Facebook Inc.
+      year: 2018
+      location: Menlo Park, CA, USA
+      description:
+        - title: "<i>Project:</i> Engineer existing profiler to measure additional performance metrics"
+          contents:
+            - Aggregated database usage metrics from affected services across Facebook
+            - Tuned database utilization of production services in order to improve performance with large cost-saving consequences
 
 - title: Open Source Projects
   type: time_table
