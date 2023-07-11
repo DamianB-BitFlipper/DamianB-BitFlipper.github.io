@@ -9,8 +9,10 @@
       value: +49 1522 2600 341
     - name: Address
       value: Strassburger Str 7g, Berlin, Germany, 10405
+    - name: Programming
+      value: '<img alt="Python" title="Python" src="/assets/img/programming_languages_icons/python.png" style="width: 30px"> <img alt="C" title="C" src="/assets/img/programming_languages_icons/c.png" style="width: 30px; margin-left: 5px"> <img alt="C++" title="C++" src="/assets/img/programming_languages_icons/cpp.png" style="width: 30px; margin-left: 5px"> <img alt="Golang" title="Golang" src="/assets/img/programming_languages_icons/go.png" style="width: 40px; margin-left: 5px"> <img alt="OCaml" title="OCaml" src="/assets/img/programming_languages_icons/ocaml.png" style="width: 30px; margin-left: 5px"> <img alt="Haskell" title="Haskell" src="/assets/img/programming_languages_icons/haskell.png" style="width: 30px; margin-left: 5px">'
     - name: Languages
-      value: English, German, Spanish, Russian, Bulgarian
+      value: English, Bulgarian, German, Spanish, Russian
 
 - title: Education
   type: time_table
@@ -36,24 +38,31 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Machine Learning Engineer
+    - title: Machine Learning and Software Engineer
       institution: QuantCo Inc.
       year: 2021 - present
       location: Berlin, DE
       description:
         - title: "<i>Project:</i> Develop internal feature engineering framework"
           contents:
+            - Framework handles feature engineering of pricing and risk-assessment models for two large German car insurers forming <em>5%</em> of total market share
+            - Increased productivity of data scientists using framework with a near <em>10x</em> performance gain when performing incremental feature computations
             - Profiled existing code to address performance pain points
             - Diagnose, isolate, report and resolve bugs throughout the entire tech stack
             - "Open-source contributions to Python packages: <code>Pandas</code>, <code>Numpy</code>, <code>Kartothek</code>"
-            - Increased productivity of data scientists using framework with a near <em>10x</em> performance gain when performing incremental feature computations
-        - title: "<i>Project:</i> <a href=\"https://github.com/Quantco/groupstorm\"><code>groupstorm</code></a> — open-source, hyper-fast and flexible DataFrame group by"
+        - title: '<i>Project:</i> <a href="https://github.com/Quantco/groupstorm"><code>groupstorm</code></a> — open-source, hyper-fast and flexible DataFrame group by'
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
+            - Implements group by and aggregation operations with benchmarked <em>479x</em> the speed of `Pandas`
+            - Dropped development latency of data scientists from ~30 minutes down to less than a minute
+        - title: '<i>Project:</i> <a href="https://github.com/Quantco/conda-comply"><code>conda-comply</code></a> — open-source software license compliance checker'
+          contents:
+            - Automates error-prone process of asserting software license compliance of company's software products
+            - Alleviates need for complicated and cumbersome licensing training for the engineers
+            - Improves the company's copyright compliance and legal conformity
         - title: "<i>Project:</i> Automate recruiting coding challenge takehome submissions"
           contents:
-            - LOL
+            - Streamlined engineering recruiting workflow by automating coding challenge submissions
+            - Improves the company's security and General Data Protection Regulation (GDPR) compliance
     - title: Machine Learning Engineer
       institution: QuantCo Inc.
       year: 2020
@@ -91,34 +100,79 @@
 - title: Open Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: <a href="https://github.com/Quantco/conda-comply"><code>conda-comply</code></a>
+      year: 2023
+      description:
+        - Check conda environment dependencies for compliance with permissive, copyleft or other user-defined license sets
+    
+    - title: <a href="https://github.com/Quantco/groupstorm"><code>groupstorm</code></a>
+      year: 2023
+      description:
+        - A hyper-fast library in Python to group candidate DataFrame rows against every row in a reference DataFrame according to user-supplied constraints
+    
+    - title: <a href="https://github.com/DamianB-BitFlipper/algopytest"><code>algopytest</code></a>
+      year: 2022
+      badge: <img alt="Total downloads for the project" src="https://static.pepy.tech/badge/algopytest-framework">
+      description:
+        - A framework which hides away all of the complexity and repetitiveness that comes with testing Algorand Smart Contracts
+        
+    - title: <a href="https://github.com/DamianB-BitFlipper/Guarda-firewall"><code>guarda-firewall</code></a>
+      year: 2021
+      description:
+        - A proxy firewall prototype for RESTful services to easily support webauthn two-factor authentication
 
-- title: Honors and Awards
+- title: Teaching Engagements
   type: time_table
   contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
+    - title: Computability and Complexity Theory (6.045)
+      year: 2021
+      side_note: Undergrad Course
+      description:
+        - Teaching Assistant with office hours, recitation and assignment duties
+        - Co-created entire year's curriculum of homework assignments and exams
+        
+    - title: Theory of Computation (18.404)
+      year: 2020
+      side_note: Graduate Course
+      description:
+        - Teaching Assistant with office hours, recitation and assignment duties
 
+    - title: Software Performance Engineering (6.172)
+      year: 2019
+      side_note: Undergrad Course
+      description:
+        - Curriculum Developer with task to redesign first of four lab assignments
+        - Lab assignment still in active use
+        
+    - title: Computation Structures (6.004)
+      year: 2019
+      side_note: Undergrad Course
+      description:
+        - Lab Assistant with office hours duties
+        
+    - title: Software Performance Engineering (6.172)
+      year: 2018
+      side_note: Undergrad Course
+      description:
+        - Teaching Assistant with office hours and assignment duties
+      
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Computer Systems
       items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Performance Engineering
+        - Distributed Systems
+        - Computer Systems Security
+        - Operating Systems
+    - title: Theory of Computation
       items:
-        - Description 1.
-        - Description 2.
+        - Computability Theory
+        - Complexity Theory
 
-- title: Other Interests
+- title: Personal Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Sports and Athletics:</u> Cycling, Inline Skating, Weight Training
+    - <u>Arts and Culture:</u> Language Learning, Latin Dance, Travel
+    - <u>Favorite Reads:</u> Crime and Punishment, The Master and Margarita, All Quiet on the Western Front 

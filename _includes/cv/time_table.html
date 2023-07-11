@@ -8,11 +8,25 @@
               {{ content.year }}
             </span>
             {% endif %}
+	    
 	    {% if content.location %}
 	    <span>
 	      {{ content.location }}
 	    </span>
 	    {% endif %}
+
+	    {% if content.side_note %}
+	    <span>
+	      {{ content.side_note }}
+	    </span>
+	    {% endif %}	    
+	    
+	    {% if content.badge %}
+	    <span style="margin-top: 10px;">
+	      {{ content.badge }}
+	    </span>
+	    {% endif %}
+	    
           </div>
 
           <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
