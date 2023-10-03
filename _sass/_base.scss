@@ -514,11 +514,17 @@ footer.sticky-bottom {
   }
 
   .card {
+    padding: 1.25rem;
+      
     img {
       width: 100%;
     }
   }
 
+  .card-body {
+    padding: 0;
+  }  
+  
   .card-item {
     width: auto;
     margin-bottom: 10px;

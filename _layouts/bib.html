@@ -23,6 +23,10 @@
           {%- else -%}
             <abbr class="badge">{{entry.abbr}}</abbr>
           {%- endif -%}
+
+	  {%- if entry.kind -%}
+	    <abbr class="badge">{{entry.kind}}</abbr>
+	  {%- endif -%}
         {%- endif -%}
         </div>
 
@@ -30,7 +34,22 @@
         <div id="{{entry.key}}" class="col-sm-8">
         <!-- Title -->
         <div class="title">{{entry.title}}</div>
+        <!-- Description -->
+	{%- if entry.description -%}
+	{% assign description_items = entry.description | split: '; '%}
+	<ul class="items">
+	  {% for content in description_items %}
+	  <li style="margin-bottom: 0px;">
+	    <span class="item">
+	      {{ content }}
+	    </span>
+	  </li>
+	  {% endfor %}
+	</ul>
+	{%- endif -%}
+	
         <!-- Author -->
+	{%- unless entry.hide_authors -%}
         <div class="author">
         {% assign author_array_size = entry.author_array | size %}
 
@@ -105,6 +124,7 @@
         {%- endif -%}
 
         </div>
+	{%- endunless -%}
 
         <!-- Journal/Book title and date -->
         {% assign proceedings = "inproceedings,incollection" | split: ','%}
@@ -121,11 +141,19 @@
         {%- if entry.month -%}
           {%- capture entrymonth -%}{{ " " }}{{ entry.month | capitalize }}{%- endcapture -%}
         {%- endif -%}
+
+        {%- if entry.semester -%}
+          {%- capture entrysemester -%}{{ " " }}{{ entry.semester }}{%- endcapture -%}
+        {%- endif -%}	
+
+	{%- unless entry.hide_year -%}
         {%- if entry.year -%}
           {%- capture entryyear -%}{{ " " }}{{entry.year}}{%- endcapture -%}
         {%- endif -%}
+	{%- endunless -%}
+	
         {% assign entrytype_text = entrytype | strip_html | strip %}
-        {%- capture periodical -%}{{ entrytype }}{%- if entrytype_text != "" and entryyear != "" -%}, {%- endif -%}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
+        {%- capture periodical -%}{{ entrytype }}{%- if entrytype_text != "" and entryyear != "" -%}, {%- endif -%}{{ entrysemester }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
         <div class="periodical">
           {{ periodical | strip }}
         </div>

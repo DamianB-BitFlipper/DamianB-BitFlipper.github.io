@@ -38,11 +38,18 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Machine Learning and Software Engineer
+    - title: Software Engineer
       institution: QuantCo Inc.
       year: 2021 - present
       location: Berlin, DE
       description:
+        - title: "<i>Project:</i> Lead client-facing machine learning product"
+          contents:
+            - Project interactively displays machine learning predictions to client
+            - Collaborate and coordinate with multi-disciplinary team of product, engineering and UI talent
+            - Factor in client feedback when developing product
+            - Orchestrate containerized backend systems to ensure high availability and correctness of service
+            - Test rigorously with various levels of staging environments before pushing to production
         - title: "<i>Project:</i> Develop internal feature engineering framework"
           contents:
             - Framework handles feature engineering of pricing and risk-assessment models for two large German car insurers forming <em>5%</em> of total market share
@@ -119,7 +126,7 @@
     - title: <a href="https://github.com/DamianB-BitFlipper/Guarda-firewall"><code>guarda-firewall</code></a>
       year: 2021
       description:
-        - A proxy firewall prototype for RESTful services to easily support webauthn two-factor authentication
+        - A proxy firewall prototype for RESTful services to easily support WebAuthn two-factor authentication
 
 - title: Teaching Engagements
   type: time_table
@@ -155,6 +162,18 @@
       side_note: Undergrad Course
       description:
         - Teaching Assistant with office hours and assignment duties
+
+    - title: "Physics II: Electricity and Magnetism (8.02)"
+      year: 2018
+      side_note: Undergrad Course
+      description:
+        - Teaching Assistant with office hours and assignment duties
+
+    - title: "Global Startup Labs: Russia"
+      year: 2017
+      side_note: Summer Bootcamp
+      description:
+        - Technical Assistant with teaching, office hours and lab duties
       
 - title: Academic Interests
   type: nested_list
