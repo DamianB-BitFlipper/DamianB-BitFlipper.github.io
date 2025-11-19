@@ -53,12 +53,14 @@ export class Calc extends Component {
 
     reStartTerminal = () => {
         clearInterval(this.cursor);
-        $('#calculator-body').empty();
-        this.appendTerminalRow();
+        this.setState({ terminal: [] }, () => {
+            this.terminal_rows = 2;
+            this.appendTerminalRow();
+        });
     }
 
     appendTerminalRow = () => {
-        let terminal = this.state.terminal;
+        let terminal = [...this.state.terminal];
         terminal.push(this.terminalRow(this.terminal_rows));
         this.setState({ terminal });
         this.terminal_rows += 2;

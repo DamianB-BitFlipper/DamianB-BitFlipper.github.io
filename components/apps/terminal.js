@@ -43,12 +43,14 @@ export class Terminal extends Component {
 
     reStartTerminal = () => {
         clearInterval(this.cursor);
-        $('#terminal-body').empty();
-        this.appendTerminalRow();
+        this.setState({ terminal: [] }, () => {
+            this.terminal_rows = 1;
+            this.appendTerminalRow();
+        });
     }
 
     appendTerminalRow = () => {
-        let terminal = this.state.terminal;
+        let terminal = [...this.state.terminal];
         terminal.push(this.terminalRow(this.terminal_rows));
         this.setState({ terminal });
         this.terminal_rows += 2;
