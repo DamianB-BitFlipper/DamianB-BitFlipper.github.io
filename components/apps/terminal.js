@@ -1,6 +1,8 @@
+
 import React, { Component } from 'react'
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
+import { projects } from '../ubuntu_data';
 
 export class Terminal extends Component {
     constructor() {
@@ -11,14 +13,15 @@ export class Terminal extends Component {
         this.curr_dir_name = "root";
         this.prev_commands = [];
         this.commands_index = -1;
+        
+        const projectTitles = projects.map(p => p.slug);
+        
         this.child_directories = {
-            root: ["books", "projects", "personal-documents", "skills", "languages", "PDPU", "interests"],
-            PDPU: ["Sem-6"],
-            books: ["Eric-Jorgenson_The-Almanack-of-Naval-Ravikant.pdf", "Elon Musk: How the Billionaire CEO of SpaceX.pdf", "The $100 Startup_CHRIS_GUILLEBEAU.pdf", "The_Magic_of_Thinking_Big.pdf"],
-            skills: ["Front-end development", "React.js", "jQuery", "Flutter", "Express.js", "SQL", "Firebase"],
-            projects: ["vivek9patel-personal-portfolio", "synonyms-list-react", "economist.com-unlocked", "Improve-Codeforces", "flutter-banking-app", "Meditech-Healthcare", "CPU-Scheduling-APP-React-Native"],
-            interests: ["Software Engineering", "Deep Learning", "Computer Vision"],
-            languages: ["Javascript", "C++", "Java", "Dart"],
+            root: ["projects", "skills", "languages", "interests"],
+            projects: projectTitles,
+            skills: ["Systems Programming", "Software Design", "Performance Engineering", "Machine Learning"],
+            interests: ["Cycling", "Inline Skating", "Weight Training", "Language Learning", "Latin Dance"],
+            languages: ["English", "Bulgarian", "German", "Spanish", "Russian", "C++", "Python", "JavaScript"],
         };
         this.state = {
             terminal: [],
@@ -56,7 +59,7 @@ export class Terminal extends Component {
             <React.Fragment key={id}>
                 <div className="flex w-full h-5">
                     <div className="flex">
-                        <div className=" text-ubt-green">vivek@Dell</div>
+                        <div className=" text-ubt-green">damian@ubuntu</div>
                         <div className="text-white mx-px font-medium">:</div>
                         <div className=" text-ubt-blue">{this.current_directory}</div>
                         <div className="text-white mx-px font-medium mr-1">$</div>
@@ -198,7 +201,7 @@ export class Terminal extends Component {
                     break;
                 }
 
-                if (this.child_directories[this.curr_dir_name].includes(rest)) {
+                if (this.child_directories[this.curr_dir_name] && this.child_directories[this.curr_dir_name].includes(rest)) {
                     this.current_directory += "/" + rest;
                     this.curr_dir_name = rest;
                 }
@@ -226,7 +229,7 @@ export class Terminal extends Component {
                     break;
                 }
                 else {
-                    result = `ls: cannot access '${words}': No such file or directory                    `;
+                    result = `ls: cannot access '${words}': No such file or directory`;
                 }
                 break;
             case "mkdir":
@@ -239,13 +242,13 @@ export class Terminal extends Component {
                 break;
             case "pwd":
                 let str = this.current_directory;
-                result = str.replace("~", "/home/vivek")
+                result = str.replace("~", "/home/damian")
                 break;
             case "code":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("vscode");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg]";
                 }
                 break;
             case "echo":
@@ -255,56 +258,49 @@ export class Terminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("spotify");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
             case "chrome":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("chrome");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
-                }
-                break;
-            case "todoist":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("todo-ist");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
             case "trash":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("trash");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
-            case "about-vivek":
+            case "about-damian":
                 if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("about-vivek");
+                    this.props.openApp("about-damian");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
             case "terminal":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("terminal");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
             case "settings":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("settings");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
             case "sendmsg":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("gedit");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
                 }
                 break;
             case "clear":
@@ -323,7 +319,7 @@ export class Terminal extends Component {
                 result = "<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />";
                 break;
             default:
-                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-vivek, todoist, trash, settings, sendmsg ]";
+                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
         }
         document.getElementById(`row-result-${rowId}`).innerHTML = result;
         this.appendTerminalRow();

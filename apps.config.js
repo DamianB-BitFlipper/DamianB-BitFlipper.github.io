@@ -1,3 +1,4 @@
+
 import displaySpotify from './components/apps/spotify';
 import displayVsCode from './components/apps/vscode';
 import { displayTerminal } from './components/apps/terminal';
@@ -5,7 +6,7 @@ import { displaySettings } from './components/apps/settings';
 import { displayChrome } from './components/apps/chrome';
 import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
-import { displayAboutVivek } from './components/apps/vivek';
+import { displayAboutDamian } from './components/apps/damian';
 import { displayTerminalCalc } from './components/apps/calc';
 
 const apps = [
@@ -28,13 +29,13 @@ const apps = [
         screen: displayTerminalCalc,
     },
     {
-        id: "about-vivek",
-        title: "About Vivek",
-        icon: './themes/Yaru/system/user-home.png',
+        id: "about-damian",
+        title: "About Damian",
+        icon: './damian.jpg',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
-        screen: displayAboutVivek,
+        screen: displayAboutDamian,
     },
     {
         id: "vscode",
@@ -58,10 +59,10 @@ const apps = [
         id: "spotify",
         title: "Spotify",
         icon: './themes/Yaru/apps/spotify.png',
-        disabled: false,
-        favourite: true,
+        disabled: true,
+        favourite: false,
         desktop_shortcut: false,
-        screen: displaySpotify, // India Top 50 Playlist 😅
+        screen: displaySpotify,
     },
     {
         id: "settings",
@@ -83,7 +84,7 @@ const apps = [
     },
     {
         id: "gedit",
-        title: "Contact Me",
+        title: "Contact",
         icon: './themes/Yaru/apps/gedit.png',
         disabled: false,
         favourite: false,
@@ -98,18 +99,8 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         isExternalApp: true,
-        url: "https://github.com/vivek9patel",
+        url: "https://github.com/DamianB-BitFlipper",
         screen: () => {},
-    },
-    {
-        id: "tars",
-        title: "Ask Tars",
-        icon: './themes/Yaru/apps/tars.svg',
-        disabled: false,
-        favourite: false,
-        desktop_shortcut: true,
-        isExternalApp: true,
-        url: "https://www.vivek9patel.com/tars"
     },
 ]
 
