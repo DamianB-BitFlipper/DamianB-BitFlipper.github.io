@@ -320,6 +320,9 @@ export class Terminal extends Component {
 
                 result = "<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />";
                 break;
+            case "help":
+                result = "Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                break;
             default:
                 result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
         }
