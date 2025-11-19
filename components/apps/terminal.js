@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
@@ -26,6 +25,12 @@ export class Terminal extends Component {
         this.state = {
             terminal: [],
         }
+        this.all_commands = [
+            "cd", "ls", "pwd", "echo", "clear", "exit", "mkdir", 
+            "code", "spotify", "chrome", "about-damian", "trash", 
+            "settings", "sendmsg", "help", "cowsay", "sudo"
+        ];
+        this.all_commands.sort();
     }
 
     componentDidMount() {
@@ -41,11 +46,38 @@ export class Terminal extends Component {
         clearInterval(this.cursor);
     }
 
+    getCowsay = (text) => {
+        let dashes = "-".repeat(text.length + 2);
+        return ` ${dashes}
+< ${text} >
+ ${dashes}
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`;
+    }
+
+    getAvailableCommandsString = () => {
+        this.all_commands.sort();
+        return `Available Commands: [ ${this.all_commands.join(", ")} ]`;
+    }
+
     reStartTerminal = () => {
         clearInterval(this.cursor);
         this.setState({ terminal: [] }, () => {
             this.terminal_rows = 1;
-            this.appendTerminalRow();
+            
+            const welcomeText = "Welcome to Ubuntu! Type 'help' to see available commands.";
+            const cowsay = (
+                <div className="text-white whitespace-pre font-normal" key="welcome-cowsay">
+                    {this.getCowsay(welcomeText)}
+                </div>
+            );
+
+            this.setState({ terminal: [cowsay] }, () => {
+                this.appendTerminalRow();
+            });
         });
     }
 
@@ -75,7 +107,6 @@ export class Terminal extends Component {
                 <div id={`row-result-${id}`} className={"my-2 font-normal"}></div>
             </React.Fragment>
         );
-
     }
 
     focusCursor = (e) => {
@@ -250,7 +281,7 @@ export class Terminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("vscode");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "echo":
@@ -260,49 +291,49 @@ export class Terminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("spotify");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "chrome":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("chrome");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "trash":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("trash");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "about-damian":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("about-damian");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "terminal":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("terminal");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "settings":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("settings");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "sendmsg":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("gedit");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
                 }
                 break;
             case "clear":
@@ -320,11 +351,16 @@ export class Terminal extends Component {
 
                 result = "<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />";
                 break;
+            case "cowsay":
+                let text = words.join(" ");
+                if (!text) text = "Moo!";
+                result = `<pre class="text-white">${this.getCowsay(text)}</pre>`;
+                break;
             case "help":
-                result = "Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                result = this.getAvailableCommandsString();
                 break;
             default:
-                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-damian, trash, settings, sendmsg ]";
+                result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
         }
         document.getElementById(`row-result-${rowId}`).innerHTML = result;
         this.appendTerminalRow();

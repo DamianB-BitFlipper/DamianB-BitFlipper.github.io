@@ -106,7 +106,7 @@ function About() {
     return (
         <>
             <div className="w-20 md:w-28 my-4 bg-white rounded-full">
-                <img className="w-full rounded-full" src="./damian.jpg" alt="Damian Barabonkov Logo" onError={(e) => { e.target.src = "./themes/Yaru/system/user-home.png" }} />
+                <img className="w-full rounded-full" src="./images/damian.jpg" alt="Damian Barabonkov Logo" onError={(e) => { e.target.src = "./themes/Yaru/system/user-home.png" }} />
             </div>
             <div className=" mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
                 <div>my name is <span className="font-bold">Damian Barabonkov</span> ,</div>

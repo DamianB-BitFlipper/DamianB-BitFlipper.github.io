@@ -31,7 +31,7 @@ const apps = [
     {
         id: "about-damian",
         title: "About Damian",
-        icon: './damian.jpg',
+        icon: './images/dbtux.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
