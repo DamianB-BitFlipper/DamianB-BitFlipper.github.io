@@ -30,7 +30,7 @@ export class AllApplications extends React.Component {
     renderApps = () => {
 
         let appsJsx = [];
-        let frequentAppsInfo = JSON.parse(localStorage.getItem("frequentApps"));
+        let frequentAppsInfo = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem("frequentApps") : null);
         let getFrequentApps = () => {
             let frequentApps = [];
             if (frequentAppsInfo) {
