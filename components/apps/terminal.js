@@ -390,7 +390,7 @@ export class Terminal extends Component {
 
     render() {
         return (
-            <div className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold" id="terminal-body">
+            <div className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold font-mono" id="terminal-body">
                 {
                     this.state.terminal
                 }
