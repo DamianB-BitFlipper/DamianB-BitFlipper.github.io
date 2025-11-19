@@ -14,6 +14,14 @@ export class Trash extends Component {
                 icon: "./themes/filetypes/js.png"
             },
             {
+                name: "Code.java",
+                icon: "./themes/filetypes/java.png"
+            },
+            {
+                name: "Windows.exe",
+                icon: "./themes/filetypes/windows.png"
+            },
+            {
                 name: "node_modules",
                 icon: "./themes/Yaru/system/folder.png"
             },
