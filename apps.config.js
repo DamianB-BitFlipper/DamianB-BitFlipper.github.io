@@ -3,7 +3,7 @@ import displaySpotify from './components/apps/spotify';
 import displayVsCode from './components/apps/vscode';
 import { displayTerminal } from './components/apps/terminal';
 import { displaySettings } from './components/apps/settings';
-import { displayChrome } from './components/apps/chrome';
+import { displayFirefox } from './components/apps/firefox';
 import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
 import { displayAboutDamian } from './components/apps/damian';
@@ -11,13 +11,13 @@ import { displayTerminalCalc } from './components/apps/calc';
 
 const apps = [
     {
-        id: "chrome",
-        title: "Google Chrome",
-        icon: './themes/Yaru/apps/chrome.png',
+        id: "firefox",
+        title: "Mozilla Firefox",
+        icon: './themes/Yaru/apps/firefox.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
-        screen: displayChrome,
+        screen: displayFirefox, // reusing the component for now, will rename later if requested
     },
     {
         id: "calc",
