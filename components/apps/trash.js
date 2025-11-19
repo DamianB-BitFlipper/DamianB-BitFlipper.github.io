@@ -61,6 +61,11 @@ export class Trash extends Component {
         localStorage.setItem("trash-empty", true);
     };
 
+    restoreTrash = () => {
+        this.setState({ empty: false });
+        localStorage.setItem("trash-empty", false);
+    };
+
     emptyScreen = () => {
         return (
             <div className="flex-grow flex flex-col justify-center items-center">
@@ -95,7 +100,7 @@ export class Trash extends Component {
                 <div className="flex items-center justify-between w-full bg-ub-warm-grey bg-opacity-40 text-sm">
                     <span className="font-bold ml-2">Trash</span>
                     <div className="flex">
-                        <div className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded text-gray-300">Restore</div>
+                        <div onClick={this.restoreTrash} className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded hover:bg-opacity-80">Restore</div>
                         <div onClick={this.emptyTrash} className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded hover:bg-opacity-80">Empty</div>
                     </div>
                 </div>
