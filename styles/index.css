@@ -146,7 +146,7 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
 }
 
 .windowMainScreen::-webkit-scrollbar-thumb {
-    background-color: #D3D7CF;
+    background-color: #E95420;
     border-radius: 5px;
 }
 
