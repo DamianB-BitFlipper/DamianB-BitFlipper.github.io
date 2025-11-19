@@ -74,12 +74,50 @@ export class Window extends Component {
         this.setState({ cursorType: "cursor-default" })
     }
 
-    handleVerticleResize = () => {
-        this.setState({ height: this.state.height + 0.1 }, this.resizeBoundries);
+    resizeStart = (e, direction) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.startResizeX = e.clientX;
+        this.startResizeY = e.clientY;
+        this.startWidth = this.state.width;
+        this.startHeight = this.state.height;
+        this.resizeDirection = direction;
+        this.resizing = true;
+        this.focusWindow();
+        if (this.state.maximized) {
+            this.setState({ maximized: false });
+        }
+        document.body.style.cursor = direction === 'x' ? 'ew-resize' : direction === 'y' ? 'ns-resize' : 'nwse-resize';
+        window.addEventListener('mousemove', this.resize);
+        window.addEventListener('mouseup', this.resizeEnd);
     }
 
-    handleHorizontalResize = () => {
-        this.setState({ width: this.state.width + 0.1 }, this.resizeBoundries);
+    resize = (e) => {
+        if (!this.resizing) return;
+        const deltaX = e.clientX - this.startResizeX;
+        const deltaY = e.clientY - this.startResizeY;
+        const parentWidth = window.innerWidth;
+        const parentHeight = window.innerHeight;
+        const deltaWidthPercent = (deltaX / parentWidth) * 100;
+        const deltaHeightPercent = (deltaY / parentHeight) * 100;
+
+        let newWidth = this.startWidth;
+        let newHeight = this.startHeight;
+
+        if (this.resizeDirection === 'x' || this.resizeDirection === 'xy') newWidth += deltaWidthPercent;
+        if (this.resizeDirection === 'y' || this.resizeDirection === 'xy') newHeight += deltaHeightPercent;
+
+        if (newWidth < 15) newWidth = 15;
+        if (newHeight < 15) newHeight = 15;
+
+        this.setState({ width: newWidth, height: newHeight }, this.resizeBoundries);
+    }
+
+    resizeEnd = () => {
+        this.resizing = false;
+        document.body.style.cursor = 'default';
+        window.removeEventListener('mousemove', this.resize);
+        window.removeEventListener('mouseup', this.resizeEnd);
     }
 
     setWinowsPosition = () => {
@@ -177,8 +215,9 @@ export class Window extends Component {
                     className={this.state.cursorType + " " + (this.state.closed ? " closed-window " : "") + (this.state.maximized ? " duration-300 rounded-none" : " rounded-lg rounded-b-none") + (this.props.minimized ? " opacity-0 invisible duration-200 " : "") + (this.props.isFocused ? " z-30 " : " z-20 notFocused") + " opened-window overflow-hidden min-w-1/4 min-h-1/4 main-window absolute window-shadow border-black border-opacity-40 border border-t-0 flex flex-col"}
                     id={this.id}
                 >
-                    <WindowYBorder resize={this.handleHorizontalResize} />
-                    <WindowXBorder resize={this.handleVerticleResize} />
+                    <div className="absolute right-0 top-0 bottom-0 w-1 cursor-ew-resize z-50" onMouseDown={(e) => this.resizeStart(e, 'x')}></div>
+                    <div className="absolute left-0 bottom-0 right-0 h-1 cursor-ns-resize z-50" onMouseDown={(e) => this.resizeStart(e, 'y')}></div>
+                    <div className="absolute right-0 bottom-0 w-4 h-4 cursor-nwse-resize z-50" onMouseDown={(e) => this.resizeStart(e, 'xy')}></div>
                     <WindowTopBar title={this.props.title} />
                     <WindowEditButtons minimize={this.minimizeWindow} maximize={this.maximizeWindow} isMaximised={this.state.maximized} close={this.closeWindow} id={this.id} />
                     {(this.id === "settings"
@@ -201,35 +240,6 @@ export function WindowTopBar(props) {
             <div className="flex justify-center text-sm font-bold">{props.title}</div>
         </div>
     )
-}
-
-// Window's Borders
-export class WindowYBorder extends Component {
-    componentDidMount() {
-        this.trpImg = new Image(0, 0);
-        this.trpImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        this.trpImg.style.opacity = 0;
-    }
-    render() {
-        return (
-            <div className=" window-y-border border-transparent border-1 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" onDragStart={(e) => { e.dataTransfer.setDragImage(this.trpImg, 0, 0) }} onDrag={this.props.resize}>
-            </div>
-        )
-    }
-}
-
-export class WindowXBorder extends Component {
-    componentDidMount() {
-        this.trpImg = new Image(0, 0);
-        this.trpImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        this.trpImg.style.opacity = 0;
-    }
-    render() {
-        return (
-            <div className=" window-x-border border-transparent border-1 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" onDragStart={(e) => { e.dataTransfer.setDragImage(this.trpImg, 0, 0) }} onDrag={this.props.resize}>
-            </div>
-        )
-    }
 }
 
 // Window's Edit Buttons
