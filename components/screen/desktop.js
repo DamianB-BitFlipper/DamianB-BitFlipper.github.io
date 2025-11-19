@@ -500,7 +500,7 @@ export class Desktop extends Component {
             <div className={" h-full w-full flex flex-col items-end justify-start content-start flex-wrap-reverse pt-8 bg-transparent relative overflow-hidden overscroll-none window-parent"}>
 
                 {/* Window Area */}
-                <div className="absolute h-full w-full bg-transparent" data-context="desktop-area">
+                <div className={`absolute h-full w-full bg-transparent ${this.state.allAppsView ? 'opacity-0 transition-opacity duration-200' : 'opacity-100 transition-opacity duration-200'}`} data-context="desktop-area">
                     {this.renderWindows()}
                 </div>
 
@@ -534,10 +534,11 @@ export class Desktop extends Component {
                     )
                 }
 
-                { this.state.allAppsView ?
+                <div className={`absolute z-20 w-full h-full top-0 left-0 transition-all duration-200 ease-in-out ${this.state.allAppsView ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                     <AllApplications apps={apps}
                         recentApps={this.app_stack}
-                        openApp={this.openApp} /> : null}
+                        openApp={this.openApp} />
+                </div>
 
             </div>
         )
