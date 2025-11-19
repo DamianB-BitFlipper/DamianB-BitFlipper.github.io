@@ -5,7 +5,7 @@ import { displayTerminal } from './components/apps/terminal';
 import { displaySettings } from './components/apps/settings';
 import { displayFirefox } from './components/apps/firefox';
 import { displayTrash } from './components/apps/trash';
-import { displayGedit } from './components/apps/gedit';
+import { displayGedit, displayDoNotClick } from './components/apps/gedit';
 import { displayAboutDamian } from './components/apps/damian';
 import { displayTerminalCalc } from './components/apps/calc';
 
@@ -74,17 +74,8 @@ const apps = [
         screen: displaySettings,
     },
     {
-        id: "trash",
-        title: "Trash",
-        icon: './themes/Yaru/system/user-trash-full.png',
-        disabled: false,
-        favourite: false,
-        desktop_shortcut: true,
-        screen: displayTrash,
-    },
-    {
         id: "gedit",
-        title: "Contact",
+        title: "Contact Me",
         icon: './themes/Yaru/apps/gedit.png',
         disabled: false,
         favourite: false,
@@ -101,6 +92,24 @@ const apps = [
         isExternalApp: true,
         url: "https://github.com/DamianB-BitFlipper",
         screen: () => {},
+    },
+    {
+        id: "trash",
+        title: "Trash",
+        icon: './themes/Yaru/system/user-trash-full.png',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: displayTrash,
+    },
+    {
+        id: "do-not-click",
+        title: "Do Not Open",
+        icon: './themes/Yaru/apps/gedit.png',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: displayDoNotClick,
     },
 ]
 
