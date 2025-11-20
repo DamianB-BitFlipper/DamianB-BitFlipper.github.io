@@ -50,12 +50,34 @@ function getPosts() {
   return posts.sort((a, b) => (new Date(b.date).getTime() - new Date(a.date).getTime()));
 }
 
+function getAboutSections() {
+  const aboutDirectory = path.join(contentDirectory, 'about');
+  if (!fs.existsSync(aboutDirectory)) return [];
+  const filenames = fs.readdirSync(aboutDirectory);
+
+  const about = filenames.map((filename) => {
+    const filePath = path.join(aboutDirectory, filename);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    return {
+      id: filename.replace(/\.md$/, ''),
+      ...data,
+      content
+    };
+  });
+
+  return about.sort((a, b) => a.id.localeCompare(b.id));
+}
+
 const projects = getProjects();
 const posts = getPosts();
+const about = getAboutSections();
 
 const fileContent = `
 export const projects = ${JSON.stringify(projects, null, 2)};
 export const posts = ${JSON.stringify(posts, null, 2)};
+export const about = ${JSON.stringify(about, null, 2)};
 `;
 
 fs.writeFileSync(path.join(outputDirectory, 'ubuntu_data.js'), fileContent);

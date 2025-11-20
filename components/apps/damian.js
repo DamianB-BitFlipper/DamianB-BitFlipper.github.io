@@ -1,91 +1,150 @@
-
 import React, { Component } from 'react';
-import { projects } from '../ubuntu_data';
+import { about, projects as allProjects } from '../ubuntu_data';
 
 export class AboutDamian extends Component {
-
     constructor() {
         super();
-        this.screens = {};
         this.state = {
-            screen: () => { },
-            active_screen: "about",
-            navbar: false,
+            activeSectionIndex: 0,
         }
     }
 
-    componentDidMount() {
-        this.screens = {
-            "about": <About />,
-            "education": <Education />,
-            "experience": <Experience />,
-            "projects": <Projects />,
-            "resume": <Resume />,
+    changeSection = (index) => {
+        this.setState({ activeSectionIndex: index });
+    }
+
+    nextSection = () => {
+        if (this.state.activeSectionIndex < about.length - 1) {
+            this.setState({ activeSectionIndex: this.state.activeSectionIndex + 1 });
         }
-
-        let lastVisitedScreen = "about";
-        this.changeScreen(document.getElementById(lastVisitedScreen));
     }
 
-    changeScreen = (e) => {
-        const screen = e.id || e.target.id;
-
-        localStorage.setItem("about-section", screen);
-
-        this.setState({
-            screen: this.screens[screen],
-            active_screen: screen
-        });
+    prevSection = () => {
+        if (this.state.activeSectionIndex > 0) {
+            this.setState({ activeSectionIndex: this.state.activeSectionIndex - 1 });
+        }
     }
 
-    showNavBar = () => {
-        this.setState({ navbar: !this.state.navbar });
+    getIcon = (title) => {
+        const map = {
+            "About Me": "./themes/Yaru/status/about.svg",
+            "Education": "./themes/Yaru/status/education.svg",
+            "Experience": "./themes/Yaru/status/experience.svg",
+            "Projects": "./themes/Yaru/status/projects.svg",
+            "Resume": "./themes/Yaru/status/download.svg"
+        };
+        return map[title] || "./themes/Yaru/status/about.svg";
     }
 
     renderNavLinks = () => {
         return (
-            <>
-                <div id="about" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "about" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="about damian" src="./themes/Yaru/status/about.svg" />
-                    <span className=" ml-1 md:ml-2 text-gray-50 ">About Me</span>
+            <div className="flex flex-col w-full pt-2">
+                {about.map((section, index) => (
+                    <div 
+                        key={section.id} 
+                        onClick={() => this.changeSection(index)}
+                        className={(this.state.activeSectionIndex === index ? " bg-ub-orange text-white font-bold" : " text-gray-400 hover:text-gray-200 ") + " cursor-pointer px-4 py-2 flex items-center transition-colors duration-200"}
+                    >
+                        <img className={"w-4 h-4 mr-2 " + (this.state.activeSectionIndex === index ? "" : "opacity-50")} alt={section.title} src={this.getIcon(section.title)} />
+                        <span className="text-sm">{section.title}</span>
+                    </div>
+                ))}
+            </div>
+        );
+    }
+
+    renderContent = () => {
+        const section = about[this.state.activeSectionIndex];
+        if (!section) return null;
+
+        let content;
+        if (section.layout === 'projects') {
+            content = <ProjectsSection />;
+        } else if (section.layout === 'resume') {
+            content = <ResumeSection source={section.source} />;
+        } else if (section.schools) {
+            content = <EducationSection data={section} />;
+        } else if (section.jobs) {
+            content = <ExperienceSection data={section} />;
+        } else {
+            content = <AboutSection data={section} />;
+        }
+
+        return (
+            <div className="w-full h-full overflow-y-auto bg-white p-6 text-gray-900">
+                 {content}
+            </div>
+        );
+    }
+
+    renderFooter = () => {
+        const isLast = this.state.activeSectionIndex === about.length - 1;
+        const isFirst = this.state.activeSectionIndex === 0;
+
+        return (
+            <div className="h-16 bg-[#2c001e] flex items-center justify-between px-4 border-t border-gray-700 shrink-0">
+                <div className="w-1/4">
+                   {/* Placeholder for Quit button - functionally purely decorative unless we can close */}
+                   <button className="text-gray-300 text-sm hover:text-white px-3 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors">
+                       Quit
+                   </button>
                 </div>
-                <div id="education" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "education" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="damian education" src="./themes/Yaru/status/education.svg" />
-                    <span className=" ml-1 md:ml-2 text-gray-50 ">Education</span>
+                
+                <div className="flex space-x-2 justify-center w-1/2">
+                    {about.map((_, idx) => (
+                        <div 
+                            key={idx} 
+                            className={`w-2 h-2 rounded-full ${this.state.activeSectionIndex === idx ? 'bg-white' : 'bg-gray-600'}`}
+                        />
+                    ))}
                 </div>
-                <div id="experience" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "experience" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="damian experience" src="./themes/Yaru/status/experience.svg" />
-                    <span className=" ml-1 md:ml-2 text-gray-50 ">Experience</span>
+
+                <div className="flex justify-end w-1/4 space-x-3">
+                    <button 
+                        onClick={this.prevSection}
+                        disabled={isFirst}
+                        className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isFirst ? 'text-gray-500 cursor-not-allowed border border-gray-700' : 'text-white border border-gray-500 hover:border-gray-300 hover:bg-white hover:bg-opacity-5'}`}
+                    >
+                        Back
+                    </button>
+                    <button 
+                        onClick={this.nextSection}
+                        disabled={isLast}
+                        className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isLast ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-ub-orange text-white hover:bg-opacity-90'}`}
+                    >
+                        Continue
+                    </button>
                 </div>
-                <div id="projects" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "projects" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="damian projects" src="./themes/Yaru/status/projects.svg" />
-                    <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
-                </div>
-                <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="damian resume" src="./themes/Yaru/status/download.svg" />
-                    <span className=" ml-1 md:ml-2 text-gray-50 ">Resume</span>
-                </div>
-            </>
+            </div>
         );
     }
 
     render() {
+        const currentSection = about[this.state.activeSectionIndex];
+
         return (
-            <div className="w-full h-full flex bg-ub-cool-grey text-white select-none relative">
-                <div className="md:flex hidden flex-col w-1/4 md:w-1/5 text-sm overflow-y-auto windowMainScreen border-r border-black">
-                    {this.renderNavLinks()}
+            <div className="w-full h-full flex flex-col bg-ub-cool-grey text-white select-none relative font-ubuntu overflow-hidden">
+                {/* Window Header inside content */}
+                <div className="h-12 bg-[#2c001e] flex items-center px-4 border-b border-gray-800 shrink-0">
+                    <span className="font-bold text-lg tracking-wide">
+                         {currentSection ? `Preparing to show ${currentSection.title}` : "Welcome"}
+                    </span>
                 </div>
-                <div onClick={this.showNavBar} className="md:hidden flex flex-col items-center justify-center absolute bg-ub-cool-grey rounded w-6 h-6 top-1 left-1">
-                    <div className=" w-3.5 border-t border-white"></div>
-                    <div className=" w-3.5 border-t border-white" style={{ marginTop: "2pt", marginBottom: "2pt" }}></div>
-                    <div className=" w-3.5 border-t border-white"></div>
-                    <div className={(this.state.navbar ? " visible animateShow z-30 " : " invisible ") + " md:hidden text-xs absolute bg-ub-cool-grey py-0.5 px-1 rounded-sm top-full mt-1 left-0 shadow border-black border border-opacity-20"}>
+
+                <div className="flex flex-grow overflow-hidden">
+                    {/* Sidebar */}
+                    <div className="hidden md:flex flex-col w-1/4 bg-[#380c2a] border-r border-gray-900 overflow-y-auto">
                         {this.renderNavLinks()}
                     </div>
+
+                    {/* Main Content */}
+                    <div className="flex flex-col w-full md:w-3/4 bg-white relative overflow-hidden">
+                        {this.renderContent()}
+                    </div>
                 </div>
-                <div className="flex flex-col w-3/4 md:w-4/5 justify-start items-center flex-grow bg-ub-grey overflow-y-auto windowMainScreen">
-                    {this.state.screen}
-                </div>
+
+                {/* Footer */}
+                {this.renderFooter()}
             </div>
         );
     }
@@ -97,215 +156,154 @@ export const displayAboutDamian = () => {
     return <AboutDamian />;
 }
 
-function About() {
-    return (
-        <>
-            <div className="w-20 md:w-28 my-4 bg-white rounded-full">
-                <img className="w-full rounded-full" src="./images/damian.jpg" alt="Damian Barabonkov Logo" onError={(e) => { e.target.src = "./themes/Yaru/system/user-home.png" }} />
-            </div>
-            <div className=" mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
-                <div>my name is <span className="font-bold">Damian Barabonkov</span> ,</div>
-                <div className="font-normal ml-1">I'm a <span className="text-pink-600 font-bold">Software Engineer!</span></div>
-            </div>
-            <div className=" mt-4 relative md:my-8 pt-px bg-white w-32 md:w-48">
-                <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-0"></div>
-                <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-0"></div>
-            </div>
-            <div className="prose prose-invert text-gray-200 px-4 md:px-12 w-full text-center md:text-left">
-                <p className="text-lg font-medium">
-                  Software Engineer — Bachelors and Masters in Computer Science, MIT
-                </p>
-                
-                <p className="mt-2">
-                  I am a machine learning engineer at <a href="https://www.quantco.com/" target="_blank" className="text-ub-orange hover:underline">QuantCo</a>. 
-                  Before QuantCo, I studied Computer Science and Engineering (6-3) at MIT. 
-                  My computing interests focus around systems programming, software design and performance engineering.
-                </p>
-                
-                <p className="mt-2">
-                  I proudly contribute to the open-source community. Projects that I have written, open-sourced and actively maintain include 
-                  <code className="bg-gray-800 px-1 py-0.5 rounded text-sm mx-1">groupstorm</code>, 
-                  <code className="bg-gray-800 px-1 py-0.5 rounded text-sm mx-1">algopytest</code> and 
-                  <code className="bg-gray-800 px-1 py-0.5 rounded text-sm mx-1">conda-comply</code>. 
-                  I have also opened issues and written bug patches to Pandas, Pyarrow and Eigen.
-                </p>
-    
-                <p className="mt-2">
-                  Aside from computer science, teaching has always been important to me. All throughout university, 
-                  I have taught and assisted various courses such as: graduate level Theory of Computation, 
-                  undergraduate level Computability and Complexity Theory, Software Performance Engineering and Computation Structures.
-                </p>
-            </div>
-        </>
-    )
-}
+// Sub-components
 
-function Education() {
+const AboutSection = ({ data }) => {
     return (
-        <>
-            <div className=" font-medium relative text-2xl mt-2 md:mt-4 mb-4">
-                Education
-                <div className="absolute pt-px bg-white mt-px top-full w-full">
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+        <div className="flex flex-col items-center w-full p-8 md:p-12 max-w-4xl">
+            {data.image && (
+                <div className="w-32 md:w-40 mb-6 bg-white rounded-full shadow-lg">
+                    <img className="w-full rounded-full" src={data.image} alt="Profile" onError={(e) => { e.target.src = "./themes/Yaru/system/user-home.png" }} />
                 </div>
+            )}
+            <div className="text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+                    {data.title === "About Me" ? (
+                        <>
+                            my name is <span className="font-bold">Damian Barabonkov</span>,
+                            <div className="font-normal text-xl md:text-2xl mt-2">I'm a <span className="text-ub-orange font-bold">Software Engineer!</span></div>
+                        </>
+                    ) : data.title}
+                </h2>
             </div>
-            <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
-                <li className="list-disc">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        Massachusetts Institute of Technology
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2020 - 2021 • Cambridge, MA, USA</div>
-                    <div className=" text-sm md:text-base">Masters of Engineering (MEng) in Computer Science</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">GPA &nbsp; 5.0/5.0</div>
-                    <div className="text-sm mt-1">Thesis: <a href="https://pdos.csail.mit.edu/papers/barabonkov-meng.pdf" target="_blank" className="text-ub-orange hover:underline">Guarda</a> — A web application firewall for WebAuthn transaction authentication</div>
-                </li>
-                <li className="list-disc mt-5">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        Massachusetts Institute of Technology
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2016 - 2020 • Cambridge, MA, USA</div>
-                    <div className=" text-sm md:text-base">Bachelor of Science in Computer Science and Engineering</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">GPA &nbsp; 4.9/5.0</div>
-                </li>
-            </ul>
             
-            <div className=" font-medium relative text-2xl mt-8 mb-4">
-                Teaching Engagements
-                 <div className="absolute pt-px bg-white mt-px top-full w-full">
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
-                </div>
+             <div className="w-24 h-1 bg-ub-orange my-6 rounded"></div>
+
+            <div className="prose prose-lg text-gray-600 w-full text-center md:text-left leading-relaxed">
+                {data.content.split('\n\n').map((paragraph, idx) => (
+                    <p key={idx} className="mb-4" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
+                ))}
             </div>
-            <ul className="space-y-3 text-gray-300 w-10/12 ml-4">
-                <li><strong>Computability and Complexity Theory (6.045)</strong> — TA, 2021</li>
-                <li><strong>Theory of Computation (18.404)</strong> — TA, 2020</li>
-                <li><strong>Software Performance Engineering (6.172)</strong> — Curriculum Developer / TA, 2018-2019</li>
-                <li><strong>Computation Structures (6.004)</strong> — Lab Assistant, 2019</li>
-                <li><strong>Physics II: Electricity and Magnetism (8.02)</strong> — TA, 2018</li>
-            </ul>
-        </>
-    )
+        </div>
+    );
 }
 
-function Experience() {
+const EducationSection = ({ data }) => {
     return (
-        <>
-            <div className=" font-medium relative text-2xl mt-2 md:mt-4 mb-4">
-                Experience
-                <div className="absolute pt-px bg-white mt-px top-full w-full">
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
-                </div>
-            </div>
-            <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
-                <li className="list-disc">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        QuantCo Inc.
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2021 - Present • Berlin, DE</div>
-                    <div className=" text-sm md:text-base font-semibold">Software Engineer</div>
-                    <div className="mt-2 text-gray-300 text-sm">
-                        <div>
-                            <strong className="block text-white">Lead client-facing machine learning product</strong>
-                            <ul className="list-disc list-inside pl-2">
-                                <li>Project interactively displays machine learning predictions to client</li>
-                                <li>Collaborate and coordinate with multi-disciplinary team</li>
-                                <li>Orchestrate containerized backend systems for high availability</li>
-                            </ul>
-                        </div>
-                        <div className="mt-2">
-                            <strong className="block text-white">Develop internal feature engineering framework</strong>
-                            <ul className="list-disc list-inside pl-2">
-                                <li>Handles pricing models for two large German car insurers (5% market share)</li>
-                                <li>Increased productivity with 10x performance gain in incremental computations</li>
-                                <li>Open-source contributions to Pandas, Numpy, Kartothek</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li className="list-disc mt-5">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        QuantCo Inc.
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2020 • Karlsruhe, DE (Remote)</div>
-                    <div className=" text-sm md:text-base font-semibold">Machine Learning Engineer</div>
-                    <div className="mt-2 text-gray-300 text-sm">
-                       <p>Optimized data pipelines of Python machine learning framework, improving speed by 470%.</p>
-                    </div>
-                </li>
-                 <li className="list-disc mt-5">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        Singapore — MIT Alliance for Research and Technology
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2019 • Singapore</div>
-                    <div className=" text-sm md:text-base font-semibold">Supply Chain Researcher</div>
-                </li>
-                 <li className="list-disc mt-5">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        Facebook Inc.
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2018 • Menlo Park, CA</div>
-                    <div className=" text-sm md:text-base font-semibold">Performance and Capacity Engineer</div>
-                </li>
+        <div className="w-full p-8 md:p-12 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-8 border-b border-gray-200 pb-2">{data.title}</h2>
+            <ul className="space-y-8">
+                {data.schools.map((school, idx) => (
+                    <li key={idx} className="flex flex-col">
+                        <div className="text-xl font-bold text-gray-800">{school.name}</div>
+                        <div className="text-sm text-gray-500 mb-1">{school.date}</div>
+                        <div className="text-lg text-gray-700">{school.degree}</div>
+                        {school.gpa && <div className="text-sm font-bold text-ub-orange mt-1">GPA: {school.gpa}</div>}
+                        {school.description && <div className="text-sm text-gray-600 mt-2" dangerouslySetInnerHTML={{__html: parseLinks(school.description)}} />}
+                    </li>
+                ))}
             </ul>
-        </>
-    )
+
+            {data.teaching && (
+                <>
+                    <h3 className="text-2xl font-bold mt-12 mb-6 border-b border-gray-200 pb-2">Teaching Engagements</h3>
+                    <ul className="space-y-3 text-gray-600 list-disc pl-5">
+                        {data.teaching.map((item, idx) => (
+                            <li key={idx} dangerouslySetInnerHTML={{__html: item}} />
+                        ))}
+                    </ul>
+                </>
+            )}
+        </div>
+    );
 }
 
-function Projects() {
+const ExperienceSection = ({ data }) => {
     return (
-        <>
-            <div className=" font-medium relative text-2xl mt-2 md:mt-4 mb-4">
-                Projects
-                <div className="absolute pt-px bg-white mt-px top-full w-full">
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
-                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
-                </div>
-            </div>
+        <div className="w-full p-8 md:p-12 max-w-4xl">
+             <h2 className="text-3xl font-bold mb-8 border-b border-gray-200 pb-2">{data.title}</h2>
+             <ul className="space-y-10">
+                {data.jobs.map((job, idx) => (
+                    <li key={idx} className="relative pl-6 border-l-2 border-gray-200 hover:border-ub-orange transition-colors duration-300">
+                        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-ub-orange"></div>
+                        <div className="text-xl font-bold text-gray-800">{job.name}</div>
+                        <div className="text-sm text-gray-500 mb-1">{job.date}</div>
+                        <div className="text-lg font-semibold text-gray-700 mb-3">{job.role}</div>
+                        
+                        {job.description && (
+                             <div className="space-y-4">
+                                {Array.isArray(job.description) ? (
+                                    job.description.map((descGroup, dIdx) => (
+                                        <div key={dIdx}>
+                                            {descGroup.title && <div className="font-bold text-gray-800 mb-1">{descGroup.title}</div>}
+                                            {descGroup.items && (
+                                                <ul className="list-disc pl-5 text-gray-600 space-y-1">
+                                                    {descGroup.items.map((item, iIdx) => (
+                                                        <li key={iIdx} dangerouslySetInnerHTML={{__html: parseLinks(item)}} />
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    ))
+                                ) : null}
+                             </div>
+                        )}
+                    </li>
+                ))}
+             </ul>
+        </div>
+    );
+}
 
-            {
-                projects.map((project, index) => {
-                    return (
-                        <div key={index} className="flex w-full flex-col px-4">
-                            <div className="w-full py-2 px-2 my-2 border border-gray-50 border-opacity-10 rounded hover:bg-gray-50 hover:bg-opacity-5 cursor-default">
-                                <div className="flex flex-wrap justify-between items-center">
-                                    <div className='flex justify-center items-center'>
-                                        <div className=" text-base md:text-lg mr-2 font-bold">{project.title}</div>
-                                        { project.github && 
-                                            <iframe src={`https://ghbtns.com/github-btn.html?user=DamianB-BitFlipper&repo=${project.github.split('/').pop()}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.title+"-star"}></iframe>
-                                        }
-                                    </div>
-                                    <div className="text-gray-300 font-light text-sm">{project.category}</div>
-                                </div>
-                                <div className=" tracking-normal leading-tight text-sm font-light mt-2 text-gray-100">
-                                    {project.description}
-                                </div>
-                                <div className="flex flex-wrap items-start justify-start text-xs py-2">
-                                   {project.redirect || project.github ? (
-                                        <a 
-                                        href={project.redirect || project.github} 
-                                        target="_blank" 
-                                        className="inline-flex items-center gap-1 text-ub-orange hover:underline font-medium"
-                                        rel="noreferrer"
-                                        >
-                                        Install / Code
-                                        </a>
-                                    ) : (
-                                        <span className="text-gray-400">Internal Project</span>
-                                    )}
-                                </div>
+const ProjectsSection = () => {
+    return (
+        <div className="w-full p-8 md:p-12 max-w-5xl">
+            <h2 className="text-3xl font-bold mb-8 border-b border-gray-200 pb-2">Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {allProjects.map((project, index) => (
+                     <div key={index} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4">
+                        <div className="flex justify-between items-start mb-2">
+                            <div className="font-bold text-lg text-gray-800 flex items-center gap-2">
+                                {project.title}
+                                {project.github && (
+                                     <iframe src={`https://ghbtns.com/github-btn.html?user=DamianB-BitFlipper&repo=${project.github.split('/').pop()}&type=star&count=true`} frameBorder="0" scrolling="0" width="90" height="20" title={project.title+"-star"}></iframe>
+                                )}
                             </div>
+                            <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full">{project.category}</span>
                         </div>
-                    )
-                })
-            }
-        </>
-    )
+                        <p className="text-gray-600 text-sm flex-grow mb-4">{project.description}</p>
+                        <div className="mt-auto pt-2 border-t border-gray-100">
+                             {project.redirect || project.github ? (
+                                <a 
+                                href={project.redirect || project.github} 
+                                target="_blank" 
+                                className="inline-flex items-center text-sm font-medium text-ub-orange hover:underline"
+                                rel="noreferrer"
+                                >
+                                View Project
+                                </a>
+                            ) : (
+                                <span className="text-sm text-gray-400 italic">Internal Project</span>
+                            )}
+                        </div>
+                     </div>
+                ))}
+            </div>
+        </div>
+    );
 }
 
-function Resume() {
+const ResumeSection = ({ source }) => {
     return (
-        <iframe className="h-full w-full" src="./public/assets/pdf/DamianBarabonkovCV.pdf" title="Damian Barabonkov Resume" frameBorder="0"></iframe>
-    )
+        <div className="w-full h-full flex flex-col">
+            <iframe className="flex-grow w-full" src={source} title="Resume" frameBorder="0"></iframe>
+        </div>
+    );
+}
+
+// Helper to parse markdown-style links [text](url)
+function parseLinks(text) {
+    if (!text) return text;
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    return text.replace(linkRegex, '<a href="$2" target="_blank" class="text-ub-orange hover:underline">$1</a>');
 }

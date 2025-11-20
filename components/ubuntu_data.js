@@ -329,3 +329,106 @@ export const posts = [
     "content": "Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href=\"https://www.pinterest.com\">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href=\"https://en.wikipedia.org/wiki/Cold-pressed_juice\">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.\n\n#### Hipster list\n<ul>\n    <li>brunch</li>\n    <li>fixie</li>\n    <li>raybans</li>\n    <li>messenger bag</li>\n</ul>\n\nHoodie Thundercats retro, tote bag 8-bit Godard craft beer gastropub. Truffaut Tumblr taxidermy, raw denim Kickstarter sartorial dreamcatcher. Quinoa chambray slow-carb salvia readymade, bicycle rights 90's yr typewriter selfies letterpress cardigan vegan.\n\n<hr>\n\nPug heirloom High Life vinyl swag, single-origin coffee four dollar toast taxidermy reprehenderit fap distillery master cleanse locavore. Est anim sapiente leggings Brooklyn ea. Thundercats locavore excepteur veniam eiusmod. Raw denim Truffaut Schlitz, migas sapiente Portland VHS twee Bushwick Marfa typewriter retro id keytar.\n\n<blockquote>\n    We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another.\n    —Anais\n</blockquote>\n\nFap aliqua qui, scenester pug Echo Park polaroid irony shabby chic ex cardigan church-key Odd Future accusamus. Blog stumptown sartorial squid, gastropub duis aesthetic Truffaut vero. Pinterest tilde twee, odio mumblecore jean shorts lumbersexual.\n"
   }
 ];
+export const about = [
+  {
+    "id": "1-about",
+    "title": "About Me",
+    "image": "./images/damian.jpg",
+    "content": "Software Engineer — Bachelors and Masters in Computer Science, MIT\n\nI am a machine learning engineer at [QuantCo](https://www.quantco.com/). Before QuantCo, I studied Computer Science and Engineering (6-3) at MIT. My computing interests focus around systems programming, software design and performance engineering.\n\nI proudly contribute to the open-source community. Projects that I have written, open-sourced and actively maintain include `groupstorm`, `algopytest` and `conda-comply`. I have also opened issues and written bug patches to Pandas, Pyarrow and Eigen.\n\nAside from computer science, teaching has always been important to me. All throughout university, I have taught and assisted various courses such as: graduate level Theory of Computation, undergraduate level Computability and Complexity Theory, Software Performance Engineering and Computation Structures.\n"
+  },
+  {
+    "id": "2-education",
+    "title": "Education",
+    "schools": [
+      {
+        "name": "Massachusetts Institute of Technology",
+        "date": "2020 - 2021 • Cambridge, MA, USA",
+        "degree": "Masters of Engineering (MEng) in Computer Science",
+        "gpa": "5.0/5.0",
+        "description": "Thesis: [Guarda](https://pdos.csail.mit.edu/papers/barabonkov-meng.pdf) — A web application firewall for WebAuthn transaction authentication"
+      },
+      {
+        "name": "Massachusetts Institute of Technology",
+        "date": "2016 - 2020 • Cambridge, MA, USA",
+        "degree": "Bachelor of Science in Computer Science and Engineering",
+        "gpa": "4.9/5.0"
+      }
+    ],
+    "teaching": [
+      "<strong>Computability and Complexity Theory (6.045)</strong> — TA, 2021",
+      "<strong>Theory of Computation (18.404)</strong> — TA, 2020",
+      "<strong>Software Performance Engineering (6.172)</strong> — Curriculum Developer / TA, 2018-2019",
+      "<strong>Computation Structures (6.004)</strong> — Lab Assistant, 2019",
+      {
+        "<strong>Physics II": "Electricity and Magnetism (8.02)</strong> — TA, 2018"
+      }
+    ],
+    "content": ""
+  },
+  {
+    "id": "3-experience",
+    "title": "Experience",
+    "jobs": [
+      {
+        "name": "QuantCo Inc.",
+        "date": "2021 - Present • Berlin, DE",
+        "role": "Software Engineer",
+        "description": [
+          {
+            "title": "Lead client-facing machine learning product",
+            "items": [
+              "Project interactively displays machine learning predictions to client",
+              "Collaborate and coordinate with multi-disciplinary team",
+              "Orchestrate containerized backend systems for high availability"
+            ]
+          },
+          {
+            "title": "Develop internal feature engineering framework",
+            "items": [
+              "Handles pricing models for two large German car insurers (5% market share)",
+              "Increased productivity with 10x performance gain in incremental computations",
+              "Open-source contributions to Pandas, Numpy, Kartothek"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "QuantCo Inc.",
+        "date": "2020 • Karlsruhe, DE (Remote)",
+        "role": "Machine Learning Engineer",
+        "description": [
+          {
+            "title": "",
+            "items": [
+              "Optimized data pipelines of Python machine learning framework, improving speed by 470%."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Singapore — MIT Alliance for Research and Technology",
+        "date": "2019 • Singapore",
+        "role": "Supply Chain Researcher"
+      },
+      {
+        "name": "Facebook Inc.",
+        "date": "2018 • Menlo Park, CA",
+        "role": "Performance and Capacity Engineer"
+      }
+    ],
+    "content": ""
+  },
+  {
+    "id": "4-projects",
+    "title": "Projects",
+    "layout": "projects",
+    "content": ""
+  },
+  {
+    "id": "5-resume",
+    "title": "Resume",
+    "layout": "resume",
+    "source": "./public/assets/pdf/DamianBarabonkovCV.pdf",
+    "content": ""
+  }
+];
