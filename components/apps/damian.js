@@ -71,11 +71,12 @@ export class AboutDamian extends Component {
         }
 
         return (
-            <div className="w-full h-full overflow-y-auto bg-white p-6 text-gray-900">
+            <div className="w-full h-full overflow-y-auto bg-gray-100 text-gray-800 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
                  {content}
             </div>
         );
     }
+
 
     renderFooter = () => {
         const isLast = this.state.activeSectionIndex === about.length - 1;
@@ -159,26 +160,26 @@ const AboutSection = ({ data }) => {
     return (
         <div className="flex flex-col items-center w-full p-8 md:p-12 max-w-4xl">
             {data.image && (
-                <div className="w-32 md:w-40 mb-6 bg-white rounded-full shadow-lg">
+                <div className="w-32 md:w-40 mb-6 bg-white p-1 rounded-full shadow-xl">
                     <img className="w-full rounded-full" src={data.image} alt="Profile" onError={(e) => { e.target.src = "./themes/Yaru/system/user-home.png" }} />
                 </div>
             )}
             <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 tracking-wide">
                     {data.title === "About Me" ? (
                         <>
                             my name is <span className="font-bold">Damian Barabonkov</span>,
-                            <div className="font-normal text-xl md:text-2xl mt-2">I'm a <span className="text-ub-orange font-bold">Software Engineer!</span></div>
+                            <div className="font-normal text-xl md:text-2xl mt-2 text-gray-600">I'm a <span className="text-ub-orange font-bold">Software Engineer!</span></div>
                         </>
                     ) : data.title}
                 </h2>
             </div>
             
-             <div className="w-24 h-1 bg-ub-orange my-6 rounded"></div>
+             <div className="w-24 h-1 bg-ub-orange my-6 rounded opacity-80"></div>
 
-            <div className="prose prose-lg text-gray-600 w-full text-center md:text-left leading-relaxed">
+            <div className="prose prose-lg text-gray-600 w-full text-center md:text-left leading-loose max-w-none">
                 {data.content.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="mb-4" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
+                    <p key={idx} className="mb-6" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
                 ))}
             </div>
         </div>
@@ -188,25 +189,25 @@ const AboutSection = ({ data }) => {
 const EducationSection = ({ data }) => {
     return (
         <div className="w-full p-8 md:p-12 max-w-4xl">
-            <h2 className="text-3xl font-bold mb-8 border-b border-gray-200 pb-2">{data.title}</h2>
-            <ul className="space-y-8">
+            <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">{data.title}</h2>
+            <ul className="space-y-6">
                 {data.schools.map((school, idx) => (
-                    <li key={idx} className="flex flex-col">
-                        <div className="text-xl font-bold text-gray-800">{school.name}</div>
-                        <div className="text-sm text-gray-500 mb-1">{school.date}</div>
+                    <li key={idx} className="flex flex-col bg-white p-6 rounded-lg border border-gray-200 hover:border-gray-300 shadow-sm transition-colors">
+                        <div className="text-xl font-bold text-gray-900">{school.name}</div>
+                        <div className="text-sm text-gray-500 mb-2 font-mono">{school.date}</div>
                         <div className="text-lg text-gray-700">{school.degree}</div>
-                        {school.gpa && <div className="text-sm font-bold text-ub-orange mt-1">GPA: {school.gpa}</div>}
-                        {school.description && <div className="text-sm text-gray-600 mt-2" dangerouslySetInnerHTML={{__html: parseLinks(school.description)}} />}
+                        {school.gpa && <div className="text-sm font-bold text-ub-orange mt-2">GPA: {school.gpa}</div>}
+                        {school.description && <div className="text-sm text-gray-600 mt-3 italic" dangerouslySetInnerHTML={{__html: parseLinks(school.description)}} />}
                     </li>
                 ))}
             </ul>
 
             {data.teaching && (
                 <>
-                    <h3 className="text-2xl font-bold mt-12 mb-6 border-b border-gray-200 pb-2">Teaching Engagements</h3>
-                    <ul className="space-y-3 text-gray-600 list-disc pl-5">
+                    <h3 className="text-2xl font-bold mt-12 mb-6 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">Teaching Engagements</h3>
+                    <ul className="grid grid-cols-1 gap-3">
                         {data.teaching.map((item, idx) => (
-                            <li key={idx} dangerouslySetInnerHTML={{__html: item}} />
+                            <li key={idx} className="bg-white p-3 rounded border border-gray-200 text-gray-700 text-sm md:text-base shadow-sm" dangerouslySetInnerHTML={{__html: item}} />
                         ))}
                     </ul>
                 </>
@@ -218,33 +219,37 @@ const EducationSection = ({ data }) => {
 const ExperienceSection = ({ data }) => {
     return (
         <div className="w-full p-8 md:p-12 max-w-4xl">
-             <h2 className="text-3xl font-bold mb-8 border-b border-gray-200 pb-2">{data.title}</h2>
-             <ul className="space-y-10">
+             <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">{data.title}</h2>
+             <ul className="space-y-8">
                 {data.jobs.map((job, idx) => (
-                    <li key={idx} className="relative pl-6 border-l-2 border-gray-200 hover:border-ub-orange transition-colors duration-300">
-                        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-ub-orange"></div>
-                        <div className="text-xl font-bold text-gray-800">{job.name}</div>
-                        <div className="text-sm text-gray-500 mb-1">{job.date}</div>
-                        <div className="text-lg font-semibold text-gray-700 mb-3">{job.role}</div>
-                        
-                        {job.description && (
-                             <div className="space-y-4">
-                                {Array.isArray(job.description) ? (
-                                    job.description.map((descGroup, dIdx) => (
-                                        <div key={dIdx}>
-                                            {descGroup.title && <div className="font-bold text-gray-800 mb-1">{descGroup.title}</div>}
-                                            {descGroup.items && (
-                                                <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                                                    {descGroup.items.map((item, iIdx) => (
-                                                        <li key={iIdx} dangerouslySetInnerHTML={{__html: parseLinks(item)}} />
-                                                    ))}
-                                                </ul>
-                                            )}
-                                        </div>
-                                    ))
-                                ) : null}
-                             </div>
-                        )}
+                    <li key={idx} className="relative pl-8 border-l-2 border-gray-300 hover:border-ub-orange transition-colors duration-300 group">
+                        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-50 border-4 border-gray-300 group-hover:border-ub-orange transition-colors duration-300"></div>
+                        <div className="bg-white p-6 rounded-lg border border-gray-200 group-hover:border-gray-300 shadow-sm transition-all">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                                <div className="text-xl font-bold text-gray-900">{job.name}</div>
+                                <div className="text-sm text-gray-500 font-mono bg-gray-100 px-2 py-1 rounded inline-block w-fit mt-1 md:mt-0">{job.date}</div>
+                            </div>
+                            <div className="text-lg font-medium text-ub-orange mb-4">{job.role}</div>
+                            
+                            {job.description && (
+                                 <div className="space-y-4">
+                                    {Array.isArray(job.description) ? (
+                                        job.description.map((descGroup, dIdx) => (
+                                            <div key={dIdx}>
+                                                {descGroup.title && <div className="font-bold text-gray-800 mb-2">{descGroup.title}</div>}
+                                                {descGroup.items && (
+                                                    <ul className="list-disc pl-5 text-gray-600 space-y-2">
+                                                        {descGroup.items.map((item, iIdx) => (
+                                                            <li key={iIdx} className="leading-relaxed" dangerouslySetInnerHTML={{__html: parseLinks(item)}} />
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
+                                        ))
+                                    ) : null}
+                                 </div>
+                            )}
+                        </div>
                     </li>
                 ))}
              </ul>
@@ -255,32 +260,35 @@ const ExperienceSection = ({ data }) => {
 const ProjectsSection = () => {
     return (
         <div className="w-full p-8 md:p-12 max-w-5xl">
-            <h2 className="text-3xl font-bold mb-8 border-b border-gray-200 pb-2">Projects</h2>
+            <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {allProjects.map((project, index) => (
-                     <div key={index} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4">
-                        <div className="flex justify-between items-start mb-2">
-                            <div className="font-bold text-lg text-gray-800 flex items-center gap-2">
+                     <div key={index} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 p-6 group">
+                        <div className="flex justify-between items-start mb-3">
+                            <div className="font-bold text-lg text-gray-900 flex items-center gap-2 group-hover:text-ub-orange transition-colors">
                                 {project.title}
                                 {project.github && (
                                      <iframe src={`https://ghbtns.com/github-btn.html?user=DamianB-BitFlipper&repo=${project.github.split('/').pop()}&type=star&count=true`} frameBorder="0" scrolling="0" width="90" height="20" title={project.title+"-star"}></iframe>
                                 )}
                             </div>
-                            <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full">{project.category}</span>
+                            <span className="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full border border-gray-200">{project.category}</span>
                         </div>
-                        <p className="text-gray-600 text-sm flex-grow mb-4">{project.description}</p>
-                        <div className="mt-auto pt-2 border-t border-gray-100">
+                        <p className="text-gray-600 text-sm flex-grow mb-6 leading-relaxed">{project.description}</p>
+                        <div className="mt-auto pt-4 border-t border-gray-100">
                              {project.redirect || project.github ? (
                                 <a 
                                 href={project.redirect || project.github} 
                                 target="_blank" 
-                                className="inline-flex items-center text-sm font-medium text-ub-orange hover:underline"
+                                className="inline-flex items-center text-sm font-medium text-ub-orange hover:text-ub-orange-dark transition-colors"
                                 rel="noreferrer"
                                 >
-                                View Project
+                                <span className="mr-1">View Project</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
                                 </a>
                             ) : (
-                                <span className="text-sm text-gray-400 italic">Internal Project</span>
+                                <span className="text-sm text-gray-400 italic cursor-not-allowed">Internal Project</span>
                             )}
                         </div>
                      </div>
@@ -292,11 +300,12 @@ const ProjectsSection = () => {
 
 const ResumeSection = ({ source }) => {
     return (
-        <div className="w-full h-full flex flex-col">
+        <div className="w-full h-full flex flex-col bg-gray-50">
             <iframe className="flex-grow w-full" src={source} title="Resume" frameBorder="0"></iframe>
         </div>
     );
 }
+
 
 // Helper to parse markdown-style links [text](url)
 function parseLinks(text) {
