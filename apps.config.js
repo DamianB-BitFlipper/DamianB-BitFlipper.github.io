@@ -9,6 +9,7 @@ import { displayGedit, displayDoNotClick } from './components/apps/gedit';
 import { displayAboutDamian } from './components/apps/damian';
 import { displayTerminalCalc } from './components/apps/calc';
 import { displayCheese } from './components/apps/cheese';
+import { displayChess } from './components/apps/chess';
 
 const apps = [
     {
@@ -71,8 +72,17 @@ const apps = [
         icon: './themes/Yaru/apps/cheese.png',
         disabled: false,
         favourite: true,
-        desktop_shortcut: true,
+        desktop_shortcut: false,
         screen: displayCheese,
+    },
+    {
+        id: "chess",
+        title: "Chess",
+        icon: './themes/Yaru/apps/gedit.png',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        screen: displayChess,
     },
     {
         id: "settings",
