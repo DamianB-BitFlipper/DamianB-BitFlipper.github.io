@@ -26,7 +26,7 @@ export class Terminal extends Component {
             terminal: [],
         }
         this.all_commands = [
-            "cd", "ls", "pwd", "echo", "clear", "exit", "mkdir", 
+            "cd", "ls", "pwd", "echo", "clear", "exit", 
             "code", "spotify", "chrome", "about-damian", "trash", 
             "settings", "sendmsg", "help", "cowsay", "sudo"
         ];
@@ -263,14 +263,6 @@ export class Terminal extends Component {
                 }
                 else {
                     result = `ls: cannot access '${words}': No such file or directory`;
-                }
-                break;
-            case "mkdir":
-                if (words[0] !== undefined && words[0] !== "") {
-                    this.props.addFolder(words[0]);
-                    result = "";
-                } else {
-                    result = "mkdir: missing operand";
                 }
                 break;
             case "pwd":
