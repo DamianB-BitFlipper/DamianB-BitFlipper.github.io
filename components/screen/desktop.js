@@ -133,11 +133,11 @@ export class Desktop extends Component {
         apps.forEach((app) => {
             focused_windows = {
                 ...focused_windows,
-                [app.id]: false,
+                [app.id]: (app.id === "about-damian"),
             };
             closed_windows = {
                 ...closed_windows,
-                [app.id]: true,
+                [app.id]: (app.id !== "about-damian"),
             };
             disabled_apps = {
                 ...disabled_apps,
@@ -156,6 +156,8 @@ export class Desktop extends Component {
                 [app.id]: false,
             }
             if (app.desktop_shortcut) desktop_apps.push(app.id);
+
+            if (app.id === "about-damian") this.app_stack.push(app.id);
         });
         this.setState({
             focused_windows,

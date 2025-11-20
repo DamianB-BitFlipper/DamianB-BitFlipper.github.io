@@ -23,12 +23,7 @@ export class AboutDamian extends Component {
             "resume": <Resume />,
         }
 
-        let lastVisitedScreen = localStorage.getItem("about-section");
-        if (lastVisitedScreen === null || lastVisitedScreen === undefined) {
-            lastVisitedScreen = "about";
-        }
-
-        // focus last visited screen
+        let lastVisitedScreen = "about";
         this.changeScreen(document.getElementById(lastVisitedScreen));
     }
 

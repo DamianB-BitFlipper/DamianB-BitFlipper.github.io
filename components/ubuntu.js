@@ -11,39 +11,40 @@ export default class Ubuntu extends Component {
 		this.state = {
 			screen_locked: false,
 			bg_image_name: 'wall-2',
-			booting_screen: true,
-			shutDownScreen: false
-		};
-	}
+            booting_screen: false,
+            shutDownScreen: false
+        };
+    }
 
-	componentDidMount() {
-		this.getLocalData();
-	}
+    componentDidMount() {
+        this.getLocalData();
+    }
 
-	setTimeOutBootScreen = () => {
-		setTimeout(() => {
-			this.setState({ booting_screen: false });
-		}, 2000);
-	};
+    setTimeOutBootScreen = () => {
+        setTimeout(() => {
+            this.setState({ booting_screen: false });
+        }, 1000);
+    };
 
-	getLocalData = () => {
-		// Get Previously selected Background Image
-		let bg_image_name = localStorage.getItem('bg-image');
-		if (bg_image_name !== null && bg_image_name !== undefined) {
-			this.setState({ bg_image_name });
-		}
+    getLocalData = () => {
+        // Get Previously selected Background Image
+        let bg_image_name = localStorage.getItem('bg-image');
+        if (bg_image_name !== null && bg_image_name !== undefined) {
+            this.setState({ bg_image_name });
+        }
 
-		let booting_screen = localStorage.getItem('booting_screen');
-		if (booting_screen !== null && booting_screen !== undefined) {
-			// user has visited site before
-			this.setState({ booting_screen: false });
-		} else {
-			// user is visiting site for the first time
-			localStorage.setItem('booting_screen', false);
-			this.setTimeOutBootScreen();
-		}
+        let booting_screen = localStorage.getItem('booting_screen');
+        if (booting_screen !== null && booting_screen !== undefined) {
+            // user has visited site before
+            this.setState({ booting_screen: false });
+        } else {
+            // user is visiting site for the first time
+            this.setState({ booting_screen: true });
+            localStorage.setItem('booting_screen', false);
+            this.setTimeOutBootScreen();
+        }
 
-		// get shutdown state
+        // get shutdown state
 		let shut_down = localStorage.getItem('shut-down');
 		if (shut_down !== null && shut_down !== undefined && shut_down === 'true') this.shutDown();
 		else {
