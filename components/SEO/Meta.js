@@ -21,12 +21,12 @@ export default function Meta() {
             <meta name="theme-color" content="#E95420" />
 
             /* Search Engine */
-            <meta name="image" content="images/logos/fevicon.png" />
+            <meta name="image" content="/images/dbtux.png" />
             /* Schema.org for Google */
             <meta itemProp="name" content="Damian Barabonkov - Software Engineer" />
             <meta itemProp="description"
                 content="Damian Barabonkov's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
-            <meta itemProp="image" content="images/logos/fevicon.png" />
+            <meta itemProp="image" content="/images/dbtux.png" />
             /* Twitter */
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:title" content="Damian Barabonkov - Software Engineer" />
@@ -45,7 +45,7 @@ export default function Meta() {
             <meta name="og:locale" content="en_US" />
             <meta name="og:type" content="website" />
 
-            <link rel="icon" href="images/logos/fevicon.svg" />
+            <link rel="icon" href="/images/dbtux.png" type="image/png" />
             <link rel="apple-touch-icon" href="images/logos/logo.png" />
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" as="style" />
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"></link>
