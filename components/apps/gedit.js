@@ -70,5 +70,5 @@ export const displayGedit = () => {
 }
 
 export const displayDoNotClick = () => {
-    return <Gedit title="Do Not Click" content="I told you not to click me!"> </Gedit>;
+    return <Gedit title="Do Not Click" content="I told you not to open me!"> </Gedit>;
 }

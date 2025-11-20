@@ -8,6 +8,7 @@ import { displayTrash } from './components/apps/trash';
 import { displayGedit, displayDoNotClick } from './components/apps/gedit';
 import { displayAboutDamian } from './components/apps/damian';
 import { displayTerminalCalc } from './components/apps/calc';
+import { displayCheese } from './components/apps/cheese';
 
 const apps = [
     {
@@ -63,6 +64,15 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displaySpotify,
+    },
+    {
+        id: "cheese",
+        title: "Cheese",
+        icon: './themes/Yaru/apps/cheese.png',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: true,
+        screen: displayCheese,
     },
     {
         id: "settings",
