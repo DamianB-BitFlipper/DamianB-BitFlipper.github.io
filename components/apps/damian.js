@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { about, projects as allProjects } from '../ubuntu_data';
+import aboutSections from '../../content/about.json';
+import { projects as allProjects } from '../ubuntu_data';
 
 export class AboutDamian extends Component {
     constructor() {
@@ -14,7 +15,7 @@ export class AboutDamian extends Component {
     }
 
     nextSection = () => {
-        if (this.state.activeSectionIndex < about.length - 1) {
+        if (this.state.activeSectionIndex < aboutSections.length - 1) {
             this.setState({ activeSectionIndex: this.state.activeSectionIndex + 1 });
         }
     }
@@ -39,7 +40,7 @@ export class AboutDamian extends Component {
     renderNavLinks = () => {
         return (
             <div className="flex flex-col w-full pt-2">
-                {about.map((section, index) => (
+                {aboutSections.map((section, index) => (
                     <div 
                         key={section.id} 
                         onClick={() => this.changeSection(index)}
@@ -54,7 +55,7 @@ export class AboutDamian extends Component {
     }
 
     renderContent = () => {
-        const section = about[this.state.activeSectionIndex];
+        const section = aboutSections[this.state.activeSectionIndex];
         if (!section) return null;
 
         let content;
@@ -79,7 +80,7 @@ export class AboutDamian extends Component {
 
 
     renderFooter = () => {
-        const isLast = this.state.activeSectionIndex === about.length - 1;
+        const isLast = this.state.activeSectionIndex === aboutSections.length - 1;
         const isFirst = this.state.activeSectionIndex === 0;
 
         return (
@@ -89,7 +90,7 @@ export class AboutDamian extends Component {
                 </div>
                 
                 <div className="flex space-x-2 justify-center w-1/2">
-                    {about.map((_, idx) => (
+                    {aboutSections.map((_, idx) => (
                         <div 
                             key={idx} 
                             className={`w-2 h-2 rounded-full ${this.state.activeSectionIndex === idx ? 'bg-white' : 'bg-gray-600'}`}
@@ -118,7 +119,7 @@ export class AboutDamian extends Component {
     }
 
     render() {
-        const currentSection = about[this.state.activeSectionIndex];
+        const currentSection = aboutSections[this.state.activeSectionIndex];
 
         return (
             <div className="w-full h-full flex flex-col bg-ub-cool-grey text-white select-none relative font-ubuntu overflow-hidden">
@@ -178,9 +179,15 @@ const AboutSection = ({ data }) => {
              <div className="w-24 h-1 bg-ub-orange my-6 rounded opacity-80"></div>
 
             <div className="prose prose-lg text-gray-600 w-full text-center md:text-left leading-loose max-w-none">
-                {data.content.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="mb-6" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
-                ))}
+                {Array.isArray(data.content) ? (
+                    data.content.map((paragraph, idx) => (
+                        <p key={idx} className="mb-6" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
+                    ))
+                ) : (
+                    data.content.split('\n\n').map((paragraph, idx) => (
+                        <p key={idx} className="mb-6" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
+                    ))
+                )}
             </div>
         </div>
     );

@@ -334,7 +334,7 @@ export const about = [
     "id": "1-about",
     "title": "About Me",
     "image": "./images/damian.jpg",
-    "content": "Software Engineer — Bachelors and Masters in Computer Science, MIT\n\nI am a machine learning engineer at [QuantCo](https://www.quantco.com/). Before QuantCo, I studied Computer Science and Engineering (6-3) at MIT. My computing interests focus around systems programming, software design and performance engineering.\n\nI proudly contribute to the open-source community. Projects that I have written, open-sourced and actively maintain include `groupstorm`, `algopytest` and `conda-comply`. I have also opened issues and written bug patches to Pandas, Pyarrow and Eigen.\n\nAside from computer science, teaching has always been important to me. All throughout university, I have taught and assisted various courses such as: graduate level Theory of Computation, undergraduate level Computability and Complexity Theory, Software Performance Engineering and Computation Structures.\n"
+    "content": "Founding AI Engineer building evaluation-first LLM products.\n\n**Damian Barabonkov**  \n[damianb@alum.mit.edu](mailto:damianb@alum.mit.edu) • +49 1522 2600 341 • Berlin, DE • [GitHub Profile](https://github.com/DamianB-BitFlipper) • [LinkedIn](https://www.linkedin.com/in/damianbarabonkov/)  \nUS Citizen • EU Citizen\n\nI am the second employee and founding AI engineer at [ellamind GmbH](https://www.ellamind.ai/), where I ship production LLM evaluation platforms end-to-end—from product specification, scalable Django/Next.js/Postgres backends, and CI/CD pipelines to customer adoption and recruiting. Previously I was a machine learning and software engineer at [QuantCo](https://www.quantco.com/) and began my career as a performance engineering intern at Facebook.\n\nI have a BSc and MEng in Computer Science from MIT (6-3) and maintain a strong focus on systems programming, rigorous evaluation and performance engineering. I continue to contribute to open source through projects such as `groupstorm`, `algopytest`, `conda-comply`, and patches to pandas, NumPy and Eigen. When time allows, I mentor engineers and design technical interviews that emphasize curiosity, craftsmanship and leverage.\n"
   },
   {
     "id": "2-education",
@@ -342,16 +342,16 @@ export const about = [
     "schools": [
       {
         "name": "Massachusetts Institute of Technology",
-        "date": "2020 - 2021 • Cambridge, MA, USA",
-        "degree": "Masters of Engineering (MEng) in Computer Science",
-        "gpa": "5.0/5.0",
-        "description": "Thesis: [Guarda](https://pdos.csail.mit.edu/papers/barabonkov-meng.pdf) — A web application firewall for WebAuthn transaction authentication"
+        "date": "May 2021 • Cambridge, MA, USA",
+        "degree": "MEng, Computer Science (6-3)",
+        "gpa": "5.0/5.0 GPA",
+        "description": "Masters Thesis — [Guarda](https://pdos.csail.mit.edu/papers/barabonkov-meng.pdf): a web application firewall for WebAuthn transaction authentication"
       },
       {
         "name": "Massachusetts Institute of Technology",
-        "date": "2016 - 2020 • Cambridge, MA, USA",
-        "degree": "Bachelor of Science in Computer Science and Engineering",
-        "gpa": "4.9/5.0"
+        "date": "May 2020 • Cambridge, MA, USA",
+        "degree": "BSc, Computer Science and Engineering (6-3)",
+        "gpa": "4.9/5.0 GPA"
       }
     ],
     "teaching": [
@@ -368,50 +368,81 @@ export const about = [
     "title": "Experience",
     "jobs": [
       {
-        "name": "QuantCo Inc.",
-        "date": "2021 - Present • Berlin, DE",
-        "role": "Software Engineer",
+        "name": "ellamind GmbH",
+        "date": "Jul. 2024 – Present • Berlin, DE",
+        "role": "Founding AI Engineer (2nd employee)",
         "description": [
           {
-            "title": "Lead client-facing machine learning product",
+            "title": "Shipped full LLM evaluation SaaS platform (0 → 1)",
             "items": [
-              "Project interactively displays machine learning predictions to client",
-              "Collaborate and coordinate with multi-disciplinary team",
-              "Orchestrate containerized backend systems for high availability"
+              "Delivered production-ready system in 9 months by combining deep engineering expertise with AI tooling",
+              "Architected scalable Postgres + Django REST API backend, Python SDK, and Next.js frontend with containerized environments and CI/CD",
+              "Authored design specifications that doubled as structured prompts for Claude Code and Codex, accelerating feature development"
             ]
           },
           {
-            "title": "Develop internal feature engineering framework",
+            "title": "Architected platform around evaluation workflows and best practices",
             "items": [
-              "Handles pricing models for two large German car insurers (5% market share)",
-              "Increased productivity with 10x performance gain in incremental computations",
-              "Open-source contributions to Pandas, Numpy, Kartothek"
+              "Reproduced industry-standard benchmarks such as GPQA and MMLU for model release validation",
+              "Designed custom evaluation suites for memorization, multilingual reasoning, geography, and sandboxed multi-turn agents",
+              "Applied evaluation insights to iteratively improve the platform user experience"
+            ]
+          },
+          {
+            "title": "Customer-first, leverage-oriented execution",
+            "items": [
+              "Shipped actionable dashboards for cross-model, prompt, and agent comparisons informed by customer interviews",
+              "Scoped features to maximize customer value with minimal complexity, reducing time-to-ship"
+            ]
+          },
+          {
+            "title": "Scaled recruiting from 4 to 10 employees",
+            "items": [
+              "Designed technical screening and onsite coding challenges to assess engineering talent",
+              "Led 50+ technical interviews and all onsite coding sessions"
             ]
           }
         ]
       },
       {
         "name": "QuantCo Inc.",
-        "date": "2020 • Karlsruhe, DE (Remote)",
-        "role": "Machine Learning Engineer",
+        "date": "Oct. 2021 – Jan. 2024 • Berlin, DE",
+        "role": "Machine Learning & Software Engineer",
         "description": [
           {
-            "title": "",
+            "title": "Led development of client-facing ML dashboard with on-call ownership",
             "items": [
-              "Optimized data pipelines of Python machine learning framework, improving speed by 470%."
+              "Modernized backend with incremental backups, unit and integration tests, and continuous deployment"
+            ]
+          },
+          {
+            "title": "Created `groupstorm`, a hyper-fast DataFrame grouping library",
+            "items": [
+              "Cut runtime from 30 minutes to under a minute using sparse matrices, lazy evaluation, data sharding, and cachegrind profiling"
+            ]
+          },
+          {
+            "title": "Extended internal feature engineering framework",
+            "items": [
+              "Implemented incremental feature recomputation for 10x performance boost across three projects and two clients",
+              "Discovered bugs and contributed patches to pandas, NumPy, and Eigen"
             ]
           }
         ]
       },
       {
-        "name": "Singapore — MIT Alliance for Research and Technology",
-        "date": "2019 • Singapore",
-        "role": "Supply Chain Researcher"
-      },
-      {
         "name": "Facebook Inc.",
-        "date": "2018 • Menlo Park, CA",
-        "role": "Performance and Capacity Engineer"
+        "date": "Jun. 2018 – Aug. 2018 • Menlo Park, CA",
+        "role": "Performance and Capacity Engineer Intern",
+        "description": [
+          {
+            "title": "Database performance profiling",
+            "items": [
+              "Extended existing profiler to capture additional metrics across Facebook services",
+              "Tuned production database utilization to improve performance with significant cost savings"
+            ]
+          }
+        ]
       }
     ],
     "content": ""
@@ -426,7 +457,7 @@ export const about = [
     "id": "5-resume",
     "title": "Resume",
     "layout": "resume",
-    "source": "./public/files/Damian_Barabonkov_Resume.pdf",
+    "source": "./files/Damian_Barabonkov_Resume.pdf",
     "content": ""
   }
 ];

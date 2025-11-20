@@ -2,10 +2,12 @@
 title: About Me
 image: ./images/damian.jpg
 ---
-Software Engineer — Bachelors and Masters in Computer Science, MIT
+Founding AI Engineer building evaluation-first LLM products.
 
-I am a machine learning engineer at [QuantCo](https://www.quantco.com/). Before QuantCo, I studied Computer Science and Engineering (6-3) at MIT. My computing interests focus around systems programming, software design and performance engineering.
+**Damian Barabonkov**  
+[damianb@alum.mit.edu](mailto:damianb@alum.mit.edu) • +49 1522 2600 341 • Berlin, DE • [GitHub Profile](https://github.com/DamianB-BitFlipper) • [LinkedIn](https://www.linkedin.com/in/damianbarabonkov/)  
+US Citizen • EU Citizen
 
-I proudly contribute to the open-source community. Projects that I have written, open-sourced and actively maintain include `groupstorm`, `algopytest` and `conda-comply`. I have also opened issues and written bug patches to Pandas, Pyarrow and Eigen.
+I am the second employee and founding AI engineer at [ellamind GmbH](https://www.ellamind.ai/), where I ship production LLM evaluation platforms end-to-end—from product specification, scalable Django/Next.js/Postgres backends, and CI/CD pipelines to customer adoption and recruiting. Previously I was a machine learning and software engineer at [QuantCo](https://www.quantco.com/) and began my career as a performance engineering intern at Facebook.
 
-Aside from computer science, teaching has always been important to me. All throughout university, I have taught and assisted various courses such as: graduate level Theory of Computation, undergraduate level Computability and Complexity Theory, Software Performance Engineering and Computation Structures.
+I have a BSc and MEng in Computer Science from MIT (6-3) and maintain a strong focus on systems programming, rigorous evaluation and performance engineering. I continue to contribute to open source through projects such as `groupstorm`, `algopytest`, `conda-comply`, and patches to pandas, NumPy and Eigen. When time allows, I mentor engineers and design technical interviews that emphasize curiosity, craftsmanship and leverage.
