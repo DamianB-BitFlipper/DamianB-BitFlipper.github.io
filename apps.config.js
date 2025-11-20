@@ -20,6 +20,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: true,
         screen: displayFirefox, // reusing the component for now, will rename later if requested
+        height: 85, width: 60,
     },
     {
         id: "calc",
@@ -29,6 +30,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayTerminalCalc,
+        height: 85, width: 60,
     },
     {
         id: "about-damian",
@@ -38,6 +40,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: true,
         screen: displayAboutDamian,
+        height: 85, width: 60,
     },
     {
         id: "vscode",
@@ -47,6 +50,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayVsCode,
+        height: 85, width: 60,
     },
     {
         id: "terminal",
@@ -56,6 +60,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayTerminal,
+        height: 85, width: 60,
     },
     {
         id: "spotify",
@@ -65,6 +70,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displaySpotify,
+        height: 85, width: 60,
     },
     {
         id: "cheese",
@@ -74,15 +80,17 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayCheese,
+        height: 85, width: 60,
     },
     {
         id: "chess",
         title: "Chess",
-        icon: './themes/Yaru/apps/gedit.png',
+        icon: './themes/Yaru/apps/chess.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
         screen: displayChess,
+        height: 80, width: 40,
     },
     {
         id: "settings",
@@ -92,6 +100,7 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displaySettings,
+        height: 85, width: 60,
     },
     {
         id: "gedit",
@@ -101,6 +110,7 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayGedit,
+        height: 85, width: 60,
     },
     {
         id: "github",
@@ -112,6 +122,7 @@ const apps = [
         isExternalApp: true,
         url: "https://github.com/DamianB-BitFlipper",
         screen: () => {},
+        height: 85, width: 60,
     },
     {
         id: "trash",
@@ -121,6 +132,7 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayTrash,
+        height: 85, width: 60,
     },
     {
         id: "do-not-click",
@@ -130,6 +142,7 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayDoNotClick,
+        height: 85, width: 60,
     },
 ]
 

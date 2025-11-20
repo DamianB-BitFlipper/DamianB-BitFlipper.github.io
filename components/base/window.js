@@ -45,7 +45,7 @@ export class Window extends Component {
             this.setState({ height: 60, width: 85 }, this.resizeBoundries);
         }
         else {
-            this.setState({ height: 85, width: 60 }, this.resizeBoundries);
+            this.setState({ height: this.props.initHeight, width: this.props.initWidth }, this.resizeBoundries);
         }
     }
 

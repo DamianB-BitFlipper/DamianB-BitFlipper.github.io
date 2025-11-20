@@ -250,6 +250,8 @@ export class Desktop extends Component {
                     minimized: this.state.minimized_windows[app.id],
                     changeBackgroundImage: this.props.changeBackgroundImage,
                     bg_image_name: this.props.bg_image_name,
+                    initHeight: app.height,
+                    initWidth: app.width
                 }
 
                 windowsJsx.push(
