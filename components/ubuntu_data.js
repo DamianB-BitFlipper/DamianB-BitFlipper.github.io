@@ -359,9 +359,7 @@ export const about = [
       "<strong>Theory of Computation (18.404)</strong> — TA, 2020",
       "<strong>Software Performance Engineering (6.172)</strong> — Curriculum Developer / TA, 2018-2019",
       "<strong>Computation Structures (6.004)</strong> — Lab Assistant, 2019",
-      {
-        "<strong>Physics II": "Electricity and Magnetism (8.02)</strong> — TA, 2018"
-      }
+      "<strong>Physics II: Electricity and Magnetism (8.02)</strong> — TA, 2018"
     ],
     "content": ""
   },

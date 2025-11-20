@@ -83,11 +83,8 @@ export class AboutDamian extends Component {
 
         return (
             <div className="h-16 bg-[#2c001e] flex items-center justify-between px-4 border-t border-gray-700 shrink-0">
-                <div className="w-1/4">
-                   {/* Placeholder for Quit button - functionally purely decorative unless we can close */}
-                   <button className="text-gray-300 text-sm hover:text-white px-3 py-1 rounded border border-gray-600 hover:border-gray-400 transition-colors">
-                       Quit
-                   </button>
+                <div className="w-1/4 flex items-center text-sm text-gray-300">
+                    {/* left spacer */}
                 </div>
                 
                 <div className="flex space-x-2 justify-center w-1/2">

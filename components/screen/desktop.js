@@ -344,65 +344,71 @@ export class Desktop extends Component {
 
             // set window's last position
             var r = document.querySelector("#" + objId);
-            r.style.transform = `translate(${r.style.getPropertyValue("--window-transform-x")},${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+            if (r) {
+                r.style.transform = `translate(${r.style.getPropertyValue("--window-transform-x")},${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+            }
 
             // tell childs that his app has been not minimised
-            let minimized_windows = this.state.minimized_windows;
+            let minimized_windows = { ...this.state.minimized_windows };
             minimized_windows[objId] = false;
             this.setState({ minimized_windows: minimized_windows });
             return;
         }
 
         //if app is already opened
-        if (this.app_stack.includes(objId)) this.focus(objId);
-        else {
-            let closed_windows = this.state.closed_windows;
-            let favourite_apps = this.state.favourite_apps;
-            var frequentApps = localStorage.getItem('frequentApps') ? JSON.parse(localStorage.getItem('frequentApps')) : [];
-            var currentApp = frequentApps.find(app => app.id === objId);
-            if (currentApp) {
-                frequentApps.forEach((app) => {
-                    if (app.id === currentApp.id) {
-                        app.frequency += 1; // increase the frequency if app is found 
-                    }
-                });
-            } else {
-                frequentApps.push({ id: objId, frequency: 1 }); // new app opened
-            }
-
-            frequentApps.sort((a, b) => {
-                if (a.frequency < b.frequency) {
-                    return 1;
-                }
-                if (a.frequency > b.frequency) {
-                    return -1;
-                }
-                return 0; // sort according to decreasing frequencies
-            });
-
-            localStorage.setItem("frequentApps", JSON.stringify(frequentApps));
-
-            setTimeout(() => {
-                favourite_apps[objId] = true; // adds opened app to sideBar
-                closed_windows[objId] = false; // openes app's window
-                this.setState({ closed_windows, favourite_apps, allAppsView: false }, this.focus(objId));
-                this.app_stack.push(objId);
-            }, 200);
+        if (this.app_stack.includes(objId)) {
+            this.focus(objId);
+            return;
         }
+        
+        let closed_windows = { ...this.state.closed_windows };
+        let favourite_apps = { ...this.state.favourite_apps };
+        var frequentApps = localStorage.getItem('frequentApps') ? JSON.parse(localStorage.getItem('frequentApps')) : [];
+        var currentApp = frequentApps.find(app => app.id === objId);
+        if (currentApp) {
+            frequentApps.forEach((app) => {
+                if (app.id === currentApp.id) {
+                    app.frequency += 1; // increase the frequency if app is found 
+                }
+            });
+        } else {
+            frequentApps.push({ id: objId, frequency: 1 }); // new app opened
+        }
+
+        frequentApps.sort((a, b) => {
+            if (a.frequency < b.frequency) {
+                return 1;
+            }
+            if (a.frequency > b.frequency) {
+                return -1;
+            }
+            return 0; // sort according to decreasing frequencies
+        });
+
+        localStorage.setItem("frequentApps", JSON.stringify(frequentApps));
+
+        setTimeout(() => {
+            favourite_apps[objId] = true; // adds opened app to sideBar
+            closed_windows[objId] = false; // openes app's window
+            this.setState({ closed_windows, favourite_apps, allAppsView: false }, () => this.focus(objId));
+            if (!this.app_stack.includes(objId)) {
+                this.app_stack.push(objId);
+            }
+        }, 200);
     }
 
     closeApp = (objId) => {
 
         // remove app from the app stack
-        this.app_stack.splice(this.app_stack.indexOf(objId), 1);
+        this.app_stack = this.app_stack.filter(id => id !== objId);
 
         this.giveFocusToLastApp();
 
         this.hideSideBar(null, false);
 
         // close window
-        let closed_windows = this.state.closed_windows;
-        let favourite_apps = this.state.favourite_apps;
+        let closed_windows = { ...this.state.closed_windows };
+        let favourite_apps = { ...this.state.favourite_apps };
 
         if (this.initFavourite[objId] === false) favourite_apps[objId] = false; // if user default app is not favourite, remove from sidebar
         closed_windows[objId] = true; // closes the app's window
