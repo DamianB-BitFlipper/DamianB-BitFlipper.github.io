@@ -426,7 +426,7 @@ export const about = [
     "id": "5-resume",
     "title": "Resume",
     "layout": "resume",
-    "source": "./public/assets/pdf/DamianBarabonkovCV.pdf",
+    "source": "./public/files/Damian_Barabonkov_Resume.pdf",
     "content": ""
   }
 ];
