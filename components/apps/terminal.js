@@ -248,7 +248,28 @@ export class Terminal extends Component {
         return prefix;
     }
 
+    getCommandNames = () => {
+        if (!this.emulator || !this.emulator.commands) return [];
+        return Object.keys(this.emulator.commands);
+    }
+
+    completeCommand = (partial) => {
+        if (!partial) return null;
+        const commands = this.getCommandNames();
+        const matches = commands.filter(cmd => cmd.startsWith(partial));
+        if (matches.length === 0) {
+            return null;
+        }
+        const candidate = matches.length === 1 ? matches[0] : this.getCommonPrefix(matches);
+        if (!candidate) return null;
+        if (candidate.length === partial.length && matches.length > 1) {
+            return null;
+        }
+        return candidate;
+    }
+
     completePath = (partial) => {
+
         if (!partial) return null;
         const trimmed = partial.trim();
         if (!trimmed) return null;
@@ -269,7 +290,10 @@ export class Terminal extends Component {
         return dirPart + candidate;
     }
 
-    getCompletionForToken = (token) => {
+    getCompletionForToken = (token, { isFirstToken } = {}) => {
+        if (isFirstToken) {
+            return this.completeCommand(token);
+        }
         return this.completePath(token);
     }
 
@@ -299,7 +323,8 @@ export class Terminal extends Component {
         const prefix = beforeCursor.slice(0, start);
         const token = beforeCursor.slice(start);
         if (!token) return null;
-        const completedToken = this.getCompletionForToken(token);
+        const isFirstToken = prefix.trim().length === 0;
+        const completedToken = this.getCompletionForToken(token, { isFirstToken });
         if (!completedToken) return null;
         return prefix + completedToken;
     }
