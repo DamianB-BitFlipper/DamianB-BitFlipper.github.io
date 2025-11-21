@@ -112,6 +112,40 @@ const getRestRequestConfig = ({ sortMode, filterLanguage, page, username = GITHU
   };
 };
 
+const fetchUserRepositories = async ({ username = GITHUB_USERNAME, perPage = 100, maxPages = 5, signal } = {}) => {
+  requireToken();
+  const repositories = [];
+  for (let page = 1; page <= maxPages; page += 1) {
+    const params = new URLSearchParams({
+      per_page: perPage.toString(),
+      page: page.toString(),
+      sort: 'updated'
+    });
+    const response = await fetch(`https://api.github.com/users/${username}/repos?${params.toString()}`, {
+      headers: buildGithubHeaders(),
+      signal,
+    });
+    if (!response.ok) {
+      throw new Error(`GitHub API responded with ${response.status}`);
+    }
+    const data = await response.json();
+    repositories.push(...data);
+    if (data.length < perPage) {
+      break;
+    }
+  }
+  return repositories.map(repo => ({
+    id: repo.full_name,
+    name: repo.name,
+    html_url: repo.html_url,
+    description: repo.description,
+    stargazers_count: repo.stargazers_count || 0,
+    language: repo.language,
+    updated_at: repo.updated_at,
+    homepage: repo.homepage,
+  }));
+};
+
 export {
   GITHUB_USERNAME,
   PROJECTS_PER_PAGE,
@@ -119,4 +153,5 @@ export {
   buildGithubGraphqlHeaders,
   fetchPinnedRepositories,
   getRestRequestConfig,
+  fetchUserRepositories,
 };

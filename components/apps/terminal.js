@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
 import bashEmulator from 'bash-emulator';
-import { projects, skills, languages, interests } from '../ubuntu_data';
+import { skills, languages, interests } from '../ubuntu_data';
+import { fetchUserRepositories } from '../github_api';
 
 export class Terminal extends Component {
     constructor() {
@@ -18,14 +19,7 @@ export class Terminal extends Component {
             projects: [],
         };
 
-        this.projectTextFiles = projects.map(({ slug, title, description }) => {
-            const fileName = `${slug}.txt`;
-            const displayTitle = title || slug;
-            const content = description && description.trim().length > 0
-                ? description
-                : `No description available for ${displayTitle}.`;
-            return { fileName, content };
-        });
+        this.projectTextFiles = [];
 
         this.virtualTextFiles = {
             'skills.txt': skills,
@@ -36,6 +30,7 @@ export class Terminal extends Component {
         this.homeDirectory = '/home/damian';
         this.virtualFileSystem = {};
         this.lastCommandInfo = null;
+        this.projectFetchController = null;
 
         this.appLaunchCommands = {
             code: "vscode",
@@ -56,6 +51,7 @@ export class Terminal extends Component {
     componentDidMount() {
         this.initializeEmulator();
         this.reStartTerminal();
+        this.loadProjectsFromGithub();
     }
 
     componentDidUpdate() {
@@ -65,6 +61,58 @@ export class Terminal extends Component {
 
     componentWillUnmount() {
         clearInterval(this.cursor);
+        if (this.projectFetchController) {
+            this.projectFetchController.abort();
+        }
+    }
+
+    loadProjectsFromGithub = async () => {
+        if (this.projectFetchController) {
+            this.projectFetchController.abort();
+        }
+        const controller = new AbortController();
+        this.projectFetchController = controller;
+        try {
+            const repos = await fetchUserRepositories({ signal: controller.signal });
+            this.projectTextFiles = repos.map(repo => this.mapRepoToFile(repo));
+            this.refreshVirtualFileSystem();
+        } catch (error) {
+            if (controller.signal.aborted) return;
+            console.warn('Unable to fetch GitHub projects for terminal', error);
+        }
+    }
+
+    mapRepoToFile = (repo) => {
+        const safeName = (repo.name || 'project').toLowerCase().replace(/[^a-z0-9-_]/gi, '-');
+        return {
+            fileName: `${safeName}.txt`,
+            content: this.formatProjectFileContent(repo),
+        };
+    }
+
+    formatProjectFileContent = (repo) => {
+        const lines = [];
+        if (repo.language) {
+            lines.push(`Language: ${repo.language}`);
+        }
+        if (repo.stargazers_count && repo.stargazers_count > 0) {
+            lines.push(`Stars: ${repo.stargazers_count}`);
+        }
+        const description = repo.description && repo.description.trim().length > 0
+            ? repo.description.trim()
+            : 'No description provided.';
+        if (lines.length > 0) {
+            lines.push('');
+        }
+        lines.push(description);
+        return lines.join('\n');
+    }
+
+    refreshVirtualFileSystem = () => {
+        const fileSystem = this.createVirtualFileSystem();
+        if (this.emulator) {
+            this.emulator.state.fileSystem = fileSystem;
+        }
     }
 
     initializeEmulator = () => {
