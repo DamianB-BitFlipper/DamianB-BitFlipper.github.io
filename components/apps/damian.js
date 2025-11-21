@@ -131,7 +131,7 @@ export class AboutDamian extends Component {
                         disabled={isLast}
                         className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isLast ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-ub-orange text-white hover:bg-opacity-90'}`}
                     >
-                        Continue
+                        Next
                     </button>
                 </div>
             </div>
