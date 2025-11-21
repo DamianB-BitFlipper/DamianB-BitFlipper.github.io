@@ -1,28 +1,18 @@
 import React, { Component, useEffect, useRef, useState } from 'react';
 import aboutSections from '../../content/about.json';
+import {
+    GITHUB_USERNAME,
+    PROJECTS_PER_PAGE,
+    buildGithubHeaders,
+    fetchPinnedRepositories,
+    getRestRequestConfig,
+} from '../github_api';
 
-const GITHUB_USERNAME = 'DamianB-BitFlipper';
-const PROJECTS_PER_PAGE = 10;
 const SORT_OPTIONS = {
     pinned: 'pinned',
     updated: 'updated',
     stars: 'stars',
     alpha: 'full_name'
-};
-const GITHUB_API_TOKEN = process.env.NEXT_PUBLIC_GITHUB_API_TOKEN || '';
-const buildGithubHeaders = () => {
-    const headers = { Accept: 'application/vnd.github+json' };
-    if (GITHUB_API_TOKEN) {
-        headers.Authorization = `Bearer ${GITHUB_API_TOKEN}`;
-    }
-    return headers;
-};
-const buildGithubGraphqlHeaders = () => {
-    const headers = { 'Content-Type': 'application/json' };
-    if (GITHUB_API_TOKEN) {
-        headers.Authorization = `Bearer ${GITHUB_API_TOKEN}`;
-    }
-    return headers;
 };
 
 export class AboutDamian extends Component {
@@ -53,64 +43,11 @@ export class AboutDamian extends Component {
         if (this.pinnedFetchController) {
             this.pinnedFetchController.abort();
         }
-        if (!GITHUB_API_TOKEN) {
-            this.setState({ pinnedProjectsError: 'GitHub token is required to load pinned repositories.', pinnedProjectsLoading: false });
-            return;
-        }
         const controller = new AbortController();
         this.pinnedFetchController = controller;
         this.setState({ pinnedProjectsLoading: true, pinnedProjectsError: null });
-        const query = `{
-            user(login: "${GITHUB_USERNAME}") {
-                pinnedItems(first: 10, types: REPOSITORY) {
-                    nodes {
-                        ... on Repository {
-                            name
-                            nameWithOwner
-                            url
-                            description
-                            stargazerCount
-                            primaryLanguage { name }
-                            updatedAt
-                            issues(states: OPEN) { totalCount }
-                            homepageUrl
-                            topics: repositoryTopics(first: 5) {
-                                nodes {
-                                    topic { name }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }`;
         try {
-            const response = await fetch('https://api.github.com/graphql', {
-                method: 'POST',
-                headers: buildGithubGraphqlHeaders(),
-                body: JSON.stringify({ query }),
-                signal: controller.signal,
-            });
-            if (!response.ok) {
-                throw new Error(`GitHub GraphQL API responded with ${response.status}`);
-            }
-            const data = await response.json();
-            if (data?.errors?.length) {
-                throw new Error(data.errors.map(err => err.message).join(', '));
-            }
-            const nodes = data?.data?.user?.pinnedItems?.nodes || [];
-            const normalized = nodes.map(node => ({
-                id: node.nameWithOwner,
-                name: node.name,
-                html_url: node.url,
-                description: node.description,
-                stargazers_count: node.stargazerCount,
-                language: node.primaryLanguage?.name,
-                updated_at: node.updatedAt,
-                open_issues_count: node.issues?.totalCount || 0,
-                homepage: node.homepageUrl,
-                topics: (node.topics?.nodes || []).map(topicNode => topicNode.topic?.name).filter(Boolean),
-            }));
+            const normalized = await fetchPinnedRepositories({ signal: controller.signal });
             this.setState({ pinnedProjects: normalized, pinnedProjectsLoading: false, pinnedProjectsError: null });
         } catch (error) {
             if (controller.signal.aborted) return;
@@ -445,34 +382,7 @@ const ProjectsSection = ({ scrollContainerRef, pinnedData, pinnedLoading, pinned
         if (sortMode === 'pinned') {
             return { type: 'pinned' };
         }
-        const useSearchEndpoint = filterLanguage !== 'All' || sortMode === 'stars';
-        if (useSearchEndpoint) {
-            const queryParts = [`user:${GITHUB_USERNAME}`];
-            if (filterLanguage !== 'All') {
-                queryParts.push(`language:${filterLanguage}`);
-            }
-            const params = new URLSearchParams({
-                q: queryParts.join(' '),
-                per_page: PROJECTS_PER_PAGE.toString(),
-                page: page.toString(),
-                sort: sortMode === 'stars' ? 'stars' : 'updated',
-                order: sortMode === 'alpha' ? 'asc' : 'desc'
-            });
-            return {
-                url: `https://api.github.com/search/repositories?${params.toString()}`,
-                transform: (data) => data?.items || []
-            };
-        }
-        const params = new URLSearchParams({
-            per_page: PROJECTS_PER_PAGE.toString(),
-            page: page.toString(),
-            sort: sortMode === 'alpha' ? 'full_name' : 'updated',
-            direction: sortMode === 'alpha' ? 'asc' : 'desc'
-        });
-        return {
-            url: `https://api.github.com/users/${GITHUB_USERNAME}/repos?${params.toString()}`,
-            transform: (data) => data || []
-        };
+        return getRestRequestConfig({ sortMode, filterLanguage, page });
     };
 
     useEffect(() => {
