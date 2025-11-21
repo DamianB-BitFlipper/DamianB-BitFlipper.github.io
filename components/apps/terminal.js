@@ -233,6 +233,21 @@ export class Terminal extends Component {
         return Array.from(entries);
     }
 
+    getCommonPrefix = (values = []) => {
+        if (!values.length) return '';
+        let prefix = values[0];
+        for (let i = 1; i < values.length; i++) {
+            const current = values[i];
+            let j = 0;
+            while (j < prefix.length && j < current.length && prefix[j] === current[j]) {
+                j++;
+            }
+            prefix = prefix.slice(0, j);
+            if (!prefix) break;
+        }
+        return prefix;
+    }
+
     completePath = (partial) => {
         if (!partial) return null;
         const trimmed = partial.trim();
@@ -243,10 +258,15 @@ export class Terminal extends Component {
         const baseDir = this.resolvePath(dirPart || '.');
         const entries = this.getDirectoryEntries(baseDir);
         const matches = entries.filter(name => name.startsWith(partialName));
-        if (matches.length === 1) {
-            return dirPart + matches[0];
+        if (matches.length === 0) {
+            return null;
         }
-        return null;
+        const candidate = matches.length === 1 ? matches[0] : this.getCommonPrefix(matches);
+        if (!candidate) return null;
+        if (candidate.length === partialName.length && matches.length > 1) {
+            return null;
+        }
+        return dirPart + candidate;
     }
 
     getCompletionForToken = (token) => {
