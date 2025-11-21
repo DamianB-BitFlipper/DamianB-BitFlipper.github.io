@@ -86,6 +86,7 @@ export class Firefox extends Component {
             { name: 'OpenStreetMap', url: 'https://www.openstreetmap.org/export/embed.html?bbox=-71.09902024269105%2C42.35640332139344%2C-71.08593106269838%2C42.36264255914027&amp;layer=mapnik', display: 'https://www.openstreetmap.org/?#map=17/42.359523/-71.092476' },
             { name: 'MathWorld', url: 'https://mathworld.wolfram.com/', display: 'https://mathworld.wolfram.com/' },
             { name: 'YouTube', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1', display: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+            { name: 'StopJava', url: 'https://stopjava.com/', display: 'https://stopjava.com/' },
         ];
 
         return (
