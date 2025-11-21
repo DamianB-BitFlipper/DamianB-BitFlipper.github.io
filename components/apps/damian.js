@@ -4,6 +4,7 @@ import aboutSections from '../../content/about.json';
 const GITHUB_USERNAME = 'DamianB-BitFlipper';
 const PROJECTS_PER_PAGE = 10;
 const SORT_OPTIONS = {
+    pinned: 'pinned',
     updated: 'updated',
     stars: 'stars',
     alpha: 'full_name'
@@ -16,14 +17,105 @@ const buildGithubHeaders = () => {
     }
     return headers;
 };
+const buildGithubGraphqlHeaders = () => {
+    const headers = { 'Content-Type': 'application/json' };
+    if (GITHUB_API_TOKEN) {
+        headers.Authorization = `Bearer ${GITHUB_API_TOKEN}`;
+    }
+    return headers;
+};
 
 export class AboutDamian extends Component {
     constructor() {
         super();
         this.state = {
             activeSectionIndex: 0,
+            pinnedProjects: null,
+            pinnedProjectsLoading: false,
+            pinnedProjectsError: null,
         }
         this.contentRef = React.createRef();
+        this.pinnedFetchController = null;
+    }
+
+    componentDidMount() {
+        this.prefetchPinnedProjects();
+    }
+
+    componentWillUnmount() {
+        if (this.pinnedFetchController) {
+            this.pinnedFetchController.abort();
+        }
+    }
+
+    prefetchPinnedProjects = async () => {
+        if (this.state.pinnedProjectsLoading) return;
+        if (this.pinnedFetchController) {
+            this.pinnedFetchController.abort();
+        }
+        if (!GITHUB_API_TOKEN) {
+            this.setState({ pinnedProjectsError: 'GitHub token is required to load pinned repositories.', pinnedProjectsLoading: false });
+            return;
+        }
+        const controller = new AbortController();
+        this.pinnedFetchController = controller;
+        this.setState({ pinnedProjectsLoading: true, pinnedProjectsError: null });
+        const query = `{
+            user(login: "${GITHUB_USERNAME}") {
+                pinnedItems(first: 10, types: REPOSITORY) {
+                    nodes {
+                        ... on Repository {
+                            name
+                            nameWithOwner
+                            url
+                            description
+                            stargazerCount
+                            primaryLanguage { name }
+                            updatedAt
+                            issues(states: OPEN) { totalCount }
+                            homepageUrl
+                            topics: repositoryTopics(first: 5) {
+                                nodes {
+                                    topic { name }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }`;
+        try {
+            const response = await fetch('https://api.github.com/graphql', {
+                method: 'POST',
+                headers: buildGithubGraphqlHeaders(),
+                body: JSON.stringify({ query }),
+                signal: controller.signal,
+            });
+            if (!response.ok) {
+                throw new Error(`GitHub GraphQL API responded with ${response.status}`);
+            }
+            const data = await response.json();
+            if (data?.errors?.length) {
+                throw new Error(data.errors.map(err => err.message).join(', '));
+            }
+            const nodes = data?.data?.user?.pinnedItems?.nodes || [];
+            const normalized = nodes.map(node => ({
+                id: node.nameWithOwner,
+                name: node.name,
+                html_url: node.url,
+                description: node.description,
+                stargazers_count: node.stargazerCount,
+                language: node.primaryLanguage?.name,
+                updated_at: node.updatedAt,
+                open_issues_count: node.issues?.totalCount || 0,
+                homepage: node.homepageUrl,
+                topics: (node.topics?.nodes || []).map(topicNode => topicNode.topic?.name).filter(Boolean),
+            }));
+            this.setState({ pinnedProjects: normalized, pinnedProjectsLoading: false, pinnedProjectsError: null });
+        } catch (error) {
+            if (controller.signal.aborted) return;
+            this.setState({ pinnedProjectsError: error.message || 'Unable to load pinned repositories.', pinnedProjectsLoading: false });
+        }
     }
 
     changeSection = (index) => {
@@ -76,7 +168,15 @@ export class AboutDamian extends Component {
 
         let content;
         if (section.layout === 'projects') {
-            content = <ProjectsSection scrollContainerRef={this.contentRef} />;
+            content = (
+                <ProjectsSection
+                    scrollContainerRef={this.contentRef}
+                    pinnedData={this.state.pinnedProjects}
+                    pinnedLoading={this.state.pinnedProjectsLoading}
+                    pinnedError={this.state.pinnedProjectsError}
+                    refreshPinned={this.prefetchPinnedProjects}
+                />
+            );
         } else if (section.layout === 'resume') {
             content = <ResumeSection source={section.source} />;
         } else if (section.schools) {
@@ -284,14 +384,14 @@ const ExperienceSection = ({ data }) => {
     );
 }
 
-const ProjectsSection = ({ scrollContainerRef }) => {
+const ProjectsSection = ({ scrollContainerRef, pinnedData, pinnedLoading, pinnedError, refreshPinned }) => {
     const [projects, setProjects] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [hasMore, setHasMore] = useState(true);
     const [reloadToken, setReloadToken] = useState(0);
-    const [sortMode, setSortMode] = useState('updated');
+    const [sortMode, setSortMode] = useState('pinned');
     const [filterLanguage, setFilterLanguage] = useState('All');
     const languageOptions = [
         'ActionScript',
@@ -342,6 +442,9 @@ const ProjectsSection = ({ scrollContainerRef }) => {
 
 
     const buildRequestConfig = () => {
+        if (sortMode === 'pinned') {
+            return { type: 'pinned' };
+        }
         const useSearchEndpoint = filterLanguage !== 'All' || sortMode === 'stars';
         if (useSearchEndpoint) {
             const queryParts = [`user:${GITHUB_USERNAME}`];
@@ -375,13 +478,25 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     useEffect(() => {
         let aborted = false;
         const fetchProjects = async () => {
+            if (sortMode === 'pinned') {
+                if (!pinnedData && !pinnedLoading && typeof refreshPinned === 'function') {
+                    refreshPinned();
+                }
+                return;
+            }
+
             if (!hasMore && page !== 1) {
                 return;
             }
             setLoading(true);
             setError(null);
             try {
-                const { url, transform } = buildRequestConfig();
+                const config = buildRequestConfig();
+                if (config.type === 'pinned') {
+                    return;
+                }
+                const { url, transform } = config;
+
                 const response = await fetch(url, {
                     headers: buildGithubHeaders()
                 });
@@ -408,11 +523,12 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         return () => {
             aborted = true;
         };
-    }, [page, reloadToken, sortMode, filterLanguage]);
+    }, [page, reloadToken, sortMode, filterLanguage, pinnedData, pinnedLoading, refreshPinned]);
 
     useEffect(() => {
         const element = scrollContainerRef?.current;
         const handleScroll = () => {
+            if (sortMode === 'pinned') return;
             if (loading || !hasMore) return;
             let scrollTop, clientHeight, scrollHeight;
             if (element) {
@@ -434,7 +550,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         return () => {
             target.removeEventListener('scroll', handleScroll);
         };
-    }, [scrollContainerRef?.current, loading, hasMore]);
+    }, [scrollContainerRef?.current, loading, hasMore, sortMode]);
 
     useEffect(() => {
         if (filterLanguage !== 'All' && sortMode === 'alpha') {
@@ -453,8 +569,18 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         setReloadToken(token => token + 1);
     };
 
+    const handleRetry = () => {
+        if (isPinnedMode) {
+            if (typeof refreshPinned === 'function') {
+                refreshPinned();
+            }
+        } else {
+            retryFetch();
+        }
+    };
+
     const handleManualLoadMore = () => {
-        if (!loading && hasMore) {
+        if (!loading && hasMore && sortMode !== 'pinned') {
             setPage(prev => prev + 1);
         }
     };
@@ -469,13 +595,27 @@ const ProjectsSection = ({ scrollContainerRef }) => {
 
     const handleSortChange = (mode) => {
         if (mode === 'alpha' && filterLanguage !== 'All') return;
+        if (mode === 'pinned') {
+            if (filterLanguage !== 'All') {
+                setFilterLanguage('All');
+            }
+            setSortMode('pinned');
+            return;
+        }
         setSortMode(mode);
     };
 
     const handleFilterChange = (language) => {
+        if (sortMode === 'pinned') return;
         setFilterLanguage(language);
         setLanguageMenuOpen(false);
     };
+
+    const isPinnedMode = sortMode === 'pinned';
+    const visibleProjects = isPinnedMode ? (pinnedData || []) : projects;
+    const effectiveLoading = isPinnedMode ? pinnedLoading : loading;
+    const effectiveError = isPinnedMode ? pinnedError : error;
+    const canLoadMore = !isPinnedMode && hasMore;
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -569,25 +709,24 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     return (
         <div className="w-full p-8 md:p-12 max-w-5xl">
             <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">Projects</h2>
-            {error && (
+            {effectiveError && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4 flex flex-col gap-3">
-                    <span>{error}</span>
-                    <button onClick={retryFetch} className="self-start px-3 py-1.5 text-sm font-medium bg-red-600 text-white rounded hover:bg-red-700">
+                    <span>{effectiveError}</span>
+                    <button onClick={handleRetry} className="self-start px-3 py-1.5 text-sm font-medium bg-red-600 text-white rounded hover:bg-red-700">
                         Retry
                     </button>
                 </div>
             )}
-            {!loading && !error && projects.length === 0 && (
-                <div className="text-gray-500">No repositories found.</div>
-            )}
 
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex flex-wrap gap-2">
-                    {[
-                        { id: 'updated', label: 'Updated' },
-                        { id: 'stars', label: 'Stars' },
-                        { id: 'alpha', label: 'Alphabetical' }
-                    ].map(option => {
+            {[
+                { id: 'pinned', label: 'Pinned' },
+                { id: 'updated', label: 'Updated At' },
+                { id: 'stars', label: 'Stars' },
+                { id: 'alpha', label: 'Alphabetical' }
+            ].map(option => {
+
                         const isDisabled = option.id === 'alpha' && filterLanguage !== 'All';
                         const isActive = sortMode === option.id;
                         return (
@@ -606,7 +745,8 @@ const ProjectsSection = ({ scrollContainerRef }) => {
                     <button
                         type="button"
                         onClick={() => setLanguageMenuOpen(open => !open)}
-                        className="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border border-gray-300 text-gray-700 hover:border-ub-orange hover:text-ub-orange transition-colors"
+                        disabled={isPinnedMode}
+                        className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border border-gray-300 text-gray-700 transition-colors ${isPinnedMode ? 'opacity-50 cursor-not-allowed' : 'hover:border-ub-orange hover:text-ub-orange'}`}
                     >
                         <span>Language:</span>
                         <span className="font-semibold">{filterLanguage}</span>
@@ -614,7 +754,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
                             <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                         </svg>
                     </button>
-                    {languageMenuOpen && (
+                    {languageMenuOpen && !isPinnedMode && (
                         <div className="absolute right-0 mt-2 w-48 bg-white text-ub-orange border border-ub-orange rounded-lg shadow-xl z-20 overflow-hidden max-h-72 flex flex-col">
                             <div className="overflow-y-scroll language-menu" style={{ scrollbarWidth: 'auto' }}>
                                 <style>{`
@@ -651,14 +791,17 @@ const ProjectsSection = ({ scrollContainerRef }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projects.length === 0 && loading && (
+                {visibleProjects.length === 0 && effectiveLoading && (
                     <div className="text-gray-500 text-sm">Loading projects...</div>
                 )}
-                {projects.map(renderProjectCard)}
+                {!effectiveLoading && !effectiveError && visibleProjects.length === 0 && (
+                    <div className="text-gray-500 text-sm">No repositories found.</div>
+                )}
+                {visibleProjects.map(renderProjectCard)}
             </div>
             <div className="flex flex-col items-center gap-3 mt-6">
-                {loading && projects.length > 0 && <div className="text-gray-500 text-sm">Loading more projects...</div>}
-                {!loading && hasMore && (
+                {effectiveLoading && visibleProjects.length > 0 && !isPinnedMode && <div className="text-gray-500 text-sm">Loading more projects...</div>}
+                {!effectiveLoading && canLoadMore && (
                     <button
                         onClick={handleManualLoadMore}
                         className="px-4 py-2 text-sm font-medium rounded border border-gray-300 text-gray-700 hover:bg-gray-100"
@@ -666,7 +809,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
                         Load more projects
                     </button>
                 )}
-                {!hasMore && projects.length > 0 && (
+                {!isPinnedMode && !hasMore && visibleProjects.length > 0 && (
                     <div className="text-xs uppercase tracking-wide text-gray-400">You reached the end</div>
                 )}
             </div>
