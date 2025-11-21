@@ -183,7 +183,7 @@ export class AboutDamian extends Component {
                 {/* Window Header inside content */}
                 <div className="h-12 bg-[#2c001e] flex items-center px-4 border-b border-gray-800 shrink-0">
                     <span className="font-bold text-lg tracking-wide">
-                         {currentSection ? `Preparing to show ${currentSection.title}` : "Welcome"}
+                         {currentSection ? `${currentSection.title}` : "Welcome"}
                     </span>
                 </div>
 
