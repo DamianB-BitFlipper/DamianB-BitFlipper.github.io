@@ -33,6 +33,10 @@ export class Terminal extends Component {
             'interests.txt': interests,
         };
 
+        this.homeDirectory = '/home/damian';
+        this.virtualFileSystem = {};
+        this.lastCommandInfo = null;
+
         this.appLaunchCommands = {
             code: "vscode",
             spotify: "spotify",
@@ -67,7 +71,7 @@ export class Terminal extends Component {
 
         const emulatorState = {
             user: 'damian',
-            workingDirectory: '/home/damian',
+            workingDirectory: this.homeDirectory,
             fileSystem: this.createVirtualFileSystem(),
         };
 
@@ -94,12 +98,14 @@ export class Terminal extends Component {
             return items.map(item => `- ${item}`).join('\n');
         };
 
+        const homePath = this.homeDirectory;
+
         ensureDir('/');
         ensureDir('/home');
-        ensureDir('/home/damian');
+        ensureDir(homePath);
 
         Object.entries(this.virtualDirectories).forEach(([directory, entries]) => {
-            const parentPath = `/home/damian/${directory}`;
+            const parentPath = `${homePath}/${directory}`;
             ensureDir(parentPath);
             entries.forEach(entry => {
                 ensureDir(`${parentPath}/${entry}`);
@@ -108,17 +114,107 @@ export class Terminal extends Component {
 
         const textFiles = this.virtualTextFiles || {};
         Object.entries(textFiles).forEach(([fileName, entries]) => {
-            ensureFile(`/home/damian/${fileName}`, formatListContent(entries));
+            ensureFile(`${homePath}/${fileName}`, formatListContent(entries));
         });
 
         const projectFiles = this.projectTextFiles || [];
+        ensureDir(`${homePath}/projects`);
         projectFiles.forEach(({ fileName, content }) => {
-            ensureFile(`/home/damian/projects/${fileName}`, content);
+            ensureFile(`${homePath}/projects/${fileName}`, content);
         });
 
-        ensureFile('/home/damian/README.txt', "Welcome to Damian's workspace. Explore projects, skills, languages, and interests.");
+        ensureFile(`${homePath}/README.txt`, "Welcome to Damian's workspace. Explore projects, skills, languages, and interests.");
+
+        this.virtualFileSystem = fileSystem;
 
         return fileSystem;
+    }
+
+    getAbsoluteCurrentDirectory = () => {
+        if (this.current_directory.startsWith('~')) {
+            return this.current_directory.replace('~', this.homeDirectory);
+        }
+        return this.current_directory || this.homeDirectory;
+    }
+
+    normalizePath = (path) => {
+        if (!path) return this.homeDirectory;
+        const segments = path.split('/');
+        const stack = [];
+        segments.forEach(segment => {
+            if (!segment || segment === '.') return;
+            if (segment === '..') {
+                if (stack.length > 0) {
+                    stack.pop();
+                }
+            } else {
+                stack.push(segment);
+            }
+        });
+        return `/${stack.join('/')}` || '/';
+    }
+
+    resolvePath = (inputPath = '.') => {
+        const trimmed = (inputPath || '.').trim();
+        const home = this.homeDirectory;
+        if (!trimmed || trimmed === '.') {
+            return this.getAbsoluteCurrentDirectory();
+        }
+        if (trimmed === '~') {
+            return home;
+        }
+        if (trimmed.startsWith('~/')) {
+            return this.normalizePath(trimmed.replace('~', home));
+        }
+        if (trimmed.startsWith('/')) {
+            return this.normalizePath(trimmed);
+        }
+        const base = this.getAbsoluteCurrentDirectory();
+        return this.normalizePath(`${base}/${trimmed}`);
+    }
+
+    parseCommandInfo = (command) => {
+        if (!command) return null;
+        const parts = command.trim().split(/\s+/);
+        if (parts.length === 0) return null;
+        const name = parts[0];
+        const meta = { name };
+        if (name === 'ls') {
+            const args = parts.slice(1);
+            const targetArg = [...args].reverse().find(arg => !arg.startsWith('-')) || '.';
+            meta.path = this.resolvePath(targetArg);
+        }
+        return meta;
+    }
+
+    formatLsOutput = (output) => {
+        const path = this.lastCommandInfo?.path || this.getAbsoluteCurrentDirectory();
+        const lines = output.split('\n');
+        const formattedLines = lines.map(line => this.colorizeLsLine(line, path));
+        const html = formattedLines.join('\n');
+        return `<pre class="text-white whitespace-pre-wrap">${html}</pre>`;
+    }
+
+    colorizeLsLine = (line, basePath) => {
+        if (!line) return '';
+        const tokens = line.split(/(\s+)/);
+        return tokens.map(token => {
+            if (!token) return '';
+            if (/^\s+$/.test(token)) {
+                return token;
+            }
+            return this.colorizeLsEntry(token, basePath);
+        }).join('');
+    }
+
+    colorizeLsEntry = (entry, basePath) => {
+        const sanitized = this.xss(entry);
+        const targetPath = this.normalizePath(`${basePath}/${entry}`);
+        const node = this.virtualFileSystem ? this.virtualFileSystem[targetPath] : null;
+        if (node && node.type === 'dir') {
+            return `<span class="text-ubt-blue">${sanitized}</span>`;
+        }
+        return sanitized;
     }
 
     registerCustomCommands = () => {
@@ -189,7 +285,7 @@ export class Terminal extends Component {
         if (!this.emulator) return;
         try {
             const dir = await this.emulator.getDir();
-            this.current_directory = dir.replace('/home/damian', '~');
+            this.current_directory = dir.replace(this.homeDirectory, '~');
         } catch (error) {
             console.error('Unable to read emulator directory', error);
             this.current_directory = '~';
@@ -342,6 +438,8 @@ export class Terminal extends Component {
             return;
         }
 
+        this.lastCommandInfo = this.parseCommandInfo(command);
+
         let output = "";
         try {
             output = await this.emulator.run(command);
@@ -370,6 +468,9 @@ export class Terminal extends Component {
         const value = typeof output === 'string' ? output : String(output);
         if (value.startsWith('__HTML__')) {
             return value.replace('__HTML__', '');
+        }
+        if (this.lastCommandInfo?.name === 'ls') {
+            return this.formatLsOutput(value);
         }
         return `<pre class="text-white whitespace-pre-wrap">${this.xss(value)}</pre>`;
     }
