@@ -279,6 +279,31 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     const [hasMore, setHasMore] = useState(true);
     const [reloadToken, setReloadToken] = useState(0);
 
+    const languageColors = {
+        JavaScript: '#f1e05a',
+        TypeScript: '#2b7489',
+        Python: '#3572A5',
+        Go: '#00ADD8',
+        Rust: '#dea584',
+        Java: '#b07219',
+        C: '#555555',
+        'C++': '#f34b7d',
+        'C#': '#178600',
+        Shell: '#89e051',
+        Ruby: '#701516',
+        PHP: '#4F5D95',
+        Kotlin: '#A97BFF',
+        Swift: '#F05138',
+        HTML: '#e34c26',
+        CSS: '#563d7c'
+    };
+
+    const getLanguageStyles = (language) => {
+        const background = languageColors[language] || '#e5e7eb';
+        const textColor = languageColors[language] ? '#1f2937' : '#4b5563';
+        return { backgroundColor: `${background}1A`, borderColor: background, color: textColor };
+    };
+
     useEffect(() => {
         let aborted = false;
         const fetchProjects = async () => {
@@ -366,16 +391,23 @@ const ProjectsSection = ({ scrollContainerRef }) => {
             <div className="flex justify-between items-start mb-3">
                 <div className="font-bold text-lg text-gray-900 flex flex-wrap items-center gap-3 group-hover:text-ub-orange transition-colors">
                     {project.name}
-                    <div className="flex items-center text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 .587l3.668 7.568L24 9.75l-6 5.848L19.335 24 12 19.897 4.665 24 6 15.598 0 9.75l8.332-1.595z" />
-                        </svg>
-                        {project.stargazers_count}
-                    </div>
+                    {project.stargazers_count > 0 && (
+                        <div className="flex items-center text-xs text-gray-700 bg-gray-50 px-2 py-0.5 rounded-full border border-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 .587l3.668 7.568L24 9.75l-6 5.848L19.335 24 12 19.897 4.665 24 6 15.598 0 9.75l8.332-1.595z" />
+                            </svg>
+                            {project.stargazers_count}
+                        </div>
+                    )}
                 </div>
-                <span className="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full border border-gray-200">
-                    {project.language || 'Unknown'}
-                </span>
+                {project.language && (
+                    <span
+                        className="text-xs font-medium px-2.5 py-1 rounded-full border"
+                        style={getLanguageStyles(project.language)}
+                    >
+                        {project.language}
+                    </span>
+                )}
             </div>
             <p className="text-gray-600 text-sm flex-grow mb-4 leading-relaxed">
                 {project.description || 'No description provided yet.'}
