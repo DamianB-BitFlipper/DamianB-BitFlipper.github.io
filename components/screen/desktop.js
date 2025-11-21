@@ -26,6 +26,7 @@ export class Desktop extends Component {
             hideSideBar: false,
             minimized_windows: {},
             desktop_apps: [],
+            window_positions: {},
             context_menus: {
                 desktop: false,
                 default: false,
@@ -128,7 +129,7 @@ export class Desktop extends Component {
     }
 
     fetchAppsData = () => {
-        let focused_windows = {}, closed_windows = {}, disabled_apps = {}, favourite_apps = {}, overlapped_windows = {}, minimized_windows = {};
+        let focused_windows = {}, closed_windows = {}, disabled_apps = {}, favourite_apps = {}, overlapped_windows = {}, minimized_windows = {}, window_positions = {};
         let desktop_apps = [];
         apps.forEach((app) => {
             focused_windows = {
@@ -157,7 +158,10 @@ export class Desktop extends Component {
             }
             if (app.desktop_shortcut) desktop_apps.push(app.id);
 
-            if (app.id === "about-damian") this.app_stack.push(app.id);
+            if (app.id === "about-damian") {
+                this.app_stack.push(app.id);
+                window_positions[app.id] = { x: 60, y: 10 };
+            }
         });
         this.setState({
             focused_windows,
@@ -166,13 +170,14 @@ export class Desktop extends Component {
             favourite_apps,
             overlapped_windows,
             minimized_windows,
-            desktop_apps
+            desktop_apps,
+            window_positions
         });
         this.initFavourite = { ...favourite_apps };
     }
 
     updateAppsData = () => {
-        let focused_windows = {}, closed_windows = {}, favourite_apps = {}, minimized_windows = {}, disabled_apps = {};
+        let focused_windows = {}, closed_windows = {}, favourite_apps = {}, minimized_windows = {}, disabled_apps = {}, window_positions = { ...this.state.window_positions };
         let desktop_apps = [];
         apps.forEach((app) => {
             focused_windows = {
@@ -195,6 +200,9 @@ export class Desktop extends Component {
                 ...favourite_apps,
                 [app.id]: app.favourite
             }
+            if (!window_positions[app.id] && !closed_windows[app.id]) {
+                window_positions[app.id] = { x: 60, y: 10 };
+            }
             if (app.desktop_shortcut) desktop_apps.push(app.id);
         });
         this.setState({
@@ -203,7 +211,8 @@ export class Desktop extends Component {
             disabled_apps,
             minimized_windows,
             favourite_apps,
-            desktop_apps
+            desktop_apps,
+            window_positions
         });
         this.initFavourite = { ...favourite_apps };
     }
@@ -240,7 +249,6 @@ export class Desktop extends Component {
                     title: app.title,
                     id: app.id,
                     screen: app.screen,
-                    addFolder: null,
                     closed: this.closeApp,
                     openApp: this.openApp,
                     focus: this.focus,
@@ -251,7 +259,8 @@ export class Desktop extends Component {
                     changeBackgroundImage: this.props.changeBackgroundImage,
                     bg_image_name: this.props.bg_image_name,
                     initHeight: app.height,
-                    initWidth: app.width
+                    initWidth: app.width,
+                    initialPosition: this.state.window_positions[app.id]
                 }
 
                 windowsJsx.push(
@@ -389,9 +398,14 @@ export class Desktop extends Component {
         localStorage.setItem("frequentApps", JSON.stringify(frequentApps));
 
         setTimeout(() => {
-            favourite_apps[objId] = true; // adds opened app to sideBar
-            closed_windows[objId] = false; // openes app's window
-            this.setState({ closed_windows, favourite_apps, allAppsView: false }, () => this.focus(objId));
+            this.setState((prevState) => {
+                const favourite_apps = { ...prevState.favourite_apps, [objId]: true };
+                const closed_windows = { ...prevState.closed_windows, [objId]: false };
+                const window_positions = { ...prevState.window_positions, [objId]: this.getNextWindowPosition(prevState) };
+                return { closed_windows, favourite_apps, window_positions, allAppsView: false };
+            }, () => {
+                this.focus(objId);
+            });
             if (!this.app_stack.includes(objId)) {
                 this.app_stack.push(objId);
             }
@@ -407,14 +421,14 @@ export class Desktop extends Component {
 
         this.hideSideBar(null, false);
 
-        // close window
-        let closed_windows = { ...this.state.closed_windows };
-        let favourite_apps = { ...this.state.favourite_apps };
-
-        if (this.initFavourite[objId] === false) favourite_apps[objId] = false; // if user default app is not favourite, remove from sidebar
-        closed_windows[objId] = true; // closes the app's window
-
-        this.setState({ closed_windows, favourite_apps });
+        this.setState((prevState) => {
+            let closed_windows = { ...prevState.closed_windows, [objId]: true };
+            let favourite_apps = { ...prevState.favourite_apps };
+            if (this.initFavourite[objId] === false) favourite_apps[objId] = false; // if user default app is not favourite, remove from sidebar
+            const window_positions = { ...prevState.window_positions };
+            delete window_positions[objId];
+            return { closed_windows, favourite_apps, window_positions };
+        });
     }
 
     focus = (objId) => {
@@ -430,6 +444,27 @@ export class Desktop extends Component {
             }
         }
         this.setState({ focused_windows });
+    }
+
+    getNextWindowPosition = (state = this.state) => {
+        const baseX = 60;
+        const baseY = 10;
+        const offset = 30;
+        const positions = Object.entries(state.window_positions || {})
+            .filter(([key]) => !state.closed_windows[key])
+            .map(([, value]) => value);
+        let x = baseX;
+        let y = baseY;
+        const clampX = window.innerWidth ? window.innerWidth - 320 : 640;
+        const clampY = window.innerHeight ? window.innerHeight - 240 : 480;
+        const occupied = new Set(positions.map(pos => `${pos?.x}|${pos?.y}`));
+        let attempts = 0;
+        while (occupied.has(`${x}|${y}`) && attempts < 15) {
+            x = Math.max(0, Math.min(x + offset, clampX));
+            y = Math.max(0, Math.min(y + offset, clampY));
+            attempts += 1;
+        }
+        return { x, y };
     }
 
     showAllApps = () => { this.setState({ allAppsView: !this.state.allAppsView }) }

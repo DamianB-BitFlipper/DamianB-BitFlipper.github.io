@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import Settings from '../apps/settings';
 import ReactGA from 'react-ga4';
-import { displayTerminal } from '../apps/terminal'
 
 export class Window extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.id = null;
-        this.startX = 60;
-        this.startY = 10;
+        this.startX = (props.initialPosition && typeof props.initialPosition.x === 'number') ? props.initialPosition.x : 60;
+        this.startY = (props.initialPosition && typeof props.initialPosition.y === 'number') ? props.initialPosition.y : 10;
         this.state = {
             cursorType: "cursor-default",
             width: 60,
@@ -224,7 +223,6 @@ export class Window extends Component {
                     {(this.id === "settings"
                         ? <Settings changeBackgroundImage={this.props.changeBackgroundImage} currBgImgName={this.props.bg_image_name} />
                         : <WindowMainScreen screen={this.props.screen} title={this.props.title}
-                            addFolder={this.props.id === "terminal" ? this.props.addFolder : null}
                             openApp={this.props.openApp} />)}
                 </div>
             </Draggable >
@@ -294,15 +292,17 @@ export class WindowMainScreen extends Component {
         }
     }
     componentDidMount() {
-        console.log("here", this.props.screen);
         setTimeout(() => {
             this.setState({ setDarkBg: true });
         }, 3000);
     }
     render() {
+        const content = typeof this.props.screen === 'function'
+            ? this.props.screen(undefined, this.props.openApp)
+            : null;
         return (
             <div className={"w-full flex-grow z-20 max-h-full overflow-y-auto windowMainScreen" + (this.state.setDarkBg ? " bg-ub-drk-abrgn " : " bg-ub-cool-grey")}>
-                {this.props.addFolder ? displayTerminal(this.props.addFolder, this.props.openApp) : this.props.screen(this.props.addFolder, this.props.openApp)}
+                {content}
             </div>
         )
     }
