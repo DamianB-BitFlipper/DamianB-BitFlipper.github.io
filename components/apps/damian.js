@@ -228,7 +228,12 @@ const AboutSection = ({ data }) => {
                         <>
                             my name is <span className="font-bold">Damian Barabonkov</span>,
                             <div className="font-normal text-xl md:text-2xl mt-2 text-gray-600">I'm a <span className="text-ub-orange font-bold">Founding AI Engineer!</span></div>
-                            <div className="text-lg text-gray-500 mt-2" aria-label="Dual citizen">🇺🇸 Dual Citizen 🇪🇺</div>
+                            <div className="text-lg text-gray-500 mt-2 flex items-center justify-center gap-2" aria-label="Dual citizen">
+                                <span role="img" aria-hidden="true" className="text-xl">🇺🇸</span>
+                                <span className="text-base leading-none relative bottom-0.5">∪</span>
+                                <span role="img" aria-hidden="true" className="text-xl">🇪🇺</span>
+                                <span>Citizen</span>
+                            </div>
                         </>
                     ) : data.title}
                 </h2>
@@ -236,14 +241,14 @@ const AboutSection = ({ data }) => {
             
              <div className="w-24 h-1 bg-ub-orange my-6 rounded opacity-80"></div>
 
-            <div className="prose prose-lg text-gray-600 w-full text-center md:text-left leading-loose max-w-none">
+            <div className="w-full text-center md:text-left text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
                 {Array.isArray(data.content) ? (
                     data.content.map((paragraph, idx) => (
-                        <p key={idx} className="mb-6" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
+                        <p key={idx} className="whitespace-pre-line" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
                     ))
                 ) : (
                     data.content.split('\n\n').map((paragraph, idx) => (
-                        <p key={idx} className="mb-6" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
+                        <p key={idx} className="whitespace-pre-line" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
                     ))
                 )}
             </div>
@@ -737,5 +742,17 @@ const ResumeSection = ({ source }) => {
 function parseLinks(text) {
     if (!text) return text;
     const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-    return text.replace(linkRegex, '<a href="$2" target="_blank" class="text-ub-orange hover:underline">$1</a>');
+    const codeRegex = /`([^`]+)`/g;
+
+    let formatted = text.replace(
+        linkRegex,
+        '<a href="$2" target="_blank" class="text-ub-orange underline hover:text-ub-orange-dark">$1</a>'
+    );
+
+    formatted = formatted.replace(
+        codeRegex,
+        '<code class="px-1 py-0.5 rounded bg-gray-100 text-gray-800 font-mono text-sm border border-gray-200">$1</code>'
+    );
+
+    return formatted;
 }
