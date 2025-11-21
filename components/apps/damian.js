@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import aboutSections from '../../content/about.json';
-import { projects as allProjects } from '../ubuntu_data';
+
+const GITHUB_USERNAME = 'DamianB-BitFlipper';
+const PROJECTS_PER_PAGE = 10;
 
 export class AboutDamian extends Component {
     constructor() {
@@ -8,6 +10,7 @@ export class AboutDamian extends Component {
         this.state = {
             activeSectionIndex: 0,
         }
+        this.contentRef = React.createRef();
     }
 
     changeSection = (index) => {
@@ -60,7 +63,7 @@ export class AboutDamian extends Component {
 
         let content;
         if (section.layout === 'projects') {
-            content = <ProjectsSection />;
+            content = <ProjectsSection scrollContainerRef={this.contentRef} />;
         } else if (section.layout === 'resume') {
             content = <ResumeSection source={section.source} />;
         } else if (section.schools) {
@@ -72,8 +75,12 @@ export class AboutDamian extends Component {
         }
 
         return (
-            <div className="w-full h-full overflow-y-auto bg-gray-100 text-gray-800 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-                 {content}
+            <div
+                ref={this.contentRef}
+                id="about-content-scroll"
+                className="w-full h-full overflow-y-auto bg-gray-100 text-gray-800 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+            >
+                {content}
             </div>
         );
     }
@@ -264,46 +271,206 @@ const ExperienceSection = ({ data }) => {
     );
 }
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ scrollContainerRef }) => {
+    const [projects, setProjects] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [hasMore, setHasMore] = useState(true);
+    const [reloadToken, setReloadToken] = useState(0);
+
+    useEffect(() => {
+        let aborted = false;
+        const fetchProjects = async () => {
+            if (!hasMore && page !== 1) {
+                return;
+            }
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${PROJECTS_PER_PAGE}&page=${page}`, {
+                    headers: {
+                        Accept: 'application/vnd.github+json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`GitHub API responded with ${response.status}`);
+                }
+                const data = await response.json();
+                if (aborted) return;
+                setProjects(prev => page === 1 ? data : [...prev, ...data]);
+                setHasMore(data.length === PROJECTS_PER_PAGE);
+            } catch (err) {
+                if (!aborted) {
+                    setError(err.message || 'Unable to load projects.');
+                }
+            } finally {
+                if (!aborted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        fetchProjects();
+        return () => {
+            aborted = true;
+        };
+    }, [page, reloadToken]);
+
+    useEffect(() => {
+        const element = scrollContainerRef?.current;
+        const handleScroll = () => {
+            if (loading || !hasMore) return;
+            let scrollTop, clientHeight, scrollHeight;
+            if (element) {
+                scrollTop = element.scrollTop;
+                clientHeight = element.clientHeight;
+                scrollHeight = element.scrollHeight;
+            } else {
+                scrollTop = window.scrollY || document.documentElement.scrollTop;
+                clientHeight = window.innerHeight;
+                scrollHeight = document.documentElement.scrollHeight;
+            }
+            if (scrollHeight - (scrollTop + clientHeight) < 200) {
+                setPage(prev => prev + 1);
+            }
+        };
+
+        const target = element || window;
+        target.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            target.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrollContainerRef?.current, loading, hasMore]);
+
+    const retryFetch = () => {
+        setReloadToken(token => token + 1);
+    };
+
+    const handleManualLoadMore = () => {
+        if (!loading && hasMore) {
+            setPage(prev => prev + 1);
+        }
+    };
+
+    const formatUpdatedAt = (dateString) => {
+        try {
+            return new Date(dateString).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+        } catch (e) {
+            return dateString;
+        }
+    };
+
+    const renderProjectCard = (project) => (
+        <div key={project.id} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 p-6 group">
+            <div className="flex justify-between items-start mb-3">
+                <div className="font-bold text-lg text-gray-900 flex flex-wrap items-center gap-3 group-hover:text-ub-orange transition-colors">
+                    {project.name}
+                    <div className="flex items-center text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 .587l3.668 7.568L24 9.75l-6 5.848L19.335 24 12 19.897 4.665 24 6 15.598 0 9.75l8.332-1.595z" />
+                        </svg>
+                        {project.stargazers_count}
+                    </div>
+                </div>
+                <span className="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full border border-gray-200">
+                    {project.language || 'Unknown'}
+                </span>
+            </div>
+            <p className="text-gray-600 text-sm flex-grow mb-4 leading-relaxed">
+                {project.description || 'No description provided yet.'}
+            </p>
+            {project.topics && project.topics.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-4">
+                    {project.topics.map(topic => (
+                        <span key={`${project.id}-${topic}`} className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full border border-gray-200">
+                            #{topic}
+                        </span>
+                    ))}
+                </div>
+            )}
+            <div className="mt-auto pt-4 border-t border-gray-100 text-sm text-gray-500 space-y-2">
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                        </svg>
+                        Updated {formatUpdatedAt(project.updated_at)}
+                    </div>
+                    {project.open_issues_count > 0 && (
+                        <div className="flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12c0 4.971-4.029 9-9 9s-9-4.029-9-9 4.029-9 9-9 9 4.029 9 9z" />
+                            </svg>
+                            {project.open_issues_count} open issues
+                        </div>
+                    )}
+                </div>
+                <div className="flex flex-wrap gap-4">
+                    <a
+                        href={project.html_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center text-ub-orange font-medium hover:text-ub-orange-dark"
+                    >
+                        <span className="mr-1">View on GitHub</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                    {project.homepage && (
+                        <a
+                            href={project.homepage}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center text-gray-500 hover:text-gray-700"
+                        >
+                            Live Demo
+                        </a>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <div className="w-full p-8 md:p-12 max-w-5xl">
             <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">Projects</h2>
+            {projects.length === 0 && loading && (
+                <div className="text-gray-500">Loading projects...</div>
+            )}
+            {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4 flex flex-col gap-3">
+                    <span>{error}</span>
+                    <button onClick={retryFetch} className="self-start px-3 py-1.5 text-sm font-medium bg-red-600 text-white rounded hover:bg-red-700">
+                        Retry
+                    </button>
+                </div>
+            )}
+            {!loading && !error && projects.length === 0 && (
+                <div className="text-gray-500">No repositories found.</div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {allProjects.map((project, index) => (
-                     <div key={index} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 p-6 group">
-                        <div className="flex justify-between items-start mb-3">
-                            <div className="font-bold text-lg text-gray-900 flex items-center gap-2 group-hover:text-ub-orange transition-colors">
-                                {project.title}
-                                {project.github && (
-                                     <iframe src={`https://ghbtns.com/github-btn.html?user=DamianB-BitFlipper&repo=${project.github.split('/').pop()}&type=star&count=true`} frameBorder="0" scrolling="0" width="90" height="20" title={project.title+"-star"}></iframe>
-                                )}
-                            </div>
-                            <span className="text-xs font-medium px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full border border-gray-200">{project.category}</span>
-                        </div>
-                        <p className="text-gray-600 text-sm flex-grow mb-6 leading-relaxed">{project.description}</p>
-                        <div className="mt-auto pt-4 border-t border-gray-100">
-                             {project.redirect || project.github ? (
-                                <a 
-                                href={project.redirect || project.github} 
-                                target="_blank" 
-                                className="inline-flex items-center text-sm font-medium text-ub-orange hover:text-ub-orange-dark transition-colors"
-                                rel="noreferrer"
-                                >
-                                <span className="mr-1">View Project</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                                </a>
-                            ) : (
-                                <span className="text-sm text-gray-400 italic cursor-not-allowed">Internal Project</span>
-                            )}
-                        </div>
-                     </div>
-                ))}
+                {projects.map(renderProjectCard)}
+            </div>
+            <div className="flex flex-col items-center gap-3 mt-6">
+                {loading && projects.length > 0 && <div className="text-gray-500 text-sm">Loading more projects...</div>}
+                {!loading && hasMore && (
+                    <button
+                        onClick={handleManualLoadMore}
+                        className="px-4 py-2 text-sm font-medium rounded border border-gray-300 text-gray-700 hover:bg-gray-100"
+                    >
+                        Load more projects
+                    </button>
+                )}
+                {!hasMore && projects.length > 0 && (
+                    <div className="text-xs uppercase tracking-wide text-gray-400">You reached the end</div>
+                )}
             </div>
         </div>
     );
 }
+
 
 const ResumeSection = ({ source }) => {
     return (

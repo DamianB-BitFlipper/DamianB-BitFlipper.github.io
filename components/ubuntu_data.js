@@ -25,94 +25,11 @@ export const interests = [
   "Latin Dance"
 ];
 
-export const projects = [
-  {
-    "slug": "algopytest",
-    "layout": "page",
-    "title": "algopytest",
-    "description": "A framework which hides away all of the complexity and repetitiveness that comes with testing Algorand Smart Contracts",
-    "redirect": "https://github.com/DamianB-BitFlipper/algopytest",
-    "badge": "<img alt=\"Total downloads for the project\" src=\"https://static.pepy.tech/badge/algopytest-framework\">",
-    "importance": 1,
-    "category": "personal",
-    "content": ""
-  },
-  {
-    "slug": "conda-comply",
-    "layout": "page",
-    "title": "conda-comply",
-    "description": "Check conda environment dependencies for compliance with permissive, copyleft or other user-defined license sets",
-    "//": null,
-    "redirect": "https://github.com/Quantco/conda-comply",
-    "importance": 1,
-    "category": "work",
-    "content": ""
-  },
-  {
-    "slug": "groupstorm",
-    "layout": "page",
-    "title": "groupstorm",
-    "description": "A hyper-fast library in Python to group candidate DataFrame rows against every row in a reference DataFrame according to user-supplied constraints",
-    "//": null,
-    "redirect": "https://github.com/Quantco/groupstorm",
-    "importance": 2,
-    "category": "work",
-    "content": ""
-  },
-  {
-    "slug": "guarda",
-    "layout": "page",
-    "title": "guarda-firewall",
-    "description": "A proxy firewall prototype for RESTful services to easily support webauthn two-factor authentication",
-    "redirect": "https://github.com/DamianB-BitFlipper/Guarda-firewall",
-    "importance": 2,
-    "category": "personal",
-    "content": ""
-  },
-  {
-    "slug": "mygpt",
-    "layout": "page",
-    "title": "MyGPT",
-    "description": "An Android application which makes querying ChatGPT from mobile easy and seamless.",
-    "redirect": "https://play.google.com/store/apps/details?id=com.intellitech.concepts.mobile_gpt",
-    "//": null,
-    "importance": 3,
-    "category": "personal",
-    "content": ""
-  },
-  {
-    "slug": "js-os",
-    "layout": "page",
-    "title": "JS-OS",
-    "description": "A unix-clone operating system that aims to be a learning tool for both the developer and the user.",
-    "redirect": "https://github.com/DamianB-BitFlipper/JS-OS",
-    "importance": 4,
-    "category": "personal",
-    "content": ""
-  },
-  {
-    "slug": "slimcoin",
-    "layout": "page",
-    "title": "Slimcoin",
-    "description": "The first cryptocurrency to implement Proof-of-Burn mining as its consensus mechanism. Its goal is to lower barriers for entry, while still maintaining a high level of security.",
-    "//": null,
-    "redirect": "https://github.com/slimcoin/slimcoin",
-    "importance": 5,
-    "category": "personal",
-    "content": ""
-  },
-  {
-    "slug": "raft",
-    "layout": "page",
-    "title": "Raft",
-    "description": "A 6.824 class project to implement a fault-tolerant, distributed key/value store implementing the log-based Raft replicated state protocol.",
-    "redirect": "http://nil.csail.mit.edu/6.824/2021/papers/raft-extended.pdf",
-    "importance": 7,
-    "category": "personal",
-    "content": ""
-  }
-];
+// Project metadata now fetched dynamically from GitHub.
+export const projects = [];
+
 export const posts = [
+
   {
     "slug": "2023-07-04-jupyter-notebook",
     "date": "2023-07-04 08:57:00-0400",
