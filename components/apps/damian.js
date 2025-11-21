@@ -331,22 +331,22 @@ const ExperienceSection = ({ data }) => {
 
 const ContactSection = ({ data }) => {
     return (
-        <div className="w-full p-8 md:p-12 max-w-4xl">
+        <div className="w-full p-8 md:p-12 max-w-3xl">
             <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">{data.title}</h2>
             <div className="flex flex-col gap-4">
                 {data.contacts?.map((contact, idx) => (
-                    <div key={idx} className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 flex items-center gap-4 hover:border-ub-orange transition-colors">
+                    <div key={idx} className="bg-white border border-gray-200 rounded-2xl shadow-sm px-4 py-3 flex flex-col lg:flex-row items-start lg:items-center gap-3 hover:border-ub-orange transition-all">
                         {contact.href ? (
-                            <a href={contact.href} target="_blank" rel="noreferrer" className="w-14 h-14 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200 hover:border-ub-orange">
-                                <img src={contact.icon} alt={contact.label} className="w-10 h-10 object-contain" />
+                            <a href={contact.href} target="_blank" rel="noreferrer" className="w-14 h-14 flex items-center justify-center rounded-xl bg-gray-50 border border-gray-200 hover:border-ub-orange shrink-0">
+                                <img src={contact.icon} alt={contact.label} className="w-9 h-9 object-contain" />
                             </a>
                         ) : (
-                            <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200">
-                                <img src={contact.icon} alt={contact.label} className="w-10 h-10 object-contain" />
+                            <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-gray-50 border border-gray-200 shrink-0">
+                                <img src={contact.icon} alt={contact.label} className="w-9 h-9 object-contain" />
                             </div>
                         )}
                         <div className="flex-1">
-                            <div className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">{contact.label}</div>
+                            <div className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-0.5">{contact.label}</div>
                             {contact.href ? (
                                 <a href={contact.href} target="_blank" rel="noreferrer" className="text-lg font-semibold text-ub-orange hover:underline break-all">
                                     {contact.value}
@@ -356,6 +356,14 @@ const ContactSection = ({ data }) => {
                             )}
                             {contact.caption && <div className="text-xs text-gray-500 mt-1">{contact.caption}</div>}
                         </div>
+                        {contact.href && (
+                            <a href={contact.href} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs font-semibold text-gray-500 hover:text-ub-orange transition-colors">
+                                Open
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5h10m0 0v10m0-10L5 19" />
+                                </svg>
+                            </a>
+                        )}
                     </div>
                 ))}
             </div>
