@@ -234,7 +234,7 @@ const AboutSection = ({ data }) => {
                                 <span role="img" aria-hidden="true" className="text-xl">🇺🇸</span>
                                 <span className="text-base leading-none relative bottom-0.5">∪</span>
                                 <span role="img" aria-hidden="true" className="text-xl">🇪🇺</span>
-                                <span>Citizen</span>
+                                <span>Citizen, living in Berlin</span>
                             </div>
                         </>
                     ) : data.title}
@@ -333,12 +333,18 @@ const ContactSection = ({ data }) => {
     return (
         <div className="w-full p-8 md:p-12 max-w-4xl">
             <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">{data.title}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-4">
                 {data.contacts?.map((contact, idx) => (
                     <div key={idx} className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 flex items-center gap-4 hover:border-ub-orange transition-colors">
-                        <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200">
-                            <img src={contact.icon} alt={contact.label} className="w-10 h-10 object-contain" />
-                        </div>
+                        {contact.href ? (
+                            <a href={contact.href} target="_blank" rel="noreferrer" className="w-14 h-14 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200 hover:border-ub-orange">
+                                <img src={contact.icon} alt={contact.label} className="w-10 h-10 object-contain" />
+                            </a>
+                        ) : (
+                            <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200">
+                                <img src={contact.icon} alt={contact.label} className="w-10 h-10 object-contain" />
+                            </div>
+                        )}
                         <div className="flex-1">
                             <div className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">{contact.label}</div>
                             {contact.href ? (

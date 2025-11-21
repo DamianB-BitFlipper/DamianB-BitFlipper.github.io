@@ -138,30 +138,25 @@
         "label": "Email",
         "value": "damianb@alum.mit.edu",
         "href": "mailto:damianb@alum.mit.edu",
-        "icon": "./themes/Yaru/apps/gedit.png"
+        "icon": "./themes/Yaru/apps/email.png"
       },
       {
         "label": "GitHub",
         "value": "DamianB-BitFlipper",
         "href": "https://github.com/DamianB-BitFlipper",
-        "icon": "./themes/Yaru/apps/github.png"
+        "icon": "./themes/Yaru/apps/github-dark.png"
       },
       {
         "label": "X (Twitter)",
         "value": "@TheBitFlipper",
         "href": "https://x.com/TheBitFlipper",
-        "icon": "./themes/Yaru/apps/x-logo.png"
+        "icon": "./themes/Yaru/apps/x-logo-dark.png"
       },
       {
         "label": "LinkedIn",
         "value": "Damian Barabonkov",
         "href": "https://www.linkedin.com/in/damian-barabonkov-5286a2290",
-        "icon": "./themes/Yaru/apps/firefox.png"
-      },
-      {
-        "label": "Location",
-        "value": "Berlin, Germany",
-        "icon": "./themes/Yaru/system/user-home.png"
+        "icon": "./themes/Yaru/apps/linkedin.png"
       }
     ]
   }
