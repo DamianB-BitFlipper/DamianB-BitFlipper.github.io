@@ -189,12 +189,12 @@ export class AboutDamian extends Component {
 
                 <div className="flex flex-grow overflow-hidden">
                     {/* Sidebar */}
-                    <div className="hidden md:flex flex-col w-1/4 bg-[#380c2a] border-r border-gray-900 overflow-y-auto">
+                    <div className="hidden md:flex flex-col bg-[#380c2a] border-r border-gray-900 overflow-y-auto" style={{ width: '170px', minWidth: '170px' }}>
                         {this.renderNavLinks()}
                     </div>
 
                     {/* Main Content */}
-                    <div className="flex flex-col w-full md:w-3/4 bg-white relative overflow-hidden">
+                    <div className="flex flex-col flex-1 bg-white relative overflow-hidden">
                         {this.renderContent()}
                     </div>
                 </div>
