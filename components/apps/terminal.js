@@ -40,12 +40,13 @@ export class Terminal extends Component {
         this.appLaunchCommands = {
             code: "vscode",
             spotify: "spotify",
-            chrome: "chrome",
+            firefox: "firefox",
             trash: "trash",
             "about-damian": "about-damian",
-            terminal: "terminal",
             settings: "settings",
             sendmsg: "gedit",
+            chess: "chess",
+            cheese: "cheese",
         };
 
         this.emulator = null;
