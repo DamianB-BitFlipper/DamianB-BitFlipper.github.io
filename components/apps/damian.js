@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
 import aboutSections from '../../content/about.json';
 
 const GITHUB_USERNAME = 'DamianB-BitFlipper';
@@ -312,6 +312,8 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         'TeX',
         'TypeScript'
     ];
+    const languageMenuRef = useRef(null);
+    const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
 
     const languageColors = {
         JavaScript: '#f1e05a',
@@ -470,9 +472,20 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         setSortMode(mode);
     };
 
-    const handleFilterChange = (e) => {
-        setFilterLanguage(e.target.value);
+    const handleFilterChange = (language) => {
+        setFilterLanguage(language);
+        setLanguageMenuOpen(false);
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (languageMenuRef.current && !languageMenuRef.current.contains(event.target)) {
+                setLanguageMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const renderProjectCard = (project) => (
         <div key={project.id} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 p-6 group">
@@ -589,19 +602,51 @@ const ProjectsSection = ({ scrollContainerRef }) => {
                         );
                     })}
                 </div>
-                <div className="flex items-center gap-2">
-                    <label htmlFor="language-filter" className="text-sm text-gray-600">Language:</label>
-                    <select
-                        id="language-filter"
-                        value={filterLanguage}
-                        onChange={handleFilterChange}
-                        className="text-sm border border-gray-300 rounded px-3 py-1.5 text-gray-700 focus:outline-none focus:border-ub-orange"
+                <div className="relative" ref={languageMenuRef}>
+                    <button
+                        type="button"
+                        onClick={() => setLanguageMenuOpen(open => !open)}
+                        className="flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border border-gray-300 text-gray-700 hover:border-ub-orange hover:text-ub-orange transition-colors"
                     >
-                        <option value="All">All</option>
-                        {languageOptions.map(lang => (
-                            <option key={lang} value={lang}>{lang}</option>
-                        ))}
-                    </select>
+                        <span>Language:</span>
+                        <span className="font-semibold">{filterLanguage}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${languageMenuOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                        </svg>
+                    </button>
+                    {languageMenuOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white text-ub-orange border border-ub-orange rounded-lg shadow-xl z-20 overflow-hidden max-h-72 flex flex-col">
+                            <div className="overflow-y-scroll language-menu" style={{ scrollbarWidth: 'auto' }}>
+                                <style>{`
+                                    .language-menu::-webkit-scrollbar {
+                                        width: 8px;
+                                    }
+                                    .language-menu::-webkit-scrollbar-track {
+                                        background: rgba(0,0,0,0.05);
+                                    }
+                                    .language-menu::-webkit-scrollbar-thumb {
+                                        background: #e95420;
+                                        border-radius: 9999px;
+                                    }
+                                `}</style>
+                                <button
+                                    className={`w-full text-left px-4 py-2 text-sm hover:bg-ub-orange hover:text-white ${filterLanguage === 'All' ? 'bg-ub-orange text-white font-semibold' : ''}`}
+                                    onClick={() => handleFilterChange('All')}
+                                >
+                                    All
+                                </button>
+                                {languageOptions.map(lang => (
+                                    <button
+                                        key={lang}
+                                        className={`w-full text-left px-4 py-2 text-sm hover:bg-ub-orange hover:text-white ${filterLanguage === lang ? 'bg-ub-orange text-white font-semibold' : ''}`}
+                                        onClick={() => handleFilterChange(lang)}
+                                    >
+                                        {lang}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
