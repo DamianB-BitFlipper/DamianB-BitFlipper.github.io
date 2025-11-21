@@ -8,6 +8,14 @@ const SORT_OPTIONS = {
     stars: 'stars',
     alpha: 'full_name'
 };
+const GITHUB_API_TOKEN = process.env.NEXT_PUBLIC_GITHUB_API_TOKEN || '';
+const buildGithubHeaders = () => {
+    const headers = { Accept: 'application/vnd.github+json' };
+    if (GITHUB_API_TOKEN) {
+        headers.Authorization = `Bearer ${GITHUB_API_TOKEN}`;
+    }
+    return headers;
+};
 
 export class AboutDamian extends Component {
     constructor() {
@@ -316,7 +324,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         const fetchLanguages = async () => {
             try {
                 const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`, {
-                    headers: { Accept: 'application/vnd.github+json' }
+                    headers: buildGithubHeaders()
                 });
                 if (!response.ok) return;
                 const data = await response.json();
@@ -371,9 +379,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
             try {
                 const { url, transform } = buildRequestConfig();
                 const response = await fetch(url, {
-                    headers: {
-                        Accept: 'application/vnd.github+json'
-                    }
+                    headers: buildGithubHeaders()
                 });
                 if (!response.ok) {
                     throw new Error(`GitHub API responded with ${response.status}`);
