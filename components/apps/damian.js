@@ -388,11 +388,11 @@ const ProjectsSection = ({ scrollContainerRef }) => {
 
     const renderProjectCard = (project) => (
         <div key={project.id} className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 p-6 group">
-            <div className="flex justify-between items-start mb-3">
-                <div className="font-bold text-lg text-gray-900 flex flex-wrap items-center gap-3 group-hover:text-ub-orange transition-colors">
-                    {project.name}
+            <div className="flex justify-between items-start mb-3 gap-3">
+                <div className="font-bold text-lg text-gray-900 flex flex-col gap-2 group-hover:text-ub-orange transition-colors">
+                    <span className="break-all leading-tight">{project.name}</span>
                     {project.stargazers_count > 0 && (
-                        <div className="flex items-center text-xs text-gray-700 bg-gray-50 px-2 py-0.5 rounded-full border border-gray-200">
+                        <div className="flex items-center text-xs text-gray-700 bg-gray-50 px-2 py-0.5 rounded-full border border-gray-200 w-fit">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 .587l3.668 7.568L24 9.75l-6 5.848L19.335 24 12 19.897 4.665 24 6 15.598 0 9.75l8.332-1.595z" />
                             </svg>
@@ -402,7 +402,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
                 </div>
                 {project.language && (
                     <span
-                        className="text-xs font-medium px-2.5 py-1 rounded-full border"
+                        className="text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap"
                         style={getLanguageStyles(project.language)}
                     >
                         {project.language}
