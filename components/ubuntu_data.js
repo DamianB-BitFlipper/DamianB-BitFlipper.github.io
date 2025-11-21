@@ -1,4 +1,30 @@
 
+export const skills = [
+  "Systems Programming",
+  "Software Design",
+  "Performance Engineering",
+  "Machine Learning"
+];
+
+export const languages = [
+  "English",
+  "Bulgarian",
+  "German",
+  "Spanish",
+  "Russian",
+  "C++",
+  "Python",
+  "JavaScript"
+];
+
+export const interests = [
+  "Cycling",
+  "Inline Skating",
+  "Weight Training",
+  "Language Learning",
+  "Latin Dance"
+];
+
 export const projects = [
   {
     "slug": "algopytest",

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
-import { projects } from '../ubuntu_data';
+import bashEmulator from 'bash-emulator';
+import { projects, skills, languages, interests } from '../ubuntu_data';
 
 export class Terminal extends Component {
     constructor() {
@@ -9,31 +10,46 @@ export class Terminal extends Component {
         this.cursor = "";
         this.terminal_rows = 1;
         this.current_directory = "~";
-        this.curr_dir_name = "root";
-        this.prev_commands = [];
-        this.commands_index = -1;
-        
-        const projectTitles = projects.map(p => p.slug);
-        
-        this.child_directories = {
-            root: ["projects", "skills", "languages", "interests"],
-            projects: projectTitles,
-            skills: ["Systems Programming", "Software Design", "Performance Engineering", "Machine Learning"],
-            interests: ["Cycling", "Inline Skating", "Weight Training", "Language Learning", "Latin Dance"],
-            languages: ["English", "Bulgarian", "German", "Spanish", "Russian", "C++", "Python", "JavaScript"],
-        };
         this.state = {
             terminal: [],
         }
-        this.all_commands = [
-            "cd", "ls", "pwd", "echo", "clear", "exit", 
-            "code", "spotify", "chrome", "about-damian", "trash", 
-            "settings", "sendmsg", "help", "cowsay", "sudo"
-        ];
-        this.all_commands.sort();
+
+        this.virtualDirectories = {
+            projects: [],
+        };
+
+        this.projectTextFiles = projects.map(({ slug, title, description }) => {
+            const fileName = `${slug}.txt`;
+            const displayTitle = title || slug;
+            const content = description && description.trim().length > 0
+                ? description
+                : `No description available for ${displayTitle}.`;
+            return { fileName, content };
+        });
+
+        this.virtualTextFiles = {
+            'skills.txt': skills,
+            'languages.txt': languages,
+            'interests.txt': interests,
+        };
+
+        this.appLaunchCommands = {
+            code: "vscode",
+            spotify: "spotify",
+            chrome: "chrome",
+            trash: "trash",
+            "about-damian": "about-damian",
+            terminal: "terminal",
+            settings: "settings",
+            sendmsg: "gedit",
+        };
+
+        this.emulator = null;
+        this.skipNextRender = false;
     }
 
     componentDidMount() {
+        this.initializeEmulator();
         this.reStartTerminal();
     }
 
@@ -44,6 +60,140 @@ export class Terminal extends Component {
 
     componentWillUnmount() {
         clearInterval(this.cursor);
+    }
+
+    initializeEmulator = () => {
+        if (this.emulator) return;
+
+        const emulatorState = {
+            user: 'damian',
+            workingDirectory: '/home/damian',
+            fileSystem: this.createVirtualFileSystem(),
+        };
+
+        this.emulator = bashEmulator(emulatorState);
+        this.registerCustomCommands();
+        this.updateCurrentDirectory();
+    }
+
+    createVirtualFileSystem = () => {
+        const now = Date.now();
+        const fileSystem = {};
+        const ensureDir = (path) => {
+            if (!fileSystem[path]) {
+                fileSystem[path] = { type: 'dir', modified: now };
+            }
+        };
+        const ensureFile = (path, content = '') => {
+            fileSystem[path] = { type: 'file', modified: now, content };
+        };
+        const formatListContent = (items) => {
+            if (!Array.isArray(items) || items.length === 0) {
+                return 'No data available.';
+            }
+            return items.map(item => `- ${item}`).join('\n');
+        };
+
+        ensureDir('/');
+        ensureDir('/home');
+        ensureDir('/home/damian');
+
+        Object.entries(this.virtualDirectories).forEach(([directory, entries]) => {
+            const parentPath = `/home/damian/${directory}`;
+            ensureDir(parentPath);
+            entries.forEach(entry => {
+                ensureDir(`${parentPath}/${entry}`);
+            });
+        });
+
+        const textFiles = this.virtualTextFiles || {};
+        Object.entries(textFiles).forEach(([fileName, entries]) => {
+            ensureFile(`/home/damian/${fileName}`, formatListContent(entries));
+        });
+
+        const projectFiles = this.projectTextFiles || [];
+        projectFiles.forEach(({ fileName, content }) => {
+            ensureFile(`/home/damian/projects/${fileName}`, content);
+        });
+
+        ensureFile('/home/damian/README.txt', "Welcome to Damian's workspace. Explore projects, skills, languages, and interests.");
+
+        return fileSystem;
+    }
+
+    registerCustomCommands = () => {
+        if (!this.emulator) return;
+        const { commands } = this.emulator;
+
+        commands.echo = (env, args = []) => {
+            env.output(args.join(' '));
+            env.exit(0);
+        };
+
+        commands.clear = (env) => {
+            this.skipNextRender = true;
+            this.reStartTerminal();
+            env.output('');
+            env.exit(0);
+        };
+
+        commands.exit = (env) => {
+            this.skipNextRender = true;
+            this.closeTerminal();
+            env.output('');
+            env.exit(0);
+        };
+
+        commands.help = (env) => {
+            env.output(this.getAvailableCommandsString());
+            env.exit(0);
+        };
+
+        commands.cowsay = (env, args = []) => {
+            const text = args.join(' ') || 'Moo!';
+            env.output(this.getCowsay(text));
+            env.exit(0);
+        };
+
+        commands.sudo = (env) => {
+            ReactGA.event({
+                category: "Sudo Access",
+                action: "lol",
+            });
+            env.output("__HTML__<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />");
+            env.exit(0);
+        };
+
+        Object.entries(this.appLaunchCommands).forEach(([commandName, appName]) => {
+            commands[commandName] = (env, args = []) => {
+                const isValidArgument = args.length === 0 || (args.length === 1 && args[0] === '.');
+                if (!isValidArgument) {
+                    env.error(`Usage: ${commandName} .`);
+                    env.exit(1);
+                    return;
+                }
+
+                if (typeof this.props.openApp === 'function') {
+                    this.props.openApp(appName);
+                    env.output(`Opening ${appName}...`);
+                    env.exit(0);
+                } else {
+                    env.error('App launcher unavailable.');
+                    env.exit(1);
+                }
+            };
+        });
+    }
+
+    async updateCurrentDirectory() {
+        if (!this.emulator) return;
+        try {
+            const dir = await this.emulator.getDir();
+            this.current_directory = dir.replace('/home/damian', '~');
+        } catch (error) {
+            console.error('Unable to read emulator directory', error);
+            this.current_directory = '~';
+        }
     }
 
     getCowsay = (text) => {
@@ -59,15 +209,18 @@ export class Terminal extends Component {
     }
 
     getAvailableCommandsString = () => {
-        this.all_commands.sort();
-        return `Available Commands: [ ${this.all_commands.join(", ")} ]`;
+        if (!this.emulator || !this.emulator.commands) {
+            return "Initializing terminal...";
+        }
+        const commandList = Object.keys(this.emulator.commands).sort();
+        return `Available Commands: [ ${commandList.join(", ")} ]`;
     }
 
     reStartTerminal = () => {
         clearInterval(this.cursor);
         this.setState({ terminal: [] }, () => {
             this.terminal_rows = 1;
-            
+
             const welcomeText = "Welcome to Ubuntu! Type 'help' to see available commands.";
             const cowsay = (
                 <div className="text-white whitespace-pre font-normal" key="welcome-cowsay">
@@ -121,7 +274,6 @@ export class Terminal extends Component {
     startCursor = (id) => {
         clearInterval(this.cursor);
         $(`input#terminal-input-${id}`).trigger("focus");
-        // On input change, set current text in span
         $(`input#terminal-input-${id}`).on("input", function () {
             $(`#cmd span#show-${id}`).text($(this).val());
         });
@@ -148,214 +300,78 @@ export class Terminal extends Component {
         $(`input#terminal-input-${id}`).trigger("blur");
     }
 
-    checkKey = (e) => {
+    checkKey = async (e) => {
+        const terminal_row_id = $(e.target).data("row-id");
         if (e.key === "Enter") {
-            let terminal_row_id = $(e.target).data("row-id");
             let command = $(`input#terminal-input-${terminal_row_id}`).val().trim();
-            if (command.length !== 0) {
-                this.removeCursor(terminal_row_id);
-                this.handleCommands(command, terminal_row_id);
-            }
-            else return;
-            // push to history
-            this.prev_commands.push(command);
-            this.commands_index = this.prev_commands.length - 1;
-
+            if (command.length === 0) return;
+            this.removeCursor(terminal_row_id);
+            await this.handleCommands(command, terminal_row_id);
             this.clearInput(terminal_row_id);
         }
         else if (e.key === "ArrowUp") {
-            let prev_command;
-
-            if (this.commands_index <= -1) prev_command = "";
-            else prev_command = this.prev_commands[this.commands_index];
-
-            let terminal_row_id = $(e.target).data("row-id");
-
-            $(`input#terminal-input-${terminal_row_id}`).val(prev_command);
-            $(`#show-${terminal_row_id}`).text(prev_command);
-
-            this.commands_index--;
+            e.preventDefault();
+            if (!this.emulator) return;
+            const prev_command = await this.emulator.completeUp($(`input#terminal-input-${terminal_row_id}`).val());
+            if (typeof prev_command === 'string') {
+                $(`input#terminal-input-${terminal_row_id}`).val(prev_command);
+                $(`#show-${terminal_row_id}`).text(prev_command);
+            }
         }
         else if (e.key === "ArrowDown") {
-            let prev_command;
-
-            if (this.commands_index >= this.prev_commands.length) return;
-            if (this.commands_index <= -1) this.commands_index = 0;
-
-            if (this.commands_index === this.prev_commands.length) prev_command = "";
-            else prev_command = this.prev_commands[this.commands_index];
-
-            let terminal_row_id = $(e.target).data("row-id");
-
-            $(`input#terminal-input-${terminal_row_id}`).val(prev_command);
-            $(`#show-${terminal_row_id}`).text(prev_command);
-
-            this.commands_index++;
+            e.preventDefault();
+            if (!this.emulator) return;
+            const next_command = await this.emulator.completeDown($(`input#terminal-input-${terminal_row_id}`).val());
+            const value = typeof next_command === 'string' ? next_command : '';
+            $(`input#terminal-input-${terminal_row_id}`).val(value);
+            $(`#show-${terminal_row_id}`).text(value);
         }
-    }
-
-    childDirectories = (parent) => {
-        let files = [];
-        files.push(`<div class="flex justify-start flex-wrap">`)
-        this.child_directories[parent].forEach(file => {
-            files.push(
-                `<span class="font-bold mr-2 text-ubt-blue">'${file}'</span>`
-            )
-        });
-        files.push(`</div>`)
-        return files;
     }
 
     closeTerminal = () => {
         $("#close-terminal").trigger('click');
     }
 
-    handleCommands = (command, rowId) => {
-        let words = command.split(' ').filter(Boolean);
-        let main = words[0];
-        words.shift()
-        let result = "";
-        let rest = words.join(" ");
-        rest = rest.trim();
-        switch (main) {
-            case "cd":
-                if (words.length === 0 || rest === "") {
-                    this.current_directory = "~";
-                    this.curr_dir_name = "root"
-                    break;
-                }
-                if (words.length > 1) {
-                    result = "too many arguments, arguments must be <1.";
-                    break;
-                }
-
-                if (rest === "personal-documents") {
-                    result = `bash /${this.curr_dir_name} : Permission denied 😏`;
-                    break;
-                }
-
-                if (this.child_directories[this.curr_dir_name] && this.child_directories[this.curr_dir_name].includes(rest)) {
-                    this.current_directory += "/" + rest;
-                    this.curr_dir_name = rest;
-                }
-                else if (rest === "." || rest === ".." || rest === "../") {
-                    result = "Type 'cd' to go back 😅";
-                    break;
-                }
-                else {
-                    result = `bash: cd: ${words}: No such file or directory`;
-                }
-                break;
-            case "ls":
-                let target = words[0];
-                if (target === "" || target === undefined || target === null) target = this.curr_dir_name;
-
-                if (words.length > 1) {
-                    result = "too many arguments, arguments must be <1.";
-                    break;
-                }
-                if (target in this.child_directories) {
-                    result = this.childDirectories(target).join("");
-                }
-                else if (target === "personal-documents") {
-                    result = "Nope! 🙃";
-                    break;
-                }
-                else {
-                    result = `ls: cannot access '${words}': No such file or directory`;
-                }
-                break;
-            case "pwd":
-                let str = this.current_directory;
-                result = str.replace("~", "/home/damian")
-                break;
-            case "code":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("vscode");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "echo":
-                result = this.xss(words.join(" "));
-                break;
-            case "spotify":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("spotify");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "chrome":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("chrome");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "trash":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("trash");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "about-damian":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("about-damian");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "terminal":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("terminal");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "settings":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("settings");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "sendmsg":
-                if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("gedit");
-                } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
-                }
-                break;
-            case "clear":
-                this.reStartTerminal();
-                return;
-            case "exit":
-                this.closeTerminal();
-                return;
-            case "sudo":
-
-                ReactGA.event({
-                    category: "Sudo Access",
-                    action: "lol",
-                });
-
-                result = "<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />";
-                break;
-            case "cowsay":
-                let text = words.join(" ");
-                if (!text) text = "Moo!";
-                result = `<pre class="text-white">${this.getCowsay(text)}</pre>`;
-                break;
-            case "help":
-                result = this.getAvailableCommandsString();
-                break;
-            default:
-                result = "Command '" + main + "' not found, or not yet implemented.<br>" + this.getAvailableCommandsString();
+    handleCommands = async (command, rowId) => {
+        if (!this.emulator) {
+            const resultEl = document.getElementById(`row-result-${rowId}`);
+            if (resultEl) {
+                resultEl.innerHTML = "Initializing terminal...";
+            }
+            this.appendTerminalRow();
+            return;
         }
-        document.getElementById(`row-result-${rowId}`).innerHTML = result;
+
+        let output = "";
+        try {
+            output = await this.emulator.run(command);
+        } catch (error) {
+            output = error?.message || 'Unknown error';
+        }
+
+        if (this.skipNextRender) {
+            this.skipNextRender = false;
+            return;
+        }
+
+        this.renderCommandResult(rowId, output);
+        await this.updateCurrentDirectory();
         this.appendTerminalRow();
+    }
+
+    renderCommandResult = (rowId, output) => {
+        const resultEl = document.getElementById(`row-result-${rowId}`);
+        if (!resultEl) return;
+        resultEl.innerHTML = this.formatCommandOutput(output);
+    }
+
+    formatCommandOutput = (output) => {
+        if (!output) return "";
+        const value = typeof output === 'string' ? output : String(output);
+        if (value.startsWith('__HTML__')) {
+            return value.replace('__HTML__', '');
+        }
+        return `<pre class="text-white whitespace-pre-wrap">${this.xss(value)}</pre>`;
     }
 
     xss(str) {

@@ -4,9 +4,9 @@ This is a personal portfolio website of theme Ubuntu 20.04, made using Next.js &
 If you want to edit this. Clone this project and edit the files in `/src/components`.
 
 To run this on localhost
-type `npm start` and when u are done coding type `npm run build` to build your app.
+use `pnpm dev` while coding and `pnpm build` to create a production build.
 
-_NOTE: if you have yarn just replace `npm start` and `npm run build` with `yarn start` and `yarn build`._
+_NOTE: If you only have npm installed, replace the commands above with `npm run dev` and `npm run build`._
 
 <a href="https://www.buymeacoffee.com/vivek9patel" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
 
