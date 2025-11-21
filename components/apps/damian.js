@@ -3,6 +3,11 @@ import aboutSections from '../../content/about.json';
 
 const GITHUB_USERNAME = 'DamianB-BitFlipper';
 const PROJECTS_PER_PAGE = 10;
+const SORT_OPTIONS = {
+    updated: 'updated',
+    stars: 'stars',
+    alpha: 'full_name'
+};
 
 export class AboutDamian extends Component {
     constructor() {
@@ -278,6 +283,9 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     const [error, setError] = useState(null);
     const [hasMore, setHasMore] = useState(true);
     const [reloadToken, setReloadToken] = useState(0);
+    const [sortMode, setSortMode] = useState('updated');
+    const [filterLanguage, setFilterLanguage] = useState('All');
+    const [languageOptions, setLanguageOptions] = useState([]);
 
     const languageColors = {
         JavaScript: '#f1e05a',
@@ -305,6 +313,54 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     };
 
     useEffect(() => {
+        const fetchLanguages = async () => {
+            try {
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`, {
+                    headers: { Accept: 'application/vnd.github+json' }
+                });
+                if (!response.ok) return;
+                const data = await response.json();
+                const languages = Array.from(new Set((data || []).map(repo => repo.language).filter(Boolean))).sort();
+                setLanguageOptions(languages);
+            } catch (err) {
+                console.warn('Unable to load languages', err);
+            }
+        };
+        fetchLanguages();
+    }, []);
+
+    const buildRequestConfig = () => {
+        const useSearchEndpoint = filterLanguage !== 'All' || sortMode === 'stars';
+        if (useSearchEndpoint) {
+            const queryParts = [`user:${GITHUB_USERNAME}`];
+            if (filterLanguage !== 'All') {
+                queryParts.push(`language:${filterLanguage}`);
+            }
+            const params = new URLSearchParams({
+                q: queryParts.join(' '),
+                per_page: PROJECTS_PER_PAGE.toString(),
+                page: page.toString(),
+                sort: sortMode === 'stars' ? 'stars' : 'updated',
+                order: sortMode === 'alpha' ? 'asc' : 'desc'
+            });
+            return {
+                url: `https://api.github.com/search/repositories?${params.toString()}`,
+                transform: (data) => data?.items || []
+            };
+        }
+        const params = new URLSearchParams({
+            per_page: PROJECTS_PER_PAGE.toString(),
+            page: page.toString(),
+            sort: sortMode === 'alpha' ? 'full_name' : 'updated',
+            direction: sortMode === 'alpha' ? 'asc' : 'desc'
+        });
+        return {
+            url: `https://api.github.com/users/${GITHUB_USERNAME}/repos?${params.toString()}`,
+            transform: (data) => data || []
+        };
+    };
+
+    useEffect(() => {
         let aborted = false;
         const fetchProjects = async () => {
             if (!hasMore && page !== 1) {
@@ -313,7 +369,8 @@ const ProjectsSection = ({ scrollContainerRef }) => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${PROJECTS_PER_PAGE}&page=${page}`, {
+                const { url, transform } = buildRequestConfig();
+                const response = await fetch(url, {
                     headers: {
                         Accept: 'application/vnd.github+json'
                     }
@@ -323,8 +380,9 @@ const ProjectsSection = ({ scrollContainerRef }) => {
                 }
                 const data = await response.json();
                 if (aborted) return;
-                setProjects(prev => page === 1 ? data : [...prev, ...data]);
-                setHasMore(data.length === PROJECTS_PER_PAGE);
+                const normalized = transform(data);
+                setProjects(prev => page === 1 ? normalized : [...prev, ...normalized]);
+                setHasMore(normalized.length === PROJECTS_PER_PAGE);
             } catch (err) {
                 if (!aborted) {
                     setError(err.message || 'Unable to load projects.');
@@ -340,7 +398,7 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         return () => {
             aborted = true;
         };
-    }, [page, reloadToken]);
+    }, [page, reloadToken, sortMode, filterLanguage]);
 
     useEffect(() => {
         const element = scrollContainerRef?.current;
@@ -368,6 +426,19 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         };
     }, [scrollContainerRef?.current, loading, hasMore]);
 
+    useEffect(() => {
+        if (filterLanguage !== 'All' && sortMode === 'alpha') {
+            setSortMode('updated');
+        }
+    }, [filterLanguage, sortMode]);
+
+    useEffect(() => {
+        setProjects([]);
+        setPage(1);
+        setHasMore(true);
+        setReloadToken(token => token + 1);
+    }, [sortMode, filterLanguage]);
+
     const retryFetch = () => {
         setReloadToken(token => token + 1);
     };
@@ -384,6 +455,15 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         } catch (e) {
             return dateString;
         }
+    };
+
+    const handleSortChange = (mode) => {
+        if (mode === 'alpha' && filterLanguage !== 'All') return;
+        setSortMode(mode);
+    };
+
+    const handleFilterChange = (e) => {
+        setFilterLanguage(e.target.value);
     };
 
     const renderProjectCard = (project) => (
@@ -482,6 +562,44 @@ const ProjectsSection = ({ scrollContainerRef }) => {
             {!loading && !error && projects.length === 0 && (
                 <div className="text-gray-500">No repositories found.</div>
             )}
+
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex flex-wrap gap-2">
+                    {[
+                        { id: 'updated', label: 'Updated' },
+                        { id: 'stars', label: 'Stars' },
+                        { id: 'alpha', label: 'Alphabetical' }
+                    ].map(option => {
+                        const isDisabled = option.id === 'alpha' && filterLanguage !== 'All';
+                        const isActive = sortMode === option.id;
+                        return (
+                            <button
+                                key={option.id}
+                                onClick={() => handleSortChange(option.id)}
+                                disabled={isDisabled}
+                                className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${isActive ? 'bg-ub-orange text-white border-ub-orange' : 'border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-800'} ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            >
+                                {option.label}
+                            </button>
+                        );
+                    })}
+                </div>
+                <div className="flex items-center gap-2">
+                    <label htmlFor="language-filter" className="text-sm text-gray-600">Language:</label>
+                    <select
+                        id="language-filter"
+                        value={filterLanguage}
+                        onChange={handleFilterChange}
+                        className="text-sm border border-gray-300 rounded px-3 py-1.5 text-gray-700 focus:outline-none focus:border-ub-orange"
+                    >
+                        <option value="All">All</option>
+                        {languageOptions.map(lang => (
+                            <option key={lang} value={lang}>{lang}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {projects.map(renderProjectCard)}
             </div>
