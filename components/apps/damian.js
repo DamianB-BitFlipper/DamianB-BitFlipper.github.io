@@ -366,18 +366,21 @@ const ProjectsSection = ({ projectsData }) => {
     const pinnedNameSet = useMemo(() => new Set(pinnedNames), [pinnedNames]);
 
     const normalizedProjects = useMemo(() => {
-        return repositoryNodes.map(node => ({
-            id: node?.id || node?.name,
-            name: node?.name || 'Untitled',
-            description: node?.description || '',
-            stargazers_count: typeof node?.stargazerCount === 'number' ? node.stargazerCount : 0,
-            language: node?.primaryLanguage?.name,
-            updated_at: node?.updatedAt || '',
-            html_url: node?.url,
-            homepage: node?.homepageUrl,
-            topics: (node?.repositoryTopics?.nodes || []).map(topicNode => topicNode?.topic?.name || topicNode?.name).filter(Boolean),
-            pinned: pinnedNameSet.has(node?.name)
-        }));
+        return repositoryNodes.map(node => {
+            const identifier = node?.id || node?.url || node?.name;
+            return {
+                id: identifier,
+                name: node?.name || 'Untitled',
+                description: node?.description || '',
+                stargazers_count: typeof node?.stargazerCount === 'number' ? node.stargazerCount : 0,
+                language: node?.primaryLanguage?.name,
+                updated_at: node?.updatedAt || '',
+                html_url: node?.url,
+                homepage: node?.homepageUrl,
+                topics: (node?.repositoryTopics?.nodes || []).map(topicNode => topicNode?.topic?.name || topicNode?.name).filter(Boolean),
+                pinned: pinnedNameSet.has(node?.name)
+            };
+        });
     }, [repositoryNodes, pinnedNameSet]);
 
     const parseTimestamp = (value) => {
@@ -390,7 +393,12 @@ const ProjectsSection = ({ projectsData }) => {
         if (!pinnedNames.length) {
             return normalizedProjects.filter(project => project.pinned);
         }
-        const lookup = new Map(normalizedProjects.map(project => [project.name, project]));
+        const lookup = new Map();
+        normalizedProjects.forEach(project => {
+            if (!lookup.has(project.name)) {
+                lookup.set(project.name, project);
+            }
+        });
         const ordered = [];
         pinnedNames.forEach(name => {
             if (lookup.has(name)) {
