@@ -178,9 +178,9 @@ export class Terminal extends Component {
         const parts = command.trim().split(/\s+/);
         if (parts.length === 0) return null;
         const name = parts[0];
-        const meta = { name };
+        const args = parts.slice(1);
+        const meta = { name, args };
         if (name === 'ls') {
-            const args = parts.slice(1);
             const targetArg = [...args].reverse().find(arg => !arg.startsWith('-')) || '.';
             meta.path = this.resolvePath(targetArg);
         }
@@ -215,6 +215,28 @@ export class Terminal extends Component {
             return `<span class="text-ubt-blue">${sanitized}</span>`;
         }
         return sanitized;
+    }
+
+    appendCommandToHistory = (command) => {
+        if (this.emulator?.state?.history) {
+            this.emulator.state.history.push(command);
+        }
+    }
+
+    executeAppLaunchCommand = (commandName, args = []) => {
+        const appId = this.appLaunchCommands[commandName];
+        if (!appId) {
+            throw new Error(`${commandName}: command not available`);
+        }
+        const isValidArgument = args.length === 0 || (args.length === 1 && args[0] === '.');
+        if (!isValidArgument) {
+            throw new Error(`Usage: ${commandName} .`);
+        }
+        if (typeof this.props.openApp !== 'function') {
+            throw new Error('App launcher unavailable.');
+        }
+        this.props.openApp(appId);
+        return `Opening ${appId}...`;
     }
 
     getDirectoryEntries = (directoryPath) => {
@@ -558,9 +580,20 @@ export class Terminal extends Component {
 
         let output = "";
         try {
-            output = await this.emulator.run(command);
+            const commandName = this.lastCommandInfo?.name;
+            const isAppCommand = Boolean(commandName && this.appLaunchCommands[commandName]);
+            if (isAppCommand) {
+                output = this.executeAppLaunchCommand(commandName, this.lastCommandInfo?.args || []);
+                this.appendCommandToHistory(command);
+            } else {
+                output = await this.emulator.run(command);
+            }
         } catch (error) {
-            output = error?.message || 'Unknown error';
+            if (typeof error === 'string') {
+                output = error;
+            } else {
+                output = error?.message || 'Unknown error';
+            }
         }
 
         if (this.skipNextRender) {
