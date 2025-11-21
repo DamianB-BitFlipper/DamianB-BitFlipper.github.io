@@ -670,16 +670,8 @@ const ProjectsSection = ({ scrollContainerRef, pinnedData, pinnedLoading, pinned
                         </svg>
                         Updated {formatUpdatedAt(project.updated_at)}
                     </div>
-                    {project.open_issues_count > 0 && (
-                        <div className="flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12c0 4.971-4.029 9-9 9s-9-4.029-9-9 4.029-9 9-9 9 4.029 9 9z" />
-                            </svg>
-                            {project.open_issues_count} open issues
-                        </div>
-                    )}
                 </div>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col gap-2">
                     <a
                         href={project.html_url}
                         target="_blank"
@@ -696,9 +688,12 @@ const ProjectsSection = ({ scrollContainerRef, pinnedData, pinnedLoading, pinned
                             href={project.homepage}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center text-gray-500 hover:text-gray-700"
+                            className="inline-flex items-center text-gray-600 hover:text-gray-800"
                         >
-                            Live Demo
+                            <span className="mr-1">Project Website</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
                         </a>
                     )}
                 </div>
