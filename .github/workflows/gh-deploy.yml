@@ -50,7 +50,7 @@ jobs:
 
   build-and-deploy:
     needs: update-projects
-    if: needs.update-projects.outputs.changed == 'true'
+    if: needs.update-projects.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     strategy:
