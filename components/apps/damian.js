@@ -69,7 +69,7 @@ export class AboutDamian extends Component {
         if (section.layout === 'projects') {
             content = (
                 <ProjectsSection
-                    projects={projectsData}
+                    projectsData={projectsData}
                 />
             );
         } else if (section.layout === 'resume') {
@@ -323,7 +323,7 @@ const ContactSection = ({ data }) => {
     );
 }
 
-const ProjectsSection = ({ projects = [] }) => {
+const ProjectsSection = ({ projectsData }) => {
     const [sortMode, setSortMode] = useState('pinned');
     const [filterLanguage, setFilterLanguage] = useState('All');
     const languageMenuRef = useRef(null);
@@ -354,15 +354,31 @@ const ProjectsSection = ({ projects = [] }) => {
         return { backgroundColor: `${background}1A`, borderColor: background, color: textColor };
     };
 
+    const pinnedNames = useMemo(() => {
+        const nodes = projectsData?.data?.user?.pinnedItems?.nodes || [];
+        return nodes.map(node => node?.name).filter(Boolean);
+    }, [projectsData]);
+
+    const repositoryNodes = useMemo(() => {
+        return projectsData?.data?.user?.repositories?.nodes || [];
+    }, [projectsData]);
+
+    const pinnedNameSet = useMemo(() => new Set(pinnedNames), [pinnedNames]);
 
     const normalizedProjects = useMemo(() => {
-        if (!Array.isArray(projects)) return [];
-        return projects.map(project => ({
-            ...project,
-            stargazers_count: typeof project.stargazers_count === 'number' ? project.stargazers_count : 0,
-            updated_at: project.updated_at || '',
+        return repositoryNodes.map(node => ({
+            id: node?.id || node?.name,
+            name: node?.name || 'Untitled',
+            description: node?.description || '',
+            stargazers_count: typeof node?.stargazerCount === 'number' ? node.stargazerCount : 0,
+            language: node?.primaryLanguage?.name,
+            updated_at: node?.updatedAt || '',
+            html_url: node?.url,
+            homepage: node?.homepageUrl,
+            topics: (node?.repositoryTopics?.nodes || []).map(topicNode => topicNode?.topic?.name || topicNode?.name).filter(Boolean),
+            pinned: pinnedNameSet.has(node?.name)
         }));
-    }, [projects]);
+    }, [repositoryNodes, pinnedNameSet]);
 
     const parseTimestamp = (value) => {
         const date = new Date(value);
@@ -371,15 +387,18 @@ const ProjectsSection = ({ projects = [] }) => {
     };
 
     const pinnedProjects = useMemo(() => {
-        return normalizedProjects
-            .filter(project => project.pinned)
-            .sort((a, b) => {
-                const orderA = typeof a.pinned_order === 'number' ? a.pinned_order : Number.MAX_SAFE_INTEGER;
-                const orderB = typeof b.pinned_order === 'number' ? b.pinned_order : Number.MAX_SAFE_INTEGER;
-                if (orderA !== orderB) return orderA - orderB;
-                return parseTimestamp(b.updated_at) - parseTimestamp(a.updated_at);
-            });
-    }, [normalizedProjects]);
+        if (!pinnedNames.length) {
+            return normalizedProjects.filter(project => project.pinned);
+        }
+        const lookup = new Map(normalizedProjects.map(project => [project.name, project]));
+        const ordered = [];
+        pinnedNames.forEach(name => {
+            if (lookup.has(name)) {
+                ordered.push(lookup.get(name));
+            }
+        });
+        return ordered;
+    }, [normalizedProjects, pinnedNames]);
 
     const languageOptions = useMemo(() => {
         const unique = new Set();

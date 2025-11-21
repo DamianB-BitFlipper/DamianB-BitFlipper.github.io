@@ -53,21 +53,24 @@ export class Terminal extends Component {
         this.loadProjectsFromData();
     }
 
-    componentDidUpdate() {
-        clearInterval(this.cursor);
-        this.startCursor(this.terminal_rows - 2);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.cursor);
-    }
-
     loadProjectsFromData = () => {
-        this.projectTextFiles = (projectsData || []).map(repo => this.mapRepoToFile(repo));
+        const repos = this.extractRepositoriesFromData(projectsData);
+        this.projectTextFiles = repos.map(repo => this.mapRepoToFile(repo));
         this.refreshVirtualFileSystem();
     }
 
+    extractRepositoriesFromData = (data) => {
+        const nodes = data?.data?.user?.repositories?.nodes || [];
+        return nodes.map(node => ({
+            name: node?.name || 'project',
+            description: node?.description || '',
+            stargazers_count: typeof node?.stargazerCount === 'number' ? node.stargazerCount : 0,
+            language: node?.primaryLanguage?.name,
+        }));
+    }
+
     mapRepoToFile = (repo) => {
+
         const safeName = (repo.name || 'project').toLowerCase().replace(/[^a-z0-9-_]/gi, '-');
         return {
             fileName: `${safeName}.txt`,

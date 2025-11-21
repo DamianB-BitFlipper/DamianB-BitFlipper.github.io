@@ -1,65 +1,1398 @@
-[
-  {
-    "id": "DamianB-BitFlipper/sample-os",
-    "name": "sample-os",
-    "description": "Toy desktop environment replicating Ubuntu-style workflows in the browser.",
-    "stargazers_count": 312,
-    "language": "TypeScript",
-    "updated_at": "2024-11-04T12:15:00Z",
-    "html_url": "https://github.com/DamianB-BitFlipper/sample-os",
-    "homepage": "https://labs.bitflipper.dev/sample-os",
-    "topics": ["react", "nextjs", "desktop"],
-    "pinned": true,
-    "pinned_order": 1
-  },
-  {
-    "id": "DamianB-BitFlipper/graph-ai",
-    "name": "graph-ai",
-    "description": "Embeddings playground that blends knowledge graph traversal with transformer models.",
-    "stargazers_count": 188,
-    "language": "Python",
-    "updated_at": "2024-08-29T09:42:00Z",
-    "html_url": "https://github.com/DamianB-BitFlipper/graph-ai",
-    "homepage": "https://labs.bitflipper.dev/graph-ai",
-    "topics": ["python", "llm", "graphs"],
-    "pinned": true,
-    "pinned_order": 2
-  },
-  {
-    "id": "DamianB-BitFlipper/rust-kv",
-    "name": "rust-kv",
-    "description": "A playful LSM-tree inspired key-value store with pluggable storage engines.",
-    "stargazers_count": 74,
-    "language": "Rust",
-    "updated_at": "2024-06-12T18:02:00Z",
-    "html_url": "https://github.com/DamianB-BitFlipper/rust-kv",
-    "homepage": "https://labs.bitflipper.dev/rust-kv",
-    "topics": ["database", "storage", "rust"],
-    "pinned": false
-  },
-  {
-    "id": "DamianB-BitFlipper/edge-orchestrator",
-    "name": "edge-orchestrator",
-    "description": "Fleet orchestration toolkit for pushing WASM workloads to the edge.",
-    "stargazers_count": 146,
-    "language": "Go",
-    "updated_at": "2024-04-03T14:11:00Z",
-    "html_url": "https://github.com/DamianB-BitFlipper/edge-orchestrator",
-    "homepage": "https://labs.bitflipper.dev/edge-orchestrator",
-    "topics": ["golang", "edge", "wasm"],
-    "pinned": false
-  },
-  {
-    "id": "DamianB-BitFlipper/creative-coder",
-    "name": "creative-coder",
-    "description": "Web-based generative art studio with shader presets and MIDI controls.",
-    "stargazers_count": 91,
-    "language": "JavaScript",
-    "updated_at": "2024-01-25T07:55:00Z",
-    "html_url": "https://github.com/DamianB-BitFlipper/creative-coder",
-    "homepage": "https://labs.bitflipper.dev/creative-coder",
-    "topics": ["webgl", "shaders", "creative-coding"],
-    "pinned": true,
-    "pinned_order": 3
+{
+  "data": {
+    "user": {
+      "pinnedItems": {
+        "nodes": [
+          {
+            "name": "JS-OS"
+          },
+          {
+            "name": "uttertype"
+          },
+          {
+            "name": "algopytest"
+          },
+          {
+            "name": "accelerated-matrix-multiply"
+          },
+          {
+            "name": "Guarda-firewall"
+          },
+          {
+            "name": "dotfiles-and-configs"
+          }
+        ]
+      },
+      "repositories": {
+        "nodes": [
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "HTML"
+            },
+            "updatedAt": "2025-11-21T20:47:44Z",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "3d-plinko",
+            "description": "3D Plinko Game",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-11-18T23:29:51Z",
+            "url": "https://github.com/DamianB-BitFlipper/3d-plinko",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "sudoku_solver",
+            "description": "A sudoku solver in python",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-11-17T08:10:57Z",
+            "url": "https://github.com/DamianB-BitFlipper/sudoku_solver",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "travelhax0r",
+            "description": "Hacking your travel itenerary",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-11-02T20:44:12Z",
+            "url": "https://github.com/DamianB-BitFlipper/travelhax0r",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "flights",
+            "description": "Fast, robust Google Flights scraper (API) for Python. (Probably)",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Jupyter Notebook"
+            },
+            "updatedAt": "2025-11-02T18:58:21Z",
+            "url": "https://github.com/DamianB-BitFlipper/flights",
+            "homepageUrl": "https://aweirddev.github.io/flights/",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algopytest",
+            "description": "AlgoPytest is a framework which hides away all of the complexity and repetitiveness that comes with testing Algorand Smart Contracts. ",
+            "stargazerCount": 13,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-08-14T19:18:51Z",
+            "url": "https://github.com/DamianB-BitFlipper/algopytest",
+            "homepageUrl": "https://algopytest.readthedocs.io",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "algorand"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "smart-contracts"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "test-framework"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "JS-OS",
+            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
+            "stargazerCount": 27,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2025-08-04T04:24:10Z",
+            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "nanoGPT",
+            "description": "Following along Karpathy's nanoGPT series.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-06-15T18:03:55Z",
+            "url": "https://github.com/DamianB-BitFlipper/nanoGPT",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "django-clone",
+            "description": "Controlled Django model instance replication.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-05-27T10:39:29Z",
+            "url": "https://github.com/DamianB-BitFlipper/django-clone",
+            "homepageUrl": "https://tj-django.github.io/django-clone",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dotfiles-and-configs",
+            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-05-24T11:41:15Z",
+            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "uttertype",
+            "description": "Short code for dictation using OpenAI Whisper for transcription.",
+            "stargazerCount": 6,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-05-15T14:38:12Z",
+            "url": "https://github.com/DamianB-BitFlipper/uttertype",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "aidermacs",
+            "description": "AI Pair Programming in Emacs",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-02-17T10:06:04Z",
+            "url": "https://github.com/DamianB-BitFlipper/aidermacs",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "RecruiterLM",
+            "description": "An LLM powered Recruiter. Leveraging developer's open-source GitHub profiles for sourcing and recruiting.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2024-12-23T18:35:57Z",
+            "url": "https://github.com/DamianB-BitFlipper/RecruiterLM",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "mac-i3wm-like-configuration",
+            "description": "My yabai and skhd configurations for a i3wm-like experience on a Mac",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2024-12-07T21:04:57Z",
+            "url": "https://github.com/DamianB-BitFlipper/mac-i3wm-like-configuration",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "doom-emacs-config",
+            "description": "My Doom Emacs configuration",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2024-12-07T21:04:29Z",
+            "url": "https://github.com/DamianB-BitFlipper/doom-emacs-config",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "async-whisper",
+            "description": "Asynchronously transcribe audio files split into chunks in parallel and intelligently join results, yielding nearly identical transcriptions to full audio transcriptions but in a fraction of the time.",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2024-11-23T20:45:13Z",
+            "url": "https://github.com/DamianB-BitFlipper/async-whisper",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "asynchronous"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "parallel-processing"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "python3"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "whisper-api"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "pyannote-whisper",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2024-08-12T17:49:42Z",
+            "url": "https://github.com/DamianB-BitFlipper/pyannote-whisper",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "experience-primer-copilot-DamianB-BitFlipper",
+            "description": "experience-primer-copilot-DamianB-BitFlipper created by GitHub Classroom",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2024-07-03T04:22:28Z",
+            "url": "https://github.com/Exp-Primer-Copilot-Cohort-1/experience-primer-copilot-DamianB-BitFlipper",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "recipes",
+            "description": "This repository shares end-to-end notebooks on how to use various features and integrations with Weaviate at the core!",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Jupyter Notebook"
+            },
+            "updatedAt": "2024-05-14T21:27:44Z",
+            "url": "https://github.com/DamianB-BitFlipper/recipes",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "wine_quality",
+            "description": "Pytorch, Flax and Jax-native implementations of a Deep Neural Network to predict wine quality.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Jupyter Notebook"
+            },
+            "updatedAt": "2024-03-12T19:34:04Z",
+            "url": "https://github.com/DamianB-BitFlipper/wine_quality",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "WhisperFusion-Phoebe",
+            "description": "Phoebe backed by WhisperFusion.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2024-02-13T15:49:12Z",
+            "url": "https://github.com/CultureLabsDev/WhisperFusion-Phoebe",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "WhisperFusion",
+            "description": "WhisperFusion builds upon the capabilities of WhisperLive and WhisperSpeech to provide a seamless conversations with an AI.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2024-01-31T15:19:18Z",
+            "url": "https://github.com/DamianB-BitFlipper/WhisperFusion",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "accelerated-matrix-multiply",
+            "description": "Implements matrix multiply in a variety of ways: tiled CUDA, hyper-optimized CUDA, cuBLAS and WMMA.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Cuda"
+            },
+            "updatedAt": "2024-01-14T10:57:23Z",
+            "url": "https://github.com/DamianB-BitFlipper/accelerated-matrix-multiply",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "ece408-applied-parallel-programming",
+            "description": "Code base and slides for ECE408: Applied Parallel Programming.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Cuda"
+            },
+            "updatedAt": "2024-01-01T11:12:54Z",
+            "url": "https://github.com/DamianB-BitFlipper/ece408-applied-parallel-programming",
+            "homepageUrl": "http://ece408.hwu-server2.crhc.illinois.edu/_layouts/15/start.aspx#/SitePages/Home.aspx",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "kitty-config",
+            "description": "My kitty terminal configuration",
+            "stargazerCount": 0,
+            "primaryLanguage": null,
+            "updatedAt": "2023-12-10T13:18:37Z",
+            "url": "https://github.com/DamianB-BitFlipper/kitty-config",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "advent-of-code-2023",
+            "description": "Advent of code solutions for 2023",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C++"
+            },
+            "updatedAt": "2023-12-02T22:49:22Z",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2023",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "learncpp",
+            "description": "My crack at learning C++ following learncpp.com",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C++"
+            },
+            "updatedAt": "2023-11-20T22:25:32Z",
+            "url": "https://github.com/DamianB-BitFlipper/learncpp",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "osgood",
+            "description": null,
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2023-07-25T04:40:13Z",
+            "url": "https://github.com/charlesriver456/osgood",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "tezos-warranty",
+            "description": "A simple warranty NFT dapp written in tezos",
+            "stargazerCount": 10,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2023-05-12T18:36:56Z",
+            "url": "https://github.com/DamianB-BitFlipper/tezos-warranty",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "chat_gpt_sdk",
+            "description": "Flutter ChatGPT",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Dart"
+            },
+            "updatedAt": "2023-04-21T16:09:55Z",
+            "url": "https://github.com/DamianB-BitFlipper/chat_gpt_sdk",
+            "homepageUrl": "https://pub.dev/packages/chat_gpt_sdk",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "minimal_cython_example",
+            "description": "This code showcases a minimal Cython example, useful as a cookie-cutter template to get started quickly with other Cython-related projects.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Cython"
+            },
+            "updatedAt": "2023-03-21T17:32:35Z",
+            "url": "https://github.com/DamianB-BitFlipper/minimal_cython_example",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "advent_of_code",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2023-02-18T22:20:31Z",
+            "url": "https://github.com/DamianB-BitFlipper/advent_of_code",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "advent-of-code-2022",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2023-02-02T04:38:20Z",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2022",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-wizcoin",
+            "description": "A basic membership Smart Contract that issues a single WizCoin ASA token symbolizing membership to the WizCoin group.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2023-01-29T20:59:17Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-wizcoin",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-tutorial-debugging",
+            "description": "A tutorial for how to debug an Algorand Smart Contract. This tutorial presents a simple smart contract with a bug and illustrates how to use the TEAL debugger to fix the issue.",
+            "stargazerCount": 4,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2022-12-07T22:06:52Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-tutorial-debugging",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-diploma",
+            "description": "A short and sweet stateful smart contract to issue college graduates their diplomas on the Algorand blockchain.",
+            "stargazerCount": 7,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2022-12-07T21:52:06Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-diploma",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-quizzer",
+            "description": "A basic teacher-student quiz smart contract that demonstrates multi-smart contract interaction.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2022-09-25T16:41:15Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-quizzer",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-recurring-payments",
+            "description": "An Algorand Smart Signature program which implements recurring payments on a predefined monotonic schedule.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2022-08-18T18:03:32Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-recurring-payments",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "pev-simulation",
+            "description": "Fleet Supply-Demand Simulator for Autonomous Bike Sharing Services using Boston as Test Bed (2016-2019)",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2022-05-13T14:37:19Z",
+            "url": "https://github.com/mgpopinjay/pev-simulation",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "autonomous-systems"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "mobility-as-a-service"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "mobility-modeling"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "mobility-on-demand"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "simulation"
+                  }
+                },
+                {
+                  "topic": {
+                    "name": "transportation"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "wizcoin",
+            "description": "A simple Algorand Dapp to represent Wizard Capital membership by owning a wizcoin ASA.",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2022-03-04T20:33:12Z",
+            "url": "https://github.com/DamianB-BitFlipper/wizcoin",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algopytest-tutorial",
+            "description": "A tutorial to accompany the AlgoPytest Smart Contract testing framework.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2022-02-16T22:45:14Z",
+            "url": "https://github.com/DamianB-BitFlipper/algopytest-tutorial",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algosigner-walletconnect-dapp-example",
+            "description": null,
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-12-29T01:37:42Z",
+            "url": "https://github.com/DamianB-BitFlipper/algosigner-walletconnect-dapp-example",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "kyc_house",
+            "description": "A proof-of-concept for a Know-Your-Customer service for the blockchain",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Makefile"
+            },
+            "updatedAt": "2021-12-20T02:01:17Z",
+            "url": "https://github.com/DamianB-BitFlipper/kyc_house",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Guarda-firewall",
+            "description": "A proxy firewall prototype for RESTful services to easily support webauthn two-factor authentication. ",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2021-10-25T21:18:14Z",
+            "url": "https://github.com/DamianB-BitFlipper/Guarda-firewall",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "go-algorand-sdk",
+            "description": "Algorand Golang SDK",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2021-10-20T21:41:35Z",
+            "url": "https://github.com/DamianB-BitFlipper/go-algorand-sdk",
+            "homepageUrl": "https://developer.algorand.org/docs/go-sdk",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-builder",
+            "description": "Framework to automate development of Algorand Assets and Smart Contracts.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2021-10-17T10:20:02Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-builder",
+            "homepageUrl": "https://algobuilder.dev",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "py-algorand-sdk",
+            "description": "Algorand Python SDK",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2021-10-03T17:12:52Z",
+            "url": "https://github.com/DamianB-BitFlipper/py-algorand-sdk",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "js-algorand-sdk",
+            "description": "The official JavaScript SDK for Algorand.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2021-09-08T14:36:12Z",
+            "url": "https://github.com/DamianB-BitFlipper/js-algorand-sdk",
+            "homepageUrl": "https://algorand.github.io/js-algorand-sdk/",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "tezos-calculator",
+            "description": "A simple calcualtor dapp on the Tezos blockchain. Based off of and simplied from https://gitlab.com/tezosisrael/smart-contracts-examples/-/tree/master/",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-08-05T04:29:36Z",
+            "url": "https://github.com/DamianB-BitFlipper/tezos-calculator",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "algo-stateful-counter",
+            "description": "A stateful smart contract for Algorand that counts up. Adapted from algob examples.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-06-16T03:48:34Z",
+            "url": "https://github.com/DamianB-BitFlipper/algo-stateful-counter",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "MostSignificantSetBit",
+            "description": "Most Significant Set Bit implementations",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2021-06-06T18:33:05Z",
+            "url": "https://github.com/6851-2021/MostSignificantSetBit",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "ppcoin",
+            "description": "PPCoin Official Development Tree",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2021-06-04T19:37:41Z",
+            "url": "https://github.com/DamianB-BitFlipper/ppcoin",
+            "homepageUrl": "http://www.ppcoin.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "MEng-Thesis",
+            "description": "LaTeX files for my MEng thesis",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TeX"
+            },
+            "updatedAt": "2021-05-20T20:39:11Z",
+            "url": "https://github.com/DamianB-BitFlipper/MEng-Thesis",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "soft-webauthn",
+            "description": "Python software webauthn token",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2021-05-09T01:43:55Z",
+            "url": "https://github.com/DamianB-BitFlipper/soft-webauthn",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "webauthn-load-testing",
+            "description": "Uses Locust to load test webauthn enabled HTTP routes",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2021-04-05T18:21:33Z",
+            "url": "https://github.com/DamianB-BitFlipper/webauthn-load-testing",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "kr-u2f-autoauthn",
+            "description": "Krypton U2F Firefox plugin that performs the authentication browser-side.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2021-04-05T18:17:26Z",
+            "url": "https://github.com/DamianB-BitFlipper/kr-u2f-autoauthn",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "wp-calypso",
+            "description": "The JavaScript and API powered WordPress.com",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-04-03T14:14:30Z",
+            "url": "https://github.com/DamianB-BitFlipper/wp-calypso",
+            "homepageUrl": "https://developer.wordpress.com/calypso/",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Compound-Watcher",
+            "description": "Compound Watcher is a bot that watches potential liquidations on Compound Finance and sends notifications through pushbullet",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2021-03-22T14:35:11Z",
+            "url": "https://github.com/DamianB-BitFlipper/Compound-Watcher",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "foreman",
+            "description": "an application that automates the lifecycle of servers ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Ruby"
+            },
+            "updatedAt": "2021-03-02T17:28:58Z",
+            "url": "https://github.com/DamianB-BitFlipper/foreman",
+            "homepageUrl": "https://theforeman.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "MEng-notes",
+            "description": "All of the notes.org files related to my MEng project",
+            "stargazerCount": 0,
+            "primaryLanguage": null,
+            "updatedAt": "2021-02-10T14:38:35Z",
+            "url": "https://github.com/DamianB-BitFlipper/MEng-notes",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "gogs",
+            "description": "Gogs is a painless self-hosted Git service",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2021-02-10T14:32:13Z",
+            "url": "https://github.com/DamianB-BitFlipper/gogs",
+            "homepageUrl": "https://gogs.io",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "webauthn_golang_js",
+            "description": "JavaScript helper functions for webauthn functionality in the web-browser",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-01-31T19:18:31Z",
+            "url": "https://github.com/DamianB-BitFlipper/webauthn_golang_js",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "webauthn_utils",
+            "description": "Utility code related to Webauthn",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2021-01-26T15:29:38Z",
+            "url": "https://github.com/DamianB-BitFlipper/webauthn_utils",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "django-realworld-example-app",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2021-01-22T01:19:53Z",
+            "url": "https://github.com/DamianB-BitFlipper/django-realworld-example-app",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "golang-echo-realworld-example-app",
+            "description": "Exemplary real world backend API built with Golang + Echo ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2021-01-22T00:45:22Z",
+            "url": "https://github.com/DamianB-BitFlipper/golang-echo-realworld-example-app",
+            "homepageUrl": "https://realworld.io",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "react-redux-realworld-example-app",
+            "description": "Exemplary real world application built with React + Redux",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-01-22T00:44:19Z",
+            "url": "https://github.com/DamianB-BitFlipper/react-redux-realworld-example-app",
+            "homepageUrl": "https://react-redux.realworld.io",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "gogs-proxy-service",
+            "description": "A simple webserver in go that serves as a front-end proxy for the gogs git service.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2021-01-19T13:49:00Z",
+            "url": "https://github.com/DamianB-BitFlipper/gogs-proxy-service",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "go-gogs-client",
+            "description": "Gogs API client in Go.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2021-01-19T01:52:34Z",
+            "url": "https://github.com/DamianB-BitFlipper/go-gogs-client",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "webauthn-txauthn-example",
+            "description": "Transaction authentication WebAuthn example application ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2020-12-23T02:18:42Z",
+            "url": "https://github.com/DamianB-BitFlipper/webauthn-txauthn-example",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "webauthn",
+            "description": "WebAuthn (FIDO2) server library written in Go ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2020-12-17T19:15:31Z",
+            "url": "https://github.com/DamianB-BitFlipper/webauthn",
+            "homepageUrl": "https://webauthn.io/",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "sgx_webauthn_authenticator",
+            "description": "Authenticate webauthn requests inside of an Intel SGX enclave",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C++"
+            },
+            "updatedAt": "2020-12-08T14:20:35Z",
+            "url": "https://github.com/DamianB-BitFlipper/sgx_webauthn_authenticator",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "django-oscar-accounts",
+            "description": "Managed accounts for Django (with or without django-oscar)",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2020-11-20T14:30:21Z",
+            "url": "https://github.com/DamianB-BitFlipper/django-oscar-accounts",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "oscar-ecommerce-webauthn",
+            "description": "Implement webauthn on top of an oscar-based sandbox ecommerce website.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2020-11-18T14:54:38Z",
+            "url": "https://github.com/DamianB-BitFlipper/oscar-ecommerce-webauthn",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "py_webauthn",
+            "description": "A WebAuthn Python module.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2020-11-18T14:53:07Z",
+            "url": "https://github.com/DamianB-BitFlipper/py_webauthn",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "zoobar_webauthn",
+            "description": "A port of the 6.858 zoobar web-service with webauthn support.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2020-11-17T14:56:33Z",
+            "url": "https://github.com/DamianB-BitFlipper/zoobar_webauthn",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Web-Based-Ring-Signature-Scheme",
+            "description": "Final project for 6.857 (Applied Cryptography) based on Ring Signatures (https://en.wikipedia.org/wiki/Ring_signature)",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2020-08-13T01:59:21Z",
+            "url": "https://github.com/jonabox/Web-Based-Ring-Signature-Scheme",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "6.850_Closest_Pair_Points",
+            "description": "Problem Set 1 closest pair points Python program.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2020-04-01T02:04:43Z",
+            "url": "https://github.com/DamianB-BitFlipper/6.850_Closest_Pair_Points",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "nextres",
+            "description": "The Next House Resident Dashboard System",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2018-09-02T05:39:44Z",
+            "url": "https://github.com/poofytoo/nextres",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Meteor_Donuts",
+            "description": "A Meteor example for a donuts shop.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2017-06-28T06:51:23Z",
+            "url": "https://github.com/DamianB-BitFlipper/Meteor_Donuts",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "lit",
+            "description": "Lightning Network node software",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2016-12-15T21:26:20Z",
+            "url": "https://github.com/DamianB-BitFlipper/lit",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "infolounge-3w",
+            "description": "The code powering the infolounge here at 3 west.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2016-10-08T01:39:35Z",
+            "url": "https://github.com/DamianB-BitFlipper/infolounge-3w",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "nextres",
+            "description": "The Next House Resident Dashboard System",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2016-09-30T00:46:09Z",
+            "url": "https://github.com/DamianB-BitFlipper/nextres",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "crossUserMedia",
+            "description": "Sample project to record audio in a browser and post to a server. Chrome and Firefox capture audio through getUserMedia, Safari and IE use a simple Flash fallback.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "ActionScript"
+            },
+            "updatedAt": "2016-05-24T14:01:42Z",
+            "url": "https://github.com/DamianB-BitFlipper/crossUserMedia",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Spina",
+            "description": "Spina CMS",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Ruby"
+            },
+            "updatedAt": "2016-03-06T02:54:51Z",
+            "url": "https://github.com/DamianB-BitFlipper/Spina",
+            "homepageUrl": "http://www.spinacms.com",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "i3status",
+            "description": "Generates status bar to use with i3bar, dzen2 or xmobar",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2015-09-19T22:43:37Z",
+            "url": "https://github.com/DamianB-BitFlipper/i3status",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Autoinsertion-Guru",
+            "description": "Runs emacs lisp configs based on various contextual triggers to make your editing experience way better.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2015-03-19T21:12:03Z",
+            "url": "https://github.com/DamianB-BitFlipper/Autoinsertion-Guru",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "cgminer-monitor",
+            "description": "This is an advanced cgminer tool that comes in two parts. It allows for commanding the miner remotly without ssh through encrypted emails. This script also has added abilities to check the internet connection, restart cgminer if there is a sick/dead gpu, send email allerts for various errors/notifications, and monitor multi-gpu setups.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2015-02-27T22:18:34Z",
+            "url": "https://github.com/DamianB-BitFlipper/cgminer-monitor",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Scheme_Files",
+            "description": "Personaly repository for keeping desktop and laptop scheme files in sync together.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Scheme"
+            },
+            "updatedAt": "2014-09-23T02:38:36Z",
+            "url": "https://github.com/DamianB-BitFlipper/Scheme_Files",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "toxcore",
+            "description": "The future of online communications.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2014-08-03T18:15:32Z",
+            "url": "https://github.com/DamianB-BitFlipper/toxcore",
+            "homepageUrl": "https://tox.im",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "the_silver_searcher",
+            "description": "A code-searching tool similar to ack, but faster.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2014-07-29T20:21:50Z",
+            "url": "https://github.com/DamianB-BitFlipper/the_silver_searcher",
+            "homepageUrl": "http://geoff.greer.fm/ag/",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "C_Lists_and_Vectors",
+            "description": "A pure C library that implements the doubly linked list and dynamic array (vector) is a very simple and intuitive way.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2014-05-25T02:14:50Z",
+            "url": "https://github.com/DamianB-BitFlipper/C_Lists_and_Vectors",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "termcalc",
+            "description": "Simple Reverse Polish Calculator",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2014-05-24T03:57:50Z",
+            "url": "https://github.com/DamianB-BitFlipper/termcalc",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "chicken-qt",
+            "description": "Qt egg for Chicken Scheme",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Scheme"
+            },
+            "updatedAt": "2013-01-08T00:21:44Z",
+            "url": "https://github.com/DamianB-BitFlipper/chicken-qt",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          }
+        ]
+      }
+    }
   }
-]
+}
