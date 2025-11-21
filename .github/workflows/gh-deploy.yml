@@ -54,6 +54,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          # Pull latest `main` with the updated projects
+          ref: 'main'
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
