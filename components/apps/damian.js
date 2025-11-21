@@ -241,7 +241,7 @@ const AboutSection = ({ data }) => {
             
              <div className="w-24 h-1 bg-ub-orange my-6 rounded opacity-80"></div>
 
-            <div className="w-full text-center md:text-left text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
+            <div className="w-full text-center md:text-justify text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
                 {Array.isArray(data.content) ? (
                     data.content.map((paragraph, idx) => (
                         <p key={idx} className="whitespace-pre-line" dangerouslySetInnerHTML={{__html: parseLinks(paragraph)}}></p>
