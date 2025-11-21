@@ -8,6 +8,7 @@ import os
 import sys
 import urllib.error
 import urllib.request
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 API_URL = "https://api.github.com/graphql"
@@ -53,6 +54,12 @@ query ($login: String!, $first: Int!, $after: String) {
 }
 """
 
+def strip_hours_time(timestamp: str) -> str:
+    """Return only the YYYY-MM-DD portion of an ISO 8601 timestamp."""
+    try:
+        return timestamp.split("T", 1)[0]
+    except Exception:
+        return timestamp
 
 def run_graphql(query: str, variables: Dict[str, Any], token: str) -> Dict[str, Any]:
     payload = json.dumps({"query": query, "variables": variables}).encode("utf-8")
@@ -131,6 +138,13 @@ def main() -> None:
 
     pinned_nodes = fetch_paginated(PINNED_QUERY, args.login, token, args.pinned_page_size)
     repo_nodes = fetch_paginated(REPOSITORIES_QUERY, args.login, token, args.repos_page_size)
+
+    # Strip the hours times for the updated at for all repositories
+    # since we do not need such degree of precision
+    for repo in repo_nodes:
+        ts = repo.get("updatedAt")
+        if ts:
+            repo["updatedAt"] = strip_hours_time(ts)
 
     output_data = {
         "data": {
