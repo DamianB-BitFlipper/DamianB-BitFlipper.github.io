@@ -3,7 +3,7 @@ import $ from 'jquery';
 import ReactGA from 'react-ga4';
 import bashEmulator from 'bash-emulator';
 import { skills, languages, interests } from '../ubuntu_data';
-import { fetchUserRepositories } from '../github_api';
+import projectsData from '../../content/projects.json';
 
 export class Terminal extends Component {
     constructor() {
@@ -30,7 +30,6 @@ export class Terminal extends Component {
         this.homeDirectory = '/home/damian';
         this.virtualFileSystem = {};
         this.lastCommandInfo = null;
-        this.projectFetchController = null;
 
         this.appLaunchCommands = {
             code: "vscode",
@@ -51,7 +50,7 @@ export class Terminal extends Component {
     componentDidMount() {
         this.initializeEmulator();
         this.reStartTerminal();
-        this.loadProjectsFromGithub();
+        this.loadProjectsFromData();
     }
 
     componentDidUpdate() {
@@ -61,25 +60,11 @@ export class Terminal extends Component {
 
     componentWillUnmount() {
         clearInterval(this.cursor);
-        if (this.projectFetchController) {
-            this.projectFetchController.abort();
-        }
     }
 
-    loadProjectsFromGithub = async () => {
-        if (this.projectFetchController) {
-            this.projectFetchController.abort();
-        }
-        const controller = new AbortController();
-        this.projectFetchController = controller;
-        try {
-            const repos = await fetchUserRepositories({ signal: controller.signal });
-            this.projectTextFiles = repos.map(repo => this.mapRepoToFile(repo));
-            this.refreshVirtualFileSystem();
-        } catch (error) {
-            if (controller.signal.aborted) return;
-            console.warn('Unable to fetch GitHub projects for terminal', error);
-        }
+    loadProjectsFromData = () => {
+        this.projectTextFiles = (projectsData || []).map(repo => this.mapRepoToFile(repo));
+        this.refreshVirtualFileSystem();
     }
 
     mapRepoToFile = (repo) => {

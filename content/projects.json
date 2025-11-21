@@ -1,0 +1,65 @@
+[
+  {
+    "id": "DamianB-BitFlipper/sample-os",
+    "name": "sample-os",
+    "description": "Toy desktop environment replicating Ubuntu-style workflows in the browser.",
+    "stargazers_count": 312,
+    "language": "TypeScript",
+    "updated_at": "2024-11-04T12:15:00Z",
+    "html_url": "https://github.com/DamianB-BitFlipper/sample-os",
+    "homepage": "https://labs.bitflipper.dev/sample-os",
+    "topics": ["react", "nextjs", "desktop"],
+    "pinned": true,
+    "pinned_order": 1
+  },
+  {
+    "id": "DamianB-BitFlipper/graph-ai",
+    "name": "graph-ai",
+    "description": "Embeddings playground that blends knowledge graph traversal with transformer models.",
+    "stargazers_count": 188,
+    "language": "Python",
+    "updated_at": "2024-08-29T09:42:00Z",
+    "html_url": "https://github.com/DamianB-BitFlipper/graph-ai",
+    "homepage": "https://labs.bitflipper.dev/graph-ai",
+    "topics": ["python", "llm", "graphs"],
+    "pinned": true,
+    "pinned_order": 2
+  },
+  {
+    "id": "DamianB-BitFlipper/rust-kv",
+    "name": "rust-kv",
+    "description": "A playful LSM-tree inspired key-value store with pluggable storage engines.",
+    "stargazers_count": 74,
+    "language": "Rust",
+    "updated_at": "2024-06-12T18:02:00Z",
+    "html_url": "https://github.com/DamianB-BitFlipper/rust-kv",
+    "homepage": "https://labs.bitflipper.dev/rust-kv",
+    "topics": ["database", "storage", "rust"],
+    "pinned": false
+  },
+  {
+    "id": "DamianB-BitFlipper/edge-orchestrator",
+    "name": "edge-orchestrator",
+    "description": "Fleet orchestration toolkit for pushing WASM workloads to the edge.",
+    "stargazers_count": 146,
+    "language": "Go",
+    "updated_at": "2024-04-03T14:11:00Z",
+    "html_url": "https://github.com/DamianB-BitFlipper/edge-orchestrator",
+    "homepage": "https://labs.bitflipper.dev/edge-orchestrator",
+    "topics": ["golang", "edge", "wasm"],
+    "pinned": false
+  },
+  {
+    "id": "DamianB-BitFlipper/creative-coder",
+    "name": "creative-coder",
+    "description": "Web-based generative art studio with shader presets and MIDI controls.",
+    "stargazers_count": 91,
+    "language": "JavaScript",
+    "updated_at": "2024-01-25T07:55:00Z",
+    "html_url": "https://github.com/DamianB-BitFlipper/creative-coder",
+    "homepage": "https://labs.bitflipper.dev/creative-coder",
+    "topics": ["webgl", "shaders", "creative-coding"],
+    "pinned": true,
+    "pinned_order": 3
+  }
+]
