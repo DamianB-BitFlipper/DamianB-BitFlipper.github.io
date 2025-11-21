@@ -4,6 +4,15 @@
       "pinnedItems": {
         "nodes": [
           {
+            "name": "JS-OS"
+          },
+          {
+            "name": "uttertype"
+          },
+          {
+            "name": "algopytest"
+          },
+          {
             "name": "accelerated-matrix-multiply"
           },
           {
@@ -23,7 +32,7 @@
             "primaryLanguage": {
               "name": "HTML"
             },
-            "updatedAt": "2025-11-21T21:59:57Z",
+            "updatedAt": "2025-11-21T22:06:06Z",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
