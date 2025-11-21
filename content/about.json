@@ -128,5 +128,41 @@
     "title": "Resume",
     "layout": "resume",
     "source": "./files/Damian_Barabonkov_Resume.pdf"
+  },
+  {
+    "id": "6-contact",
+    "title": "Contact Me",
+    "layout": "contact",
+    "contacts": [
+      {
+        "label": "Email",
+        "value": "damianb@alum.mit.edu",
+        "href": "mailto:damianb@alum.mit.edu",
+        "icon": "./themes/Yaru/apps/gedit.png"
+      },
+      {
+        "label": "GitHub",
+        "value": "DamianB-BitFlipper",
+        "href": "https://github.com/DamianB-BitFlipper",
+        "icon": "./themes/Yaru/apps/github.png"
+      },
+      {
+        "label": "X (Twitter)",
+        "value": "@TheBitFlipper",
+        "href": "https://x.com/TheBitFlipper",
+        "icon": "./themes/Yaru/apps/x-logo.png"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "Damian Barabonkov",
+        "href": "https://www.linkedin.com/in/damian-barabonkov-5286a2290",
+        "icon": "./themes/Yaru/apps/firefox.png"
+      },
+      {
+        "label": "Location",
+        "value": "Berlin, Germany",
+        "icon": "./themes/Yaru/system/user-home.png"
+      }
+    ]
   }
 ]
