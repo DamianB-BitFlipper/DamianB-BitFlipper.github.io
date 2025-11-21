@@ -125,6 +125,18 @@ const apps = [
         height: 85, width: 60,
     },
     {
+        id: "x-profile",
+        title: "X",
+        icon: './themes/Yaru/apps/x-logo.png',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        isExternalApp: true,
+        url: "https://x.com/TheBitFlipper",
+        screen: () => {},
+        height: 85, width: 60,
+    },
+    {
         id: "trash",
         title: "Trash",
         icon: './themes/Yaru/system/user-trash-full.png',

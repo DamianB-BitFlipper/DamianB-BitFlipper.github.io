@@ -45,6 +45,11 @@ export class Gedit extends Component {
                                     </div>
 
                                     <div className="flex flex-col gap-1">
+                                        <span className="text-ubt-gedit-orange font-bold">X:</span>
+                                        <a href="https://x.com/TheBitFlipper" target="_blank" rel="noreferrer" className="hover:underline hover:text-white">@TheBitFlipper</a>
+                                    </div>
+
+                                    <div className="flex flex-col gap-1">
                                         <span className="text-ubt-gedit-orange font-bold">LinkedIn:</span>
                                         <a href="https://www.linkedin.com/in/damian-barabonkov-5286a2290" target="_blank" rel="noreferrer" className="hover:underline hover:text-white">Damian Barabonkov</a>
                                     </div>
