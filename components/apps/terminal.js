@@ -520,8 +520,11 @@ export class Terminal extends Component {
 
     appendTerminalRow = () => {
         let terminal = [...this.state.terminal];
-        terminal.push(this.terminalRow(this.terminal_rows));
-        this.setState({ terminal });
+        const currentRowId = this.terminal_rows;
+        terminal.push(this.terminalRow(currentRowId));
+        this.setState({ terminal }, () => {
+            this.startCursor(currentRowId);
+        });
         this.terminal_rows += 2;
     }
 
