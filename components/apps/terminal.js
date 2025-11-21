@@ -217,6 +217,73 @@ export class Terminal extends Component {
         return sanitized;
     }
 
+    getDirectoryEntries = (directoryPath) => {
+        if (!this.virtualFileSystem) return [];
+        const normalized = this.normalizePath(directoryPath || this.homeDirectory);
+        const dirNode = this.virtualFileSystem[normalized];
+        if (!dirNode || dirNode.type !== 'dir') return [];
+        const baseWithSlash = normalized.endsWith('/') ? normalized : `${normalized}/`;
+        const entries = new Set();
+        Object.entries(this.virtualFileSystem).forEach(([path]) => {
+            if (!path.startsWith(baseWithSlash)) return;
+            const remainder = path.slice(baseWithSlash.length);
+            if (!remainder || remainder.includes('/')) return;
+            entries.add(remainder);
+        });
+        return Array.from(entries);
+    }
+
+    completePath = (partial) => {
+        if (!partial) return null;
+        const trimmed = partial.trim();
+        if (!trimmed) return null;
+        const lastSlash = trimmed.lastIndexOf('/');
+        const dirPart = lastSlash >= 0 ? trimmed.slice(0, lastSlash + 1) : '';
+        const partialName = lastSlash >= 0 ? trimmed.slice(lastSlash + 1) : trimmed;
+        const baseDir = this.resolvePath(dirPart || '.');
+        const entries = this.getDirectoryEntries(baseDir);
+        const matches = entries.filter(name => name.startsWith(partialName));
+        if (matches.length === 1) {
+            return dirPart + matches[0];
+        }
+        return null;
+    }
+
+    getCompletionForToken = (token) => {
+        return this.completePath(token);
+    }
+
+    handleTabCompletion = (inputEl, rowId) => {
+        if (!inputEl) return;
+        const value = inputEl.value || '';
+        const cursor = typeof inputEl.selectionStart === 'number' ? inputEl.selectionStart : value.length;
+        const before = value.slice(0, cursor);
+        const after = value.slice(cursor);
+        const completedBefore = this.applyTabCompletion(before);
+        if (!completedBefore) return;
+        const newValue = completedBefore + after;
+        inputEl.value = newValue;
+        if (typeof inputEl.setSelectionRange === 'function') {
+            const newCursor = completedBefore.length;
+            inputEl.setSelectionRange(newCursor, newCursor);
+        }
+        $(`#show-${rowId}`).text(newValue);
+    }
+
+    applyTabCompletion = (beforeCursor) => {
+        if (beforeCursor == null) return null;
+        let start = beforeCursor.length;
+        while (start > 0 && !/\s/.test(beforeCursor[start - 1])) {
+            start--;
+        }
+        const prefix = beforeCursor.slice(0, start);
+        const token = beforeCursor.slice(start);
+        if (!token) return null;
+        const completedToken = this.getCompletionForToken(token);
+        if (!completedToken) return null;
+        return prefix + completedToken;
+    }
+
     registerCustomCommands = () => {
         if (!this.emulator) return;
         const { commands } = this.emulator;
@@ -421,6 +488,10 @@ export class Terminal extends Component {
             const value = typeof next_command === 'string' ? next_command : '';
             $(`input#terminal-input-${terminal_row_id}`).val(value);
             $(`#show-${terminal_row_id}`).text(value);
+        }
+        else if (e.key === "Tab") {
+            e.preventDefault();
+            this.handleTabCompletion(e.target, terminal_row_id);
         }
     }
 
