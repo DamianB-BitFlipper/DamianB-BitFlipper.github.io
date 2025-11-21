@@ -223,6 +223,14 @@ export class Terminal extends Component {
         }
     }
 
+    outputError = (message) => {
+        const finalMessage = message || 'Unknown error';
+        const target = document.querySelector(`#row-result-${this.terminal_rows - 1}`);
+        if (target) {
+            target.innerHTML = `<pre class="text-white whitespace-pre-wrap">${this.xss(finalMessage)}</pre>`;
+        }
+    }
+
     executeAppLaunchCommand = (commandName, args = []) => {
         const appId = this.appLaunchCommands[commandName];
         if (!appId) {
@@ -235,7 +243,16 @@ export class Terminal extends Component {
         if (typeof this.props.openApp !== 'function') {
             throw new Error('App launcher unavailable.');
         }
-        this.props.openApp(appId);
+        try {
+            const openResult = this.props.openApp(appId);
+            if (openResult instanceof Promise) {
+                return openResult.then(() => `Opening ${appId}...`).catch((err) => {
+                    throw new Error(err?.message || 'App launcher unavailable.');
+                });
+            }
+        } catch (err) {
+            throw new Error(err?.message || 'App launcher unavailable.');
+        }
         return `Opening ${appId}...`;
     }
 
@@ -583,17 +600,17 @@ export class Terminal extends Component {
             const commandName = this.lastCommandInfo?.name;
             const isAppCommand = Boolean(commandName && this.appLaunchCommands[commandName]);
             if (isAppCommand) {
-                output = this.executeAppLaunchCommand(commandName, this.lastCommandInfo?.args || []);
+                const result = this.executeAppLaunchCommand(commandName, this.lastCommandInfo?.args || []);
+                output = result instanceof Promise ? await result : result;
                 this.appendCommandToHistory(command);
             } else {
                 output = await this.emulator.run(command);
             }
         } catch (error) {
-            if (typeof error === 'string') {
-                output = error;
-            } else {
-                output = error?.message || 'Unknown error';
-            }
+            const errorMessage = typeof error === 'string' ? error : error?.message || 'Unknown error';
+            this.renderCommandResult(rowId, errorMessage);
+            this.appendTerminalRow();
+            return;
         }
 
         if (this.skipNextRender) {
