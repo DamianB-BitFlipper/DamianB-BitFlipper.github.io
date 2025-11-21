@@ -4,15 +4,6 @@
       "pinnedItems": {
         "nodes": [
           {
-            "name": "JS-OS"
-          },
-          {
-            "name": "uttertype"
-          },
-          {
-            "name": "algopytest"
-          },
-          {
             "name": "accelerated-matrix-multiply"
           },
           {
@@ -25,48 +16,6 @@
       },
       "repositories": {
         "nodes": [
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "HTML"
-            },
-            "updatedAt": "2025-11-21T20:47:44Z",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "3d-plinko",
-            "description": "3D Plinko Game",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-11-18T23:29:51Z",
-            "url": "https://github.com/DamianB-BitFlipper/3d-plinko",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "sudoku_solver",
-            "description": "A sudoku solver in python",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2025-11-17T08:10:57Z",
-            "url": "https://github.com/DamianB-BitFlipper/sudoku_solver",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
           {
             "name": "travelhax0r",
             "description": "Hacking your travel itenerary",
