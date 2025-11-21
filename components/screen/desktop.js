@@ -306,11 +306,12 @@ export class Desktop extends Component {
     }
 
     giveFocusToLastApp = () => {
-        // if there is atleast one app opened, give it focus
+        // if there is atleast one app opened, give focus to the most recently active one
         if (!this.checkAllMinimised()) {
-            for (const index in this.app_stack) {
-                if (!this.state.minimized_windows[this.app_stack[index]]) {
-                    this.focus(this.app_stack[index]);
+            for (let i = this.app_stack.length - 1; i >= 0; i -= 1) {
+                const appId = this.app_stack[i];
+                if (!this.state.minimized_windows[appId]) {
+                    this.focus(appId);
                     break;
                 }
             }
