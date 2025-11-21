@@ -293,7 +293,25 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     const [reloadToken, setReloadToken] = useState(0);
     const [sortMode, setSortMode] = useState('updated');
     const [filterLanguage, setFilterLanguage] = useState('All');
-    const [languageOptions, setLanguageOptions] = useState([]);
+    const languageOptions = [
+        'ActionScript',
+        'C',
+        'C++',
+        'Cuda',
+        'Cython',
+        'Dart',
+        'Emacs Lisp',
+        'Go',
+        'HTML',
+        'JavaScript',
+        'Jupyter Notebook',
+        'Makefile',
+        'Python',
+        'Ruby',
+        'Scheme',
+        'TeX',
+        'TypeScript'
+    ];
 
     const languageColors = {
         JavaScript: '#f1e05a',
@@ -320,22 +338,6 @@ const ProjectsSection = ({ scrollContainerRef }) => {
         return { backgroundColor: `${background}1A`, borderColor: background, color: textColor };
     };
 
-    useEffect(() => {
-        const fetchLanguages = async () => {
-            try {
-                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`, {
-                    headers: buildGithubHeaders()
-                });
-                if (!response.ok) return;
-                const data = await response.json();
-                const languages = Array.from(new Set((data || []).map(repo => repo.language).filter(Boolean))).sort();
-                setLanguageOptions(languages);
-            } catch (err) {
-                console.warn('Unable to load languages', err);
-            }
-        };
-        fetchLanguages();
-    }, []);
 
     const buildRequestConfig = () => {
         const useSearchEndpoint = filterLanguage !== 'All' || sortMode === 'stars';
@@ -554,9 +556,6 @@ const ProjectsSection = ({ scrollContainerRef }) => {
     return (
         <div className="w-full p-8 md:p-12 max-w-5xl">
             <h2 className="text-3xl font-bold mb-8 border-b border-gray-300 pb-2 text-gray-800 tracking-wide">Projects</h2>
-            {projects.length === 0 && loading && (
-                <div className="text-gray-500">Loading projects...</div>
-            )}
             {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4 flex flex-col gap-3">
                     <span>{error}</span>
@@ -607,6 +606,9 @@ const ProjectsSection = ({ scrollContainerRef }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {projects.length === 0 && loading && (
+                    <div className="text-gray-500 text-sm">Loading projects...</div>
+                )}
                 {projects.map(renderProjectCard)}
             </div>
             <div className="flex flex-col items-center gap-3 mt-6">
