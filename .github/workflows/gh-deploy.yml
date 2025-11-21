@@ -24,20 +24,31 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Installing Packages 🥁
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - name: Building 🧱
-        run: yarn build
+        run: pnpm build
         env:
           NEXT_PUBLIC_TRACKING_ID: G-8FBXBFXC10
           NEXT_PUBLIC_SERVICE_ID: service_qt4ryip
           NEXT_PUBLIC_TEMPLATE_ID: template_2ni69n8
           NEXT_PUBLIC_USER_ID: user_Do31sKneP4eYfn5n1nLTD
+          NEXT_PUBLIC_GITHUB_API_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_API_TOKEN }}
 
       - name: Exporting Bundle Files 🎪
-        run: yarn export
+        run: pnpm export
+        env:
+          NEXT_PUBLIC_TRACKING_ID: G-8FBXBFXC10
+          NEXT_PUBLIC_SERVICE_ID: service_qt4ryip
+          NEXT_PUBLIC_TEMPLATE_ID: template_2ni69n8
+          NEXT_PUBLIC_USER_ID: user_Do31sKneP4eYfn5n1nLTD
+          NEXT_PUBLIC_GITHUB_API_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_API_TOKEN }}
       - run: touch ./out/.nojekyll
 
       - name: Deploy to Github-Pages 🚀
