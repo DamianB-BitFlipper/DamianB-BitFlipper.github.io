@@ -230,12 +230,7 @@ const AboutSection = ({ data }) => {
                         <>
                             my name is <span className="font-bold">Damian Barabonkov</span>,
                             <div className="font-normal text-xl md:text-2xl mt-2 text-gray-600">I'm a <span className="text-ub-orange font-bold">Founding AI Engineer!</span></div>
-                            <div className="text-lg text-gray-500 mt-2 flex items-center justify-center gap-2" aria-label="Dual citizen">
-                                <span role="img" aria-hidden="true" className="text-xl">🇺🇸</span>
-                                <span className="text-base leading-none">&</span>
-                                <span role="img" aria-hidden="true" className="text-xl">🇪🇺</span>
-                                <span>Citizen, living in Berlin</span>
-                            </div>
+                            <div className="text-lg text-gray-500 mt-2" aria-label="Dual citizen">🇺🇸 & 🇪🇺 Citizen, living in Berlin</div>
                         </>
                     ) : data.title}
                 </h2>
