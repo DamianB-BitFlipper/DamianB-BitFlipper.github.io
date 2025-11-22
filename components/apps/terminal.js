@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
 import bashEmulator from 'bash-emulator';
-import { skills, languages, interests } from '../ubuntu_data';
+import { skills, languages, interests } from '../../content/user_data.json';
 import projectsData from '../../content/projects.json';
 import { EVENTS, subscribe } from '../base/events';
 import CLI from '../base/cli';
