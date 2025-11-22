@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { EVENTS, subscribe } from '../base/events';
 
 export class Cheese extends Component {
     constructor() {
@@ -8,17 +9,48 @@ export class Cheese extends Component {
             error: null,
         }
         this.videoRef = React.createRef();
+        this.appId = "cheese";
+        this.unsubscribeWindowMinimized = null;
+        this.unsubscribeWindowRestored = null;
+        this.unsubscribeWindowClosed = null;
     }
 
     componentDidMount() {
+        this.unsubscribeWindowMinimized = subscribe(EVENTS.WINDOW_MINIMIZED, this.handleWindowMinimized);
+        this.unsubscribeWindowRestored = subscribe(EVENTS.WINDOW_RESTORED, this.handleWindowRestored);
+        this.unsubscribeWindowClosed = subscribe(EVENTS.WINDOW_CLOSED, this.handleWindowClosed);
         this.startCamera();
     }
-
+ 
     componentWillUnmount() {
-        this.stopCamera();
+        if (this.unsubscribeWindowMinimized) this.unsubscribeWindowMinimized();
+        if (this.unsubscribeWindowRestored) this.unsubscribeWindowRestored();
+        if (this.unsubscribeWindowClosed) this.unsubscribeWindowClosed();
     }
 
+    handleWindowMinimized = (payload) => {
+        if (payload?.app_id === this.appId) {
+            this.stopCamera();
+        }
+    }
+
+    handleWindowClosed = (payload) => {
+        if (payload?.app_id === this.appId) {
+            this.stopCamera();
+        }
+    }
+
+    handleWindowRestored = (payload) => {
+        if (payload?.app_id === this.appId) {
+            this.startCamera();
+        }
+    }
+ 
     startCamera = async () => {
+
+        if (this.state.stream) {
+            return;
+        }
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             this.setState({ stream }, () => {
@@ -28,17 +60,26 @@ export class Cheese extends Component {
             });
         } catch (err) {
             this.setState({ error: "Could not access the camera. Please ensure you have given permission." });
-            console.error("Error accessing camera:", err);
         }
     }
-
+ 
     stopCamera = () => {
-        if (this.state.stream) {
-            this.state.stream.getTracks().forEach(track => track.stop());
+        const { stream } = this.state;
+        if (!stream) {
+            return;
         }
+
+        stream.getTracks().forEach(track => track.stop());
+
+        if (this.videoRef.current) {
+            this.videoRef.current.srcObject = null;
+        }
+
+        this.setState({ stream: null });
     }
 
     render() {
+
         return (
             <div className="w-full h-full bg-ub-cool-grey flex flex-col justify-center items-center text-white relative">
                 {this.state.error ? (

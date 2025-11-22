@@ -270,6 +270,8 @@ export class Desktop extends Component {
     }
 
     minimize = (app_id) => {
+        // Send the signal before updating the state so that the signal reaches the component
+        publishEvent(EVENTS.WINDOW_MINIMIZED, { app_id });
         this.setState((prevState) => {
             const visible_windows = prevState.visible_windows.filter(id => id !== app_id);
             return { visible_windows: visible_windows };
@@ -321,6 +323,7 @@ export class Desktop extends Component {
                     const translateY = typeof storedPosition?.y === 'number' ? storedPosition.y : 10;
                     windowElement.style.transform = `translate(${translateX}px,${translateY}px) scale(1)`;
                 }
+                publishEvent(EVENTS.WINDOW_RESTORED, { app_id });
                 return;
             }
 
@@ -368,6 +371,8 @@ export class Desktop extends Component {
     }
 
     closeApp = (app_id) => {
+        // Send the signal before updating the state so that the signal reaches the component
+        publishEvent(EVENTS.WINDOW_CLOSED, { app_id });
         this.hideSideBar(null, false);
 
         this.setState((prevState) => {

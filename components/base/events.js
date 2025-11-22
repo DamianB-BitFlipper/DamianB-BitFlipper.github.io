@@ -4,6 +4,9 @@ export const EVENTS = Object.freeze({
     WINDOW_FOCUSED: "window-focused",
     WINDOW_DRAGGING_START: "dragging-start",
     WINDOW_DRAGGING_STOP: "dragging-stop",
+    WINDOW_MINIMIZED: "window-minimized",
+    WINDOW_RESTORED: "window-restored",
+    WINDOW_CLOSED: "window-closed",
 });
 
 const createCustomEvent = (eventName, detail) => {
