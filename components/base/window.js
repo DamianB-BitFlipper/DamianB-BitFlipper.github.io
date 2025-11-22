@@ -48,6 +48,10 @@ export class Window extends Component {
     }
 
     componentWillUnmount() {
+        if (this.props.isFocused) {
+            this.invokeCallbackHandler('onFocusLost');
+        }
+
         ReactGA.send({ hitType: "pageview", page: "/desktop", title: "Custom Title" });
 
         window.removeEventListener('resize', this.resizeBoundries);
