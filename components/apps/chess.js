@@ -13,6 +13,6 @@ export default function Chess() {
     )
 }
 
-export const displayChess = () => {
+export const displayChess = (addFolder, openApp, callbackHandlers) => {
     return <Chess />;
 }

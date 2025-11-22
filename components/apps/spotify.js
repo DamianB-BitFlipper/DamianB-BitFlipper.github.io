@@ -6,6 +6,6 @@ export default function Spotify() {
     )
 }
 
-export const displaySpotify = () => {
-    <Spotify> </Spotify>
+export const displaySpotify = (addFolder, openApp, callbackHandlers) => {
+    return <Spotify> </Spotify>
 }

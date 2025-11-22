@@ -20,6 +20,16 @@ export class Window extends Component {
                 width: 100
             }
         }
+
+        this.registerCallbackHandlers = {
+            onFocus: null,
+            onFocusLost: null,
+        };
+
+        this.callbackHandlers = {
+            onFocus: (handler) => this.setCallbackHandler('onFocus', handler),
+            onFocusLost: (handler) => this.setCallbackHandler('onFocusLost', handler),
+        };
     }
 
     componentDidMount() {
@@ -31,12 +41,26 @@ export class Window extends Component {
 
         // on window resize, resize boundary
         window.addEventListener('resize', this.resizeBoundries);
+
+        if (this.props.isFocused) {
+            this.invokeCallbackHandler('onFocus');
+        }
     }
 
     componentWillUnmount() {
         ReactGA.send({ hitType: "pageview", page: "/desktop", title: "Custom Title" });
 
         window.removeEventListener('resize', this.resizeBoundries);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.isFocused !== this.props.isFocused) {
+            if (this.props.isFocused) {
+                this.invokeCallbackHandler('onFocus');
+            } else {
+                this.invokeCallbackHandler('onFocusLost');
+            }
+        }
     }
 
     setDefaultWindowDimenstion = () => {
@@ -59,6 +83,17 @@ export class Window extends Component {
                     - (window.innerWidth * (this.state.width / 100.0)) //this window's width
             }
         });
+    }
+
+    setCallbackHandler = (type, handler) => {
+        this.registerCallbackHandlers[type] = typeof handler === 'function' ? handler : null;
+    }
+
+    invokeCallbackHandler = (type) => {
+        const handler = this.registerCallbackHandlers && this.registerCallbackHandlers[type];
+        if (typeof handler === 'function') {
+            handler();
+        }
     }
 
     dispatchWindowInteractionEvent = (phase) => {
@@ -253,7 +288,8 @@ export class Window extends Component {
                     {(this.id === "settings"
                         ? <Settings changeBackgroundImage={this.props.changeBackgroundImage} currBgImgName={this.props.bg_image_name} />
                         : <WindowMainScreen screen={this.props.screen} title={this.props.title}
-                            openApp={this.props.openApp} />)}
+                            openApp={this.props.openApp}
+                            callbackHandlers={this.callbackHandlers} />)}
                 </div>
             </Draggable >
         )
@@ -328,7 +364,7 @@ export class WindowMainScreen extends Component {
     }
     render() {
         const content = typeof this.props.screen === 'function'
-            ? this.props.screen(undefined, this.props.openApp)
+            ? this.props.screen(undefined, this.props.openApp, this.props.callbackHandlers)
             : null;
         return (
             <div className={"w-full flex-grow z-20 max-h-full overflow-y-auto windowMainScreen" + (this.state.setDarkBg ? " bg-ub-drk-abrgn " : " bg-ub-cool-grey")}>

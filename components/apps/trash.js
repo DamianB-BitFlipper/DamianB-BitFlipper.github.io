@@ -125,6 +125,6 @@ export class Trash extends Component {
 
 export default Trash;
 
-export const displayTrash = () => {
+export const displayTrash = (addFolder, openApp, callbackHandlers) => {
     return <Trash> </Trash>;
 }

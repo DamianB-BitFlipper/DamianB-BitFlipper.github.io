@@ -70,10 +70,10 @@ export class Gedit extends Component {
 
 export default Gedit;
 
-export const displayGedit = () => {
+export const displayGedit = (addFolder, openApp, callbackHandlers) => {
     return <Gedit> </Gedit>;
 }
 
-export const displayDoNotClick = () => {
+export const displayDoNotClick = (addFolder, openApp, callbackHandlers) => {
     return <Gedit title="Do Not Click" content="I told you not to open me!"> </Gedit>;
 }

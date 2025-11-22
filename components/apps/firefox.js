@@ -113,6 +113,6 @@ export class Firefox extends Component {
 
 export default Firefox
 
-export const displayFirefox = () => {
+export const displayFirefox = (addFolder, openApp, callbackHandlers) => {
     return <Firefox> </Firefox>;
 }

@@ -6,8 +6,8 @@ import { skills, languages, interests } from '../ubuntu_data';
 import projectsData from '../../content/projects.json';
 
 export class Terminal extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.cursor = "";
         this.terminal_rows = 1;
         this.current_directory = "~";
@@ -53,6 +53,7 @@ export class Terminal extends Component {
     }
 
     componentDidMount() {
+        this.registerCallbackHandlers();
         this.initializeEmulator();
         this.reStartTerminal();
         this.loadProjectsFromData();
@@ -122,6 +123,20 @@ export class Terminal extends Component {
             window.cancelAnimationFrame(this.pendingFocusFrame);
         }
         this.pendingFocusFrame = null;
+    }
+
+    registerCallbackHandlers = () => {
+        const handlers = this.props.callbackHandlers;
+        if (typeof handlers.onFocus === 'function') {
+            handlers.onFocus(() => {
+                console.log('[Terminal] focus gained');
+            });
+        }
+        if (typeof handlers.onFocusLost === 'function') {
+            handlers.onFocusLost(() => {
+                console.log('[Terminal] focus lost');
+            });
+        }
     }
 
     restoreCursorFocus = () => {
@@ -838,6 +853,6 @@ export class Terminal extends Component {
 
 export default Terminal
 
-export const displayTerminal = (addFolder, openApp) => {
-    return <Terminal addFolder={addFolder} openApp={openApp}> </Terminal>;
+export const displayTerminal = (addFolder, openApp, callbackHandlers) => {
+    return <Terminal openApp={openApp} callbackHandlers={callbackHandlers}> </Terminal>;
 }
