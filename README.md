@@ -1,6 +1,10 @@
 # Web simulation of UbuntuOS
 
+A live version of the site can be visited at [https://www.damianb.dev/](https://www.damianb.dev/).
+
 This is a personal portfolio website of theme Ubuntu 20.04, made using Next.js & tailwind CSS.
+
+![Demo](repo_assets/demo.png)
 
 ## Local development
 
