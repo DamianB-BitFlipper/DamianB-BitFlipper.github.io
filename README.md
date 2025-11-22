@@ -9,8 +9,10 @@ This is a personal portfolio website of theme Ubuntu 20.04, made using Next.js &
    ```bash
    export NEXT_PUBLIC_GITHUB_API_TOKEN="ghp_yourtoken"
    ```
-3. Run `pnpm dev` while coding and `pnpm build` before deploying.
+3. Run `pnpm dev` while coding
 
-_NOTE: `pnpm` is required for the workspace scripts; install it from https://pnpm.io if needed._
+The content specific to me is located in the `./content` directory.
 
-The About Damian sections (About, Education, Experience, Projects layout, Resume link, etc.) live in `content/about.json`. Update that file to change the app’s copy.
+## Deployment
+
+The site deploys automatically via GitHub Actions (see `.github/workflows/gh-deploy.yml`). It triggers daily at 3 AM UTC or on manual dispatch. The workflow updates `content/projects.json` from the GitHub API, builds the Next.js app with pnpm, and deploys to GitHub Pages on the `gh-pages` branch.
