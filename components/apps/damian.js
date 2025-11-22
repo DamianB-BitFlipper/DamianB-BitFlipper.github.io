@@ -100,35 +100,37 @@ export class AboutDamian extends Component {
         const isFirst = this.state.activeSectionIndex === 0;
 
         return (
-            <div className="h-16 bg-[#2c001e] flex items-center justify-between px-4 border-t border-gray-700 shrink-0">
-                <div className="w-1/4 flex items-center text-sm text-gray-300">
-                    {/* left spacer */}
-                </div>
-                
-                <div className="flex space-x-2 justify-center w-1/2">
-                    {aboutSections.map((_, idx) => (
-                        <div 
-                            key={idx} 
-                            className={`w-2 h-2 rounded-full ${this.state.activeSectionIndex === idx ? 'bg-white' : 'bg-gray-600'}`}
-                        />
-                    ))}
-                </div>
+            <div className="bg-[#2c001e] border-t border-gray-700 px-4 py-3 sm:h-16 shrink-0">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="hidden sm:flex items-center text-sm text-gray-300 sm:w-1/4">
+                        {/* left spacer */}
+                    </div>
 
-                <div className="flex justify-end w-1/4 space-x-3">
-                    <button 
-                        onClick={this.prevSection}
-                        disabled={isFirst}
-                        className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isFirst ? 'text-gray-500 cursor-not-allowed border border-gray-700' : 'text-white border border-gray-500 hover:border-gray-300 hover:bg-white hover:bg-opacity-5'}`}
-                    >
-                        Back
-                    </button>
-                    <button 
-                        onClick={this.nextSection}
-                        disabled={isLast}
-                        className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isLast ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-ub-orange text-white hover:bg-opacity-90'}`}
-                    >
-                        Next
-                    </button>
+                    <div className="flex justify-center w-full sm:w-1/2 order-1 sm:order-none space-x-2">
+                        {aboutSections.map((_, idx) => (
+                            <div
+                                key={idx}
+                                className={`w-2 h-2 rounded-full ${this.state.activeSectionIndex === idx ? 'bg-white' : 'bg-gray-600'}`}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="flex justify-center sm:justify-end w-full sm:w-1/4 order-2 sm:order-none space-x-3">
+                        <button
+                            onClick={this.prevSection}
+                            disabled={isFirst}
+                            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isFirst ? 'text-gray-500 cursor-not-allowed border border-gray-700' : 'text-white border border-gray-500 hover:border-gray-300 hover:bg-white hover:bg-opacity-5'}`}
+                        >
+                            Back
+                        </button>
+                        <button
+                            onClick={this.nextSection}
+                            disabled={isLast}
+                            className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${isLast ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-ub-orange text-white hover:bg-opacity-90'}`}
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </div>
         );
