@@ -2,6 +2,40 @@ import React, { Component } from 'react';
 import SmallArrow from './small_arrow';
 import onClickOutside from 'react-onclickoutside';
 
+export function PanelSummary() {
+	return (
+		<div className="flex justify-center items-center">
+			<span className="mx-1.5">
+				<img
+					width="16px" height="16px"
+					src="./themes/Yaru/status/network-wireless-signal-good-symbolic.svg"
+					alt="ubuntu wifi"
+					className="inline status-symbol w-4 h-4"
+				/>
+			</span>
+			<span className="mx-1.5">
+				<img
+					width="16px" height="16px"
+					src="./themes/Yaru/status/audio-volume-medium-symbolic.svg"
+					alt="ubuntu sound"
+					className="inline status-symbol w-4 h-4"
+				/>
+			</span>
+			<span className="mx-1.5">
+				<img
+					width="16px" height="16px"
+					src="./themes/Yaru/status/battery-good-symbolic.svg"
+					alt="ubuntu battery"
+					className="inline status-symbol w-4 h-4"
+				/>
+			</span>
+			<span className="mx-1">
+				<SmallArrow angle="down" className=" status-symbol" />
+			</span>
+		</div>
+	);
+}
+
 class Slider extends Component {
 	render() {
 		return (
@@ -19,7 +53,7 @@ class Slider extends Component {
 	}
 }
 
-export class StatusCard extends Component {
+export class SystemIndicatorPanel extends Component {
 	constructor() {
 		super();
 		this.wrapperRef = React.createRef();
@@ -159,4 +193,5 @@ export class StatusCard extends Component {
 	}
 }
 
-export default onClickOutside(StatusCard);
+export default onClickOutside(SystemIndicatorPanel);
+

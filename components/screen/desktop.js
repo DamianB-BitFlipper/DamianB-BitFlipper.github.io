@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { EVENTS, publishEvent } from '../base/events';
-import BackgroundImage from '../util components/background-image';
+import BackgroundImage from '../os_components/background-image';
 import SideBar from './side_bar';
 import apps from '../../apps.config';
 import Window from '../base/window';

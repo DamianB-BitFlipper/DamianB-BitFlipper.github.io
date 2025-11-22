@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Clock from '../util components/clock';
-import Status from '../util components/status';
-import StatusCard from '../util components/status_card';
+import Clock from '../os_components/clock';
+import SystemIndicatorPanel, { PanelSummary } from '../os_components/system_indicator_panel';
 
 export default class Navbar extends Component {
 	constructor() {
@@ -41,8 +40,8 @@ export default class Navbar extends Component {
 						'relative pr-3 pl-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-orange py-1 '
 					}
 				>
-					<Status />
-					<StatusCard
+					<PanelSummary />
+					<SystemIndicatorPanel
 						shutDown={this.props.shutDown}
 						lockScreen={this.props.lockScreen}
 						visible={this.state.status_card}
