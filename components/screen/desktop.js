@@ -115,6 +115,7 @@ export class Desktop extends Component {
                 initHeight: app.height,
                 initWidth: app.width,
                 initialPosition: this.state.window_positions[appId],
+                persistWindowPosition: this.persistWindowPosition,
                 stackIndex: zIndex
             }
 
@@ -249,11 +250,11 @@ export class Desktop extends Component {
             if (app.desktop_shortcut) desktop_apps.push(app.id);
         });
         this.setState({
-            visible_windows,
-            active_windows,
-            overlapped_windows,
-            desktop_apps,
-            window_positions
+            visible_windows: visible_windows,
+            active_windows: active_windows,
+            overlapped_windows: overlapped_windows,
+            desktop_apps: desktop_apps,
+            window_positions: window_positions
         });
         this.favorite_apps = [...favourite_apps];
     }
@@ -306,16 +307,35 @@ export class Desktop extends Component {
 
         let overlapped_windows = this.state.overlapped_windows;
         overlapped_windows[objId] = hide;
-        this.setState({ hideSideBar: hide, overlapped_windows });
+        this.setState({ hideSideBar: hide, overlapped_windows: overlapped_windows });
     }
 
     hasMinimised = (objId) => {
         this.setState((prevState) => {
             const visible_windows = prevState.visible_windows.filter(id => id !== objId);
-            return { visible_windows };
+            return { visible_windows: visible_windows };
         }, () => {
             this.hideSideBar(null, false);
             this.giveFocusToLastApp();
+        });
+    }
+
+    persistWindowPosition = (objId, position) => {
+        if (!objId || !position) return;
+        const hasX = typeof position.x === 'number';
+        const hasY = typeof position.y === 'number';
+        if (!hasX && !hasY) return;
+        this.setState((prevState) => {
+            const previousPosition = prevState.window_positions[objId] || {};
+            const nextPosition = {
+                x: hasX ? position.x : previousPosition.x,
+                y: hasY ? position.y : previousPosition.y
+            };
+            const window_positions = {
+                ...prevState.window_positions,
+                [objId]: nextPosition
+            };
+            return { window_positions: window_positions };
         });
     }
 
@@ -333,13 +353,14 @@ export class Desktop extends Component {
 
         // If the window is minimized (`isActive` but is not `isVisible`)
         if (isActive) {
-            this.focus(objId);            
+            this.focus(objId);
             if (!isVisible) {
-
-                // set window's last position
                 const windowElement = document.querySelector("#" + objId);
                 if (windowElement) {
-                    windowElement.style.transform = `translate(${windowElement.style.getPropertyValue("--window-transform-x")},${windowElement.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+                    const storedPosition = this.state.window_positions[objId];
+                    const translateX = typeof storedPosition?.x === 'number' ? storedPosition.x : 60;
+                    const translateY = typeof storedPosition?.y === 'number' ? storedPosition.y : 10;
+                    windowElement.style.transform = `translate(${translateX}px,${translateY}px) scale(1)`;
                 }
                 return;
             }
@@ -375,7 +396,11 @@ export class Desktop extends Component {
             this.setState((prevState) => {
                 const active_windows = [...prevState.active_windows, objId];
                 const window_positions = { ...prevState.window_positions, [objId]: this.getNextWindowPosition(prevState) };
-                return { active_windows, window_positions, allAppsView: false };
+                return {
+                    active_windows: active_windows,
+                    window_positions: window_positions,
+                    allAppsView: false
+                };
             }, () => {
                 this.focus(objId);
             });
@@ -390,7 +415,11 @@ export class Desktop extends Component {
             const window_positions = { ...prevState.window_positions };
             delete window_positions[objId];
             const visible_windows = prevState.visible_windows.filter(id => id !== objId);
-            return { active_windows, window_positions, visible_windows };
+            return {
+                active_windows: active_windows,
+                window_positions: window_positions,
+                visible_windows: visible_windows
+            };
         }, () => {
             this.giveFocusToLastApp();
         });
@@ -404,7 +433,7 @@ export class Desktop extends Component {
                 visible_windows.splice(idx, 1);
             }
             visible_windows.unshift(objId);
-            return { visible_windows };
+            return { visible_windows: visible_windows };
         });
     }
 

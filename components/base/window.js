@@ -87,6 +87,7 @@ export class Window extends Component {
 
     changeCursorToDefault = () => {
         this.setState({ cursorType: "cursor-default" });
+        this.setWinowsPosition();
         this.dispatchWindowInteractionEvent('end');
     }
 
@@ -139,10 +140,16 @@ export class Window extends Component {
     }
 
     setWinowsPosition = () => {
-        var r = document.querySelector("#" + this.id);
-        var rect = r.getBoundingClientRect();
-        r.style.setProperty('--window-transform-x', rect.x.toFixed(1).toString() + "px");
-        r.style.setProperty('--window-transform-y', (rect.y.toFixed(1) - 32).toString() + "px");
+        const element = document.querySelector("#" + this.id);
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        const x = parseFloat(rect.x.toFixed(1));
+        const y = parseFloat(rect.y.toFixed(1)) - 32;
+        element.style.setProperty('--window-transform-x', x.toString() + "px");
+        element.style.setProperty('--window-transform-y', y.toString() + "px");
+        if (typeof this.props.persistWindowPosition === 'function') {
+            this.props.persistWindowPosition(this.id, { x, y });
+        }
     }
 
     checkOverlap = () => {
