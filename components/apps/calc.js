@@ -34,8 +34,6 @@ export class Calc extends CLI {
         // Merge state
         this.state = {
             ...this.state,
-            // outputList (from CLI) replaces 'terminal'
-            // userInput (from CLI) replaces 'rowValues' logic
         }
     }
 
@@ -43,9 +41,6 @@ export class Calc extends CLI {
         super.componentDidMount();
         this.reStartTerminal();
     }
-
-    // componentWillUnmount handled by base if needed, or empty here
-    // Original had clearInterval(this.cursor) but CLI handles cursor via CSS
 
     reStartTerminal = () => {
         this.setState({ 
@@ -56,28 +51,11 @@ export class Calc extends CLI {
         });
     }
 
-    // Removed all manual cursor logic (resolveCursorRowId, focusCursor, etc) as CLI handles it.
-
     closeTerminal = () => {
         $("#close-calc").trigger('click');
     }
 
     executeCommand = async (command) => {
-        // Logic to execute command and update output list
-        // We need to add the "Result" row to history.
-        
-        // First, add the command itself to history (CLI handles adding to `commandHistory` array, 
-        // but we need to add the visual representation of the command line to `outputList`)
-        
-        // Wait, CLI.handleKeyDown adds to `commandHistory` (state array of strings).
-        // It does NOT add to `outputList`.
-        // `Terminal.js` adds to `outputList` manually in `handleCommands`.
-        
-        // So we should do the same here.
-        
-        // 1. Add the "Command" row (what the user just typed) to outputList
-        // The CLI renders the *current* input line dynamically.
-        // When the user hits Enter, that line needs to become static history.
         const commandRow = (
             <div className="flex w-full h-5" key={`cmd-${Date.now()}`}>
                  <div className=" flex text-ubt-green h-1 mr-2"> {';'} </div>
@@ -107,7 +85,7 @@ export class Calc extends CLI {
         
         this.setState(prevState => ({
             outputList: [...prevState.outputList, commandRow, resultRow],
-            userInput: '', // CLI clears this too but doing it here ensures consistency
+            userInput: '',
             cursorPos: 0
         }));
     }
