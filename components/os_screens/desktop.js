@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { EVENTS, publishEvent } from '../base/events';
+import { detectTouchDevice, isTouchEnvironment } from '../base/mobile';
 import BackgroundImage from '../os_components/background-image';
 import SideBar from './side_bar';
 import apps from '../../apps.config';
@@ -29,6 +30,7 @@ export class Desktop extends Component {
                 desktop: false,
                 default: false,
             },
+            isTouchDevice: detectTouchDevice(),
         }
     }
 
@@ -39,10 +41,21 @@ export class Desktop extends Component {
         this.fetchAppsData();
         this.setContextListeners();
         this.setEventListeners();
+        this.setTouchDevice(detectTouchDevice());
     }
 
     componentWillUnmount() {
         this.removeContextListeners();
+    }
+
+    setTouchDevice = (value) => {
+        this.setState((prevState) => (
+            prevState.isTouchDevice === value ? null : { isTouchDevice: value }
+        ));
+    }
+
+    ensureTouchEnvironment = () => {
+        return isTouchEnvironment(this.state.isTouchDevice, this.setTouchDevice);
     }
 
 
@@ -51,6 +64,10 @@ export class Desktop extends Component {
     }
 
     renderWindows = () => {
+        const isTouchDevice = this.ensureTouchEnvironment();
+        const defaultHeight = isTouchDevice ? 90 : 85;
+        const defaultWidth = isTouchDevice ? 80 : 60;
+
         return this.state.visible_windows.map((appId, index) => {
             const app = this.getAppConfigById(appId);
             if (!app) return null;
@@ -73,8 +90,8 @@ export class Desktop extends Component {
                 isMinimized: this.state.active_windows.has(appId) && !this.state.visible_windows.includes(appId),
                 changeBackgroundImage: this.props.changeBackgroundImage,
                 bg_image_name: this.props.bg_image_name,
-                initHeight: app.height,
-                initWidth: app.width,
+                initHeight: app.height ?? defaultHeight,
+                initWidth: app.width ?? defaultWidth,
                 initialPosition: this.state.window_positions[appId],
                 persistWindowPosition: this.persistWindowPosition,
                 stackIndex: zIndex

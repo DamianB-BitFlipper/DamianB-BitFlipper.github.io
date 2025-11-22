@@ -42,12 +42,8 @@ export class Window extends Component {
     }
 
     setDefaultWindowDimenstion = () => {
-        if (window.innerWidth < 640) {
-            this.setState({ height: 60, width: 85 }, this.resizeBoundries);
-        }
-        else {
-            this.setState({ height: this.props.initHeight, width: this.props.initWidth }, this.resizeBoundries);
-        }
+
+        this.setState({ height: this.props.initHeight, width: this.props.initWidth }, this.resizeBoundries);
     }
 
     resizeBoundries = () => {

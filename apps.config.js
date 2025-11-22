@@ -19,7 +19,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: true,
         screen: displayFirefox, // reusing the component for now, will rename later if requested
-        height: 85, width: 60,
         is_default_open: false,
     },
 
@@ -30,7 +29,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayTerminalCalc,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -40,7 +38,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: true,
         screen: displayAboutDamian,
-        height: 85, width: 60,
         is_default_open: true,
     },
     {
@@ -50,7 +47,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayVsCode,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -60,7 +56,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayTerminal,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -70,7 +65,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displaySpotify,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -80,7 +74,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayCheese,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -100,7 +93,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displaySettings,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -110,7 +102,6 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayGedit,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -122,7 +113,6 @@ const apps = [
         isExternalApp: true,
         url: "https://github.com/DamianB-BitFlipper",
         screen: () => {},
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -134,7 +124,6 @@ const apps = [
         isExternalApp: true,
         url: "https://x.com/TheBitFlipper",
         screen: () => {},
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -144,7 +133,6 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayTrash,
-        height: 85, width: 60,
         is_default_open: false,
     },
     {
@@ -154,7 +142,6 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayDoNotClick,
-        height: 85, width: 60,
         is_default_open: false,
     },
 ]
