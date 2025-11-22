@@ -12,13 +12,10 @@ export default class TopBar extends Component {
 	}
 
 	toglePanel = () => {
-        console.log("TOGGLING!", this.state.show_panel);
 		this.setState({ show_panel: !this.state.show_panel });
-        console.log("AFTER!", this.state.show_panel);
 	}
 
     closePanel = () => {
-        console.log("CLOSE PANEL");
         this.setState({ show_panel: false });
     }
 
@@ -45,10 +42,9 @@ export default class TopBar extends Component {
 					id="status-bar"
 					tabIndex="0"
 					ref={this.panelSummaryRef}
-					onClick={this.toglePanel}
 					className={`relative pr-3 pl-3 outline-none transition duration-100 ease-in-out border-b-2 ${this.state.show_panel ? 'border-ubb-orange' : 'border-transparent'} py-1 `}
 				>
-					<PanelSummary />
+					<PanelSummary onClick={this.toglePanel} />
 					<SystemIndicatorPanel
 						shutDown={this.props.shutDown}
 						lockScreen={this.props.lockScreen}

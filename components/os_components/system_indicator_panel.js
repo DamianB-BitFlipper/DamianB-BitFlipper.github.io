@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import SmallArrow from './small_arrow';
 import onClickOutside from 'react-onclickoutside';
 
-export function PanelSummary() {
+export function PanelSummary({ className = '', ...rest }) {
 	return (
-		<div className="flex justify-center items-center">
+		<div
+			{...rest}
+			className={`flex justify-center items-center ${className}`.trim()}
+		>
 			<span className="mx-1.5">
 				<img
 					width="16px" height="16px"
@@ -63,7 +66,6 @@ export class SystemIndicatorPanel extends Component {
 		};
 	}
 	handleClickOutside = (event) => {
-        console.log("OUTSIDE");
         // Don't close the panel if clicking on the status-bar,
         // otherwise it will re-open immediately
 		const statusBar = document.getElementById('status-bar');
