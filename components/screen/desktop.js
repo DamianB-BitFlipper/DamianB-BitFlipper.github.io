@@ -24,7 +24,6 @@ export class Desktop extends Component {
             active_windows: [],
             allAppsView: false,
             overlapped_windows: {},
-            disabled_apps: {},
             hideSideBar: false,
             desktop_apps: [],
             window_positions: {},
@@ -233,7 +232,7 @@ export class Desktop extends Component {
     fetchAppsData = () => {
         const visible_windows = [];
         const active_windows = [];
-        let disabled_apps = {}, favourite_apps = [], overlapped_windows = {}, window_positions = {};
+        let favourite_apps = [], overlapped_windows = {}, window_positions = {};
         let desktop_apps = [];
         apps.forEach((app) => {
             const isDefaultOpen = (app.id === "about-damian");
@@ -242,10 +241,6 @@ export class Desktop extends Component {
                 active_windows.push(app.id);
                 window_positions[app.id] = { x: 60, y: 10 };
             }
-            disabled_apps = {
-                ...disabled_apps,
-                [app.id]: app.disabled,
-            };
             if (app.favourite) favourite_apps.push(app.id);
             overlapped_windows = {
                 ...overlapped_windows,
@@ -256,7 +251,6 @@ export class Desktop extends Component {
         this.setState({
             visible_windows,
             active_windows,
-            disabled_apps,
             overlapped_windows,
             desktop_apps,
             window_positions
@@ -333,9 +327,6 @@ export class Desktop extends Component {
             category: `Open App`,
             action: `Opened ${objId} window`
         });
-
-        // if the app is disabled
-        if (this.state.disabled_apps[objId]) return;
 
         const isActive = this.state.active_windows.includes(objId);
         const isVisible = this.state.visible_windows.includes(objId);
