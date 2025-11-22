@@ -21,15 +21,6 @@ export class Window extends Component {
             }
         }
 
-        this.registerCallbackHandlers = {
-            onFocus: null,
-            onFocusLost: null,
-        };
-
-        this.callbackHandlers = {
-            onFocus: (handler) => this.setCallbackHandler('onFocus', handler),
-            onFocusLost: (handler) => this.setCallbackHandler('onFocusLost', handler),
-        };
     }
 
     componentDidMount() {
@@ -41,30 +32,12 @@ export class Window extends Component {
 
         // on window resize, resize boundary
         window.addEventListener('resize', this.resizeBoundries);
-
-        if (this.props.isFocused) {
-            this.invokeCallbackHandler('onFocus');
-        }
     }
 
     componentWillUnmount() {
-        if (this.props.isFocused) {
-            this.invokeCallbackHandler('onFocusLost');
-        }
-
         ReactGA.send({ hitType: "pageview", page: "/desktop", title: "Custom Title" });
 
         window.removeEventListener('resize', this.resizeBoundries);
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.isFocused !== this.props.isFocused) {
-            if (this.props.isFocused) {
-                this.invokeCallbackHandler('onFocus');
-            } else {
-                this.invokeCallbackHandler('onFocusLost');
-            }
-        }
     }
 
     setDefaultWindowDimenstion = () => {
@@ -89,16 +62,9 @@ export class Window extends Component {
         });
     }
 
-    setCallbackHandler = (type, handler) => {
-        this.registerCallbackHandlers[type] = typeof handler === 'function' ? handler : null;
-    }
 
-    invokeCallbackHandler = (type) => {
-        const handler = this.registerCallbackHandlers && this.registerCallbackHandlers[type];
-        if (typeof handler === 'function') {
-            handler();
-        }
-    }
+
+
 
     // Change the user's mouse cursor to the drag cursor when the user is dragging a window
     changeCursorToMove = () => {
@@ -273,8 +239,7 @@ export class Window extends Component {
                     {(this.id === "settings"
                         ? <Settings changeBackgroundImage={this.props.changeBackgroundImage} currBgImgName={this.props.bg_image_name} />
                         : <WindowMainScreen screen={this.props.screen} title={this.props.title}
-                            openApp={this.props.openApp}
-                            callbackHandlers={this.callbackHandlers} />)}
+                            openApp={this.props.openApp} />)}
                 </div>
             </Draggable >
         )
@@ -349,7 +314,7 @@ export class WindowMainScreen extends Component {
     }
     render() {
         const content = typeof this.props.screen === 'function'
-            ? this.props.screen(undefined, this.props.openApp, this.props.callbackHandlers)
+            ? this.props.screen(this.props.openApp)
             : null;
         return (
             <div className={"w-full flex-grow z-20 max-h-full overflow-y-auto windowMainScreen" + (this.state.setDarkBg ? " bg-ub-drk-abrgn " : " bg-ub-cool-grey")}>

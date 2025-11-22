@@ -167,7 +167,7 @@ export class AboutDamian extends Component {
 
 export default AboutDamian;
 
-export const displayAboutDamian = (addFolder, openApp, callbackHandlers) => {
+export const displayAboutDamian = (openApp) => {
     return <AboutDamian />;
 }
 

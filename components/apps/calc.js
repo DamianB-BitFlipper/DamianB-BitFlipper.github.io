@@ -286,6 +286,6 @@ export class Calc extends Component {
 
 export default Calc
 
-export const displayTerminalCalc = (addFolder, openApp, callbackHandlers) => {
-    return <Calc addFolder={addFolder} openApp={openApp}> </Calc>;
+export const displayTerminalCalc = (openApp) => {
+    return <Calc openApp={openApp}> </Calc>;
 }

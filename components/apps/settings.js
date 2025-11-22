@@ -103,6 +103,6 @@ function AboutOS() {
 
 export default Settings;
 
-export const displaySettings = (addFolder, openApp, callbackHandlers) => {
+export const displaySettings = (openApp) => {
     return <Settings> </Settings>;
 }

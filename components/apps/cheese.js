@@ -86,7 +86,7 @@ export class Cheese extends Component {
     }
 }
 
-export const displayCheese = (addFolder, openApp, callbackHandlers) => {
+export const displayCheese = (openApp) => {
     return <Cheese />;
 }
 

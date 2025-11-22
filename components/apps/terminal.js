@@ -50,7 +50,6 @@ export class Terminal extends Component {
     }
 
     componentDidMount() {
-        this.registerCallbackHandlers();
         this.initializeEmulator();
         this.reStartTerminal();
         this.loadProjectsFromData();
@@ -61,19 +60,6 @@ export class Terminal extends Component {
     }
 
 
-    registerCallbackHandlers = () => {
-        // const handlers = this.props.callbackHandlers;
-        // if (typeof handlers.onFocus === 'function') {
-        //     handlers.onFocus(() => {
-        //         console.log('[Terminal] focus gained');
-        //     });
-        // }
-        // if (typeof handlers.onFocusLost === 'function') {
-        //     handlers.onFocusLost(() => {
-        //         console.log('[Terminal] focus lost');
-        //     });
-        // }
-    }
 
 
     loadProjectsFromData = () => {
@@ -782,6 +768,6 @@ export class Terminal extends Component {
 
 export default Terminal
 
-export const displayTerminal = (addFolder, openApp, callbackHandlers) => {
-    return <Terminal openApp={openApp} callbackHandlers={callbackHandlers}> </Terminal>;
+export const displayTerminal = (openApp) => {
+    return <Terminal openApp={openApp}> </Terminal>;
 }

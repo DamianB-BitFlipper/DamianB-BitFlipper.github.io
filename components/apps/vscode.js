@@ -7,6 +7,6 @@ export default function VsCode() {
     )
 }
 
-export const displayVsCode = (addFolder, openApp, callbackHandlers) => {
+export const displayVsCode = (openApp) => {
     return <VsCode> </VsCode>
 }
