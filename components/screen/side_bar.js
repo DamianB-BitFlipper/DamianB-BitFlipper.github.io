@@ -31,7 +31,7 @@ export default function SideBar(props) {
     function hideSideBar() {
         setTimeout(() => {
             props.hideSideBar(null, true);
-        }, 2000);
+        }, 500);
     }
 
     return (

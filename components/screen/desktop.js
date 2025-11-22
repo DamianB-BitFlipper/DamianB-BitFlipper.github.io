@@ -25,7 +25,7 @@ export class Desktop extends Component {
             active_windows: [],
             window_positions: {},
             allAppsView: false,
-            windows_over_sidebar: {},
+            windows_over_sidebar: new Set(),
             hideSideBar: false,
             // Right click sub-menus to show
             context_menus: {
@@ -234,8 +234,9 @@ export class Desktop extends Component {
     fetchAppsData = () => {
         const visible_windows = [];
         const active_windows = [];
-        let favourite_apps = [], windows_over_sidebar = {}, window_positions = {};
+        let favourite_apps = [], window_positions = {};
         let desktop_apps = [];
+        const windows_over_sidebar = new Set();
         apps.forEach((app) => {
             const isDefaultOpen = (app.id === "about-damian");
             if (isDefaultOpen) {
@@ -244,10 +245,6 @@ export class Desktop extends Component {
                 window_positions[app.id] = { x: 60, y: 10 };
             }
             if (app.favourite) favourite_apps.push(app.id);
-            windows_over_sidebar = {
-                ...windows_over_sidebar,
-                [app.id]: false,
-            };
             if (app.desktop_shortcut) desktop_apps.push(app.id);
         });
         this.setState({
@@ -283,32 +280,42 @@ export class Desktop extends Component {
     }
 
     hideSideBar = (objId, hide) => {
-        if (hide === this.state.hideSideBar) return;
+        if (objId === null && hide === this.state.hideSideBar) return;
 
-        if (objId === null) {
-            if (hide === false) {
-                this.setState({ hideSideBar: false });
-            }
-            else {
-                for (const key in this.state.windows_over_sidebar) {
-                    if (this.state.windows_over_sidebar[key]) {
-                        this.setState({ hideSideBar: true });
-                        return;
-                    }
+        this.setState((prevState) => {
+            const windows_over_sidebar = new Set(prevState.windows_over_sidebar || []);
+
+            if (objId === null) {
+                if (hide === false) {
+                    return prevState.hideSideBar ? { hideSideBar: false } : null;
                 }
-            }
-            return;
-        }
 
-        if (hide === false) {
-            for (const key in this.state.windows_over_sidebar) {
-                if (this.state.windows_over_sidebar[key] && key !== objId) return;
-            }
-        }
+                if (windows_over_sidebar.size > 0) {
+                    return prevState.hideSideBar ? null : { hideSideBar: true };
+                }
 
-        let windows_over_sidebar = this.state.windows_over_sidebar;
-        windows_over_sidebar[objId] = hide;
-        this.setState({ hideSideBar: hide, windows_over_sidebar: windows_over_sidebar });
+                return null;
+            }
+
+            if (hide) {
+                windows_over_sidebar.add(objId);
+                if (prevState.hideSideBar) {
+                    return { windows_over_sidebar };
+                }
+                return { hideSideBar: true, windows_over_sidebar };
+            }
+
+            windows_over_sidebar.delete(objId);
+            if (windows_over_sidebar.size > 0) {
+                return { windows_over_sidebar };
+            }
+
+            if (!prevState.hideSideBar) {
+                return { windows_over_sidebar };
+            }
+
+            return { hideSideBar: false, windows_over_sidebar };
+        });
     }
 
     hasMinimised = (objId) => {
