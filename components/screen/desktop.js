@@ -9,17 +9,13 @@ import DesktopMenu from '../context menus/desktop-menu';
 import DefaultMenu from '../context menus/default';
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
-import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } from '../cursorControllerEvents';
 
 export class Desktop extends Component {
     constructor() {
         super();
         this.favorite_apps = [];
         this.desktop_apps = [];
-        this.cursorControllers = {};
 
-        this.cursorEventsBound = false;
-        this.bindCursorControllerEvents();
         this.state = {
             visible_windows: [],
             active_windows: new Set(),
@@ -42,49 +38,12 @@ export class Desktop extends Component {
         this.fetchAppsData();
         this.setContextListeners();
         this.setEventListeners();
-        this.bindCursorControllerEvents();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.visible_windows[0] !== this.state.visible_windows[0]) {
-            this.applyCursorFocus(this.state.visible_windows[0]);
-        }
     }
 
     componentWillUnmount() {
         this.removeContextListeners();
-        this.unbindCursorControllerEvents();
     }
 
-    bindCursorControllerEvents = () => {
-        if (this.cursorEventsBound || typeof window === 'undefined') return;
-        window.addEventListener(CURSOR_CONTROLLER_REGISTER_EVENT, this.handleCursorControllerRegister);
-        window.addEventListener(CURSOR_CONTROLLER_UNREGISTER_EVENT, this.handleCursorControllerUnregister);
-        this.cursorEventsBound = true;
-    }
-
-    unbindCursorControllerEvents = () => {
-        if (!this.cursorEventsBound || typeof window === 'undefined') return;
-        window.removeEventListener(CURSOR_CONTROLLER_REGISTER_EVENT, this.handleCursorControllerRegister);
-        window.removeEventListener(CURSOR_CONTROLLER_UNREGISTER_EVENT, this.handleCursorControllerUnregister);
-        this.cursorEventsBound = false;
-    }
-
-    handleCursorControllerRegister = (event) => {
-        const detail = event?.detail;
-        if (!detail || !detail.appId) return;
-        const focusCursor = typeof detail.focusCursor === 'function' ? detail.focusCursor : null;
-        const unfocusCursor = typeof detail.unfocusCursor === 'function' ? detail.unfocusCursor : null;
-        this.cursorControllers[detail.appId] = { focusCursor, unfocusCursor };
-        this.applyCursorFocus();
-    }
-
-    handleCursorControllerUnregister = (event) => {
-        const appId = event?.detail?.appId;
-        if (!appId) return;
-        delete this.cursorControllers[appId];
-        this.applyCursorFocus();
-    }
 
     getAppConfigById = (appId) => {
         return apps.find(app => app.id === appId) || null;
@@ -134,20 +93,6 @@ export class Desktop extends Component {
         // If visible_windows is empty, it means all open windows are minimized or closed
         // (since we remove minimized windows from visible_windows)
         return this.state.visible_windows.length === 0;
-    }
-
-    applyCursorFocus = (focusedId = this.state.visible_windows[0]) => {
-        Object.entries(this.cursorControllers || {}).forEach(([appId, handlers]) => {
-            if (!handlers) return;
-            const { focusCursor, unfocusCursor } = handlers;
-            if (appId === focusedId) {
-                if (typeof focusCursor === 'function') {
-                    focusCursor();
-                }
-            } else if (typeof unfocusCursor === 'function') {
-                unfocusCursor();
-            }
-        });
     }
 
     setEventListeners = () => {
@@ -446,6 +391,7 @@ export class Desktop extends Component {
             if (idx !== -1) {
                 visible_windows.splice(idx, 1);
             }
+            // The application is put to the front of the `visible_windows`
             visible_windows.unshift(objId);
             return { visible_windows: visible_windows };
         });
