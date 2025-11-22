@@ -236,11 +236,7 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
     opacity: 1;
     pointer-events: none;
     mix-blend-mode: difference;
-    animation: none;
-}
-
-.terminal-input-line.focused::after {
-    animation: blinkCursor 1s steps(1) infinite;
+    animation: var(--cursor-animation, none);
 }
 
 @keyframes blinkCursor {

@@ -97,12 +97,6 @@ export class Terminal extends Component {
         this.unFocusCursor();
     }
 
-    handleWindowDraggingStart = (payload) => {
-        if (payload?.app_id === 'terminal') {
-            this.unFocusCursor();
-        }
-    }
-
     handleWindowDraggingStop = (payload) => {
         if (payload?.app_id === 'terminal') {
             this.focusCursor();
@@ -576,7 +570,6 @@ export class Terminal extends Component {
     }
 
     unFocusCursor = () => {
-        console.log("Unfocusing!");
         this.setState({ isFocused: false });
         if (this.inputRef.current) {
             this.inputRef.current.blur();
@@ -722,6 +715,10 @@ export class Terminal extends Component {
     render() {
         const { terminal, userInput, isFocused, cursorPos } = this.state;
         const displayValue = userInput.length > 0 ? userInput : '\u00a0';
+        const cursorStyle = {
+            '--cursor-pos': cursorPos,
+            '--cursor-animation': isFocused ? 'blinkCursor 1s steps(1) infinite' : 'none',
+        };
 
         return (
             <div 
@@ -740,8 +737,8 @@ export class Terminal extends Component {
                     </div>
                     <div className="relative flex-1 overflow-hidden">
                         <div
-                            className={`terminal-input-line${isFocused ? ' focused' : ''}`}
-                            style={{ '--cursor-pos': cursorPos }}
+                            className="terminal-input-line"
+                            style={cursorStyle}
                         >
                             <span className="whitespace-pre pb-1 opacity-100 font-normal block">
                                 {displayValue}
