@@ -238,11 +238,15 @@ export class Desktop extends Component {
         let desktop_apps = [];
         const windows_over_sidebar = new Set();
         apps.forEach((app) => {
-            const isDefaultOpen = (app.id === "about-damian");
+            const isDefaultOpen = app.is_default_open;
             if (isDefaultOpen) {
-                visible_windows.push(app.id);
+                // Always add new apps from the front
+                visible_windows.unshift(app.id);
                 active_windows.push(app.id);
-                window_positions[app.id] = { x: 60, y: 10 };
+                window_positions[app.id] = this.getNextWindowPosition({
+                    active_windows,
+                    window_positions,
+                });
             }
             if (app.favourite) favourite_apps.push(app.id);
             if (app.desktop_shortcut) desktop_apps.push(app.id);

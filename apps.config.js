@@ -20,7 +20,9 @@ const apps = [
         desktop_shortcut: true,
         screen: displayFirefox, // reusing the component for now, will rename later if requested
         height: 85, width: 60,
+        is_default_open: false,
     },
+
     {
         id: "calc",
         title: "Calc",
@@ -29,6 +31,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displayTerminalCalc,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "about-damian",
@@ -38,6 +41,7 @@ const apps = [
         desktop_shortcut: true,
         screen: displayAboutDamian,
         height: 85, width: 60,
+        is_default_open: true,
     },
     {
         id: "vscode",
@@ -47,6 +51,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displayVsCode,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "terminal",
@@ -56,6 +61,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displayTerminal,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "spotify",
@@ -65,6 +71,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displaySpotify,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "cheese",
@@ -74,6 +81,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displayCheese,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "chess",
@@ -83,6 +91,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displayChess,
         height: 80, width: 40,
+        is_default_open: false,
     },
     {
         id: "settings",
@@ -92,6 +101,7 @@ const apps = [
         desktop_shortcut: false,
         screen: displaySettings,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "gedit",
@@ -101,6 +111,7 @@ const apps = [
         desktop_shortcut: true,
         screen: displayGedit,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "github",
@@ -112,6 +123,7 @@ const apps = [
         url: "https://github.com/DamianB-BitFlipper",
         screen: () => {},
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "x-profile",
@@ -123,6 +135,7 @@ const apps = [
         url: "https://x.com/TheBitFlipper",
         screen: () => {},
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "trash",
@@ -132,6 +145,7 @@ const apps = [
         desktop_shortcut: true,
         screen: displayTrash,
         height: 85, width: 60,
+        is_default_open: false,
     },
     {
         id: "do-not-click",
@@ -141,6 +155,7 @@ const apps = [
         desktop_shortcut: true,
         screen: displayDoNotClick,
         height: 85, width: 60,
+        is_default_open: false,
     },
 ]
 
