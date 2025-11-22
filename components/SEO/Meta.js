@@ -34,19 +34,19 @@ export default function Meta() {
                 content="Damian Barabonkov's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
             <meta name="twitter:site" content="Damian Barabonkov" />
             <meta name="twitter:creator" content="Damian Barabonkov" />
-            <meta name="twitter:image:src" content="images/logos/logo_1024.png" />
+            <meta name="twitter:image:src" content="images/dbtux.png" />
             /* Open Graph general (Facebook, Pinterest & Google+) */
             <meta name="og:title" content="Damian Barabonkov - Software Engineer" />
             <meta name="og:description"
                 content="Damian Barabonkov's Personal Portfolio Website. Made with Ubuntu 20.4 (Linux) theme by Next.js and Tailwind CSS." />
-            <meta name="og:image" content="images/logos/logo_1200.png" />
+            <meta name="og:image" content="images/dbtux.png" />
             <meta name="og:url" content="https://github.com/DamianB-BitFlipper" />
             <meta name="og:site_name" content="Damian Barabonkov Portfolio" />
             <meta name="og:locale" content="en_US" />
             <meta name="og:type" content="website" />
 
             <link rel="icon" href="/images/dbtux.png" type="image/png" />
-            <link rel="apple-touch-icon" href="images/logos/logo.png" />
+            <link rel="apple-touch-icon" href="images/dbtux.png" />
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" as="style" />
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"></link>
         </Head>

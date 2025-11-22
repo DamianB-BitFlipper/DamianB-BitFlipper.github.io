@@ -23,12 +23,12 @@ export class Trash extends Component {
             },
             {
                 name: "node_modules",
-                icon: "./themes/Yaru/system/folder.png"
+                icon: "./themes/Yaru/status/folder.png"
             },
 
             {
                 name: "abandoned project",
-                icon: "./themes/Yaru/system/folder.png"
+                icon: "./themes/Yaru/status/folder.png"
             },
             {
                 name: "Old Assignment.zip",
@@ -36,11 +36,11 @@ export class Trash extends Component {
             },
             {
                 name: "project final",
-                icon: "./themes/Yaru/system/folder.png"
+                icon: "./themes/Yaru/status/folder.png"
             },
             {
                 name: "project ultra-final",
-                icon: "./themes/Yaru/system/folder.png"
+                icon: "./themes/Yaru/status/folder.png"
             },
 
         ];

@@ -178,7 +178,7 @@ const AboutSection = ({ data }) => {
         <div className="flex flex-col items-center w-full p-8 md:p-12 max-w-4xl">
             {data.image && (
                 <div className="w-32 md:w-40 mb-6 bg-white p-1 rounded-full shadow-xl">
-                    <img className="w-full rounded-full" src={data.image} alt="Profile" onError={(e) => { e.target.src = "./themes/Yaru/system/user-home.png" }} />
+                    <img className="w-full rounded-full" src={data.image} alt="Profile" onError={(e) => { e.target.src = "./themes/Yaru/status/user-home.png" }} />
                 </div>
             )}
             <div className="text-center">
