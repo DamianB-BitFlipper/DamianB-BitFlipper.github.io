@@ -233,13 +233,13 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
     width: 1ch;
     height: 1.1em;
     background-color: #ffffff;
-    opacity: 0;
+    opacity: 1;
     pointer-events: none;
     mix-blend-mode: difference;
+    animation: none;
 }
 
 .terminal-input-line.focused::after {
-    opacity: 1;
     animation: blinkCursor 1s steps(1) infinite;
 }
 

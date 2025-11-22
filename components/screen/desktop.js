@@ -387,10 +387,6 @@ export class Desktop extends Component {
     }
 
     focus = (app_id) => {
-        // if (this.state.visible_windows[0] === app_id) {
-        //     return;
-        // }
-        
         this.setState((prevState) => {
             const visible_windows = [...prevState.visible_windows];
             const idx = visible_windows.indexOf(app_id);
