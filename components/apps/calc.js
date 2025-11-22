@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import $ from 'jquery';
 const Parser = require('expr-eval').Parser;
 
+const CURSOR_CONTROLLER_REGISTER_EVENT = 'ubuntu-register-cursor-controller';
+const CURSOR_CONTROLLER_UNREGISTER_EVENT = 'ubuntu-unregister-cursor-controller';
+
 const parser = new Parser({
     operators: {
       // These default to true, but are included to be explicit
@@ -33,6 +36,9 @@ export class Calc extends Component {
         this.prev_commands = [];
         this.commands_index = -1;
         this.variables={}
+        this.activeRowId = null;
+        this.calcRootRef = React.createRef();
+        this.hostWindowId = null;
         this.state = {
             terminal: [],
         }
@@ -40,15 +46,51 @@ export class Calc extends Component {
 
     componentDidMount() {
         this.reStartTerminal();
-    }
-
-    componentDidUpdate() {
-        clearInterval(this.cursor);
-        this.startCursor(this.terminal_rows - 2);
+        this.getHostWindowId();
+        this.registerCursorController();
     }
 
     componentWillUnmount() {
         clearInterval(this.cursor);
+        this.unregisterCursorController();
+    }
+
+    getHostWindowId = () => {
+        if (this.hostWindowId) return this.hostWindowId;
+        const rootNode = this.calcRootRef?.current;
+        if (!rootNode) return null;
+        const hostWindow = rootNode.closest('.main-window');
+        this.hostWindowId = hostWindow?.id || null;
+        return this.hostWindowId;
+    }
+
+    emitCursorControllerEvent = (eventName, detail) => {
+        if (typeof window === 'undefined' || typeof window.dispatchEvent !== 'function') return;
+        if (typeof window.CustomEvent === 'function') {
+            window.dispatchEvent(new CustomEvent(eventName, { detail }));
+            return;
+        }
+        if (typeof document !== 'undefined' && typeof document.createEvent === 'function') {
+            const event = document.createEvent('CustomEvent');
+            event.initCustomEvent(eventName, false, false, detail);
+            window.dispatchEvent(event);
+        }
+    }
+
+    registerCursorController = () => {
+        const hostId = this.getHostWindowId();
+        if (!hostId) return;
+        this.emitCursorControllerEvent(CURSOR_CONTROLLER_REGISTER_EVENT, {
+            appId: hostId,
+            focusCursor: this.focusCursor,
+            unfocusCursor: this.unFocusCursor,
+        });
+    }
+
+    unregisterCursorController = () => {
+        const hostId = this.hostWindowId;
+        if (!hostId) return;
+        this.emitCursorControllerEvent(CURSOR_CONTROLLER_UNREGISTER_EVENT, { appId: hostId });
     }
 
     reStartTerminal = () => {
@@ -60,9 +102,12 @@ export class Calc extends Component {
     }
 
     appendTerminalRow = () => {
+        const currentRowId = this.terminal_rows;
         let terminal = [...this.state.terminal];
-        terminal.push(this.terminalRow(this.terminal_rows));
-        this.setState({ terminal });
+        terminal.push(this.terminalRow(currentRowId));
+        this.setState({ terminal }, () => {
+            this.startCursor(currentRowId);
+        });
         this.terminal_rows += 2;
     }
 
@@ -85,16 +130,50 @@ export class Calc extends Component {
 
     }
 
-    focusCursor = (e) => {
-        clearInterval(this.cursor);
-        this.startCursor($(e.target).data("row-id"));
+    resolveCursorRowId = (source) => {
+        if (typeof source === 'number') return source;
+        if (source && typeof source === 'object') {
+            const event = source.nativeEvent ? source.nativeEvent : source;
+            const directTargetId = event?.target?.dataset?.rowId;
+            if (directTargetId !== undefined) {
+                const parsed = Number(directTargetId);
+                return Number.isNaN(parsed) ? directTargetId : parsed;
+            }
+            const currentTargetId = event?.currentTarget?.dataset?.rowId;
+            if (currentTargetId !== undefined) {
+                const parsed = Number(currentTargetId);
+                return Number.isNaN(parsed) ? currentTargetId : parsed;
+            }
+            const inputEl = event?.currentTarget?.querySelector?.('input[data-row-id]');
+            if (inputEl?.dataset?.rowId !== undefined) {
+                const parsed = Number(inputEl.dataset.rowId);
+                return Number.isNaN(parsed) ? inputEl.dataset.rowId : parsed;
+            }
+        }
+        if (this.activeRowId != null) return this.activeRowId;
+        const fallback = this.terminal_rows - 2;
+        return fallback >= 0 ? fallback : null;
     }
 
-    unFocusCursor = (e) => {
-        this.stopCursor($(e.target).data("row-id"));
+    focusCursor = (source) => {
+        const rowId = this.resolveCursorRowId(source);
+        if (rowId == null) return;
+        this.startCursor(rowId);
+    }
+
+    unFocusCursor = (source) => {
+        const rowId = this.resolveCursorRowId(source);
+        if (rowId == null) return;
+        this.stopCursor(rowId);
+        const inputEl = document.getElementById(`calculator-input-${rowId}`);
+        if (inputEl && document.activeElement === inputEl) {
+            inputEl.blur();
+        }
     }
 
     startCursor = (id) => {
+        if (id == null) return;
+        this.activeRowId = id;
         clearInterval(this.cursor);
         $(`input#calculator-input-${id}`).trigger("focus");
         // On input change, set current text in span
@@ -239,13 +318,13 @@ export class Calc extends Component {
 
     render() {
         return (
-            <div className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal">
+            <div ref={this.calcRootRef} className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal">
                 <div>C-style arbitary precision calculator (version 2.12.7.2)</div>
                 <div>Calc is open software.</div>
                 <div>[ type "exit" to exit, "clear" to clear, "help" for help.]</div>
-            <div className="text-white text-sm font-bold bg-ub-drk-abrgn" id="calculator-body">
-                {this.state.terminal}
-            </div>
+                <div className="text-white text-sm font-bold bg-ub-drk-abrgn" id="calculator-body">
+                    {this.state.terminal}
+                </div>
             </div>
         )
     }

@@ -10,12 +10,18 @@ import DefaultMenu from '../context menus/default';
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
 
+const CURSOR_CONTROLLER_REGISTER_EVENT = 'ubuntu-register-cursor-controller';
+const CURSOR_CONTROLLER_UNREGISTER_EVENT = 'ubuntu-unregister-cursor-controller';
+
 export class Desktop extends Component {
     constructor() {
         super();
         this.app_stack = [];
         this.initFavourite = {};
         this.allWindowClosed = false;
+        this.cursorControllers = {};
+        this.cursorEventsBound = false;
+        this.bindCursorControllerEvents();
         this.state = {
             focused_windows: [],
             closed_windows: {},
@@ -41,10 +47,68 @@ export class Desktop extends Component {
         this.fetchAppsData();
         this.setContextListeners();
         this.setEventListeners();
+        this.bindCursorControllerEvents();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const prevFocused = Array.isArray(prevState.focused_windows) ? prevState.focused_windows[0] : null;
+        const currentFocused = this.getCurrentFocusedWindowId();
+        if (prevFocused !== currentFocused) {
+            this.applyCursorFocus(currentFocused);
+        }
     }
 
     componentWillUnmount() {
         this.removeContextListeners();
+        this.unbindCursorControllerEvents();
+    }
+
+    bindCursorControllerEvents = () => {
+        if (this.cursorEventsBound || typeof window === 'undefined') return;
+        window.addEventListener(CURSOR_CONTROLLER_REGISTER_EVENT, this.handleCursorControllerRegister);
+        window.addEventListener(CURSOR_CONTROLLER_UNREGISTER_EVENT, this.handleCursorControllerUnregister);
+        this.cursorEventsBound = true;
+    }
+
+    unbindCursorControllerEvents = () => {
+        if (!this.cursorEventsBound || typeof window === 'undefined') return;
+        window.removeEventListener(CURSOR_CONTROLLER_REGISTER_EVENT, this.handleCursorControllerRegister);
+        window.removeEventListener(CURSOR_CONTROLLER_UNREGISTER_EVENT, this.handleCursorControllerUnregister);
+        this.cursorEventsBound = false;
+    }
+
+    handleCursorControllerRegister = (event) => {
+        const detail = event?.detail;
+        if (!detail || !detail.appId) return;
+        const focusCursor = typeof detail.focusCursor === 'function' ? detail.focusCursor : null;
+        const unfocusCursor = typeof detail.unfocusCursor === 'function' ? detail.unfocusCursor : null;
+        this.cursorControllers[detail.appId] = { focusCursor, unfocusCursor };
+        this.applyCursorFocus();
+    }
+
+    handleCursorControllerUnregister = (event) => {
+        const appId = event?.detail?.appId;
+        if (!appId) return;
+        delete this.cursorControllers[appId];
+        this.applyCursorFocus();
+    }
+
+    getCurrentFocusedWindowId = () => {
+        return Array.isArray(this.state.focused_windows) ? this.state.focused_windows[0] : null;
+    }
+
+    applyCursorFocus = (focusedId = this.getCurrentFocusedWindowId()) => {
+        Object.entries(this.cursorControllers || {}).forEach(([appId, handlers]) => {
+            if (!handlers) return;
+            const { focusCursor, unfocusCursor } = handlers;
+            if (appId === focusedId) {
+                if (typeof focusCursor === 'function') {
+                    focusCursor();
+                }
+            } else if (typeof unfocusCursor === 'function') {
+                unfocusCursor();
+            }
+        });
     }
 
     setEventListeners = () => {

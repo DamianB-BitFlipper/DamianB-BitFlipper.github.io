@@ -5,6 +5,9 @@ import bashEmulator from 'bash-emulator';
 import { skills, languages, interests } from '../ubuntu_data';
 import projectsData from '../../content/projects.json';
 
+const CURSOR_CONTROLLER_REGISTER_EVENT = 'ubuntu-register-cursor-controller';
+const CURSOR_CONTROLLER_UNREGISTER_EVENT = 'ubuntu-unregister-cursor-controller';
+
 export class Terminal extends Component {
     constructor() {
         super();
@@ -58,12 +61,14 @@ export class Terminal extends Component {
         this.loadProjectsFromData();
         this.registerWindowInteractionListeners();
         this.getHostWindowId();
+        this.registerCursorController();
     }
 
     componentWillUnmount() {
         clearInterval(this.cursor);
         this.unregisterWindowInteractionListeners();
         this.cancelPendingFocusRequest();
+        this.unregisterCursorController();
     }
 
     registerWindowInteractionListeners = () => {
@@ -85,6 +90,35 @@ export class Terminal extends Component {
         const hostWindow = rootNode.closest('.main-window');
         this.hostWindowId = hostWindow?.id || null;
         return this.hostWindowId;
+    }
+
+    emitCursorControllerEvent = (eventName, detail) => {
+        if (typeof window === 'undefined' || typeof window.dispatchEvent !== 'function') return;
+        if (typeof window.CustomEvent === 'function') {
+            window.dispatchEvent(new CustomEvent(eventName, { detail }));
+            return;
+        }
+        if (typeof document !== 'undefined' && typeof document.createEvent === 'function') {
+            const event = document.createEvent('CustomEvent');
+            event.initCustomEvent(eventName, false, false, detail);
+            window.dispatchEvent(event);
+        }
+    }
+
+    registerCursorController = () => {
+        const hostId = this.getHostWindowId();
+        if (!hostId) return;
+        this.emitCursorControllerEvent(CURSOR_CONTROLLER_REGISTER_EVENT, {
+            appId: hostId,
+            focusCursor: this.focusCursor,
+            unfocusCursor: this.unFocusCursor,
+        });
+    }
+
+    unregisterCursorController = () => {
+        const hostId = this.hostWindowId;
+        if (!hostId) return;
+        this.emitCursorControllerEvent(CURSOR_CONTROLLER_UNREGISTER_EVENT, { appId: hostId });
     }
 
     isRelevantWindowEvent = (event) => {
@@ -628,13 +662,46 @@ export class Terminal extends Component {
         );
     }
 
-    focusCursor = (e) => {
-        clearInterval(this.cursor);
-        this.startCursor($(e.target).data("row-id"));
+    resolveCursorRowId = (source) => {
+        if (typeof source === 'number') return source;
+        if (source && typeof source === 'object') {
+            const event = source.nativeEvent ? source.nativeEvent : source;
+            const directTargetId = event?.target?.dataset?.rowId;
+            if (directTargetId !== undefined) {
+                const parsed = Number(directTargetId);
+                return Number.isNaN(parsed) ? directTargetId : parsed;
+            }
+            const currentTargetId = event?.currentTarget?.dataset?.rowId;
+            if (currentTargetId !== undefined) {
+                const parsed = Number(currentTargetId);
+                return Number.isNaN(parsed) ? currentTargetId : parsed;
+            }
+            const inputEl = event?.currentTarget?.querySelector?.('input[data-row-id]');
+            if (inputEl?.dataset?.rowId !== undefined) {
+                const parsed = Number(inputEl.dataset.rowId);
+                return Number.isNaN(parsed) ? inputEl.dataset.rowId : parsed;
+            }
+        }
+        if (this.activeRowId != null) return this.activeRowId;
+        const fallback = this.terminal_rows - 2;
+        return fallback >= 0 ? fallback : null;
     }
 
-    unFocusCursor = (e) => {
-        this.stopCursor($(e.target).data("row-id"));
+    focusCursor = (source) => {
+        const rowId = this.resolveCursorRowId(source);
+        if (rowId == null) return;
+        clearInterval(this.cursor);
+        this.startCursor(rowId);
+    }
+
+    unFocusCursor = (source) => {
+        const rowId = this.resolveCursorRowId(source);
+        if (rowId == null) return;
+        this.stopCursor(rowId);
+        const inputEl = document.getElementById(`terminal-input-${rowId}`);
+        if (inputEl && document.activeElement === inputEl) {
+            inputEl.blur();
+        }
     }
 
     startCursor = (id) => {
