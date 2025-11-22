@@ -61,16 +61,33 @@ export class Window extends Component {
         });
     }
 
+    dispatchWindowInteractionEvent = (phase) => {
+        if (!this.id || typeof window === 'undefined' || typeof window.dispatchEvent !== 'function') return;
+        const eventName = phase === 'start' ? 'ubuntu-window-interaction-start' : 'ubuntu-window-interaction-end';
+        const detail = { id: this.id };
+        if (typeof window.CustomEvent === 'function') {
+            window.dispatchEvent(new CustomEvent(eventName, { detail }));
+            return;
+        }
+        if (typeof document !== 'undefined' && typeof document.createEvent === 'function') {
+            const event = document.createEvent('CustomEvent');
+            event.initCustomEvent(eventName, false, false, detail);
+            window.dispatchEvent(event);
+        }
+    }
+
     changeCursorToMove = () => {
         this.focusWindow();
         if (this.state.maximized) {
             this.restoreWindow();
         }
-        this.setState({ cursorType: "cursor-move" })
+        this.setState({ cursorType: "cursor-move" });
+        this.dispatchWindowInteractionEvent('start');
     }
 
     changeCursorToDefault = () => {
-        this.setState({ cursorType: "cursor-default" })
+        this.setState({ cursorType: "cursor-default" });
+        this.dispatchWindowInteractionEvent('end');
     }
 
     resizeStart = (e, direction) => {
@@ -86,6 +103,7 @@ export class Window extends Component {
         if (this.state.maximized) {
             this.setState({ maximized: false });
         }
+        this.dispatchWindowInteractionEvent('start');
         document.body.style.cursor = direction === 'x' ? 'ew-resize' : direction === 'y' ? 'ns-resize' : 'nwse-resize';
         window.addEventListener('mousemove', this.resize);
         window.addEventListener('mouseup', this.resizeEnd);
@@ -117,6 +135,7 @@ export class Window extends Component {
         document.body.style.cursor = 'default';
         window.removeEventListener('mousemove', this.resize);
         window.removeEventListener('mouseup', this.resizeEnd);
+        this.dispatchWindowInteractionEvent('end');
     }
 
     setWinowsPosition = () => {

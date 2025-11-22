@@ -45,12 +45,91 @@ export class Terminal extends Component {
 
         this.emulator = null;
         this.skipNextRender = false;
+        this.activeRowId = null;
+        this.terminalRootRef = React.createRef();
+        this.hostWindowId = null;
+        this.isWindowInteractionActive = false;
+        this.pendingFocusFrame = null;
     }
 
     componentDidMount() {
         this.initializeEmulator();
         this.reStartTerminal();
         this.loadProjectsFromData();
+        this.registerWindowInteractionListeners();
+        this.getHostWindowId();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.cursor);
+        this.unregisterWindowInteractionListeners();
+        this.cancelPendingFocusRequest();
+    }
+
+    registerWindowInteractionListeners = () => {
+        if (typeof window === 'undefined') return;
+        window.addEventListener('ubuntu-window-interaction-start', this.handleWindowInteractionStart);
+        window.addEventListener('ubuntu-window-interaction-end', this.handleWindowInteractionEnd);
+    }
+
+    unregisterWindowInteractionListeners = () => {
+        if (typeof window === 'undefined') return;
+        window.removeEventListener('ubuntu-window-interaction-start', this.handleWindowInteractionStart);
+        window.removeEventListener('ubuntu-window-interaction-end', this.handleWindowInteractionEnd);
+    }
+
+    getHostWindowId = () => {
+        if (this.hostWindowId) return this.hostWindowId;
+        const rootNode = this.terminalRootRef?.current;
+        if (!rootNode) return null;
+        const hostWindow = rootNode.closest('.main-window');
+        this.hostWindowId = hostWindow?.id || null;
+        return this.hostWindowId;
+    }
+
+    isRelevantWindowEvent = (event) => {
+        const hostId = this.getHostWindowId();
+        if (!hostId) return false;
+        return event?.detail?.id === hostId;
+    }
+
+    handleWindowInteractionStart = (event) => {
+        if (!this.isRelevantWindowEvent(event)) return;
+        this.isWindowInteractionActive = true;
+        this.cancelPendingFocusRequest();
+    }
+
+    handleWindowInteractionEnd = (event) => {
+        if (!this.isRelevantWindowEvent(event)) return;
+        this.isWindowInteractionActive = false;
+        this.requestCursorFocusRestore();
+    }
+
+    requestCursorFocusRestore = () => {
+        if (this.pendingFocusFrame || this.isWindowInteractionActive) return;
+        if (typeof window === 'undefined' || typeof window.requestAnimationFrame !== 'function') {
+            this.restoreCursorFocus();
+            return;
+        }
+        this.pendingFocusFrame = window.requestAnimationFrame(() => {
+            this.pendingFocusFrame = null;
+            this.restoreCursorFocus();
+        });
+    }
+
+    cancelPendingFocusRequest = () => {
+        if (this.pendingFocusFrame && typeof window !== 'undefined' && typeof window.cancelAnimationFrame === 'function') {
+            window.cancelAnimationFrame(this.pendingFocusFrame);
+        }
+        this.pendingFocusFrame = null;
+    }
+
+    restoreCursorFocus = () => {
+        if (this.activeRowId == null) return;
+        const inputEl = document.getElementById(`terminal-input-${this.activeRowId}`);
+        if (!inputEl) return;
+        if (document.activeElement === inputEl) return;
+        this.startCursor(this.activeRowId);
     }
 
     loadProjectsFromData = () => {
@@ -559,16 +638,23 @@ export class Terminal extends Component {
     }
 
     startCursor = (id) => {
+        if (id == null) return;
+        this.activeRowId = id;
         clearInterval(this.cursor);
-        $(`input#terminal-input-${id}`).trigger("focus");
-        $(`input#terminal-input-${id}`).on("input", function () {
-            $(`#cmd span#show-${id}`).text($(this).val());
+        const inputSelector = `input#terminal-input-${id}`;
+        const $input = $(inputSelector);
+        if ($input.length === 0) return;
+        $input.trigger("focus");
+        $input.off('input.terminal');
+        $input.on("input.terminal", function () {
+            $(`#show-${id}`).text($(this).val());
         });
-        this.cursor = window.setInterval(function () {
-            if ($(`#cursor-${id}`).css('visibility') === 'visible') {
-                $(`#cursor-${id}`).css({ visibility: 'hidden' });
+        this.cursor = window.setInterval(() => {
+            const cursorEl = $(`#cursor-${id}`);
+            if (cursorEl.css('visibility') === 'visible') {
+                cursorEl.css({ visibility: 'hidden' });
             } else {
-                $(`#cursor-${id}`).css({ visibility: 'visible' });
+                cursorEl.css({ visibility: 'visible' });
             }
         }, 500);
     }
@@ -580,6 +666,9 @@ export class Terminal extends Component {
 
     removeCursor = (id) => {
         this.stopCursor(id);
+        if (this.activeRowId === id) {
+            this.activeRowId = null;
+        }
         $(`#cursor-${id}`).css({ display: 'none' });
     }
 
@@ -705,7 +794,7 @@ export class Terminal extends Component {
 
     render() {
         return (
-            <div className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold font-mono" id="terminal-body">
+            <div ref={this.terminalRootRef} className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold font-mono" id="terminal-body">
                 {
                     this.state.terminal
                 }
