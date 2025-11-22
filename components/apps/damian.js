@@ -87,7 +87,7 @@ export class AboutDamian extends Component {
         return (
             <div
                 id="about-content-scroll"
-                className="w-full h-full overflow-y-auto bg-gray-100 text-gray-800 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+                className="w-full h-full overflow-y-auto bg-gray-100 text-gray-800 windowMainScreen"
             >
                 {content}
             </div>
