@@ -9,11 +9,13 @@ import { EVENTS, subscribe } from '../base/events';
 export class Terminal extends Component {
     constructor(props) {
         super(props);
-        this.cursor = "";
-        this.terminal_rows = 1;
         this.current_directory = "~";
         this.state = {
             terminal: [],
+            userInput: '',
+            cursorPos: 0,
+            rowId: 1,
+            isFocused: false
         }
 
         this.virtualDirectories = {
@@ -46,9 +48,8 @@ export class Terminal extends Component {
         };
 
         this.emulator = null;
-        this.skipNextRender = false;
-        this.activeRowId = null;
         this.terminalRootRef = React.createRef();
+        this.inputRef = React.createRef();
     }
 
     componentDidMount() {
@@ -59,7 +60,6 @@ export class Terminal extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.cursor);
         if (typeof this.unsubscribeWindowFocused === 'function') {
             this.unsubscribeWindowFocused();
             this.unsubscribeWindowFocused = null;
@@ -77,19 +77,12 @@ export class Terminal extends Component {
         const focusedAppId = payload.app_id;
 
         if (focusedAppId === 'terminal') {
-            const fallbackRowId = this.activeRowId != null ? this.activeRowId : this.terminal_rows - 2;
-            const targetRowId = typeof fallbackRowId === 'number' && fallbackRowId >= 0 ? fallbackRowId : null;
-            if (targetRowId != null) {
-                console.log("Focusing on", this.activeRowId);
-                this.focusCursor(targetRowId);
-            }
+            this.focusCursor();
             return;
         }
 
         // Unfocus the cursor if the event was sent to any other app
-        if (this.activeRowId != null) {
-            this.unFocusCursor(this.activeRowId);
-        }
+        this.unFocusCursor();
     }
 
     extractRepositoriesFromData = (data) => {
@@ -406,23 +399,6 @@ export class Terminal extends Component {
         return this.completePath(token);
     }
 
-    handleTabCompletion = (inputEl, rowId) => {
-        if (!inputEl) return;
-        const value = inputEl.value || '';
-        const cursor = typeof inputEl.selectionStart === 'number' ? inputEl.selectionStart : value.length;
-        const before = value.slice(0, cursor);
-        const after = value.slice(cursor);
-        const completedBefore = this.applyTabCompletion(before);
-        if (!completedBefore) return;
-        const newValue = completedBefore + after;
-        inputEl.value = newValue;
-        if (typeof inputEl.setSelectionRange === 'function') {
-            const newCursor = completedBefore.length;
-            inputEl.setSelectionRange(newCursor, newCursor);
-        }
-        $(`#show-${rowId}`).text(newValue);
-    }
-
     applyTabCompletion = (beforeCursor) => {
         if (beforeCursor == null) return null;
         let start = beforeCursor.length;
@@ -534,183 +510,81 @@ export class Terminal extends Component {
     }
 
     reStartTerminal = () => {
-        clearInterval(this.cursor);
-        this.setState({ terminal: [] }, () => {
-            this.terminal_rows = 1;
-
+        this.setState({ terminal: [], userInput: '', cursorPos: 0, rowId: 1 }, () => {
             const welcomeText = "Welcome to Ubuntu! Type 'help' to see available commands.";
             const cowsay = (
                 <div className="text-white whitespace-pre font-normal" key="welcome-cowsay">
                     {this.getCowsay(welcomeText)}
                 </div>
             );
-
-            this.setState({ terminal: [cowsay] }, () => {
-                this.appendTerminalRow();
-            });
+            this.setState(prevState => ({
+                terminal: [...prevState.terminal, cowsay]
+            }));
         });
     }
 
-    appendTerminalRow = () => {
-        let terminal = [...this.state.terminal];
-        const currentRowId = this.terminal_rows;
-        terminal.push(this.terminalRow(currentRowId));
-        this.setState({ terminal }, () => {
-            this.startCursor(currentRowId);
+    handleInputChange = (e) => {
+        this.setState({
+            userInput: e.target.value,
+            cursorPos: e.target.selectionStart
         });
-        this.terminal_rows += 2;
     }
 
-    terminalRow = (id) => {
-        return (
-            <React.Fragment key={id}>
-                <div className="flex w-full h-5">
-                    <div className="flex">
-                        <div className=" text-ubt-green">damian@ubuntu</div>
-                        <div className="text-white mx-px font-medium">:</div>
-                        <div className=" text-ubt-blue">{this.current_directory}</div>
-                        <div className="text-white mx-px font-medium mr-1">$</div>
-                    </div>
-                    <div id="cmd" className=" bg-transperent relative flex-1 overflow-hidden">
-                        <span id={`show-${id}`} className=" float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider"></span>
-                        <div id={`cursor-${id}`} className=" float-left mt-1 w-1.5 h-3.5 bg-white"></div>
-                        <input id={`terminal-input-${id}`} data-row-id={id} onKeyDown={this.checkKey} onBlur={this.unFocusCursor} className=" absolute top-0 left-0 w-full opacity-0 outline-none bg-transparent" spellCheck={false} autoFocus={true} autoComplete="off" type="text" />
-                    </div>
-                </div>
-                <div id={`row-result-${id}`} className={"my-2 font-normal"}></div>
-            </React.Fragment>
-        );
-    }
-
-    resolveCursorRowId = (source) => {
-        if (typeof source === 'number') return source;
-        if (source && typeof source === 'object') {
-            const event = source.nativeEvent ? source.nativeEvent : source;
-            const directTargetId = event?.target?.dataset?.rowId;
-            if (directTargetId !== undefined) {
-                const parsed = Number(directTargetId);
-                return Number.isNaN(parsed) ? directTargetId : parsed;
-            }
-            const currentTargetId = event?.currentTarget?.dataset?.rowId;
-            if (currentTargetId !== undefined) {
-                const parsed = Number(currentTargetId);
-                return Number.isNaN(parsed) ? currentTargetId : parsed;
-            }
-            const inputEl = event?.currentTarget?.querySelector?.('input[data-row-id]');
-            if (inputEl?.dataset?.rowId !== undefined) {
-                const parsed = Number(inputEl.dataset.rowId);
-                return Number.isNaN(parsed) ? inputEl.dataset.rowId : parsed;
-            }
-        }
-        if (this.activeRowId != null) return this.activeRowId;
-        const fallback = this.terminal_rows - 2;
-        return fallback >= 0 ? fallback : null;
-    }
-
-    focusCursor = (source) => {
-        const rowId = this.resolveCursorRowId(source);
-        if (rowId == null) return;
-        clearInterval(this.cursor);
-        this.startCursor(rowId);
-    }
-
-    unFocusCursor = (source) => {
-        const rowId = this.resolveCursorRowId(source);
-        if (rowId == null) return;
-        this.stopCursor(rowId);
-        const inputEl = document.getElementById(`terminal-input-${rowId}`);
-        if (inputEl && document.activeElement === inputEl) {
-            inputEl.blur();
+    focusCursor = () => {
+        this.setState({ isFocused: true });
+        if (this.inputRef.current) {
+            this.inputRef.current.focus();
         }
     }
 
-    startCursor = (id) => {
-        if (id == null) return;
-        this.activeRowId = id;
-        clearInterval(this.cursor);
-        const inputSelector = `input#terminal-input-${id}`;
-        const $input = $(inputSelector);
-        if ($input.length === 0) return;
-        $input.trigger("focus");
-        $input.off('input.terminal');
-        $input.on("input.terminal", function () {
-            $(`#show-${id}`).text($(this).val());
-        });
-        this.cursor = window.setInterval(() => {
-            const cursorEl = $(`#cursor-${id}`);
-            if (cursorEl.css('visibility') === 'visible') {
-                cursorEl.css({ visibility: 'hidden' });
-            } else {
-                cursorEl.css({ visibility: 'visible' });
-            }
-        }, 500);
-    }
-
-    stopCursor = (id) => {
-        clearInterval(this.cursor);
-        $(`#cursor-${id}`).css({ visibility: 'visible' });
-    }
-
-    removeCursor = (id) => {
-        this.stopCursor(id);
-        if (this.activeRowId === id) {
-            this.activeRowId = null;
+    unFocusCursor = () => {
+        this.setState({ isFocused: false });
+        if (this.inputRef.current) {
+            this.inputRef.current.blur();
         }
-        $(`#cursor-${id}`).css({ display: 'none' });
-    }
-
-    clearInput = (id) => {
-        $(`input#terminal-input-${id}`).trigger("blur");
     }
 
     checkKey = async (e) => {
-        const terminal_row_id = $(e.target).data("row-id");
         if (e.key === "Enter") {
-            let command = $(`input#terminal-input-${terminal_row_id}`).val().trim();
-            if (command.length === 0) return;
-            this.removeCursor(terminal_row_id);
-            await this.handleCommands(command, terminal_row_id);
-            this.clearInput(terminal_row_id);
+            e.preventDefault();
+            if (this.state.userInput.trim().length === 0) return;
+            await this.handleCommands(this.state.userInput.trim());
         }
         else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (!this.emulator) return;
-            const prev_command = await this.emulator.completeUp($(`input#terminal-input-${terminal_row_id}`).val());
+            const prev_command = await this.emulator.completeUp(this.state.userInput);
             if (typeof prev_command === 'string') {
-                $(`input#terminal-input-${terminal_row_id}`).val(prev_command);
-                $(`#show-${terminal_row_id}`).text(prev_command);
+                this.setState({ userInput: prev_command, cursorPos: prev_command.length });
             }
         }
         else if (e.key === "ArrowDown") {
             e.preventDefault();
             if (!this.emulator) return;
-            const next_command = await this.emulator.completeDown($(`input#terminal-input-${terminal_row_id}`).val());
+            const next_command = await this.emulator.completeDown(this.state.userInput);
             const value = typeof next_command === 'string' ? next_command : '';
-            $(`input#terminal-input-${terminal_row_id}`).val(value);
-            $(`#show-${terminal_row_id}`).text(value);
+            this.setState({ userInput: value, cursorPos: value.length });
         }
         else if (e.key === "Tab") {
             e.preventDefault();
-            this.handleTabCompletion(e.target, terminal_row_id);
-        }
-    }
-
-    closeTerminal = () => {
-        $("#close-terminal").trigger('click');
-    }
-
-    handleCommands = async (command, rowId) => {
-        if (!this.emulator) {
-            const resultEl = document.getElementById(`row-result-${rowId}`);
-            if (resultEl) {
-                resultEl.innerHTML = "Initializing terminal...";
+            // Handle tab completion logic manually or adapt existing
+            // For simplicity, reusing a modified version of handleTabCompletion logic inline
+            // or just ignoring it if too complex to refactor in one go.
+            // Let's use the existing helper but adapted.
+            const completed = this.applyTabCompletion(this.state.userInput);
+            if (completed) {
+                this.setState({ userInput: completed, cursorPos: completed.length });
             }
-            this.appendTerminalRow();
-            return;
         }
+    }
+
+    handleCommands = async (command) => {
+        // 1. Commit current row to history
+        const currentRow = this.renderHistoryRow(this.state.rowId, this.current_directory, command, "Processing...", false);
+        // We push it temporarily, or we can just wait for result.
+        // Let's wait for result to be simple.
 
         this.lastCommandInfo = this.parseCommandInfo(command);
-
         let output = "";
         try {
             const commandName = this.lastCommandInfo?.name;
@@ -723,27 +597,44 @@ export class Terminal extends Component {
                 output = await this.emulator.run(command);
             }
         } catch (error) {
-            const errorMessage = typeof error === 'string' ? error : error?.message || 'Unknown error';
-            this.renderCommandResult(rowId, errorMessage);
-            this.appendTerminalRow();
-            return;
+            output = typeof error === 'string' ? error : error?.message || 'Unknown error';
         }
 
-        if (this.skipNextRender) {
-            this.skipNextRender = false;
-            return;
-        }
+        const formattedOutput = this.formatCommandOutput(output);
+        
+        // Commit to history with result
+        const completedRow = this.renderHistoryRow(this.state.rowId, this.current_directory, command, formattedOutput, true);
+        
+        this.setState(prevState => ({
+            terminal: [...prevState.terminal, completedRow],
+            userInput: '',
+            cursorPos: 0,
+            rowId: prevState.rowId + 1
+        }));
 
-        this.renderCommandResult(rowId, output);
         await this.updateCurrentDirectory();
-        this.appendTerminalRow();
     }
 
-    renderCommandResult = (rowId, output) => {
-        const resultEl = document.getElementById(`row-result-${rowId}`);
-        if (!resultEl) return;
-        resultEl.innerHTML = this.formatCommandOutput(output);
+    renderHistoryRow = (id, dir, command, output, hasOutput) => {
+        return (
+            <React.Fragment key={id}>
+                <div className="flex w-full h-5">
+                    <div className="flex">
+                        <div className=" text-ubt-green">damian@ubuntu</div>
+                        <div className="text-white mx-px font-medium">:</div>
+                        <div className=" text-ubt-blue">{dir}</div>
+                        <div className="text-white mx-px font-medium mr-1">$</div>
+                    </div>
+                    <div className="text-white whitespace-pre font-normal">{command}</div>
+                </div>
+                {hasOutput && (
+                    <div className="my-2 font-normal" dangerouslySetInnerHTML={{ __html: output }}></div>
+                )}
+            </React.Fragment>
+        );
     }
+
+
 
     formatCommandOutput = (output) => {
         if (!output) return "";
@@ -779,12 +670,61 @@ export class Terminal extends Component {
         }).join('');
     }
 
+    closeTerminal = () => {
+        $("#close-terminal").trigger('click');
+    }
+
+    componentDidUpdate() {
+        if (this.terminalRootRef.current) {
+            this.terminalRootRef.current.scrollTop = this.terminalRootRef.current.scrollHeight;
+        }
+    }
+
     render() {
+        const { terminal, userInput, isFocused, cursorPos } = this.state;
+        
+        const beforeCursor = userInput.slice(0, cursorPos);
+        const afterCursor = userInput.slice(cursorPos);
+
         return (
-            <div ref={this.terminalRootRef} className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold font-mono" id="terminal-body">
-                {
-                    this.state.terminal
-                }
+            <div 
+                ref={this.terminalRootRef} 
+                className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold font-mono overflow-y-auto" 
+                id="terminal-body"
+                onClick={this.focusCursor}
+            >
+                {terminal}
+                <div className="flex w-full h-5">
+                    <div className="flex">
+                        <div className=" text-ubt-green">damian@ubuntu</div>
+                        <div className="text-white mx-px font-medium">:</div>
+                        <div className=" text-ubt-blue">{this.current_directory}</div>
+                        <div className="text-white mx-px font-medium mr-1">$</div>
+                    </div>
+                    <div className="relative flex-1 overflow-hidden">
+                        <span className="float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider flex">
+                            <span>{beforeCursor}</span>
+                            {isFocused ? (
+                                <span className="w-1.5 h-4 bg-white animate-pulse -mb-1"></span>
+                            ) : (
+                                <span className="w-1.5 h-4"></span>
+                            )}
+                            <span>{afterCursor}</span>
+                        </span>
+                        <input
+                            ref={this.inputRef}
+                            className="absolute top-0 left-0 w-full h-full opacity-0 outline-none bg-transparent cursor-default"
+                            spellCheck={false}
+                            autoFocus={true}
+                            autoComplete="off"
+                            type="text"
+                            value={userInput}
+                            onChange={this.handleInputChange}
+                            onKeyDown={this.checkKey}
+                            onBlur={this.unFocusCursor}
+                        />
+                    </div>
+                </div>
             </div>
         )
     }
