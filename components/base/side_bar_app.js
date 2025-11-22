@@ -22,7 +22,7 @@ export class SideBarApp extends Component {
     }
 
     openApp = () => {
-        if (!this.props.isMinimized[this.id] && this.props.isClose[this.id]) {
+        if (this.props.isOpen) {
             this.scaleImage();
         }
         this.props.openApp(this.id);
@@ -40,14 +40,14 @@ export class SideBarApp extends Component {
                 onMouseLeave={() => {
                     this.setState({ showTitle: false });
                 }}
-                className={(this.props.isClose[this.id] === false && this.props.isFocus ? "bg-white bg-opacity-10 " : "") + " w-auto p-2 outline-none relative transition hover:bg-white hover:bg-opacity-10 rounded m-1"}
+                className={(this.props.isOpen && this.props.isFocus ? "bg-white bg-opacity-10 " : "") + " w-auto p-2 outline-none relative transition hover:bg-white hover:bg-opacity-10 rounded m-1"}
                 id={"sidebar-" + this.props.id}
             >
                 <img width="28px" height="28px" className="w-7" src={this.props.icon} alt="Ubuntu App Icon" />
                 <img className={(this.state.scaleImage ? " scale " : "") + " scalable-app-icon w-7 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"} src={this.props.icon} alt="" />
                 {
                     (
-                        this.props.isClose[this.id] === false
+                        this.props.isOpen
                             ? <div className=" w-1 h-1 absolute left-0 top-1/2 bg-ub-orange rounded-sm"></div>
                             : null
                     )

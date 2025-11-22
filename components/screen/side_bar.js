@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import SideBarApp from '../base/side_bar_app';
 
 let renderApps = (props) => {
-    const focusedAppId = props.focused_windows?.[0];
+    const focusedAppId = props.visible_windows?.[0];
     return props.apps.reduce((sideBarAppsJsx, app, index) => {
         const isPinned = props.favourite_apps.includes(app.id);
-        const isOpen = props.closed_windows[app.id] === false;
+        const isOpen = props.active_windows.includes(app.id);
         if (!isPinned && !isOpen) return sideBarAppsJsx;
         sideBarAppsJsx.push(
             <SideBarApp
@@ -13,10 +13,9 @@ let renderApps = (props) => {
                 id={app.id}
                 title={app.title}
                 icon={app.icon}
-                isClose={props.closed_windows}
+                isOpen={isOpen}
                 isFocus={focusedAppId === app.id}
                 openApp={props.openAppByAppId}
-                isMinimized={props.isMinimized}
             />
         );
         return sideBarAppsJsx;
@@ -40,7 +39,7 @@ export default function SideBar(props) {
             <div className={(props.hide ? " -translate-x-full " : "") + " absolute transform duration-300 select-none z-40 left-0 top-0 h-full pt-7 w-auto flex flex-col justify-start items-center border-black border-opacity-60 bg-black bg-opacity-50"}>
                 {
                     (
-                        Object.keys(props.closed_windows).length !== 0
+                        props.apps.length !== 0
                             ? renderApps(props)
                             : null
                     )

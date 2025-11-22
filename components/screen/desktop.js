@@ -14,20 +14,18 @@ import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } 
 export class Desktop extends Component {
     constructor() {
         super();
-        this.app_stack = [];
-        this.initFavourite = [];
-        this.allWindowClosed = false;
+        this.favorite_apps = [];
         this.cursorControllers = {};
+
         this.cursorEventsBound = false;
         this.bindCursorControllerEvents();
         this.state = {
-            focused_windows: [],
-            closed_windows: {},
+            visible_windows: [],
+            active_windows: [],
             allAppsView: false,
             overlapped_windows: {},
             disabled_apps: {},
             hideSideBar: false,
-            minimized_windows: {},
             desktop_apps: [],
             window_positions: {},
             context_menus: {
@@ -48,8 +46,8 @@ export class Desktop extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.focused_windows[0] !== this.state.focused_windows[0]) {
-            this.applyCursorFocus(this.state.focused_windows[0]);
+        if (prevState.visible_windows[0] !== this.state.visible_windows[0]) {
+            this.applyCursorFocus(this.state.visible_windows[0]);
         }
     }
 
@@ -93,14 +91,14 @@ export class Desktop extends Component {
     }
 
     renderWindows = () => {
-        return this.state.focused_windows.map((appId, index) => {
+        return this.state.visible_windows.map((appId, index) => {
             const app = this.getAppConfigById(appId);
             if (!app) return null;
             
-            // The first item in focused_windows is top-most.
+            // The first item in visible_windows is top-most.
             // To achieve this with z-index, we assign the highest value to index 0.
             // We use a base z-index (e.g., 20) + (total - index).
-            const zIndex = 20 + (this.state.focused_windows.length - index);
+            const zIndex = 20 + (this.state.visible_windows.length - index);
 
             const props = {
                 title: app.title,
@@ -112,7 +110,7 @@ export class Desktop extends Component {
                 isFocused: index === 0,
                 hideSideBar: this.hideSideBar,
                 hasMinimised: this.hasMinimised,
-                minimized: this.state.minimized_windows[appId],
+                minimized: this.state.active_windows.includes(appId) && !this.state.visible_windows.includes(appId),
                 changeBackgroundImage: this.props.changeBackgroundImage,
                 bg_image_name: this.props.bg_image_name,
                 initHeight: app.height,
@@ -126,18 +124,18 @@ export class Desktop extends Component {
     }
 
     giveFocusToLastApp = () => {
-        if (!this.checkAllMinimised() && this.state.focused_windows.length > 0) {
-            this.focus(this.state.focused_windows[0]);
+        if (!this.checkAllMinimised() && this.state.visible_windows.length > 0) {
+            this.focus(this.state.visible_windows[0]);
         }
     }
 
     checkAllMinimised = () => {
-        // If focused_windows is empty, it means all open windows are minimized or closed
-        // (since we remove minimized windows from focused_windows)
-        return this.state.focused_windows.length === 0;
+        // If visible_windows is empty, it means all open windows are minimized or closed
+        // (since we remove minimized windows from visible_windows)
+        return this.state.visible_windows.length === 0;
     }
 
-    applyCursorFocus = (focusedId = this.state.focused_windows[0]) => {
+    applyCursorFocus = (focusedId = this.state.visible_windows[0]) => {
         Object.entries(this.cursorControllers || {}).forEach(([appId, handlers]) => {
             if (!handlers) return;
             const { focusCursor, unfocusCursor } = handlers;
@@ -233,20 +231,17 @@ export class Desktop extends Component {
     }
 
     fetchAppsData = () => {
-        const focused_windows = [];
-        let closed_windows = {}, disabled_apps = {}, favourite_apps = [], overlapped_windows = {}, minimized_windows = {}, window_positions = {};
+        const visible_windows = [];
+        const active_windows = [];
+        let disabled_apps = {}, favourite_apps = [], overlapped_windows = {}, window_positions = {};
         let desktop_apps = [];
         apps.forEach((app) => {
             const isDefaultOpen = (app.id === "about-damian");
             if (isDefaultOpen) {
-                focused_windows.push(app.id);
-                this.app_stack.push(app.id);
+                visible_windows.push(app.id);
+                active_windows.push(app.id);
                 window_positions[app.id] = { x: 60, y: 10 };
             }
-            closed_windows = {
-                ...closed_windows,
-                [app.id]: !isDefaultOpen,
-            };
             disabled_apps = {
                 ...disabled_apps,
                 [app.id]: app.disabled,
@@ -256,67 +251,20 @@ export class Desktop extends Component {
                 ...overlapped_windows,
                 [app.id]: false,
             };
-            minimized_windows = {
-                ...minimized_windows,
-                [app.id]: false,
-            }
             if (app.desktop_shortcut) desktop_apps.push(app.id);
         });
         this.setState({
-            focused_windows,
-            closed_windows,
+            visible_windows,
+            active_windows,
             disabled_apps,
             overlapped_windows,
-            minimized_windows,
             desktop_apps,
             window_positions
         });
-        this.initFavourite = [...favourite_apps];
-    }
-
-    updateAppsData = () => {
-        let closed_windows = {}, favourite_apps = [], minimized_windows = {}, disabled_apps = {}, window_positions = { ...this.state.window_positions };
-        let desktop_apps = [];
-        apps.forEach((app) => {
-            minimized_windows = {
-                ...minimized_windows,
-                [app.id]: ((this.state.minimized_windows[app.id] !== undefined || this.state.minimized_windows[app.id] !== null) ? this.state.minimized_windows[app.id] : false)
-            };
-            disabled_apps = {
-                ...disabled_apps,
-                [app.id]: app.disabled
-            };
-            closed_windows = {
-                ...closed_windows,
-                [app.id]: ((this.state.closed_windows[app.id] !== undefined || this.state.closed_windows[app.id] !== null) ? this.state.closed_windows[app.id] : true)
-            };
-            if (app.favourite) favourite_apps.push(app.id);
-            if (!window_positions[app.id] && !closed_windows[app.id]) {
-                window_positions[app.id] = { x: 60, y: 10 };
-            }
-            if (app.desktop_shortcut) desktop_apps.push(app.id);
-        });
-        
-        let focused_windows = this.state.focused_windows.filter(id => closed_windows[id] === false);
-        apps.forEach((app) => {
-            if (closed_windows[app.id] === false && !focused_windows.includes(app.id)) {
-                focused_windows.push(app.id);
-            }
-        });
-
-        this.setState({
-            focused_windows,
-            closed_windows,
-            disabled_apps,
-            minimized_windows,
-            desktop_apps,
-            window_positions
-        });
-        this.initFavourite = [...favourite_apps];
+        this.favorite_apps = [...favourite_apps];
     }
 
     renderDesktopApps = () => {
-        if (Object.keys(this.state.closed_windows).length === 0) return;
         let appsJsx = [];
         apps.forEach((app, index) => {
             if (this.state.desktop_apps.includes(app.id)) {
@@ -369,9 +317,8 @@ export class Desktop extends Component {
 
     hasMinimised = (objId) => {
         this.setState((prevState) => {
-            const minimized_windows = { ...prevState.minimized_windows, [objId]: true };
-            const focused_windows = prevState.focused_windows.filter(id => id !== objId);
-            return { minimized_windows, focused_windows };
+            const visible_windows = prevState.visible_windows.filter(id => id !== objId);
+            return { visible_windows };
         }, () => {
             this.hideSideBar(null, false);
             this.giveFocusToLastApp();
@@ -390,31 +337,25 @@ export class Desktop extends Component {
         // if the app is disabled
         if (this.state.disabled_apps[objId]) return;
 
-        if (this.state.minimized_windows[objId]) {
-            // focus this app's window
-            this.focus(objId);
+        const isActive = this.state.active_windows.includes(objId);
+        const isVisible = this.state.visible_windows.includes(objId);
 
-            // set window's last position
-            var r = document.querySelector("#" + objId);
-            if (r) {
-                r.style.transform = `translate(${r.style.getPropertyValue("--window-transform-x")},${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+        // If the window is minimized (`isActive` but is not `isVisible`)
+        if (isActive) {
+            this.focus(objId);            
+            if (!isVisible) {
+
+                // set window's last position
+                const windowElement = document.querySelector("#" + objId);
+                if (windowElement) {
+                    windowElement.style.transform = `translate(${windowElement.style.getPropertyValue("--window-transform-x")},${windowElement.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+                }
+                return;
             }
 
-            // tell childs that his app has been not minimised
-            let minimized_windows = { ...this.state.minimized_windows };
-            minimized_windows[objId] = false;
-            this.setState({ minimized_windows: minimized_windows });
             return;
         }
 
-        //if app is already opened
-        if (this.app_stack.includes(objId)) {
-            this.focus(objId);
-            return;
-        }
-        
-        let closed_windows = { ...this.state.closed_windows };
-        let favourite_apps = { ...this.state.favourite_apps };
         var frequentApps = localStorage.getItem('frequentApps') ? JSON.parse(localStorage.getItem('frequentApps')) : [];
         var currentApp = frequentApps.find(app => app.id === objId);
         if (currentApp) {
@@ -441,30 +382,24 @@ export class Desktop extends Component {
 
         setTimeout(() => {
             this.setState((prevState) => {
-                const closed_windows = { ...prevState.closed_windows, [objId]: false };
+                const active_windows = [...prevState.active_windows, objId];
                 const window_positions = { ...prevState.window_positions, [objId]: this.getNextWindowPosition(prevState) };
-                return { closed_windows, window_positions, allAppsView: false };
+                return { active_windows, window_positions, allAppsView: false };
             }, () => {
                 this.focus(objId);
             });
-            if (!this.app_stack.includes(objId)) {
-                this.app_stack.push(objId);
-            }
         }, 200);
     }
 
     closeApp = (objId) => {
-        // remove app from the app stack
-        this.app_stack = this.app_stack.filter(id => id !== objId);
-
         this.hideSideBar(null, false);
 
         this.setState((prevState) => {
-            let closed_windows = { ...prevState.closed_windows, [objId]: true };
+            let active_windows = prevState.active_windows.filter(id => id !== objId);
             const window_positions = { ...prevState.window_positions };
             delete window_positions[objId];
-            const focused_windows = prevState.focused_windows.filter(id => id !== objId);
-            return { closed_windows, window_positions, focused_windows };
+            const visible_windows = prevState.visible_windows.filter(id => id !== objId);
+            return { active_windows, window_positions, visible_windows };
         }, () => {
             this.giveFocusToLastApp();
         });
@@ -472,13 +407,13 @@ export class Desktop extends Component {
 
     focus = (objId) => {
         this.setState((prevState) => {
-            let focused_windows = [...prevState.focused_windows];
-            const idx = focused_windows.indexOf(objId);
+            let visible_windows = [...prevState.visible_windows];
+            const idx = visible_windows.indexOf(objId);
             if (idx !== -1) {
-                focused_windows.splice(idx, 1);
+                visible_windows.splice(idx, 1);
             }
-            focused_windows.unshift(objId);
-            return { focused_windows };
+            visible_windows.unshift(objId);
+            return { visible_windows };
         });
     }
 
@@ -486,8 +421,9 @@ export class Desktop extends Component {
         const baseX = 60;
         const baseY = 10;
         const offset = 30;
+        const activeWindowIds = new Set(state.active_windows || []);
         const positions = Object.entries(state.window_positions || {})
-            .filter(([key]) => !state.closed_windows[key])
+            .filter(([key]) => activeWindowIds.has(key))
             .map(([, value]) => value);
         let x = baseX;
         let y = baseY;
@@ -521,12 +457,11 @@ export class Desktop extends Component {
                 <SideBar apps={apps}
                     hide={this.state.hideSideBar}
                     hideSideBar={this.hideSideBar}
-                    favourite_apps={this.initFavourite}
+                    favourite_apps={this.favorite_apps}
                     showAllApps={this.showAllApps}
                     allAppsView={this.state.allAppsView}
-                    closed_windows={this.state.closed_windows}
-                    focused_windows={this.state.focused_windows}
-                    isMinimized={this.state.minimized_windows}
+                    visible_windows={this.state.visible_windows}
+                    active_windows={this.state.active_windows}
                     openAppByAppId={this.openApp} />
 
                 {/* Desktop Apps */}
@@ -538,9 +473,10 @@ export class Desktop extends Component {
 
                 <div className={`absolute z-20 w-full h-full top-0 left-0 transition-all duration-200 ease-in-out ${this.state.allAppsView ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                     <AllApplications apps={apps}
-                        recentApps={this.app_stack}
+                        recentApps={this.state.active_windows}
                         openApp={this.openApp} />
                 </div>
+
 
             </div>
         )
