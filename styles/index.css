@@ -212,7 +212,32 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
     animation: fadeIn 0.3s ease-in-out forwards;
 }
 
-.blink-cursor {
+.terminal-input-line {
+    position: relative;
+    min-height: 1.25rem;
+    display: block;
+    --cursor-offset: 0px;
+}
+
+.terminal-input-line > span {
+    display: block;
+}
+
+.terminal-input-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--cursor-offset, 0px);
+    width: 1ch;
+    height: 1.1em;
+    background-color: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+
+.terminal-input-line.focused::after {
+    opacity: 1;
     animation: blinkCursor 1s steps(1) infinite;
 }
 

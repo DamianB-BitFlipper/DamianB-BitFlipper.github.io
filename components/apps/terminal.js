@@ -15,7 +15,8 @@ export class Terminal extends Component {
             userInput: '',
             cursorPos: 0,
             rowId: 1,
-            isFocused: false
+            isFocused: false,
+            cursorPixelOffset: 0,
         }
 
         this.virtualDirectories = {
@@ -50,6 +51,7 @@ export class Terminal extends Component {
         this.emulator = null;
         this.terminalRootRef = React.createRef();
         this.inputRef = React.createRef();
+        this.beforeTextRef = React.createRef();
     }
 
     componentDidMount() {
@@ -510,7 +512,7 @@ export class Terminal extends Component {
     }
 
     reStartTerminal = () => {
-        this.setState({ terminal: [], userInput: '', cursorPos: 0, rowId: 1 }, () => {
+        this.setState({ terminal: [], userInput: '', cursorPos: 0, rowId: 1, cursorPixelOffset: 0 }, () => {
             const welcomeText = "Welcome to Ubuntu! Type 'help' to see available commands.";
             const cowsay = (
                 <div className="text-white whitespace-pre font-normal" key="welcome-cowsay">
@@ -524,16 +526,27 @@ export class Terminal extends Component {
     }
 
     handleInputChange = (e) => {
+        const position = typeof e.target.selectionStart === 'number' ? e.target.selectionStart : e.target.value.length;
         this.setState({
             userInput: e.target.value,
-            cursorPos: e.target.selectionStart
-        });
+            cursorPos: position
+        }, this.updateCursorPixelOffset);
     }
 
     handleSelectionChange = (e) => {
         if (!e?.target) return;
         const position = typeof e.target.selectionStart === 'number' ? e.target.selectionStart : 0;
-        this.setState({ cursorPos: position });
+        if (position === this.state.cursorPos) return;
+        this.setState({ cursorPos: position }, this.updateCursorPixelOffset);
+    }
+
+    updateCursorPixelOffset = () => {
+        const beforeEl = this.beforeTextRef.current;
+        if (!beforeEl) return;
+        const width = beforeEl.offsetWidth || 0;
+        if (width !== this.state.cursorPixelOffset) {
+            this.setState({ cursorPixelOffset: width });
+        }
     }
 
     focusCursor = () => {
@@ -541,10 +554,10 @@ export class Terminal extends Component {
         if (input) {
             input.focus();
             const position = typeof input.selectionStart === 'number' ? input.selectionStart : this.state.userInput.length;
-            this.setState({ isFocused: true, cursorPos: position });
+            this.setState({ isFocused: true, cursorPos: position }, this.updateCursorPixelOffset);
             return;
         }
-        this.setState({ isFocused: true });
+        this.setState({ isFocused: true }, this.updateCursorPixelOffset);
     }
 
     unFocusCursor = () => {
@@ -619,7 +632,8 @@ export class Terminal extends Component {
             terminal: [...prevState.terminal, completedRow],
             userInput: '',
             cursorPos: 0,
-            rowId: prevState.rowId + 1
+            rowId: prevState.rowId + 1,
+            cursorPixelOffset: 0,
         }));
 
         await this.updateCurrentDirectory();
@@ -684,17 +698,20 @@ export class Terminal extends Component {
         $("#close-terminal").trigger('click');
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         if (this.terminalRootRef.current) {
             this.terminalRootRef.current.scrollTop = this.terminalRootRef.current.scrollHeight;
+        }
+        if (prevState.userInput !== this.state.userInput || prevState.cursorPos !== this.state.cursorPos) {
+            this.updateCursorPixelOffset();
         }
     }
 
     render() {
-        const { terminal, userInput, isFocused, cursorPos } = this.state;
-        
+        const { terminal, userInput, isFocused, cursorPixelOffset, cursorPos } = this.state;
         const beforeCursor = userInput.slice(0, cursorPos);
         const afterCursor = userInput.slice(cursorPos);
+        const afterDisplay = afterCursor.length > 0 ? afterCursor : '\u00a0';
 
         return (
             <div 
@@ -712,15 +729,15 @@ export class Terminal extends Component {
                         <div className="text-white mx-px font-medium mr-1">$</div>
                     </div>
                     <div className="relative flex-1 overflow-hidden">
-                        <span className="float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider flex">
-                            <span>{beforeCursor}</span>
-                            {isFocused ? (
-                                <span className="w-1.5 h-4 bg-white blink-cursor -mb-1"></span>
-                            ) : (
-                                <span className="w-1.5 h-4"></span>
-                            )}
-                            <span>{afterCursor}</span>
-                        </span>
+                        <div
+                            className={`terminal-input-line${isFocused ? ' focused' : ''}`}
+                            style={{ '--cursor-offset': `${cursorPixelOffset}px` }}
+                        >
+                            <span className="whitespace-pre pb-1 opacity-100 font-normal tracking-wider block">
+                                <span ref={this.beforeTextRef} className="inline-block">{beforeCursor}</span>
+                                <span className="inline-block">{afterDisplay}</span>
+                            </span>
+                        </div>
                         <input
                             ref={this.inputRef}
                             className="absolute top-0 left-0 w-full h-full opacity-0 outline-none bg-transparent cursor-default"
