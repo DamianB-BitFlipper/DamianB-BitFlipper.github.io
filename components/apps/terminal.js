@@ -4,6 +4,7 @@ import ReactGA from 'react-ga4';
 import bashEmulator from 'bash-emulator';
 import { skills, languages, interests } from '../ubuntu_data';
 import projectsData from '../../content/projects.json';
+import { EVENTS, subscribe } from '../base/events';
 
 export class Terminal extends Component {
     constructor(props) {
@@ -30,6 +31,7 @@ export class Terminal extends Component {
         this.homeDirectory = '/home/damian';
         this.virtualFileSystem = {};
         this.lastCommandInfo = null;
+        this.unsubscribeWindowFocused = null;
 
         this.appLaunchCommands = {
             code: "vscode",
@@ -53,19 +55,41 @@ export class Terminal extends Component {
         this.initializeEmulator();
         this.reStartTerminal();
         this.loadProjectsFromData();
+        this.unsubscribeWindowFocused = subscribe(EVENTS.WINDOW_FOCUSED, this.handleWindowFocusedEvent);
     }
 
     componentWillUnmount() {
         clearInterval(this.cursor);
+        if (typeof this.unsubscribeWindowFocused === 'function') {
+            this.unsubscribeWindowFocused();
+            this.unsubscribeWindowFocused = null;
+        }
     }
-
-
 
 
     loadProjectsFromData = () => {
         const repos = this.extractRepositoriesFromData(projectsData);
         this.projectTextFiles = repos.map(repo => this.mapRepoToFile(repo));
         this.refreshVirtualFileSystem();
+    }
+
+    handleWindowFocusedEvent = (payload) => {
+        const focusedAppId = payload.app_id;
+
+        if (focusedAppId === 'terminal') {
+            const fallbackRowId = this.activeRowId != null ? this.activeRowId : this.terminal_rows - 2;
+            const targetRowId = typeof fallbackRowId === 'number' && fallbackRowId >= 0 ? fallbackRowId : null;
+            if (targetRowId != null) {
+                console.log("Focusing on", this.activeRowId);
+                this.focusCursor(targetRowId);
+            }
+            return;
+        }
+
+        // Unfocus the cursor if the event was sent to any other app
+        if (this.activeRowId != null) {
+            this.unFocusCursor(this.activeRowId);
+        }
     }
 
     extractRepositoriesFromData = (data) => {
@@ -547,7 +571,7 @@ export class Terminal extends Component {
                         <div className=" text-ubt-blue">{this.current_directory}</div>
                         <div className="text-white mx-px font-medium mr-1">$</div>
                     </div>
-                    <div id="cmd" onClick={this.focusCursor} className=" bg-transperent relative flex-1 overflow-hidden">
+                    <div id="cmd" className=" bg-transperent relative flex-1 overflow-hidden">
                         <span id={`show-${id}`} className=" float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider"></span>
                         <div id={`cursor-${id}`} className=" float-left mt-1 w-1.5 h-3.5 bg-white"></div>
                         <input id={`terminal-input-${id}`} data-row-id={id} onKeyDown={this.checkKey} onBlur={this.unFocusCursor} className=" absolute top-0 left-0 w-full opacity-0 outline-none bg-transparent" spellCheck={false} autoFocus={true} autoComplete="off" type="text" />
