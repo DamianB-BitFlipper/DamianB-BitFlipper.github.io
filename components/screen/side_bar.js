@@ -2,14 +2,23 @@ import React, { useState } from 'react'
 import SideBarApp from '../base/side_bar_app';
 
 let renderApps = (props) => {
-    let sideBarAppsJsx = [];
-    props.apps.forEach((app, index) => {
-        if (props.favourite_apps[app.id] === false) return;
+    const focusedAppId = props.focused_windows?.[0];
+    return props.apps.reduce((sideBarAppsJsx, app, index) => {
+        if (props.favourite_apps[app.id] === false) return sideBarAppsJsx;
         sideBarAppsJsx.push(
-            <SideBarApp key={index} id={app.id} title={app.title} icon={app.icon} isClose={props.closed_windows} isFocus={props.focused_windows} openApp={props.openAppByAppId} isMinimized={props.isMinimized} openFromMinimised={props.openFromMinimised} />
+            <SideBarApp
+                key={index}
+                id={app.id}
+                title={app.title}
+                icon={app.icon}
+                isClose={props.closed_windows}
+                isFocus={focusedAppId === app.id}
+                openApp={props.openAppByAppId}
+                isMinimized={props.isMinimized}
+            />
         );
-    });
-    return sideBarAppsJsx;
+        return sideBarAppsJsx;
+    }, []);
 }
 
 export default function SideBar(props) {

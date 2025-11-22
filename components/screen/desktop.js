@@ -126,14 +126,6 @@ export class Desktop extends Component {
         });
     }
 
-    getFocusedWindowsMap = () => {
-        const map = {};
-        apps.forEach((app) => {
-            map[app.id] = this.state.focused_windows[0] === app.id;
-        });
-        return map;
-    }
-
     giveFocusToLastApp = () => {
         if (!this.checkAllMinimised() && this.state.focused_windows.length > 0) {
             this.focus(this.state.focused_windows[0]);
@@ -545,7 +537,7 @@ export class Desktop extends Component {
                     showAllApps={this.showAllApps}
                     allAppsView={this.state.allAppsView}
                     closed_windows={this.state.closed_windows}
-                    focused_windows={this.getFocusedWindowsMap()}
+                    focused_windows={this.state.focused_windows}
                     isMinimized={this.state.minimized_windows}
                     openAppByAppId={this.openApp} />
 
