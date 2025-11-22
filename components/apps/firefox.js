@@ -69,10 +69,10 @@ export class Firefox extends Component {
         return (
             <div className="w-full pt-0.5 pb-1 flex justify-start items-center text-white text-sm border-b border-gray-900">
                 <div onClick={this.refreshFirefox} className=" ml-2 mr-1 flex justify-center items-center rounded-full bg-gray-50 bg-opacity-0 hover:bg-opacity-10">
-                    <img className="w-5" src="./themes/Yaru/status/chrome_refresh.svg" alt="Ubuntu Firefox Refresh" />
+                    <img className="w-5" src="./themes/status/chrome_refresh.svg" alt="Ubuntu Firefox Refresh" />
                 </div>
                 <div onClick={this.goToHome} className=" mr-2 ml-1 flex justify-center items-center rounded-full bg-gray-50 bg-opacity-0 hover:bg-opacity-10">
-                    <img className="w-5" src="./themes/Yaru/status/chrome_home.svg" alt="Ubuntu Firefox Home" />
+                    <img className="w-5" src="./themes/status/chrome_home.svg" alt="Ubuntu Firefox Home" />
                 </div>
                 <input onKeyDown={this.checkKey} onChange={this.handleDisplayUrl} value={this.state.display_url} id="firefox-url-bar" className="outline-none bg-ub-grey rounded-full pl-3 py-0.5 mr-3 w-5/6 text-gray-300 focus:text-white" type="url" spellCheck={false} autoComplete="off" />
             </div>

@@ -266,7 +266,7 @@ export function WindowEditButtons(props) {
         <div className="absolute select-none right-0 top-0 mt-1 mr-1 flex justify-center items-center">
             <span className="mx-1.5 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full flex justify-center mt-1 h-5 w-5 items-center" onClick={props.minimize}>
                 <img
-                    src="./themes/Yaru/status/window-minimize-symbolic.svg"
+                    src="./themes/status/window-minimize-symbolic.svg"
                     alt="ubuntu window minimize"
                     className="h-5 w-5 inline"
                 />
@@ -276,7 +276,7 @@ export function WindowEditButtons(props) {
                     ?
                     <span className="mx-2 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full flex justify-center mt-1 h-5 w-5 items-center" onClick={props.maximize}>
                         <img
-                            src="./themes/Yaru/status/window-restore-symbolic.svg"
+                            src="./themes/status/window-restore-symbolic.svg"
                             alt="ubuntu window restore"
                             className="h-5 w-5 inline"
                         />
@@ -284,7 +284,7 @@ export function WindowEditButtons(props) {
                     :
                     <span className="mx-2 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full flex justify-center mt-1 h-5 w-5 items-center" onClick={props.maximize}>
                         <img
-                            src="./themes/Yaru/status/window-maximize-symbolic.svg"
+                            src="./themes/status/window-maximize-symbolic.svg"
                             alt="ubuntu window maximize"
                             className="h-5 w-5 inline"
                         />
@@ -293,7 +293,7 @@ export function WindowEditButtons(props) {
             }
             <button tabIndex="-1" id={`close-${props.id}`} className="mx-1.5 focus:outline-none cursor-default bg-ub-orange bg-opacity-90 hover:bg-opacity-100 rounded-full flex justify-center mt-1 h-5 w-5 items-center" onClick={props.close}>
                 <img
-                    src="./themes/Yaru/status/window-close-symbolic.svg"
+                    src="./themes/status/window-close-symbolic.svg"
                     alt="ubuntu window close"
                     className="h-5 w-5 inline"
                 />

@@ -140,7 +140,7 @@ const apps = [
     {
         id: "trash",
         title: "Trash",
-        icon: './themes/Yaru/status/user-trash-full.png',
+        icon: './themes/status/user-trash-full.png',
         favourite: false,
         desktop_shortcut: true,
         screen: displayTrash,
