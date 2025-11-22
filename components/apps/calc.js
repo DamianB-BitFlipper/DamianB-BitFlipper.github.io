@@ -42,11 +42,19 @@ export class Calc extends CLI {
         this.reStartTerminal();
     }
 
+    getIntroLines = () => ([
+        <div key="intro-1" className="text-ubt-grey">C-style arbitary precision calculator (version 2.12.7.2)</div>,
+        <div key="intro-2" className="text-ubt-grey">Calc is open software.</div>,
+        <div key="intro-3" className="text-ubt-grey mb-1">[ type "exit" to exit, "clear" to clear, "help" for help. ]</div>,
+    ]);
+
     reStartTerminal = () => {
         this.setState({ 
-            outputList: [],
+            outputList: this.getIntroLines(),
             userInput: '',
             cursorPos: 0,
+            commandHistory: [],
+            historyIndex: -1,
             variables: {}
         });
     }
@@ -135,9 +143,6 @@ export class Calc extends CLI {
     render() {
         return (
             <div className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal flex flex-col">
-                <div>C-style arbitary precision calculator (version 2.12.7.2)</div>
-                <div>Calc is open software.</div>
-                <div className="mb-1">[ type "exit" to exit, "clear" to clear, "help" for help.]</div>
                 <div 
                     ref={this.containerRef}
                     className="text-white text-sm font-bold bg-ub-drk-abrgn overflow-y-auto flex-1" 
