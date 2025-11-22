@@ -13,6 +13,7 @@ export class Cheese extends Component {
         this.unsubscribeWindowMinimized = null;
         this.unsubscribeWindowRestored = null;
         this.unsubscribeWindowClosed = null;
+        this.pendingStreamRequest = null;
     }
 
     componentDidMount() {
@@ -48,23 +49,31 @@ export class Cheese extends Component {
  
     startCamera = async () => {
 
-        if (this.state.stream) {
+        if (this.state.stream || this.pendingStreamRequest) {
             return;
         }
+
+        this.pendingStreamRequest = navigator.mediaDevices.getUserMedia({ video: true });
+
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            this.setState({ stream }, () => {
+            const stream = await this.pendingStreamRequest;
+            this.pendingStreamRequest = null;
+
+            this.setState({ stream, error: null }, () => {
                 if (this.videoRef.current) {
                     this.videoRef.current.srcObject = stream;
                 }
             });
         } catch (err) {
+            this.pendingStreamRequest = null;
             this.setState({ error: "Could not access the camera. Please ensure you have given permission." });
         }
     }
  
     stopCamera = () => {
-        const { stream } = this.state;
+
+        const stream = this.state.stream;
+
         if (!stream) {
             return;
         }
@@ -84,7 +93,6 @@ export class Cheese extends Component {
             <div className="w-full h-full bg-ub-cool-grey flex flex-col justify-center items-center text-white relative">
                 {this.state.error ? (
                     <div className="text-center p-4">
-                        <img src="./themes/Yaru/status/dialog-error.svg" alt="Error" className="w-16 h-16 mx-auto mb-4" />
                         <p className="text-lg">{this.state.error}</p>
                     </div>
                 ) : (
