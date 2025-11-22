@@ -5,7 +5,7 @@ import LockScreen from './os_screens/lock_screen';
 import TopBar from './os_screens/top_bar';
 import ReactGA from 'react-ga4';
 
-export default class Ubuntu extends Component {
+export default class UbuntuApp extends Component {
 	constructor() {
 		super();
 		this.state = {
