@@ -530,11 +530,21 @@ export class Terminal extends Component {
         });
     }
 
+    handleSelectionChange = (e) => {
+        if (!e?.target) return;
+        const position = typeof e.target.selectionStart === 'number' ? e.target.selectionStart : 0;
+        this.setState({ cursorPos: position });
+    }
+
     focusCursor = () => {
-        this.setState({ isFocused: true });
-        if (this.inputRef.current) {
-            this.inputRef.current.focus();
+        const input = this.inputRef.current;
+        if (input) {
+            input.focus();
+            const position = typeof input.selectionStart === 'number' ? input.selectionStart : this.state.userInput.length;
+            this.setState({ isFocused: true, cursorPos: position });
+            return;
         }
+        this.setState({ isFocused: true });
     }
 
     unFocusCursor = () => {
@@ -705,7 +715,7 @@ export class Terminal extends Component {
                         <span className="float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider flex">
                             <span>{beforeCursor}</span>
                             {isFocused ? (
-                                <span className="w-1.5 h-4 bg-white animate-pulse -mb-1"></span>
+                                <span className="w-1.5 h-4 bg-white blink-cursor -mb-1"></span>
                             ) : (
                                 <span className="w-1.5 h-4"></span>
                             )}
@@ -720,7 +730,9 @@ export class Terminal extends Component {
                             type="text"
                             value={userInput}
                             onChange={this.handleInputChange}
+                            onSelect={this.handleSelectionChange}
                             onKeyDown={this.checkKey}
+                            onKeyUp={this.handleSelectionChange}
                             onBlur={this.unFocusCursor}
                         />
                     </div>

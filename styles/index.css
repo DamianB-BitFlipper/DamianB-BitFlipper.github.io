@@ -211,3 +211,19 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
 .animate-fade-in {
     animation: fadeIn 0.3s ease-in-out forwards;
 }
+
+.blink-cursor {
+    animation: blinkCursor 1s steps(1) infinite;
+}
+
+@keyframes blinkCursor {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
