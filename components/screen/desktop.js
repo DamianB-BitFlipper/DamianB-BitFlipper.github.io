@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { EVENTS, publishEvent } from '../base/events';
 import BackgroundImage from '../util components/background-image';
 import SideBar from './side_bar';
 import apps from '../../apps.config';
@@ -394,6 +395,8 @@ export class Desktop extends Component {
             // The application is put to the front of the `visible_windows`
             visible_windows.unshift(objId);
             return { visible_windows: visible_windows };
+        }, () => {
+            publishEvent(EVENTS.WINDOW_FOCUSED, { app_id: objId });
         });
     }
 
