@@ -35,13 +35,13 @@ export class AboutDamian extends Component {
 
     getIcon = (title) => {
         const map = {
-            "About Me": "./themes/status/about.svg",
-            "Education": "./themes/status/education.svg",
-            "Experience": "./themes/status/experience.svg",
-            "Projects": "./themes/status/projects.svg",
-            "Resume": "./themes/status/download.svg"
+            "About Me": "./themes/system_icons/about.svg",
+            "Education": "./themes/system_icons/education.svg",
+            "Experience": "./themes/system_icons/experience.svg",
+            "Projects": "./themes/system_icons/projects.svg",
+            "Resume": "./themes/system_icons/download.svg"
         };
-        return map[title] || "./themes/status/about.svg";
+        return map[title] || "./themes/system_icons/about.svg";
     }
 
     renderNavLinks = () => {
@@ -178,7 +178,7 @@ const AboutSection = ({ data }) => {
         <div className="flex flex-col items-center w-full p-8 md:p-12 max-w-4xl">
             {data.image && (
                 <div className="w-32 md:w-40 mb-6 bg-white p-1 rounded-full shadow-xl">
-                    <img className="w-full rounded-full" src={data.image} alt="Profile" onError={(e) => { e.target.src = "./themes/status/user-home.png" }} />
+                    <img className="w-full rounded-full" src={data.image} alt="Profile" onError={(e) => { e.target.src = "./themes/system_icons/user-home.png" }} />
                 </div>
             )}
             <div className="text-center">

@@ -71,7 +71,7 @@ export function AllApps(props) {
             onClick={props.showApps}
         >
             <div className="relative">
-                <img width="28px" height="28px" className="w-7" src="./themes/status/view-app-grid-symbolic.svg" alt="Ubuntu view app" />
+                <img width="28px" height="28px" className="w-7" src="./themes/system_icons/view-app-grid-symbolic.svg" alt="Ubuntu view app" />
                 <div
                     className={
                         (title ? " visible " : " invisible ") +

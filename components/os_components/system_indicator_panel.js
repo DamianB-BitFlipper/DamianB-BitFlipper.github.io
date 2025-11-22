@@ -8,7 +8,7 @@ export function PanelSummary() {
 			<span className="mx-1.5">
 				<img
 					width="16px" height="16px"
-					src="./themes/status/network-wireless-signal-good-symbolic.svg"
+					src="./themes/system_icons/network-wireless-signal-good-symbolic.svg"
 					alt="ubuntu wifi"
 					className="inline status-symbol w-4 h-4"
 				/>
@@ -16,7 +16,7 @@ export function PanelSummary() {
 			<span className="mx-1.5">
 				<img
 					width="16px" height="16px"
-					src="./themes/status/audio-volume-medium-symbolic.svg"
+					src="./themes/system_icons/audio-volume-medium-symbolic.svg"
 					alt="ubuntu sound"
 					className="inline status-symbol w-4 h-4"
 				/>
@@ -24,7 +24,7 @@ export function PanelSummary() {
 			<span className="mx-1.5">
 				<img
 					width="16px" height="16px"
-					src="./themes/status/battery-good-symbolic.svg"
+					src="./themes/system_icons/battery-good-symbolic.svg"
 					alt="ubuntu battery"
 					className="inline status-symbol w-4 h-4"
 				/>
@@ -101,7 +101,7 @@ export class SystemIndicatorPanel extends Component {
 				<div className="absolute w-0 h-0 -top-1 right-6 top-arrow-up" />
 				<div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/audio-headphones-symbolic.svg" alt="ubuntu headphone" />
+						<img width="16px" height="16px" src="./themes/system_icons/audio-headphones-symbolic.svg" alt="ubuntu headphone" />
 					</div>
 					<Slider
 						onChange={this.handleSound}
@@ -112,7 +112,7 @@ export class SystemIndicatorPanel extends Component {
 				</div>
 				<div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/display-brightness-symbolic.svg" alt="ubuntu brightness" />
+						<img width="16px" height="16px" src="./themes/system_icons/display-brightness-symbolic.svg" alt="ubuntu brightness" />
 					</div>
 					<Slider
 						onChange={this.handleBrightness}
@@ -126,7 +126,7 @@ export class SystemIndicatorPanel extends Component {
 				</div>
 				<div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/network-wireless-signal-good-symbolic.svg" alt="ubuntu wifi" />
+						<img width="16px" height="16px" src="./themes/system_icons/network-wireless-signal-good-symbolic.svg" alt="ubuntu wifi" />
 					</div>
 					<div className="w-2/3 flex items-center justify-between text-gray-400">
 						<span>Wired Connection</span>
@@ -135,7 +135,7 @@ export class SystemIndicatorPanel extends Component {
 				</div>
 				<div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/bluetooth-symbolic.svg" alt="ubuntu bluetooth" />
+						<img width="16px" height="16px" src="./themes/system_icons/bluetooth-symbolic.svg" alt="ubuntu bluetooth" />
 					</div>
 					<div className="w-2/3 flex items-center justify-between text-gray-400">
 						<span>Off</span>
@@ -144,7 +144,7 @@ export class SystemIndicatorPanel extends Component {
 				</div>
 				<div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/battery-good-symbolic.svg" alt="ubuntu battery" />
+						<img width="16px" height="16px" src="./themes/system_icons/battery-good-symbolic.svg" alt="ubuntu battery" />
 					</div>
 					<div className="w-2/3 flex items-center justify-between text-gray-400">
 						<span>2:40 Remaining (75%)</span>
@@ -159,7 +159,7 @@ export class SystemIndicatorPanel extends Component {
 					className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20"
 				>
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/emblem-system-symbolic.svg" alt="ubuntu settings" />
+						<img width="16px" height="16px" src="./themes/system_icons/emblem-system-symbolic.svg" alt="ubuntu settings" />
 					</div>
 					<div className="w-2/3 flex items-center justify-between">
 						<span>Settings</span>
@@ -170,7 +170,7 @@ export class SystemIndicatorPanel extends Component {
 					className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20"
 				>
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/changes-prevent-symbolic.svg" alt="ubuntu lock" />
+						<img width="16px" height="16px" src="./themes/system_icons/changes-prevent-symbolic.svg" alt="ubuntu lock" />
 					</div>
 					<div className="w-2/3 flex items-center justify-between">
 						<span>Lock</span>
@@ -181,7 +181,7 @@ export class SystemIndicatorPanel extends Component {
 					className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20"
 				>
 					<div className="w-8">
-						<img width="16px" height="16px" src="./themes/status/system-shutdown-symbolic.svg" alt="ubuntu power" />
+						<img width="16px" height="16px" src="./themes/system_icons/system-shutdown-symbolic.svg" alt="ubuntu power" />
 					</div>
 					<div className="w-2/3 flex items-center justify-between">
 						<span>Power Off / Log Out</span>

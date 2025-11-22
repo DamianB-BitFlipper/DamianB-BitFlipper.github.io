@@ -7,40 +7,40 @@ export class Trash extends Component {
         this.trashItems = [
             {
                 name: "php",
-                icon: "./themes/status/php.png"
+                icon: "./themes/system_icons/php.png"
             },
             {
                 name: "Angular.js",
-                icon: "./themes/status/js.png"
+                icon: "./themes/system_icons/js.png"
             },
             {
                 name: "Code.java",
-                icon: "./themes/status/java.png"
+                icon: "./themes/system_icons/java.png"
             },
             {
                 name: "Windows.exe",
-                icon: "./themes/status/windows.png"
+                icon: "./themes/system_icons/windows.png"
             },
             {
                 name: "node_modules",
-                icon: "./themes/status/folder.png"
+                icon: "./themes/system_icons/folder.png"
             },
 
             {
                 name: "abandoned project",
-                icon: "./themes/status/folder.png"
+                icon: "./themes/system_icons/folder.png"
             },
             {
                 name: "Old Assignment.zip",
-                icon: "./themes/status/zip.png"
+                icon: "./themes/system_icons/zip.png"
             },
             {
                 name: "project final",
-                icon: "./themes/status/folder.png"
+                icon: "./themes/system_icons/folder.png"
             },
             {
                 name: "project ultra-final",
-                icon: "./themes/status/folder.png"
+                icon: "./themes/system_icons/folder.png"
             },
 
         ];
@@ -77,7 +77,7 @@ export class Trash extends Component {
     emptyScreen = () => {
         return (
             <div className="flex-grow flex flex-col justify-center items-center">
-                <img className=" w-24" src="./themes/status/user-trash-symbolic.svg" alt="Ubuntu Trash" />
+                <img className=" w-24" src="./themes/system_icons/user-trash-symbolic.svg" alt="Ubuntu Trash" />
                 <span className="font-bold mt-4 text-xl px-1 text-gray-400">Trash is Empty</span>
             </div>
         );

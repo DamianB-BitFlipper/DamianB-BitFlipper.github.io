@@ -82,7 +82,7 @@ function Background(props) {
 function AboutOS() {
     return (
         <div className="w-full h-full flex flex-col justify-center items-center text-center p-4 bg-ub-cool-grey">
-             <img src="./themes/status/about.svg" alt="Ubuntu Logo" className="w-24 h-24 mb-4" />
+             <img src="./themes/system_icons/about.svg" alt="Ubuntu Logo" className="w-24 h-24 mb-4" />
              <div className="text-2xl font-bold mb-2 text-white">Ubuntu 20.04 LTS</div>
              <div className="text-lg mb-6 text-gray-300">Web Simulation</div>
              

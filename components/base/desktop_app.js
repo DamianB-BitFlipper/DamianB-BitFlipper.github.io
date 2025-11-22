@@ -24,7 +24,7 @@ export class DesktopApp extends Component {
                         <img width="40px" height="40px" className="mb-1 w-10" src={this.props.icon} alt={"Ubuntu " + this.props.name} />
                         {this.props.isExternalApp && (
                             <img 
-                                src="./themes/status/arrow-up-right.svg" 
+                                src="./themes/system_icons/arrow-up-right.svg" 
                                 alt="External Link" 
                                 className="w-2.5 h-2.5 absolute -bottom-0.5 -right-0.5"
                             />
