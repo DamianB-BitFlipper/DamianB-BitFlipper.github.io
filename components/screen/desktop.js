@@ -22,7 +22,7 @@ export class Desktop extends Component {
         this.bindCursorControllerEvents();
         this.state = {
             visible_windows: [],
-            active_windows: [],
+            active_windows: new Set(),
             window_positions: {},
             allAppsView: false,
             windows_over_sidebar: new Set(),
@@ -110,7 +110,7 @@ export class Desktop extends Component {
                 isFocused: index === 0,
                 hideSideBar: this.hideSideBar,
                 hasMinimised: this.hasMinimised,
-                minimized: this.state.active_windows.includes(appId) && !this.state.visible_windows.includes(appId),
+                minimized: this.state.active_windows.has(appId) && !this.state.visible_windows.includes(appId),
                 changeBackgroundImage: this.props.changeBackgroundImage,
                 bg_image_name: this.props.bg_image_name,
                 initHeight: app.height,
@@ -233,7 +233,7 @@ export class Desktop extends Component {
 
     fetchAppsData = () => {
         const visible_windows = [];
-        const active_windows = [];
+        const active_windows = new Set();
         let favourite_apps = [], window_positions = {};
         let desktop_apps = [];
         const windows_over_sidebar = new Set();
@@ -242,7 +242,7 @@ export class Desktop extends Component {
             if (isDefaultOpen) {
                 // Always add new apps from the front
                 visible_windows.unshift(app.id);
-                active_windows.push(app.id);
+                active_windows.add(app.id);
                 window_positions[app.id] = this.getNextWindowPosition({
                     active_windows,
                     window_positions,
@@ -360,7 +360,7 @@ export class Desktop extends Component {
             action: `Opened ${objId} window`
         });
 
-        const isActive = this.state.active_windows.includes(objId);
+        const isActive = this.state.active_windows.has(objId);
         const isVisible = this.state.visible_windows.includes(objId);
 
         // If the window is minimized (`isActive` but is not `isVisible`)
@@ -406,7 +406,8 @@ export class Desktop extends Component {
 
         setTimeout(() => {
             this.setState((prevState) => {
-                const active_windows = [...prevState.active_windows, objId];
+                const active_windows = new Set(prevState.active_windows || []);
+                active_windows.add(objId);
                 const window_positions = { ...prevState.window_positions, [objId]: this.getNextWindowPosition(prevState) };
                 return {
                     active_windows: active_windows,
@@ -423,7 +424,8 @@ export class Desktop extends Component {
         this.hideSideBar(null, false);
 
         this.setState((prevState) => {
-            let active_windows = prevState.active_windows.filter(id => id !== objId);
+            const active_windows = new Set(prevState.active_windows || []);
+            active_windows.delete(objId);
             const window_positions = { ...prevState.window_positions };
             delete window_positions[objId];
             const visible_windows = prevState.visible_windows.filter(id => id !== objId);
@@ -505,7 +507,6 @@ export class Desktop extends Component {
 
                 <div className={`absolute z-20 w-full h-full top-0 left-0 transition-all duration-200 ease-in-out ${this.state.allAppsView ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                     <AllApplications apps={apps}
-                        recentApps={this.state.active_windows}
                         openApp={this.openApp} />
                 </div>
 

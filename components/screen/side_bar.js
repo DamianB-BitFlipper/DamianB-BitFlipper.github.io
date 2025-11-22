@@ -5,7 +5,10 @@ let renderApps = (props) => {
     const focusedAppId = props.visible_windows?.[0];
     return props.apps.reduce((sideBarAppsJsx, app, index) => {
         const isPinned = props.favourite_apps.includes(app.id);
-        const isOpen = props.active_windows.includes(app.id);
+        const activeWindows = props.active_windows instanceof Set
+            ? props.active_windows
+            : new Set(props.active_windows || []);
+        const isOpen = activeWindows.has(app.id);
         if (!isPinned && !isOpen) return sideBarAppsJsx;
         sideBarAppsJsx.push(
             <SideBarApp
