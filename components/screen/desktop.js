@@ -112,11 +112,6 @@ export class Desktop extends Component {
         return new Map();
     }
 
-    getOrderedFocusedEntries = (source = this.state.focused_windows) => {
-        const focusedMap = this.getFocusedMapFromState(source);
-        return Array.from(focusedMap.entries());
-    }
-
     getFirstFocusedWindowId = (source = this.state.focused_windows) => {
         const focusedMap = this.getFocusedMapFromState(source);
         const iterator = focusedMap.keys().next();
@@ -340,35 +335,9 @@ export class Desktop extends Component {
         return appsJsx;
     }
 
-    getWindowRenderOrder = () => {
-        if (!this.state.closed_windows) return [];
-        const focusedEntries = this.getOrderedFocusedEntries();
-        const orderedOpenIds = [];
-        const openIdSet = new Set();
-        focusedEntries.forEach(([appId]) => {
-            if (this.state.closed_windows[appId] === false && !openIdSet.has(appId)) {
-                orderedOpenIds.push(appId);
-                openIdSet.add(appId);
-            }
-        });
-        apps.forEach(app => {
-            if (!openIdSet.has(app.id) && this.state.closed_windows[app.id] === false) {
-                orderedOpenIds.push(app.id);
-                openIdSet.add(app.id);
-            }
-        });
-        return orderedOpenIds;
-    }
-
     getWindowRenderEntries = () => {
-        const orderedIds = this.getWindowRenderOrder();
         const focusedMap = this.getFocusedMapFromState(this.state.focused_windows);
-        return orderedIds
-            .map((appId) => {
-                const appConfig = focusedMap.get(appId) || this.getAppConfigById(appId);
-                return [appId, appConfig];
-            })
-            .filter(([, appConfig]) => Boolean(appConfig));
+        return Array.from(focusedMap.entries());
     }
 
     renderWindows = () => {
