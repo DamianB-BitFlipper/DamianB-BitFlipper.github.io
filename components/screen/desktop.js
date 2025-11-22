@@ -15,6 +15,7 @@ export class Desktop extends Component {
     constructor() {
         super();
         this.favorite_apps = [];
+        this.desktop_apps = [];
         this.cursorControllers = {};
 
         this.cursorEventsBound = false;
@@ -25,7 +26,6 @@ export class Desktop extends Component {
             allAppsView: false,
             overlapped_windows: {},
             hideSideBar: false,
-            desktop_apps: [],
             window_positions: {},
             context_menus: {
                 desktop: false,
@@ -253,16 +253,16 @@ export class Desktop extends Component {
             visible_windows: visible_windows,
             active_windows: active_windows,
             overlapped_windows: overlapped_windows,
-            desktop_apps: desktop_apps,
             window_positions: window_positions
         });
         this.favorite_apps = [...favourite_apps];
+        this.desktop_apps = [...desktop_apps];
     }
 
     renderDesktopApps = () => {
         let appsJsx = [];
         apps.forEach((app, index) => {
-            if (this.state.desktop_apps.includes(app.id)) {
+            if (this.desktop_apps.includes(app.id)) {
 
                 const props = {
                     name: app.title,
