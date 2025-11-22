@@ -134,13 +134,13 @@ export class Calc extends CLI {
 
     render() {
         return (
-            <div className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal">
+            <div className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal flex flex-col">
                 <div>C-style arbitary precision calculator (version 2.12.7.2)</div>
                 <div>Calc is open software.</div>
-                <div>[ type "exit" to exit, "clear" to clear, "help" for help.]</div>
+                <div className="mb-1">[ type "exit" to exit, "clear" to clear, "help" for help.]</div>
                 <div 
                     ref={this.containerRef}
-                    className="text-white text-sm font-bold bg-ub-drk-abrgn overflow-y-auto h-full" 
+                    className="text-white text-sm font-bold bg-ub-drk-abrgn overflow-y-auto flex-1" 
                     id="calculator-body"
                     onClick={this.focusCursor}
                 >
