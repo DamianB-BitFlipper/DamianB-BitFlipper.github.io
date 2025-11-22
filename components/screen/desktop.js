@@ -23,10 +23,11 @@ export class Desktop extends Component {
         this.state = {
             visible_windows: [],
             active_windows: [],
-            allAppsView: false,
-            overlapped_windows: {},
-            hideSideBar: false,
             window_positions: {},
+            allAppsView: false,
+            windows_over_sidebar: {},
+            hideSideBar: false,
+            // Right click sub-menus to show
             context_menus: {
                 desktop: false,
                 default: false,
@@ -233,7 +234,7 @@ export class Desktop extends Component {
     fetchAppsData = () => {
         const visible_windows = [];
         const active_windows = [];
-        let favourite_apps = [], overlapped_windows = {}, window_positions = {};
+        let favourite_apps = [], windows_over_sidebar = {}, window_positions = {};
         let desktop_apps = [];
         apps.forEach((app) => {
             const isDefaultOpen = (app.id === "about-damian");
@@ -243,8 +244,8 @@ export class Desktop extends Component {
                 window_positions[app.id] = { x: 60, y: 10 };
             }
             if (app.favourite) favourite_apps.push(app.id);
-            overlapped_windows = {
-                ...overlapped_windows,
+            windows_over_sidebar = {
+                ...windows_over_sidebar,
                 [app.id]: false,
             };
             if (app.desktop_shortcut) desktop_apps.push(app.id);
@@ -252,7 +253,7 @@ export class Desktop extends Component {
         this.setState({
             visible_windows: visible_windows,
             active_windows: active_windows,
-            overlapped_windows: overlapped_windows,
+            windows_over_sidebar: windows_over_sidebar,
             window_positions: window_positions
         });
         this.favorite_apps = [...favourite_apps];
@@ -289,8 +290,8 @@ export class Desktop extends Component {
                 this.setState({ hideSideBar: false });
             }
             else {
-                for (const key in this.state.overlapped_windows) {
-                    if (this.state.overlapped_windows[key]) {
+                for (const key in this.state.windows_over_sidebar) {
+                    if (this.state.windows_over_sidebar[key]) {
                         this.setState({ hideSideBar: true });
                         return;
                     }
@@ -300,14 +301,14 @@ export class Desktop extends Component {
         }
 
         if (hide === false) {
-            for (const key in this.state.overlapped_windows) {
-                if (this.state.overlapped_windows[key] && key !== objId) return;
+            for (const key in this.state.windows_over_sidebar) {
+                if (this.state.windows_over_sidebar[key] && key !== objId) return;
             }
         }
 
-        let overlapped_windows = this.state.overlapped_windows;
-        overlapped_windows[objId] = hide;
-        this.setState({ hideSideBar: hide, overlapped_windows: overlapped_windows });
+        let windows_over_sidebar = this.state.windows_over_sidebar;
+        windows_over_sidebar[objId] = hide;
+        this.setState({ hideSideBar: hide, windows_over_sidebar: windows_over_sidebar });
     }
 
     hasMinimised = (objId) => {

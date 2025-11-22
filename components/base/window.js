@@ -87,7 +87,7 @@ export class Window extends Component {
 
     changeCursorToDefault = () => {
         this.setState({ cursorType: "cursor-default" });
-        this.setWinowsPosition();
+        this.setWindowPosition();
         this.dispatchWindowInteractionEvent('end');
     }
 
@@ -139,7 +139,7 @@ export class Window extends Component {
         this.dispatchWindowInteractionEvent('end');
     }
 
-    setWinowsPosition = () => {
+    setWindowPosition = () => {
         const element = document.querySelector("#" + this.id);
         if (!element) return;
         const rect = element.getBoundingClientRect();
@@ -172,7 +172,7 @@ export class Window extends Component {
         if (this.state.maximized) {
             posx = -510;
         }
-        this.setWinowsPosition();
+        this.setWindowPosition();
         // get corrosponding sidebar app's position
         var r = document.querySelector("#sidebar-" + this.id);
         var sidebBarApp = r.getBoundingClientRect();
@@ -204,7 +204,7 @@ export class Window extends Component {
         else {
             this.focusWindow();
             var r = document.querySelector("#" + this.id);
-            this.setWinowsPosition();
+            this.setWindowPosition();
             // translate window to maximize position
             r.style.transform = `translate(-1pt,-2pt)`;
             this.setState({ maximized: true, height: 96.3, width: 100.2 });
@@ -213,7 +213,7 @@ export class Window extends Component {
     }
 
     closeWindow = () => {
-        this.setWinowsPosition();
+        this.setWindowPosition();
         this.setState({ closed: true }, () => {
             this.props.hideSideBar(this.id, false);
             setTimeout(() => {
