@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
-import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } from '../cursorControllerEvents';
 const Parser = require('expr-eval').Parser;
 
 const parser = new Parser({
@@ -35,8 +34,6 @@ export class Calc extends Component {
         this.commands_index = -1;
         this.variables={}
         this.activeRowId = null;
-        this.calcRootRef = React.createRef();
-        this.hostWindowId = null;
         this.state = {
             terminal: [],
         }
@@ -44,51 +41,10 @@ export class Calc extends Component {
 
     componentDidMount() {
         this.reStartTerminal();
-        this.getHostWindowId();
-        this.registerCursorController();
     }
 
     componentWillUnmount() {
         clearInterval(this.cursor);
-        this.unregisterCursorController();
-    }
-
-    getHostWindowId = () => {
-        if (this.hostWindowId) return this.hostWindowId;
-        const rootNode = this.calcRootRef?.current;
-        if (!rootNode) return null;
-        const hostWindow = rootNode.closest('.main-window');
-        this.hostWindowId = hostWindow?.id || null;
-        return this.hostWindowId;
-    }
-
-    emitCursorControllerEvent = (eventName, detail) => {
-        if (typeof window === 'undefined' || typeof window.dispatchEvent !== 'function') return;
-        if (typeof window.CustomEvent === 'function') {
-            window.dispatchEvent(new CustomEvent(eventName, { detail }));
-            return;
-        }
-        if (typeof document !== 'undefined' && typeof document.createEvent === 'function') {
-            const event = document.createEvent('CustomEvent');
-            event.initCustomEvent(eventName, false, false, detail);
-            window.dispatchEvent(event);
-        }
-    }
-
-    registerCursorController = () => {
-        const hostId = this.getHostWindowId();
-        if (!hostId) return;
-        this.emitCursorControllerEvent(CURSOR_CONTROLLER_REGISTER_EVENT, {
-            appId: hostId,
-            focusCursor: this.focusCursor,
-            unfocusCursor: this.unFocusCursor,
-        });
-    }
-
-    unregisterCursorController = () => {
-        const hostId = this.hostWindowId;
-        if (!hostId) return;
-        this.emitCursorControllerEvent(CURSOR_CONTROLLER_UNREGISTER_EVENT, { appId: hostId });
     }
 
     reStartTerminal = () => {
@@ -316,7 +272,7 @@ export class Calc extends Component {
 
     render() {
         return (
-            <div ref={this.calcRootRef} className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal">
+            <div className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal">
                 <div>C-style arbitary precision calculator (version 2.12.7.2)</div>
                 <div>Calc is open software.</div>
                 <div>[ type "exit" to exit, "clear" to clear, "help" for help.]</div>

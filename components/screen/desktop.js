@@ -68,8 +68,8 @@ export class Desktop extends Component {
                 focus: this.focus,
                 isFocused: index === 0,
                 hideSideBar: this.hideSideBar,
-                hasMinimised: this.hasMinimised,
-                minimized: this.state.active_windows.has(appId) && !this.state.visible_windows.includes(appId),
+                minimize: this.minimize,
+                isMinimized: this.state.active_windows.has(appId) && !this.state.visible_windows.includes(appId),
                 changeBackgroundImage: this.props.changeBackgroundImage,
                 bg_image_name: this.props.bg_image_name,
                 initHeight: app.height,
@@ -267,7 +267,7 @@ export class Desktop extends Component {
         });
     }
 
-    hasMinimised = (objId) => {
+    minimize = (objId) => {
         this.setState((prevState) => {
             const visible_windows = prevState.visible_windows.filter(id => id !== objId);
             return { visible_windows: visible_windows };

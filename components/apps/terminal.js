@@ -4,7 +4,6 @@ import ReactGA from 'react-ga4';
 import bashEmulator from 'bash-emulator';
 import { skills, languages, interests } from '../ubuntu_data';
 import projectsData from '../../content/projects.json';
-import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } from '../cursorControllerEvents';
 
 export class Terminal extends Component {
     constructor() {
@@ -59,14 +58,12 @@ export class Terminal extends Component {
         this.loadProjectsFromData();
         this.registerWindowInteractionListeners();
         this.getHostWindowId();
-        this.registerCursorController();
     }
 
     componentWillUnmount() {
         clearInterval(this.cursor);
         this.unregisterWindowInteractionListeners();
         this.cancelPendingFocusRequest();
-        this.unregisterCursorController();
     }
 
     registerWindowInteractionListeners = () => {
@@ -88,35 +85,6 @@ export class Terminal extends Component {
         const hostWindow = rootNode.closest('.main-window');
         this.hostWindowId = hostWindow?.id || null;
         return this.hostWindowId;
-    }
-
-    emitCursorControllerEvent = (eventName, detail) => {
-        if (typeof window === 'undefined' || typeof window.dispatchEvent !== 'function') return;
-        if (typeof window.CustomEvent === 'function') {
-            window.dispatchEvent(new CustomEvent(eventName, { detail }));
-            return;
-        }
-        if (typeof document !== 'undefined' && typeof document.createEvent === 'function') {
-            const event = document.createEvent('CustomEvent');
-            event.initCustomEvent(eventName, false, false, detail);
-            window.dispatchEvent(event);
-        }
-    }
-
-    registerCursorController = () => {
-        const hostId = this.getHostWindowId();
-        if (!hostId) return;
-        this.emitCursorControllerEvent(CURSOR_CONTROLLER_REGISTER_EVENT, {
-            appId: hostId,
-            focusCursor: this.focusCursor,
-            unfocusCursor: this.unFocusCursor,
-        });
-    }
-
-    unregisterCursorController = () => {
-        const hostId = this.hostWindowId;
-        if (!hostId) return;
-        this.emitCursorControllerEvent(CURSOR_CONTROLLER_UNREGISTER_EVENT, { appId: hostId });
     }
 
     isRelevantWindowEvent = (event) => {

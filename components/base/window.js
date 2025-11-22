@@ -76,6 +76,7 @@ export class Window extends Component {
         }
     }
 
+    // Change the user's mouse cursor to the drag cursor when the user is dragging a window
     changeCursorToMove = () => {
         this.focusWindow();
         if (this.state.maximized) {
@@ -85,8 +86,11 @@ export class Window extends Component {
         this.dispatchWindowInteractionEvent('start');
     }
 
+    // Revert the user's cursor back to the default
     changeCursorToDefault = () => {
         this.setState({ cursorType: "cursor-default" });
+
+        // Dragging ended, so persist the window position
         this.setWindowPosition();
         this.dispatchWindowInteractionEvent('end');
     }
@@ -180,7 +184,7 @@ export class Window extends Component {
         r = document.querySelector("#" + this.id);
         // translate window to that position
         r.style.transform = `translate(${posx}px,${sidebBarApp.y.toFixed(1) - 240}px) scale(0.2)`;
-        this.props.hasMinimised(this.id);
+        this.props.minimize(this.id);
     }
 
     restoreWindow = () => {
@@ -237,7 +241,7 @@ export class Window extends Component {
                 bounds={{ left: 0, top: 0, right: this.state.parentSize.width, bottom: this.state.parentSize.height }}
             >
                 <div style={{ width: `${this.state.width}%`, height: `${this.state.height}%`, zIndex: (this.props.stackIndex || (this.props.isFocused ? 60 : 40)) }}
-                    className={this.state.cursorType + " " + (this.state.closed ? " closed-window " : "") + (this.state.maximized ? " duration-300 rounded-none" : " rounded-lg rounded-b-none") + (this.props.minimized ? " opacity-0 invisible duration-200 " : "") + (this.props.isFocused ? "" : " notFocused") + " opened-window overflow-hidden min-w-1/4 min-h-1/4 main-window absolute window-shadow border-black border-opacity-40 border border-t-0 flex flex-col"}
+                    className={this.state.cursorType + " " + (this.state.closed ? " closed-window " : "") + (this.state.maximized ? " duration-300 rounded-none" : " rounded-lg rounded-b-none") + (this.props.isMinimized ? " opacity-0 invisible duration-200 " : "") + (this.props.isFocused ? "" : " notFocused") + " opened-window overflow-hidden min-w-1/4 min-h-1/4 main-window absolute window-shadow border-black border-opacity-40 border border-t-0 flex flex-col"}
                     id={this.id}
                     onMouseDownCapture={this.focusWindow}
                 >
