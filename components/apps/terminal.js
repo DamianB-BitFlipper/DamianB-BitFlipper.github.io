@@ -47,9 +47,6 @@ export class Terminal extends Component {
         this.skipNextRender = false;
         this.activeRowId = null;
         this.terminalRootRef = React.createRef();
-        this.hostWindowId = null;
-        this.isWindowInteractionActive = false;
-        this.pendingFocusFrame = null;
     }
 
     componentDidMount() {
@@ -57,95 +54,27 @@ export class Terminal extends Component {
         this.initializeEmulator();
         this.reStartTerminal();
         this.loadProjectsFromData();
-        this.registerWindowInteractionListeners();
-        this.getHostWindowId();
     }
 
     componentWillUnmount() {
         clearInterval(this.cursor);
-        this.unregisterWindowInteractionListeners();
-        this.cancelPendingFocusRequest();
     }
 
-    registerWindowInteractionListeners = () => {
-        if (typeof window === 'undefined') return;
-        window.addEventListener('ubuntu-window-interaction-start', this.handleWindowInteractionStart);
-        window.addEventListener('ubuntu-window-interaction-end', this.handleWindowInteractionEnd);
-    }
-
-    unregisterWindowInteractionListeners = () => {
-        if (typeof window === 'undefined') return;
-        window.removeEventListener('ubuntu-window-interaction-start', this.handleWindowInteractionStart);
-        window.removeEventListener('ubuntu-window-interaction-end', this.handleWindowInteractionEnd);
-    }
-
-    getHostWindowId = () => {
-        if (this.hostWindowId) return this.hostWindowId;
-        const rootNode = this.terminalRootRef?.current;
-        if (!rootNode) return null;
-        const hostWindow = rootNode.closest('.main-window');
-        this.hostWindowId = hostWindow?.id || null;
-        return this.hostWindowId;
-    }
-
-    isRelevantWindowEvent = (event) => {
-        const hostId = this.getHostWindowId();
-        if (!hostId) return false;
-        return event?.detail?.id === hostId;
-    }
-
-    handleWindowInteractionStart = (event) => {
-        if (!this.isRelevantWindowEvent(event)) return;
-        this.isWindowInteractionActive = true;
-        this.cancelPendingFocusRequest();
-    }
-
-    handleWindowInteractionEnd = (event) => {
-        if (!this.isRelevantWindowEvent(event)) return;
-        this.isWindowInteractionActive = false;
-        this.requestCursorFocusRestore();
-    }
-
-    requestCursorFocusRestore = () => {
-        if (this.pendingFocusFrame || this.isWindowInteractionActive) return;
-        if (typeof window === 'undefined' || typeof window.requestAnimationFrame !== 'function') {
-            this.restoreCursorFocus();
-            return;
-        }
-        this.pendingFocusFrame = window.requestAnimationFrame(() => {
-            this.pendingFocusFrame = null;
-            this.restoreCursorFocus();
-        });
-    }
-
-    cancelPendingFocusRequest = () => {
-        if (this.pendingFocusFrame && typeof window !== 'undefined' && typeof window.cancelAnimationFrame === 'function') {
-            window.cancelAnimationFrame(this.pendingFocusFrame);
-        }
-        this.pendingFocusFrame = null;
-    }
 
     registerCallbackHandlers = () => {
-        const handlers = this.props.callbackHandlers;
-        if (typeof handlers.onFocus === 'function') {
-            handlers.onFocus(() => {
-                console.log('[Terminal] focus gained');
-            });
-        }
-        if (typeof handlers.onFocusLost === 'function') {
-            handlers.onFocusLost(() => {
-                console.log('[Terminal] focus lost');
-            });
-        }
+        // const handlers = this.props.callbackHandlers;
+        // if (typeof handlers.onFocus === 'function') {
+        //     handlers.onFocus(() => {
+        //         console.log('[Terminal] focus gained');
+        //     });
+        // }
+        // if (typeof handlers.onFocusLost === 'function') {
+        //     handlers.onFocusLost(() => {
+        //         console.log('[Terminal] focus lost');
+        //     });
+        // }
     }
 
-    restoreCursorFocus = () => {
-        if (this.activeRowId == null) return;
-        const inputEl = document.getElementById(`terminal-input-${this.activeRowId}`);
-        if (!inputEl) return;
-        if (document.activeElement === inputEl) return;
-        this.startCursor(this.activeRowId);
-    }
 
     loadProjectsFromData = () => {
         const repos = this.extractRepositoriesFromData(projectsData);
