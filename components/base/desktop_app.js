@@ -1,42 +1,31 @@
 import React, { Component } from 'react'
 import Draggable from 'react-draggable';
+import { detectTouchDevice, isTouchEnvironment } from './mobile';
 
 export class DesktopApp extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isTouchDevice: this.detectTouchDevice()
+            isTouchDevice: detectTouchDevice()
         };
     }
 
     componentDidMount() {
-        const detected = this.detectTouchDevice();
+        const detected = detectTouchDevice();
         if (detected !== this.state.isTouchDevice) {
             this.setState({ isTouchDevice: detected });
         }
     }
 
-    detectTouchDevice = () => {
-        if (typeof window === 'undefined') return false;
-        const hasTouchEvents = 'ontouchstart' in window;
-        const nav = typeof navigator !== 'undefined' ? navigator : null;
-        const hasTouchPoints = nav ? ((nav.maxTouchPoints || 0) > 0 || (nav.msMaxTouchPoints || 0) > 0) : false;
-        const prefersCoarsePointer = typeof window.matchMedia === 'function' ? window.matchMedia('(pointer: coarse)').matches : false;
-        return hasTouchEvents || hasTouchPoints || prefersCoarsePointer;
+    setTouchDevice = (value) => {
+        this.setState((prevState) => (
+            prevState.isTouchDevice === value ? null : { isTouchDevice: value }
+        ));
     }
 
-    isTouchEnvironment = () => {
-        if (this.state.isTouchDevice) return true;
-        const detected = this.detectTouchDevice();
-        if (detected && !this.state.isTouchDevice) {
-            this.setState({ isTouchDevice: true });
-        }
-        return detected;
-    }
-
-    handleClick = (event) => {
-        if (!this.isTouchEnvironment()) return;
+    handleClick = () => {
+        if (!isTouchEnvironment(this.state.isTouchDevice, this.setTouchDevice)) return;
         this.openApp();
     }
 
