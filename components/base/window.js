@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import Settings from '../apps/settings';
 import ReactGA from 'react-ga4';
+import { EVENTS, publishEvent } from './events';
 
 export class Window extends Component {
     constructor(props) {
@@ -73,11 +74,13 @@ export class Window extends Component {
             this.restoreWindow();
         }
         this.setState({ cursorType: "cursor-move" });
+        publishEvent(EVENTS.WINDOW_DRAGGING_START, { app_id: this.id });
     }
 
     // Revert the user's cursor back to the default
     changeCursorToDefault = () => {
         this.setState({ cursorType: "cursor-default" });
+        publishEvent(EVENTS.WINDOW_DRAGGING_STOP, { app_id: this.id });
 
         // Dragging ended, so persist the window position
         this.setWindowPosition();

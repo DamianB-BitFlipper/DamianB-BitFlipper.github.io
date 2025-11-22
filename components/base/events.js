@@ -2,6 +2,8 @@ const handlerWrappers = new Map();
 
 export const EVENTS = Object.freeze({
     WINDOW_FOCUSED: "window-focused",
+    WINDOW_DRAGGING_START: "dragging-start",
+    WINDOW_DRAGGING_STOP: "dragging-stop",
 });
 
 const createCustomEvent = (eventName, detail) => {

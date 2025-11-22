@@ -34,6 +34,8 @@ export class Terminal extends Component {
         this.virtualFileSystem = {};
         this.lastCommandInfo = null;
         this.unsubscribeWindowFocused = null;
+        this.unsubscribeWindowDraggingStart = null;
+        this.unsubscribeWindowDraggingStop = null;
 
         this.appLaunchCommands = {
             code: "vscode",
@@ -57,12 +59,22 @@ export class Terminal extends Component {
         this.reStartTerminal();
         this.loadProjectsFromData();
         this.unsubscribeWindowFocused = subscribe(EVENTS.WINDOW_FOCUSED, this.handleWindowFocusedEvent);
+        this.unsubscribeWindowDraggingStart = subscribe(EVENTS.WINDOW_DRAGGING_START, this.handleWindowDraggingStart);
+        this.unsubscribeWindowDraggingStop = subscribe(EVENTS.WINDOW_DRAGGING_STOP, this.handleWindowDraggingStop);
     }
 
     componentWillUnmount() {
         if (typeof this.unsubscribeWindowFocused === 'function') {
             this.unsubscribeWindowFocused();
             this.unsubscribeWindowFocused = null;
+        }
+        if (typeof this.unsubscribeWindowDraggingStart === 'function') {
+            this.unsubscribeWindowDraggingStart();
+            this.unsubscribeWindowDraggingStart = null;
+        }
+        if (typeof this.unsubscribeWindowDraggingStop === 'function') {
+            this.unsubscribeWindowDraggingStop();
+            this.unsubscribeWindowDraggingStop = null;
         }
     }
 
@@ -74,7 +86,7 @@ export class Terminal extends Component {
     }
 
     handleWindowFocusedEvent = (payload) => {
-        const focusedAppId = payload.app_id;
+        const focusedAppId = payload?.app_id;
 
         if (focusedAppId === 'terminal') {
             this.focusCursor();
@@ -83,6 +95,18 @@ export class Terminal extends Component {
 
         // Unfocus the cursor if the event was sent to any other app
         this.unFocusCursor();
+    }
+
+    handleWindowDraggingStart = (payload) => {
+        if (payload?.app_id === 'terminal') {
+            this.unFocusCursor();
+        }
+    }
+
+    handleWindowDraggingStop = (payload) => {
+        if (payload?.app_id === 'terminal') {
+            this.focusCursor();
+        }
     }
 
     extractRepositoriesFromData = (data) => {
@@ -552,6 +576,7 @@ export class Terminal extends Component {
     }
 
     unFocusCursor = () => {
+        console.log("Unfocusing!");
         this.setState({ isFocused: false });
         if (this.inputRef.current) {
             this.inputRef.current.blur();
@@ -734,7 +759,6 @@ export class Terminal extends Component {
                             onSelect={this.handleSelectionChange}
                             onKeyDown={this.checkKey}
                             onKeyUp={this.handleSelectionChange}
-                            onBlur={this.unFocusCursor}
                         />
                     </div>
                 </div>
