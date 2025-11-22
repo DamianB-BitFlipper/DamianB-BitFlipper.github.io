@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
+import CLI from '../base/cli';
 const Parser = require('expr-eval').Parser;
 
 const parser = new Parser({
@@ -25,209 +26,92 @@ const parser = new Parser({
     }
   });
 
-export class Calc extends Component {
-    constructor() {
-        super();
-        this.cursor = "";
-        this.terminal_rows = 2;
-        this.prev_commands = [];
-        this.commands_index = -1;
+export class Calc extends CLI {
+    constructor(props) {
+        super(props);
+        this.appId = 'calc';
         this.variables={}
-        this.activeRowId = null;
+        // Merge state
         this.state = {
-            terminal: [],
+            ...this.state,
+            // outputList (from CLI) replaces 'terminal'
+            // userInput (from CLI) replaces 'rowValues' logic
         }
     }
 
     componentDidMount() {
+        super.componentDidMount();
         this.reStartTerminal();
     }
 
-    componentWillUnmount() {
-        clearInterval(this.cursor);
-    }
+    // componentWillUnmount handled by base if needed, or empty here
+    // Original had clearInterval(this.cursor) but CLI handles cursor via CSS
 
     reStartTerminal = () => {
-        clearInterval(this.cursor);
-        this.setState({ terminal: [] }, () => {
-            this.terminal_rows = 2;
-            this.appendTerminalRow();
+        this.setState({ 
+            outputList: [],
+            userInput: '',
+            cursorPos: 0,
+            variables: {}
         });
     }
 
-    appendTerminalRow = () => {
-        const currentRowId = this.terminal_rows;
-        let terminal = [...this.state.terminal];
-        terminal.push(this.terminalRow(currentRowId));
-        this.setState({ terminal }, () => {
-            this.startCursor(currentRowId);
-        });
-        this.terminal_rows += 2;
-    }
-
-    terminalRow = (id) => {
-        return (
-
-            <React.Fragment key={id}>
-                <div className=" flex p-2 text-ubt-grey opacity-100 mt-1 float-left font-normal "></div>
-                <div className="flex w-full h-5">
-                        <div className=" flex text-ubt-green h-1 mr-2"> {';'} </div>
-                    <div id="cmd" onClick={this.focusCursor} className=" bg-transperent relative flex-1 overflow-hidden">
-                        <span id={`show-calculator-${id}`} className=" float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider"></span>
-                        <div id={`cursor-${id}`} className=" float-left mt-1 w-1.5 h-3.5 bg-white"></div>
-                        <input id={`calculator-input-${id}`} data-row-id={id} onKeyDown={this.checkKey} onBlur={this.unFocusCursor} className=" absolute top-0 left-0 w-full opacity-0 outline-none bg-transparent" spellCheck={false} autoFocus={true} autoComplete="off" type="text" />
-                    </div>
-                </div>
-                <div id={`row-calculator-result-${id}`} className={"my-2 font-normal"}></div>
-            </React.Fragment>
-        );
-
-    }
-
-    resolveCursorRowId = (source) => {
-        if (typeof source === 'number') return source;
-        if (source && typeof source === 'object') {
-            const event = source.nativeEvent ? source.nativeEvent : source;
-            const directTargetId = event?.target?.dataset?.rowId;
-            if (directTargetId !== undefined) {
-                const parsed = Number(directTargetId);
-                return Number.isNaN(parsed) ? directTargetId : parsed;
-            }
-            const currentTargetId = event?.currentTarget?.dataset?.rowId;
-            if (currentTargetId !== undefined) {
-                const parsed = Number(currentTargetId);
-                return Number.isNaN(parsed) ? currentTargetId : parsed;
-            }
-            const inputEl = event?.currentTarget?.querySelector?.('input[data-row-id]');
-            if (inputEl?.dataset?.rowId !== undefined) {
-                const parsed = Number(inputEl.dataset.rowId);
-                return Number.isNaN(parsed) ? inputEl.dataset.rowId : parsed;
-            }
-        }
-        if (this.activeRowId != null) return this.activeRowId;
-        const fallback = this.terminal_rows - 2;
-        return fallback >= 0 ? fallback : null;
-    }
-
-    focusCursor = (source) => {
-        const rowId = this.resolveCursorRowId(source);
-        if (rowId == null) return;
-        this.startCursor(rowId);
-    }
-
-    unFocusCursor = (source) => {
-        const rowId = this.resolveCursorRowId(source);
-        if (rowId == null) return;
-        this.stopCursor(rowId);
-        const inputEl = document.getElementById(`calculator-input-${rowId}`);
-        if (inputEl && document.activeElement === inputEl) {
-            inputEl.blur();
-        }
-    }
-
-    startCursor = (id) => {
-        if (id == null) return;
-        this.activeRowId = id;
-        clearInterval(this.cursor);
-        $(`input#calculator-input-${id}`).trigger("focus");
-        // On input change, set current text in span
-        $(`input#calculator-input-${id}`).on("input", function () {
-            $(`#cmd span#show-calculator-${id}`).text($(this).val());
-        });
-        this.cursor = window.setInterval(function () {
-            if ($(`#cursor-${id}`).css('visibility') === 'visible') {
-                $(`#cursor-${id}`).css({ visibility: 'hidden' });
-            } else {
-                $(`#cursor-${id}`).css({ visibility: 'visible' });
-            }
-        }, 500);
-    }
-
-    stopCursor = (id) => {
-        clearInterval(this.cursor);
-        $(`#cursor-${id}`).css({ visibility: 'visible' });
-    }
-
-    removeCursor = (id) => {
-        this.stopCursor(id);
-        $(`#cursor-${id}`).css({ display: 'none' });
-    }
-
-    clearInput = (id) => {
-        $(`input#calculator-input-${id}`).trigger("blur");
-    }
-
-    checkKey = (e) => {
-        if (e.key === "Enter") {
-            let terminal_row_id = $(e.target).data("row-id");
-            let command = $(`input#calculator-input-${terminal_row_id}`).val().trim();
-            if (command.length !== 0) {
-                this.removeCursor(terminal_row_id);
-                this.handleCommands(command, terminal_row_id);
-            }
-            else return;
-            // push to history
-            this.prev_commands.push(command);
-            this.commands_index = this.prev_commands.length - 1;
-
-            this.clearInput(terminal_row_id);
-        }
-        else if (e.key === "ArrowUp") {
-            let prev_command;
-
-            if (this.commands_index <= -1) prev_command = "";
-            else prev_command = this.prev_commands[this.commands_index];
-
-            let terminal_row_id = $(e.target).data("row-id");
-
-            $(`input#calculator-input-${terminal_row_id}`).val(prev_command);
-            $(`#show-calculator-${terminal_row_id}`).text(prev_command);
-
-            this.commands_index--;
-        }
-        else if (e.key === "ArrowDown") {
-            let prev_command;
-
-            if (this.commands_index >= this.prev_commands.length) return;
-            if (this.commands_index <= -1) this.commands_index = 0;
-
-            if (this.commands_index === this.prev_commands.length) prev_command = "";
-            else prev_command = this.prev_commands[this.commands_index];
-
-            let terminal_row_id = $(e.target).data("row-id");
-
-            $(`input#calculator-input-${terminal_row_id}`).val(prev_command);
-            $(`#show-calculator-${terminal_row_id}`).text(prev_command);
-
-            this.commands_index++;
-        }
-    }
+    // Removed all manual cursor logic (resolveCursorRowId, focusCursor, etc) as CLI handles it.
 
     closeTerminal = () => {
         $("#close-calc").trigger('click');
     }
 
-    handleCommands = (command, rowId) => {
+    executeCommand = async (command) => {
+        // Logic to execute command and update output list
+        // We need to add the "Result" row to history.
+        
+        // First, add the command itself to history (CLI handles adding to `commandHistory` array, 
+        // but we need to add the visual representation of the command line to `outputList`)
+        
+        // Wait, CLI.handleKeyDown adds to `commandHistory` (state array of strings).
+        // It does NOT add to `outputList`.
+        // `Terminal.js` adds to `outputList` manually in `handleCommands`.
+        
+        // So we should do the same here.
+        
+        // 1. Add the "Command" row (what the user just typed) to outputList
+        // The CLI renders the *current* input line dynamically.
+        // When the user hits Enter, that line needs to become static history.
+        const commandRow = (
+            <div className="flex w-full h-5" key={`cmd-${Date.now()}`}>
+                 <div className=" flex text-ubt-green h-1 mr-2"> {';'} </div>
+                 <div className="text-white whitespace-pre font-normal">{command}</div>
+            </div>
+        );
+        
+        let result = "";
         let words = command.split(' ').filter(Boolean);
         let main = words[0];
-        // words.shift()
-        let result = "";
-        switch (main) {        
-            case "clear":
-                this.reStartTerminal();
-                return;
-            case "exit":
-                this.closeTerminal();
-                return;
-            case "help":                
-                result = "Available Commands: <br/>Operators:<br/> addition ( + ), subtraction ( - ),<br/>multiplication ( * ), division ( / ),<br/>modulo ( % )exponentiation. ( ^ )<br/><br/>Mathematical functions:<br/>abs[x] : Absolute value (magnitude) of x<br/>acos[x] : Arc cosine of x (in radians)<br/>acosh[x] : Hyperbolic arc cosine of x (in radians)<br/>asin[x] : Arc sine of x (in radians)<br/>asinh[x] : Hyperbolic arc sine of x (in radians)<br/>atan[x] : Arc tangent of x (in radians)<br/>atanh[x] : Hyperbolic arc tangent of x (in radians)<br/>cbrt[x] : Cube root of x<br/>ceil[x] : Ceiling of x — the smallest integer that’s >= x<br/>cos[x] : Cosine of x (x is in radians)<br/>cosh[x] : Hyperbolic cosine of x (x is in radians)<br/>exp[x] : e^x (exponential/antilogarithm function with base e)<br/>floor[x] : Floor of x — the largest integer that’s <= x<br/>ln[x] : Natural logarithm of x<br/>log[x] : Natural logarithm of x (synonym for ln, not base-10)<br/>log10[x] :	Base-10 logarithm of x<br/>log2[x] : Base-2 logarithm of x<br/>round[x] :	X, rounded to the nearest integer<br/>sign[x] : Sign of x (-1, 0, or 1 for negative, zero, or positive respectively)<br/>sin[x] : Sine of x (x is in radians)<br/>sinh[x] : Hyperbolic sine of x (x is in radians)<br/>sqrt[x] : Square root of x. Result is NaN (Not a Number) if x is negative.<br/>tan[x] : Tangent of x (x is in radians)<br/>tanh[x] : Hyperbolic tangent of x (x is in radians)<br/> <br/><br/>Pre-defined functions:<br/>random(n) : Get a random number in the range [0, n). If n is zero, or not provided, it defaults to 1.<br/>fac(n)	n! : (factorial of n: \"n * (n-1) * (n-2) * … * 2 * 1\") Deprecated. Use the ! operator instead.<br/>min(a,b,…) : Get the smallest (minimum) number in the list.<br/>max(a,b,…) : Get the largest (maximum) number in the list.<br/>hypot(a,b) : Hypotenuse, i.e. the square root of the sum of squares of its arguments.<br/>pyt(a, b) : Alias for hypot.<br/>pow(x, y) : Equivalent to x^y.<br/>roundTo(x, n) : Rounds x to n places after the decimal point.<br/><br/>Constants: <br/>E : The value of Math.E from your JavaScript runtime.<br/>PI : The value of Math.PI from your JavaScript runtime.<br/><br/>Variable assignments : <br/>declare variable and assign a value: x=1  declared variable can be used in further calculation x+2.<br/><br/>clear command for clearing calculator app.<br/><br/>exit command for exit from calculator app. ";
-                break;                
-            default: 
-                result = this.evaluteExp(command);                    
+        
+        if (main === "clear") {
+            this.reStartTerminal();
+            return;
+        } else if (main === "exit") {
+            this.closeTerminal();
+            return;
+        } else if (main === "help") {
+             result = "Available Commands: <br/>Operators:<br/> addition ( + ), subtraction ( - ),<br/>multiplication ( * ), division ( / ),<br/>modulo ( % )exponentiation. ( ^ )<br/><br/>Mathematical functions:<br/>abs[x] : Absolute value (magnitude) of x<br/>acos[x] : Arc cosine of x (in radians)<br/>acosh[x] : Hyperbolic arc cosine of x (in radians)<br/>asin[x] : Arc sine of x (in radians)<br/>asinh[x] : Hyperbolic arc sine of x (in radians)<br/>atan[x] : Arc tangent of x (in radians)<br/>atanh[x] : Hyperbolic arc tangent of x (in radians)<br/>cbrt[x] : Cube root of x<br/>ceil[x] : Ceiling of x — the smallest integer that’s >= x<br/>cos[x] : Cosine of x (x is in radians)<br/>cosh[x] : Hyperbolic cosine of x (x is in radians)<br/>exp[x] : e^x (exponential/antilogarithm function with base e)<br/>floor[x] : Floor of x — the largest integer that’s <= x<br/>ln[x] : Natural logarithm of x<br/>log[x] : Natural logarithm of x (synonym for ln, not base-10)<br/>log10[x] :	Base-10 logarithm of x<br/>log2[x] : Base-2 logarithm of x<br/>round[x] :	X, rounded to the nearest integer<br/>sign[x] : Sign of x (-1, 0, or 1 for negative, zero, or positive respectively)<br/>sin[x] : Sine of x (x is in radians)<br/>sinh[x] : Hyperbolic sine of x (x is in radians)<br/>sqrt[x] : Square root of x. Result is NaN (Not a Number) if x is negative.<br/>tan[x] : Tangent of x (x is in radians)<br/>tanh[x] : Hyperbolic tangent of x (x is in radians)<br/> <br/><br/>Pre-defined functions:<br/>random(n) : Get a random number in the range [0, n). If n is zero, or not provided, it defaults to 1.<br/>fac(n)	n! : (factorial of n: \"n * (n-1) * (n-2) * … * 2 * 1\") Deprecated. Use the ! operator instead.<br/>min(a,b,…) : Get the smallest (minimum) number in the list.<br/>max(a,b,…) : Get the largest (maximum) number in the list.<br/>hypot(a,b) : Hypotenuse, i.e. the square root of the sum of squares of its arguments.<br/>pyt(a, b) : Alias for hypot.<br/>pow(x, y) : Equivalent to x^y.<br/>roundTo(x, n... (type help for more)";
+        } else {
+             result = this.evaluteExp(command);
         }
-        document.getElementById(`row-calculator-result-${rowId}`).innerHTML = result;
-        this.appendTerminalRow();
+
+        const resultRow = (
+             <div key={`res-${Date.now()}`} className="my-2 font-normal" dangerouslySetInnerHTML={{ __html: result }}></div>
+        );
+        
+        this.setState(prevState => ({
+            outputList: [...prevState.outputList, commandRow, resultRow],
+            userInput: '', // CLI clears this too but doing it here ensures consistency
+            cursorPos: 0
+        }));
     }
+
     evaluteExp = (command) => {
         let result = "";
         let expr;
@@ -276,8 +160,14 @@ export class Calc extends Component {
                 <div>C-style arbitary precision calculator (version 2.12.7.2)</div>
                 <div>Calc is open software.</div>
                 <div>[ type "exit" to exit, "clear" to clear, "help" for help.]</div>
-                <div className="text-white text-sm font-bold bg-ub-drk-abrgn" id="calculator-body">
-                    {this.state.terminal}
+                <div 
+                    ref={this.containerRef}
+                    className="text-white text-sm font-bold bg-ub-drk-abrgn overflow-y-auto h-full" 
+                    id="calculator-body"
+                    onClick={this.focusCursor}
+                >
+                    {this.state.outputList}
+                    {this.renderInputLine('', '')}
                 </div>
             </div>
         )

@@ -5,17 +5,17 @@ import bashEmulator from 'bash-emulator';
 import { skills, languages, interests } from '../ubuntu_data';
 import projectsData from '../../content/projects.json';
 import { EVENTS, subscribe } from '../base/events';
+import CLI from '../base/cli';
 
-export class Terminal extends Component {
+export class Terminal extends CLI {
     constructor(props) {
         super(props);
+        this.appId = 'terminal';
         this.current_directory = "~";
+        // Merge state
         this.state = {
-            terminal: [],
-            userInput: '',
-            cursorPos: 0,
+            ...this.state,
             rowId: 1,
-            isFocused: false,
         }
 
         this.virtualDirectories = {
@@ -50,31 +50,23 @@ export class Terminal extends Component {
         };
 
         this.emulator = null;
-        this.terminalRootRef = React.createRef();
-        this.inputRef = React.createRef();
+        // this.terminalRootRef = React.createRef(); // Handled by CLI base (containerRef)
+        // this.inputRef = React.createRef(); // Handled by CLI base
     }
 
     componentDidMount() {
+        super.componentDidMount();
         this.initializeEmulator();
         this.reStartTerminal();
         this.loadProjectsFromData();
-        this.unsubscribeWindowFocused = subscribe(EVENTS.WINDOW_FOCUSED, this.handleWindowFocusedEvent);
         this.unsubscribeWindowDraggingStart = subscribe(EVENTS.WINDOW_DRAGGING_START, this.handleWindowDraggingStart);
-        this.unsubscribeWindowDraggingStop = subscribe(EVENTS.WINDOW_DRAGGING_STOP, this.handleWindowDraggingStop);
     }
 
     componentWillUnmount() {
-        if (typeof this.unsubscribeWindowFocused === 'function') {
-            this.unsubscribeWindowFocused();
-            this.unsubscribeWindowFocused = null;
-        }
+        super.componentWillUnmount();
         if (typeof this.unsubscribeWindowDraggingStart === 'function') {
             this.unsubscribeWindowDraggingStart();
             this.unsubscribeWindowDraggingStart = null;
-        }
-        if (typeof this.unsubscribeWindowDraggingStop === 'function') {
-            this.unsubscribeWindowDraggingStop();
-            this.unsubscribeWindowDraggingStop = null;
         }
     }
 
@@ -85,23 +77,8 @@ export class Terminal extends Component {
         this.refreshVirtualFileSystem();
     }
 
-    handleWindowFocusedEvent = (payload) => {
-        const focusedAppId = payload?.app_id;
-
-        if (focusedAppId === 'terminal') {
-            this.focusCursor();
-            return;
-        }
-
-        // Unfocus the cursor if the event was sent to any other app
-        this.unFocusCursor();
-    }
-
-    handleWindowDraggingStop = (payload) => {
-        if (payload?.app_id === 'terminal') {
-            this.focusCursor();
-        }
-    }
+    // handleWindowFocusedEvent handled by CLI
+    // handleWindowDraggingStop handled by CLI
 
     extractRepositoriesFromData = (data) => {
         const nodes = data?.data?.user?.repositories?.nodes || [];
@@ -536,27 +513,25 @@ export class Terminal extends Component {
         );
 
         this.setState({
-            terminal: [cowsay],
+            outputList: [cowsay],
             userInput: '',
             cursorPos: 0,
             rowId: 1,
         });
     }
 
-    handleInputChange = (e) => {
-        const position = typeof e.target.selectionStart === 'number' ? e.target.selectionStart : e.target.value.length;
-        this.setState({
-            userInput: e.target.value,
-            cursorPos: position
-        });
+    // handleInputChange handled by CLI
+    // handleSelectionChange handled by CLI
+    // focusCursor handled by CLI (but needs ensuring container ref is used)
+    // unFocusCursor handled by CLI state update (or override)
+    // checkKey handled by CLI (wraps handleKeyDown)
+
+    // We need to override executeCommand to use handleCommands logic
+    executeCommand = async (command) => {
+        await this.handleCommands(command);
     }
 
-    handleSelectionChange = (e) => {
-        if (!e?.target) return;
-        const position = typeof e.target.selectionStart === 'number' ? e.target.selectionStart : 0;
-        if (position === this.state.cursorPos) return;
-        this.setState({ cursorPos: position });
-    }
+
 
     focusCursor = () => {
         const input = this.inputRef.current;
@@ -610,11 +585,76 @@ export class Terminal extends Component {
         }
     }
 
+    handleKeyDown = async (e) => {
+        if (e.key === "Tab") {
+            e.preventDefault();
+            const completed = this.applyTabCompletion(this.state.userInput);
+            if (completed) {
+                this.setState({ userInput: completed, cursorPos: completed.length });
+            }
+            return;
+        }
+        if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+            e.preventDefault();
+            // Terminal uses emulator for history, not local state history?
+            // Original code: emulator.completeUp / completeDown.
+            // This seems to use bash-emulator's history.
+            // We should probably stick to that if possible, OR use CLI's history.
+            // CLI history is simpler array. Emulator might be smarter.
+            // Let's use emulator if available, else fallback to super (or override super completely).
+            if (this.emulator) {
+                const method = e.key === "ArrowUp" ? 'completeUp' : 'completeDown';
+                const cmd = await this.emulator[method](this.state.userInput);
+                const value = typeof cmd === 'string' ? cmd : '';
+                this.setState({ userInput: value, cursorPos: value.length });
+            }
+            return;
+        }
+        // For Enter, we let CLI handle it, which calls executeCommand.
+        // But wait, original checkKey handled "Enter" by calling handleCommands directly AND 
+        // preventing default. CLI's handleKeyDown does:
+        // executeCommand, then adds to CLI history.
+        // Terminal app adds to history inside handleCommands via `appendCommandToHistory`.
+        // If we use CLI's history management, we might double up or conflict.
+        // Let's Override handleKeyDown completely to maintain specific behavior 
+        // OR adapt handleCommands.
+        
+        // Original handleCommands:
+        // 1. Render history row (processing)
+        // 2. Run command
+        // 3. Render history row (completed)
+        // 4. setState(rowId + 1)
+        
+        // If I rely on CLI's handleKeyDown, it calls executeCommand then clears input.
+        // It does NOT render the "Processing..." state.
+        // And it adds to `commandHistory`.
+        
+        // It seems safer to Override handleKeyDown to keep exact logic, 
+        // OR modify executeCommand to do everything and return a promise.
+        
+        // If I use super.handleKeyDown(e), it will:
+        // 1. executeCommand(val)
+        // 2. setState({ userInput: '', ... })
+        
+        // Terminal wants to show "Processing..." *before* finishing.
+        // So I should probably just implement handleKeyDown here similar to original checkKey.
+        
+        if (e.key === "Enter") {
+            e.preventDefault();
+            if (this.state.userInput.trim().length === 0) return;
+            await this.handleCommands(this.state.userInput.trim());
+        }
+    }
+
     handleCommands = async (command) => {
         // 1. Commit current row to history
         const currentRow = this.renderHistoryRow(this.state.rowId, this.current_directory, command, "Processing...", false);
-        // We push it temporarily, or we can just wait for result.
-        // Let's wait for result to be simple.
+        
+        // We append this immediately to show "Processing..."
+        this.setState(prevState => ({
+            outputList: [...prevState.outputList, currentRow],
+            userInput: '' // Clear input immediately
+        }));
 
         this.lastCommandInfo = this.parseCommandInfo(command);
         let output = "";
@@ -638,8 +678,8 @@ export class Terminal extends Component {
         const completedRow = this.renderHistoryRow(this.state.rowId, this.current_directory, command, formattedOutput, true);
         
         this.setState(prevState => ({
-            terminal: [...prevState.terminal, completedRow],
-            userInput: '',
+            // Replace the "Processing" row (last item) with completedRow
+            outputList: [...prevState.outputList.slice(0, -1), completedRow], 
             cursorPos: 0,
             rowId: prevState.rowId + 1,
         }));
@@ -707,58 +747,24 @@ export class Terminal extends Component {
     }
 
     componentDidUpdate() {
-        if (this.terminalRootRef.current) {
-            this.terminalRootRef.current.scrollTop = this.terminalRootRef.current.scrollHeight;
-        }
+        this.scrollToBottom();
     }
 
+    // Override render to include the CLI inputs with specific props if needed
+    // But CLI.render() is generic.
+    // Terminal needs to render `this.current_directory` in the prompt.
+    // CLI.renderInputLine accepts arguments for prompt.
+    // So we override render().
     render() {
-        const { terminal, userInput, isFocused, cursorPos } = this.state;
-        const displayValue = userInput.length > 0 ? userInput : '\u00a0';
-        const cursorStyle = {
-            '--cursor-pos': cursorPos,
-            '--cursor-animation': isFocused ? 'blinkCursor 1s steps(1) infinite' : 'none',
-        };
-
         return (
             <div 
-                ref={this.terminalRootRef} 
+                ref={this.containerRef}
                 className="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold font-mono overflow-y-auto" 
                 id="terminal-body"
                 onClick={this.focusCursor}
             >
-                {terminal}
-                <div className="flex w-full h-5">
-                    <div className="flex">
-                        <div className=" text-ubt-green">damian@ubuntu</div>
-                        <div className="text-white mx-px font-medium">:</div>
-                        <div className=" text-ubt-blue">{this.current_directory}</div>
-                        <div className="text-white mx-px font-medium mr-1">$</div>
-                    </div>
-                    <div className="relative flex-1 overflow-hidden">
-                        <div
-                            className="terminal-input-line"
-                            style={cursorStyle}
-                        >
-                            <span className="whitespace-pre pb-1 opacity-100 font-normal block">
-                                {displayValue}
-                            </span>
-                        </div>
-                        <input
-                            ref={this.inputRef}
-                            className="absolute top-0 left-0 w-full h-full opacity-0 outline-none bg-transparent cursor-default"
-                            spellCheck={false}
-                            autoFocus={true}
-                            autoComplete="off"
-                            type="text"
-                            value={userInput}
-                            onChange={this.handleInputChange}
-                            onSelect={this.handleSelectionChange}
-                            onKeyDown={this.checkKey}
-                            onKeyUp={this.handleSelectionChange}
-                        />
-                    </div>
-                </div>
+                {this.state.outputList}
+                {this.renderInputLine('damian@ubuntu', this.current_directory)}
             </div>
         )
     }
