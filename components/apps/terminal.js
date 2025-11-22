@@ -510,16 +510,18 @@ export class Terminal extends Component {
     }
 
     reStartTerminal = () => {
-        this.setState({ terminal: [], userInput: '', cursorPos: 0, rowId: 1 }, () => {
-            const welcomeText = "Welcome to Ubuntu! Type 'help' to see available commands.";
-            const cowsay = (
-                <div className="text-white whitespace-pre font-normal" key="welcome-cowsay">
-                    {this.getCowsay(welcomeText)}
-                </div>
-            );
-            this.setState(prevState => ({
-                terminal: [...prevState.terminal, cowsay]
-            }));
+        const welcomeText = "Welcome to Ubuntu! Type 'help' to see available commands.";
+        const cowsay = (
+            <div className="text-white whitespace-pre font-normal" key="welcome-cowsay">
+                {this.getCowsay(welcomeText)}
+            </div>
+        );
+
+        this.setState({
+            terminal: [cowsay],
+            userInput: '',
+            cursorPos: 0,
+            rowId: 1,
         });
     }
 
