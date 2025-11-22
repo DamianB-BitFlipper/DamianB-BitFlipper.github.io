@@ -4,9 +4,7 @@ import ReactGA from 'react-ga4';
 import bashEmulator from 'bash-emulator';
 import { skills, languages, interests } from '../ubuntu_data';
 import projectsData from '../../content/projects.json';
-
-const CURSOR_CONTROLLER_REGISTER_EVENT = 'ubuntu-register-cursor-controller';
-const CURSOR_CONTROLLER_UNREGISTER_EVENT = 'ubuntu-unregister-cursor-controller';
+import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } from '../cursorControllerEvents';
 
 export class Terminal extends Component {
     constructor() {

@@ -9,9 +9,7 @@ import DesktopMenu from '../context menus/desktop-menu';
 import DefaultMenu from '../context menus/default';
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
-
-const CURSOR_CONTROLLER_REGISTER_EVENT = 'ubuntu-register-cursor-controller';
-const CURSOR_CONTROLLER_UNREGISTER_EVENT = 'ubuntu-unregister-cursor-controller';
+import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } from '../cursorControllerEvents';
 
 export class Desktop extends Component {
     constructor() {
@@ -23,7 +21,7 @@ export class Desktop extends Component {
         this.cursorEventsBound = false;
         this.bindCursorControllerEvents();
         this.state = {
-            focused_windows: [],
+            focused_windows: new Map(),
             closed_windows: {},
             allAppsView: false,
             overlapped_windows: {},
@@ -51,7 +49,7 @@ export class Desktop extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const prevFocused = Array.isArray(prevState.focused_windows) ? prevState.focused_windows[0] : null;
+        const prevFocused = this.getFirstFocusedWindowId(prevState.focused_windows);
         const currentFocused = this.getCurrentFocusedWindowId();
         if (prevFocused !== currentFocused) {
             this.applyCursorFocus(currentFocused);
@@ -93,8 +91,40 @@ export class Desktop extends Component {
         this.applyCursorFocus();
     }
 
+    getAppConfigById = (appId) => {
+        return apps.find(app => app.id === appId) || null;
+    }
+
+    getFocusedMapFromState = (source = this.state.focused_windows) => {
+        if (source instanceof Map) {
+            return source;
+        }
+        if (Array.isArray(source)) {
+            const map = new Map();
+            source.forEach((appId) => {
+                const config = this.getAppConfigById(appId);
+                if (config) {
+                    map.set(appId, config);
+                }
+            });
+            return map;
+        }
+        return new Map();
+    }
+
+    getOrderedFocusedEntries = (source = this.state.focused_windows) => {
+        const focusedMap = this.getFocusedMapFromState(source);
+        return Array.from(focusedMap.entries());
+    }
+
+    getFirstFocusedWindowId = (source = this.state.focused_windows) => {
+        const focusedMap = this.getFocusedMapFromState(source);
+        const iterator = focusedMap.keys().next();
+        return iterator.done ? null : iterator.value;
+    }
+
     getCurrentFocusedWindowId = () => {
-        return Array.isArray(this.state.focused_windows) ? this.state.focused_windows[0] : null;
+        return this.getFirstFocusedWindowId(this.state.focused_windows);
     }
 
     applyCursorFocus = (focusedId = this.getCurrentFocusedWindowId()) => {
@@ -193,13 +223,13 @@ export class Desktop extends Component {
     }
 
     fetchAppsData = () => {
-        let focused_windows = [];
+        const focused_windows = new Map();
         let closed_windows = {}, disabled_apps = {}, favourite_apps = {}, overlapped_windows = {}, minimized_windows = {}, window_positions = {};
         let desktop_apps = [];
         apps.forEach((app) => {
             const isDefaultOpen = (app.id === "about-damian");
             if (isDefaultOpen) {
-                focused_windows.push(app.id);
+                focused_windows.set(app.id, app);
                 this.app_stack.push(app.id);
                 window_positions[app.id] = { x: 60, y: 10 };
             }
@@ -263,11 +293,16 @@ export class Desktop extends Component {
             }
             if (app.desktop_shortcut) desktop_apps.push(app.id);
         });
-        const existingOrder = Array.isArray(this.state.focused_windows) ? this.state.focused_windows : [];
-        const focused_windows = existingOrder.filter(id => closed_windows[id] === false);
+        const previousFocused = this.getFocusedMapFromState(this.state.focused_windows);
+        const focused_windows = new Map();
+        previousFocused.forEach((appConfig, appId) => {
+            if (closed_windows[appId] === false) {
+                focused_windows.set(appId, appConfig);
+            }
+        });
         apps.forEach((app) => {
-            if (!focused_windows.includes(app.id) && closed_windows[app.id] === false) {
-                focused_windows.push(app.id);
+            if (!focused_windows.has(app.id) && closed_windows[app.id] === false) {
+                focused_windows.set(app.id, app);
             }
         });
         this.setState({
@@ -307,10 +342,15 @@ export class Desktop extends Component {
 
     getWindowRenderOrder = () => {
         if (!this.state.closed_windows) return [];
-        const orderedOpenIds = Array.isArray(this.state.focused_windows)
-            ? this.state.focused_windows.filter(appId => this.state.closed_windows[appId] === false)
-            : [];
-        const openIdSet = new Set(orderedOpenIds);
+        const focusedEntries = this.getOrderedFocusedEntries();
+        const orderedOpenIds = [];
+        const openIdSet = new Set();
+        focusedEntries.forEach(([appId]) => {
+            if (this.state.closed_windows[appId] === false && !openIdSet.has(appId)) {
+                orderedOpenIds.push(appId);
+                openIdSet.add(appId);
+            }
+        });
         apps.forEach(app => {
             if (!openIdSet.has(app.id) && this.state.closed_windows[app.id] === false) {
                 orderedOpenIds.push(app.id);
@@ -320,12 +360,22 @@ export class Desktop extends Component {
         return orderedOpenIds;
     }
 
-    renderWindows = () => {
+    getWindowRenderEntries = () => {
         const orderedIds = this.getWindowRenderOrder();
+        const focusedMap = this.getFocusedMapFromState(this.state.focused_windows);
+        return orderedIds
+            .map((appId) => {
+                const appConfig = focusedMap.get(appId) || this.getAppConfigById(appId);
+                return [appId, appConfig];
+            })
+            .filter(([, appConfig]) => Boolean(appConfig));
+    }
+
+    renderWindows = () => {
+        const orderedEntries = this.getWindowRenderEntries();
         let windowsJsx = [];
-        const total = orderedIds.length;
-        orderedIds.forEach((appId, index) => {
-            const app = apps.find(appConfig => appConfig.id === appId);
+        const total = orderedEntries.length;
+        orderedEntries.forEach(([appId, app], index) => {
             if (!app) return;
             const zIndex = (total - index) + 20; // ensure focused order always stacked correctly
 
@@ -356,13 +406,12 @@ export class Desktop extends Component {
     }
 
     isWindowFocused = (appId) => {
-        if (!Array.isArray(this.state.focused_windows)) return false;
-        return this.state.focused_windows[0] === appId;
+        return this.getCurrentFocusedWindowId() === appId;
     }
 
     getFocusedWindowsMap = () => {
         const map = {};
-        const focusedId = Array.isArray(this.state.focused_windows) ? this.state.focused_windows[0] : null;
+        const focusedId = this.getCurrentFocusedWindowId();
         apps.forEach((app) => {
             map[app.id] = focusedId === app.id;
         });
@@ -401,9 +450,9 @@ export class Desktop extends Component {
     hasMinimised = (objId) => {
         this.setState((prevState) => {
             const minimized_windows = { ...prevState.minimized_windows, [objId]: true };
-            const focused_windows = Array.isArray(prevState.focused_windows)
-                ? prevState.focused_windows.filter(id => id !== objId)
-                : [];
+            const prevFocusedMap = this.getFocusedMapFromState(prevState.focused_windows);
+            const focused_windows = new Map(prevFocusedMap);
+            focused_windows.delete(objId);
             return { minimized_windows, focused_windows };
         }, () => {
             this.hideSideBar(null, false);
@@ -522,9 +571,9 @@ export class Desktop extends Component {
             if (this.initFavourite[objId] === false) favourite_apps[objId] = false; // if user default app is not favourite, remove from sidebar
             const window_positions = { ...prevState.window_positions };
             delete window_positions[objId];
-            const focused_windows = Array.isArray(prevState.focused_windows)
-                ? prevState.focused_windows.filter(id => id !== objId)
-                : [];
+            const prevFocusedMap = this.getFocusedMapFromState(prevState.focused_windows);
+            const focused_windows = new Map(prevFocusedMap);
+            focused_windows.delete(objId);
             return { closed_windows, favourite_apps, window_positions, focused_windows };
         }, () => {
             this.giveFocusToLastApp();
@@ -532,9 +581,19 @@ export class Desktop extends Component {
     }
 
     reorderFocusedWindows = (objId, prevState) => {
-        const current = Array.isArray(prevState.focused_windows) ? prevState.focused_windows : [];
-        const filtered = current.filter(id => id !== objId && prevState.closed_windows[id] === false);
-        return [objId, ...filtered];
+        const prevFocusedMap = this.getFocusedMapFromState(prevState.focused_windows);
+        const reordered = new Map();
+        const appConfig = prevFocusedMap.get(objId) || this.getAppConfigById(objId);
+        if (appConfig) {
+            reordered.set(objId, appConfig);
+        }
+        prevFocusedMap.forEach((value, key) => {
+            if (key === objId) return;
+            if (prevState.closed_windows[key] === false) {
+                reordered.set(key, value);
+            }
+        });
+        return reordered;
     }
 
     focus = (objId) => {

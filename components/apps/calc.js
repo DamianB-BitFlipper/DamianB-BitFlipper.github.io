@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
+import { CURSOR_CONTROLLER_REGISTER_EVENT, CURSOR_CONTROLLER_UNREGISTER_EVENT } from '../cursorControllerEvents';
 const Parser = require('expr-eval').Parser;
-
-const CURSOR_CONTROLLER_REGISTER_EVENT = 'ubuntu-register-cursor-controller';
-const CURSOR_CONTROLLER_UNREGISTER_EVENT = 'ubuntu-unregister-cursor-controller';
 
 const parser = new Parser({
     operators: {
