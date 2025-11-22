@@ -7,19 +7,19 @@ export class Trash extends Component {
         this.trashItems = [
             {
                 name: "php",
-                icon: "./themes/filetypes/php.png"
+                icon: "./themes/status/php.png"
             },
             {
                 name: "Angular.js",
-                icon: "./themes/filetypes/js.png"
+                icon: "./themes/status/js.png"
             },
             {
                 name: "Code.java",
-                icon: "./themes/filetypes/java.png"
+                icon: "./themes/status/java.png"
             },
             {
                 name: "Windows.exe",
-                icon: "./themes/filetypes/windows.png"
+                icon: "./themes/status/windows.png"
             },
             {
                 name: "node_modules",
@@ -32,7 +32,7 @@ export class Trash extends Component {
             },
             {
                 name: "Old Assignment.zip",
-                icon: "./themes/filetypes/zip.png"
+                icon: "./themes/status/zip.png"
             },
             {
                 name: "project final",

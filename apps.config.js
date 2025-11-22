@@ -15,7 +15,7 @@ const apps = [
     {
         id: "firefox",
         title: "Mozilla Firefox",
-        icon: './themes/Yaru/apps/firefox.png',
+        icon: './themes/apps/firefox.png',
         favourite: true,
         desktop_shortcut: true,
         screen: displayFirefox, // reusing the component for now, will rename later if requested
@@ -26,7 +26,7 @@ const apps = [
     {
         id: "calc",
         title: "Calc",
-        icon: './themes/Yaru/apps/calc.png',
+        icon: './themes/apps/calc.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displayTerminalCalc,
@@ -46,7 +46,7 @@ const apps = [
     {
         id: "vscode",
         title: "Visual Studio Code",
-        icon: './themes/Yaru/apps/vscode.png',
+        icon: './themes/apps/vscode.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displayVsCode,
@@ -56,7 +56,7 @@ const apps = [
     {
         id: "terminal",
         title: "Terminal",
-        icon: './themes/Yaru/apps/bash.png',
+        icon: './themes/apps/bash.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displayTerminal,
@@ -66,7 +66,7 @@ const apps = [
     {
         id: "spotify",
         title: "Spotify",
-        icon: './themes/Yaru/apps/spotify.png',
+        icon: './themes/apps/spotify.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displaySpotify,
@@ -76,7 +76,7 @@ const apps = [
     {
         id: "cheese",
         title: "Cheese",
-        icon: './themes/Yaru/apps/cheese.png',
+        icon: './themes/apps/cheese.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displayCheese,
@@ -86,7 +86,7 @@ const apps = [
     {
         id: "chess",
         title: "Chess",
-        icon: './themes/Yaru/apps/chess.png',
+        icon: './themes/apps/chess.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displayChess,
@@ -96,7 +96,7 @@ const apps = [
     {
         id: "settings",
         title: "Settings",
-        icon: './themes/Yaru/apps/gnome-control-center.png',
+        icon: './themes/apps/gnome-control-center.png',
         favourite: true,
         desktop_shortcut: false,
         screen: displaySettings,
@@ -106,7 +106,7 @@ const apps = [
     {
         id: "gedit",
         title: "Contact Me",
-        icon: './themes/Yaru/apps/gedit.png',
+        icon: './themes/apps/gedit.png',
         favourite: false,
         desktop_shortcut: true,
         screen: displayGedit,
@@ -116,7 +116,7 @@ const apps = [
     {
         id: "github",
         title: "GitHub",
-        icon: './themes/Yaru/apps/github.png',
+        icon: './themes/apps/github.png',
         favourite: false,
         desktop_shortcut: true,
         isExternalApp: true,
@@ -128,7 +128,7 @@ const apps = [
     {
         id: "x-profile",
         title: "X",
-        icon: './themes/Yaru/apps/x-logo.png',
+        icon: './themes/apps/x-logo.png',
         favourite: false,
         desktop_shortcut: true,
         isExternalApp: true,
@@ -150,7 +150,7 @@ const apps = [
     {
         id: "do-not-click",
         title: "Do Not Open",
-        icon: './themes/Yaru/apps/gedit.png',
+        icon: './themes/apps/gedit.png',
         favourite: false,
         desktop_shortcut: true,
         screen: displayDoNotClick,
