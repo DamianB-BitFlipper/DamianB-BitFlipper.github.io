@@ -48,14 +48,14 @@ export class Settings extends Component {
 
 function Background(props) {
     const wallpapers = {
-        "wall-1": "./images/wallpapers/wall-1.webp",
-        "wall-2": "./images/wallpapers/wall-2.webp",
-        "wall-3": "./images/wallpapers/wall-3.webp",
-        "wall-4": "./images/wallpapers/wall-4.webp",
-        "wall-5": "./images/wallpapers/wall-5.webp",
-        "wall-6": "./images/wallpapers/wall-6.webp",
-        "wall-7": "./images/wallpapers/wall-7.webp",
-        "wall-8": "./images/wallpapers/wall-8.webp",
+        "wall-1": "./themes/wallpapers/wall-1.webp",
+        "wall-2": "./themes/wallpapers/wall-2.webp",
+        "wall-3": "./themes/wallpapers/wall-3.webp",
+        "wall-4": "./themes/wallpapers/wall-4.webp",
+        "wall-5": "./themes/wallpapers/wall-5.webp",
+        "wall-6": "./themes/wallpapers/wall-6.webp",
+        "wall-7": "./themes/wallpapers/wall-7.webp",
+        "wall-8": "./themes/wallpapers/wall-8.webp",
     };
 
     let changeBackgroundImage = (e) => {

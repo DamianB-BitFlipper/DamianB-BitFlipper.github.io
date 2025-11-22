@@ -448,7 +448,7 @@ export class Terminal extends CLI {
                 category: "Sudo Access",
                 action: "lol",
             });
-            env.output("__HTML__<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />");
+            env.output("__HTML__<img class=' w-2/5' src='./themes/memes/used-sudo-command.webp' />");
             env.exit(0);
         };
 
