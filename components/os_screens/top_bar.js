@@ -5,10 +5,22 @@ import SystemIndicatorPanel, { PanelSummary } from '../os_components/system_indi
 export default class TopBar extends Component {
 	constructor() {
 		super();
+		this.panelSummaryRef = React.createRef();
 		this.state = {
-			status_card: false
+			show_panel: false
 		};
 	}
+
+	toglePanel = () => {
+        console.log("TOGGLING!", this.state.show_panel);
+		this.setState({ show_panel: !this.state.show_panel });
+        console.log("AFTER!", this.state.show_panel);
+	}
+
+    closePanel = () => {
+        console.log("CLOSE PANEL");
+        this.setState({ show_panel: false });
+    }
 
 	render() {
 		return (
@@ -32,23 +44,16 @@ export default class TopBar extends Component {
 				<div
 					id="status-bar"
 					tabIndex="0"
-					onFocus={() => {
-						this.setState({ status_card: true });
-					}}
-					// removed onBlur from here
-					className={
-						'relative pr-3 pl-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-orange py-1 '
-					}
+					ref={this.panelSummaryRef}
+					onClick={this.toglePanel}
+					className={`relative pr-3 pl-3 outline-none transition duration-100 ease-in-out border-b-2 ${this.state.show_panel ? 'border-ubb-orange' : 'border-transparent'} py-1 `}
 				>
 					<PanelSummary />
 					<SystemIndicatorPanel
 						shutDown={this.props.shutDown}
 						lockScreen={this.props.lockScreen}
-						visible={this.state.status_card}
-						toggleVisible={() => {
-							// this prop is used in statusCard component in handleClickOutside callback using react-onclickoutside
-							this.setState({ status_card: false });
-						}}
+						visible={this.state.show_panel}
+						closePanel={this.closePanel}
 					/>
 				</div>
 			</div>

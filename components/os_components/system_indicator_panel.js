@@ -58,12 +58,19 @@ export class SystemIndicatorPanel extends Component {
 		super();
 		this.wrapperRef = React.createRef();
 		this.state = {
-			sound_level: 75, // better of setting default values from localStorage
-			brightness_level: 100 // setting default value to 100 so that by default its always full.
+			sound_level: 75,
+			brightness_level: 100
 		};
 	}
-	handleClickOutside = () => {
-		this.props.toggleVisible();
+	handleClickOutside = (event) => {
+        console.log("OUTSIDE");
+        // Don't close the panel if clicking on the status-bar,
+        // otherwise it will re-open immediately
+		const statusBar = document.getElementById('status-bar');
+		if (event && statusBar && statusBar.contains(event.target)) {
+			return;
+		}
+		this.props.closePanel();
 	};
 	componentDidMount() {
 		this.setState({
