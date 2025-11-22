@@ -5,7 +5,7 @@ import SideBar from './side_bar';
 import apps from '../../apps.config';
 import Window from '../base/window';
 import DesktopApp from '../base/desktop_app';
-import AllApplications from '../screen/all-applications'
+import AllApplications from '../os_screens/all-applications'
 import DesktopMenu from '../context menus/desktop-menu';
 import DefaultMenu from '../context menus/default';
 import $ from 'jquery';

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import BootingScreen from './screen/booting_screen';
-import Desktop from './screen/desktop';
-import LockScreen from './screen/lock_screen';
-import TopBar from './screen/top_bar';
+import BootingScreen from './os_screens/booting_screen';
+import Desktop from './os_screens/desktop';
+import LockScreen from './os_screens/lock_screen';
+import TopBar from './os_screens/top_bar';
 import ReactGA from 'react-ga4';
 
 export default class Ubuntu extends Component {
