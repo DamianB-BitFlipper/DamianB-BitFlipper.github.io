@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Clock from '../os_components/clock';
 import SystemIndicatorPanel, { PanelSummary } from '../os_components/system_indicator_panel';
 
-export default class Navbar extends Component {
+export default class TopBar extends Component {
 	constructor() {
 		super();
 		this.state = {

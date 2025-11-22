@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BootingScreen from './screen/booting_screen';
 import Desktop from './screen/desktop';
 import LockScreen from './screen/lock_screen';
-import Navbar from './screen/navbar';
+import TopBar from './screen/top_bar';
 import ReactGA from 'react-ga4';
 
 export default class Ubuntu extends Component {
@@ -120,7 +120,7 @@ export default class Ubuntu extends Component {
 					isShutDown={this.state.shutDownScreen}
 					turnOn={this.turnOn}
 				/>
-				<Navbar lockScreen={this.lockScreen} shutDown={this.shutDown} />
+				<TopBar lockScreen={this.lockScreen} shutDown={this.shutDown} />
 				<Desktop bg_image_name={this.state.bg_image_name} changeBackgroundImage={this.changeBackgroundImage} />
 			</div>
 		);
