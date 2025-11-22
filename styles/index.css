@@ -216,18 +216,20 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
     position: relative;
     min-height: 1.25rem;
     display: block;
-    --cursor-offset: 0px;
+    --cursor-pos: 0;
 }
 
 .terminal-input-line > span {
     display: block;
+    font-family: inherit;
+    letter-spacing: normal;
 }
 
 .terminal-input-line::after {
     content: '';
     position: absolute;
     top: 0;
-    left: var(--cursor-offset, 0px);
+    left: calc(var(--cursor-pos, 0) * 1ch);
     width: 1ch;
     height: 1.1em;
     background-color: #ffffff;
