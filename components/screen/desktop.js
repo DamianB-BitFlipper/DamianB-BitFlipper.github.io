@@ -15,7 +15,7 @@ export class Desktop extends Component {
     constructor() {
         super();
         this.app_stack = [];
-        this.initFavourite = {};
+        this.initFavourite = [];
         this.allWindowClosed = false;
         this.cursorControllers = {};
         this.cursorEventsBound = false;
@@ -26,7 +26,6 @@ export class Desktop extends Component {
             allAppsView: false,
             overlapped_windows: {},
             disabled_apps: {},
-            favourite_apps: {},
             hideSideBar: false,
             minimized_windows: {},
             desktop_apps: [],
@@ -235,7 +234,7 @@ export class Desktop extends Component {
 
     fetchAppsData = () => {
         const focused_windows = [];
-        let closed_windows = {}, disabled_apps = {}, favourite_apps = {}, overlapped_windows = {}, minimized_windows = {}, window_positions = {};
+        let closed_windows = {}, disabled_apps = {}, favourite_apps = [], overlapped_windows = {}, minimized_windows = {}, window_positions = {};
         let desktop_apps = [];
         apps.forEach((app) => {
             const isDefaultOpen = (app.id === "about-damian");
@@ -252,10 +251,7 @@ export class Desktop extends Component {
                 ...disabled_apps,
                 [app.id]: app.disabled,
             };
-            favourite_apps = {
-                ...favourite_apps,
-                [app.id]: app.favourite,
-            };
+            if (app.favourite) favourite_apps.push(app.id);
             overlapped_windows = {
                 ...overlapped_windows,
                 [app.id]: false,
@@ -270,17 +266,16 @@ export class Desktop extends Component {
             focused_windows,
             closed_windows,
             disabled_apps,
-            favourite_apps,
             overlapped_windows,
             minimized_windows,
             desktop_apps,
             window_positions
         });
-        this.initFavourite = { ...favourite_apps };
+        this.initFavourite = [...favourite_apps];
     }
 
     updateAppsData = () => {
-        let closed_windows = {}, favourite_apps = {}, minimized_windows = {}, disabled_apps = {}, window_positions = { ...this.state.window_positions };
+        let closed_windows = {}, favourite_apps = [], minimized_windows = {}, disabled_apps = {}, window_positions = { ...this.state.window_positions };
         let desktop_apps = [];
         apps.forEach((app) => {
             minimized_windows = {
@@ -295,10 +290,7 @@ export class Desktop extends Component {
                 ...closed_windows,
                 [app.id]: ((this.state.closed_windows[app.id] !== undefined || this.state.closed_windows[app.id] !== null) ? this.state.closed_windows[app.id] : true)
             };
-            favourite_apps = {
-                ...favourite_apps,
-                [app.id]: app.favourite
-            }
+            if (app.favourite) favourite_apps.push(app.id);
             if (!window_positions[app.id] && !closed_windows[app.id]) {
                 window_positions[app.id] = { x: 60, y: 10 };
             }
@@ -317,11 +309,10 @@ export class Desktop extends Component {
             closed_windows,
             disabled_apps,
             minimized_windows,
-            favourite_apps,
             desktop_apps,
             window_positions
         });
-        this.initFavourite = { ...favourite_apps };
+        this.initFavourite = [...favourite_apps];
     }
 
     renderDesktopApps = () => {
@@ -450,10 +441,9 @@ export class Desktop extends Component {
 
         setTimeout(() => {
             this.setState((prevState) => {
-                const favourite_apps = { ...prevState.favourite_apps, [objId]: true };
                 const closed_windows = { ...prevState.closed_windows, [objId]: false };
                 const window_positions = { ...prevState.window_positions, [objId]: this.getNextWindowPosition(prevState) };
-                return { closed_windows, favourite_apps, window_positions, allAppsView: false };
+                return { closed_windows, window_positions, allAppsView: false };
             }, () => {
                 this.focus(objId);
             });
@@ -471,12 +461,10 @@ export class Desktop extends Component {
 
         this.setState((prevState) => {
             let closed_windows = { ...prevState.closed_windows, [objId]: true };
-            let favourite_apps = { ...prevState.favourite_apps };
-            if (this.initFavourite[objId] === false) favourite_apps[objId] = false; // if user default app is not favourite, remove from sidebar
             const window_positions = { ...prevState.window_positions };
             delete window_positions[objId];
             const focused_windows = prevState.focused_windows.filter(id => id !== objId);
-            return { closed_windows, favourite_apps, window_positions, focused_windows };
+            return { closed_windows, window_positions, focused_windows };
         }, () => {
             this.giveFocusToLastApp();
         });
@@ -533,7 +521,7 @@ export class Desktop extends Component {
                 <SideBar apps={apps}
                     hide={this.state.hideSideBar}
                     hideSideBar={this.hideSideBar}
-                    favourite_apps={this.state.favourite_apps}
+                    favourite_apps={this.initFavourite}
                     showAllApps={this.showAllApps}
                     allAppsView={this.state.allAppsView}
                     closed_windows={this.state.closed_windows}

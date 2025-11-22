@@ -4,7 +4,9 @@ import SideBarApp from '../base/side_bar_app';
 let renderApps = (props) => {
     const focusedAppId = props.focused_windows?.[0];
     return props.apps.reduce((sideBarAppsJsx, app, index) => {
-        if (props.favourite_apps[app.id] === false) return sideBarAppsJsx;
+        const isPinned = props.favourite_apps.includes(app.id);
+        const isOpen = props.closed_windows[app.id] === false;
+        if (!isPinned && !isOpen) return sideBarAppsJsx;
         sideBarAppsJsx.push(
             <SideBarApp
                 key={index}
