@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function DesktopMenu(props) {
+function DesktopSecondaryMenu(props) {
 
     const [isFullScreen, setIsFullScreen] = useState(false)
 
@@ -82,4 +82,4 @@ function Devider() {
 }
 
 
-export default DesktopMenu
+export default DesktopSecondaryMenu

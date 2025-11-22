@@ -6,8 +6,8 @@ import apps from '../../apps.config';
 import Window from '../base/window';
 import DesktopApp from '../base/desktop_app';
 import AllApplications from '../os_screens/all-applications'
-import DesktopMenu from '../context menus/desktop-menu';
-import DefaultMenu from '../context menus/default';
+import DesktopSecondaryMenu from '../os_components/desktop-secondary-menu';
+import DefaultSecondaryMenu from '../os_components/default-secondary-menu';
 import $ from 'jquery';
 import ReactGA from 'react-ga4';
 
@@ -456,8 +456,8 @@ export class Desktop extends Component {
                 {this.renderDesktopApps()}
 
                 {/* Context Menus */}
-                <DesktopMenu active={this.state.context_menus.desktop} openApp={this.openApp} />
-                <DefaultMenu active={this.state.context_menus.default} />
+                <DesktopSecondaryMenu active={this.state.context_menus.desktop} openApp={this.openApp} />
+                <DefaultSecondaryMenu active={this.state.context_menus.default} />
 
                 <div className={`absolute z-20 w-full h-full top-0 left-0 transition-all duration-200 ease-in-out ${this.state.allAppsView ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                     <AllApplications apps={apps}

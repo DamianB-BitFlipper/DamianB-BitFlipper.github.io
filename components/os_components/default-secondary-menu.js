@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-function DefaultMenu(props) {
+function DefaultSecondaryMenu(props) {
     return (
         <div id="default-menu" className={(props.active ? " block " : " hidden ") + " cursor-default w-52 context-menu-bg border text-left border-gray-900 rounded text-white py-4 absolute z-50 text-sm"}>
             <a rel="noreferrer noopener" href="https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io" target="_blank" className="w-full block cursor-default py-0.5 hover:bg-ub-warm-grey hover:bg-opacity-20 mb-1.5">
@@ -36,4 +36,4 @@ function Devider() {
     );
 }
 
-export default DefaultMenu
+export default DefaultSecondaryMenu
