@@ -4,7 +4,7 @@ import BackgroundImage from '../util components/background-image';
 import SideBar from './side_bar';
 import apps from '../../apps.config';
 import Window from '../base/window';
-import UbuntuApp from '../base/ubuntu_app';
+import DesktopApp from '../base/desktop_app';
 import AllApplications from '../screen/all-applications'
 import DesktopMenu from '../context menus/desktop-menu';
 import DefaultMenu from '../context menus/default';
@@ -223,7 +223,7 @@ export class Desktop extends Component {
                 }
 
                 appsJsx.push(
-                    <UbuntuApp key={index} {...props} />
+                    <DesktopApp key={index} {...props} />
                 );
             }
         });

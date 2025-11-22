@@ -1,5 +1,5 @@
 import React from 'react';
-import UbuntuApp from '../base/ubuntu_app';
+import DesktopApp from '../base/desktop_app';
 
 export class AllApplications extends React.Component {
     constructor() {
@@ -54,7 +54,7 @@ export class AllApplications extends React.Component {
             }
 
             appsJsx.push(
-                <UbuntuApp key={index} {...props} />
+                <DesktopApp key={index} {...props} />
             );
         });
         return appsJsx;

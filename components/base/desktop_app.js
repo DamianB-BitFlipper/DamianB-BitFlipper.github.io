@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Draggable from 'react-draggable';
 
-export class UbuntuApp extends Component {
+export class DesktopApp extends Component {
 
     openApp = () => {
         if (this.props.isExternalApp && this.props.url) {
@@ -37,4 +37,4 @@ export class UbuntuApp extends Component {
     }
 }
 
-export default UbuntuApp
+export default DesktopApp
