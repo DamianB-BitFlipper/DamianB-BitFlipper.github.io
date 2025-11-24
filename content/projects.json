@@ -26,6 +26,20 @@
       "repositories": {
         "nodes": [
           {
+            "name": "awesome-web-desktops",
+            "description": "Websites, web apps, portfolios which look like desktop operating systems",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Ruby"
+            },
+            "updatedAt": "2025-11-23",
+            "url": "https://github.com/DamianB-BitFlipper/awesome-web-desktops",
+            "homepageUrl": "https://simone.computer/webdesktops",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "DamianB-BitFlipper.github.io",
             "description": "Damian Barabonkov's software engineering online portfolio. ",
             "stargazerCount": 0,
