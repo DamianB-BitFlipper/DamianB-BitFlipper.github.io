@@ -26,6 +26,20 @@
       "repositories": {
         "nodes": [
           {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-11-24",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "awesome-web-desktops",
             "description": "Websites, web apps, portfolios which look like desktop operating systems",
             "stargazerCount": 0,
@@ -35,20 +49,6 @@
             "updatedAt": "2025-11-23",
             "url": "https://github.com/DamianB-BitFlipper/awesome-web-desktops",
             "homepageUrl": "https://simone.computer/webdesktops",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-11-22",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
