@@ -30,9 +30,9 @@
             "description": "Hosted static website to generate QR codes in various pages",
             "stargazerCount": 0,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "TypeScript"
             },
-            "updatedAt": "2025-11-26",
+            "updatedAt": "2025-11-27",
             "url": "https://github.com/DamianB-BitFlipper/qr_shapes",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -46,7 +46,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-11-26",
+            "updatedAt": "2025-11-27",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
