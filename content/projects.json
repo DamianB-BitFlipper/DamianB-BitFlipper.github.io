@@ -26,14 +26,14 @@
       "repositories": {
         "nodes": [
           {
-            "name": "qr_shapes",
-            "description": "Hosted static website to generate QR codes in various pages",
-            "stargazerCount": 0,
+            "name": "dotfiles-and-configs",
+            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
+            "stargazerCount": 1,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-11-27",
-            "url": "https://github.com/DamianB-BitFlipper/qr_shapes",
+            "updatedAt": "2025-11-28",
+            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -46,8 +46,22 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-11-27",
+            "updatedAt": "2025-11-28",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "qr_shapes",
+            "description": "Hosted static website to generate QR codes in various pages",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2025-11-27",
+            "url": "https://github.com/DamianB-BitFlipper/qr_shapes",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -63,20 +77,6 @@
             "updatedAt": "2025-11-23",
             "url": "https://github.com/DamianB-BitFlipper/awesome-web-desktops",
             "homepageUrl": "https://simone.computer/webdesktops",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dotfiles-and-configs",
-            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2025-11-22",
-            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
