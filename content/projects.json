@@ -26,6 +26,20 @@
       "repositories": {
         "nodes": [
           {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-11-29",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
             "stargazerCount": 1,
@@ -34,20 +48,6 @@
             },
             "updatedAt": "2025-11-28",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-11-28",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
