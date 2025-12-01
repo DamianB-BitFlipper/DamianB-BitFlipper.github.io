@@ -26,15 +26,29 @@
       "repositories": {
         "nodes": [
           {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "name": "proton-drive-sync",
+            "description": "Auto-sync macOS folders to Proton Drive via the Proton Drive SDK.",
             "stargazerCount": 0,
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-11-29",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "updatedAt": "2025-11-30",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "doomemacs",
+            "description": "An Emacs framework for the stubborn martian hacker",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-11-30",
+            "url": "https://github.com/DamianB-BitFlipper/doomemacs",
+            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
@@ -46,8 +60,22 @@
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-11-28",
+            "updatedAt": "2025-11-30",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-11-30",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
