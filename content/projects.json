@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
+            "name": "magit-gptcommit",
+            "description": "Magit commit with help of gpt, with some custom modifications to fit my workflow",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-03",
+            "url": "https://github.com/DamianB-BitFlipper/magit-gptcommit",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
             "stargazerCount": 1,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-12-02",
+            "updatedAt": "2025-12-03",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -46,7 +60,7 @@
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2025-12-02",
+            "updatedAt": "2025-12-03",
             "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-12-02",
+            "updatedAt": "2025-12-03",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
