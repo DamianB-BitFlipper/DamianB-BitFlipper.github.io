@@ -28,12 +28,26 @@
           {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 1,
+            "stargazerCount": 2,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-12-04",
+            "updatedAt": "2025-12-05",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-05",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -62,20 +76,6 @@
             },
             "updatedAt": "2025-12-04",
             "url": "https://github.com/DamianB-BitFlipper/magit-gptcommit",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-04",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
