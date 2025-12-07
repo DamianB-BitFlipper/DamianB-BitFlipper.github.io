@@ -26,14 +26,56 @@
       "repositories": {
         "nodes": [
           {
+            "name": "javelin.el",
+            "description": "Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-06",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
             "stargazerCount": 2,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-12-05",
+            "updatedAt": "2025-12-06",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "melpa",
+            "description": "Recipes and build machinery for the biggest Emacs package repo",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-06",
+            "url": "https://github.com/DamianB-BitFlipper/melpa",
+            "homepageUrl": "https://melpa.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "advent-of-code-2025",
+            "description": "My 2025 Advent of Code Solutions",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-12-06",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -46,22 +88,8 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-12-05",
+            "updatedAt": "2025-12-06",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "harpoon.el",
-            "description": "Harpoon for emacs",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2025-12-04",
-            "url": "https://github.com/DamianB-BitFlipper/harpoon.el",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -76,20 +104,6 @@
             },
             "updatedAt": "2025-12-04",
             "url": "https://github.com/DamianB-BitFlipper/magit-gptcommit",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "advent-of-code-2025",
-            "description": "My 2025 Advent of Code Solutions",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2025-12-03",
-            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
