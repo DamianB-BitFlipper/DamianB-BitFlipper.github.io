@@ -32,8 +32,36 @@
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2025-12-08",
+            "updatedAt": "2025-12-09",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "advent-of-code-2025",
+            "description": "My 2025 Advent of Code Solutions",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-12-08",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-08",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -76,34 +104,6 @@
             },
             "updatedAt": "2025-12-07",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "advent-of-code-2025",
-            "description": "My 2025 Advent of Code Solutions",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2025-12-07",
-            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-07",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
