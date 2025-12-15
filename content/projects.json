@@ -26,14 +26,70 @@
       "repositories": {
         "nodes": [
           {
+            "name": "advent-of-code-2025",
+            "description": "My 2025 Advent of Code Solutions",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2025-12-14",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "DamianB-BitFlipper.github.io",
             "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 0,
+            "stargazerCount": 1,
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-11-22",
+            "updatedAt": "2025-12-14",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Auto-sync macOS folders to Proton Drive via the Proton Drive SDK.",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2025-12-09",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "doomemacs",
+            "description": "An Emacs framework for the stubborn martian hacker",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-07",
+            "url": "https://github.com/DamianB-BitFlipper/doomemacs",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "javelin.el",
+            "description": "Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-07",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -42,13 +98,69 @@
           {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 1,
+            "stargazerCount": 2,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-11-22",
+            "updatedAt": "2025-12-07",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "melpa",
+            "description": "Recipes and build machinery for the biggest Emacs package repo",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-06",
+            "url": "https://github.com/DamianB-BitFlipper/melpa",
+            "homepageUrl": "https://melpa.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "magit-gptcommit",
+            "description": "Magit commit with help of gpt, with some custom modifications to fit my workflow",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-04",
+            "url": "https://github.com/DamianB-BitFlipper/magit-gptcommit",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "qr_shapes",
+            "description": "Hosted static website to generate QR codes in various pages",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2025-11-27",
+            "url": "https://github.com/DamianB-BitFlipper/qr_shapes",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "awesome-web-desktops",
+            "description": "Websites, web apps, portfolios which look like desktop operating systems",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Ruby"
+            },
+            "updatedAt": "2025-11-23",
+            "url": "https://github.com/DamianB-BitFlipper/awesome-web-desktops",
+            "homepageUrl": "https://simone.computer/webdesktops",
             "repositoryTopics": {
               "nodes": []
             }
