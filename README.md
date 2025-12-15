@@ -9,7 +9,7 @@ A live version of the site can be visited at [https://www.damianb.dev/](https://
 ## Local development
 
 1. Install dependencies with `pnpm install`.
-2. Export a GitHub token so the UI can call the GitHub API:
+2. Export a GitHub Classic Token so the UI can call the GitHub API:
    ```bash
    export NEXT_PUBLIC_GITHUB_API_TOKEN="ghp_yourtoken"
    ```
