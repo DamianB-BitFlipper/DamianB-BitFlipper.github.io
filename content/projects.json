@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
+            "name": "dotfiles-and-configs",
+            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-21",
+            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "advent-of-code-2025",
             "description": "My 2025 Advent of Code Solutions",
             "stargazerCount": 1,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2025-12-20",
+            "updatedAt": "2025-12-21",
             "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -46,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2025-12-20",
+            "updatedAt": "2025-12-21",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -90,20 +104,6 @@
             },
             "updatedAt": "2025-12-07",
             "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dotfiles-and-configs",
-            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2025-12-07",
-            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
