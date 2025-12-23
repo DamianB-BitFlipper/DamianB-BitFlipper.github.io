@@ -26,14 +26,42 @@
       "repositories": {
         "nodes": [
           {
+            "name": "mailspring-avatars",
+            "description": "Avatars for Mailspring",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-22",
+            "url": "https://github.com/DamianB-BitFlipper/mailspring-avatars",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
             "stargazerCount": 2,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-12-21",
+            "updatedAt": "2025-12-22",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-22",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -48,20 +76,6 @@
             },
             "updatedAt": "2025-12-21",
             "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-21",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
