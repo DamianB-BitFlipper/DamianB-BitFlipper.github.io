@@ -26,15 +26,43 @@
       "repositories": {
         "nodes": [
           {
+            "name": "proton-drive-sync",
+            "description": "Auto-sync MacOS folders to Proton Drive via the Proton Drive SDK.",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2025-12-29",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "llmplot",
             "description": "Making LLM plots not ugly.",
             "stargazerCount": 0,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2025-12-28",
+            "updatedAt": "2025-12-29",
             "url": "https://github.com/DamianB-BitFlipper/llmplot",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-29",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -49,34 +77,6 @@
             "updatedAt": "2025-12-28",
             "url": "https://github.com/DamianB-BitFlipper/javelin.el",
             "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-28",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Auto-sync MacOS folders to Proton Drive via the Proton Drive SDK.",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2025-12-25",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
