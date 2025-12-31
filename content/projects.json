@@ -7,13 +7,13 @@
             "name": "JS-OS"
           },
           {
+            "name": "proton-drive-sync"
+          },
+          {
             "name": "uttertype"
           },
           {
             "name": "algopytest"
-          },
-          {
-            "name": "accelerated-matrix-multiply"
           },
           {
             "name": "Guarda-firewall"
@@ -26,15 +26,43 @@
       "repositories": {
         "nodes": [
           {
+            "name": "javelin.el",
+            "description": "Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 15,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2025-12-31",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
-            "description": "Auto-sync MacOS folders to Proton Drive via the Proton Drive SDK.",
+            "description": "Local folders, automatically synced to Proton Drive.",
             "stargazerCount": 2,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2025-12-29",
+            "updatedAt": "2025-12-30",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-30",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -49,34 +77,6 @@
             "updatedAt": "2025-12-29",
             "url": "https://github.com/DamianB-BitFlipper/llmplot",
             "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-29",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "javelin.el",
-            "description": "Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2025-12-28",
-            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
