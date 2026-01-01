@@ -27,55 +27,33 @@
         "nodes": [
           {
             "name": "javelin.el",
-            "description": "Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 15,
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 26,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-12-31",
+            "updatedAt": "2026-01-01",
             "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": null,
+            "homepageUrl": "",
             "repositoryTopics": {
-              "nodes": []
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "emacs"
+                  }
+                }
+              ]
             }
           },
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive.",
-            "stargazerCount": 2,
+            "stargazerCount": 4,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2025-12-30",
+            "updatedAt": "2025-12-31",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-30",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "llmplot",
-            "description": "Making LLM plots not ugly.",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2025-12-29",
-            "url": "https://github.com/DamianB-BitFlipper/llmplot",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -88,8 +66,36 @@
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2025-12-25",
+            "updatedAt": "2025-12-31",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "llmplot",
+            "description": "Making LLM plots not ugly.",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2025-12-31",
+            "url": "https://github.com/DamianB-BitFlipper/llmplot",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2025-12-31",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
