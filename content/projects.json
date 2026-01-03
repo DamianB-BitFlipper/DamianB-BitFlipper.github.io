@@ -28,7 +28,7 @@
           {
             "name": "javelin.el",
             "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 29,
+            "stargazerCount": 32,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
@@ -52,7 +52,7 @@
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-01",
+            "updatedAt": "2026-01-02",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -66,7 +66,7 @@
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-01",
+            "updatedAt": "2026-01-02",
             "url": "https://github.com/DamianB-BitFlipper/llmplot",
             "homepageUrl": "https://llmplot.com",
             "repositoryTopics": {
@@ -80,7 +80,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-01-01",
+            "updatedAt": "2026-01-02",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
