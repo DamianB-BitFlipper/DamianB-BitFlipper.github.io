@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
-            "name": "javelin.el",
-            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 34,
+            "name": "magit-pre-commit.el",
+            "description": "Emacs: pre-commit integration for Magit.",
+            "stargazerCount": 8,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2026-01-05",
+            "updatedAt": "2026-01-06",
+            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "javelin.el",
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 39,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-06",
             "url": "https://github.com/DamianB-BitFlipper/javelin.el",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -48,12 +62,82 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive.",
-            "stargazerCount": 7,
+            "stargazerCount": 11,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-04",
+            "updatedAt": "2026-01-06",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dotfiles-and-configs",
+            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-05",
+            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "Guarda-firewall",
+            "description": "A proxy firewall prototype for RESTful services to easily support webauthn two-factor authentication. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-01-05",
+            "url": "https://github.com/DamianB-BitFlipper/Guarda-firewall",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "JS-OS",
+            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
+            "stargazerCount": 26,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2026-01-05",
+            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "advent-of-code-2025",
+            "description": "My 2025 Advent of Code Solutions",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-01-05",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "zsh-ai",
+            "description": "Transform natural language into shell commands instantly. No dependencies, no complex setup - just type what you want and get the command you need.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Shell"
+            },
+            "updatedAt": "2026-01-05",
+            "url": "https://github.com/DamianB-BitFlipper/zsh-ai",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -66,22 +150,8 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-01-04",
+            "updatedAt": "2026-01-05",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dotfiles-and-configs",
-            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-01-03",
-            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -111,20 +181,6 @@
             "updatedAt": "2025-12-23",
             "url": "https://github.com/DamianB-BitFlipper/mailspring-avatars",
             "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "advent-of-code-2025",
-            "description": "My 2025 Advent of Code Solutions",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2025-12-21",
-            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -283,20 +339,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "JS-OS",
-            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
-            "stargazerCount": 27,
-            "primaryLanguage": {
-              "name": "C"
-            },
-            "updatedAt": "2025-08-04",
-            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
@@ -834,20 +876,6 @@
             },
             "updatedAt": "2021-12-20",
             "url": "https://github.com/DamianB-BitFlipper/kyc_house",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "Guarda-firewall",
-            "description": "A proxy firewall prototype for RESTful services to easily support webauthn two-factor authentication. ",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2021-10-25",
-            "url": "https://github.com/DamianB-BitFlipper/Guarda-firewall",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
