@@ -28,11 +28,11 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Third party not affiliated with Proton, but works like a charm)",
-            "stargazerCount": 121,
+            "stargazerCount": 134,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-10",
+            "updatedAt": "2026-01-11",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,14 +40,28 @@
             }
           },
           {
-            "name": "magit-pre-commit.el",
-            "description": "Emacs: pre-commit integration for Magit.",
-            "stargazerCount": 24,
+            "name": "mailspring-avatars",
+            "description": "Avatars for Mailspring",
+            "stargazerCount": 0,
             "primaryLanguage": {
-              "name": "Emacs Lisp"
+              "name": "JavaScript"
             },
-            "updatedAt": "2026-01-09",
-            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
+            "updatedAt": "2026-01-10",
+            "url": "https://github.com/DamianB-BitFlipper/mailspring-avatars",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "homebrew-tap",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Ruby"
+            },
+            "updatedAt": "2026-01-10",
+            "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -56,11 +70,11 @@
           {
             "name": "javelin.el",
             "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 43,
+            "stargazerCount": 44,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2026-01-09",
+            "updatedAt": "2026-01-10",
             "url": "https://github.com/DamianB-BitFlipper/javelin.el",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -80,8 +94,22 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-01-09",
+            "updatedAt": "2026-01-10",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "magit-pre-commit.el",
+            "description": "Emacs: pre-commit integration for Magit.",
+            "stargazerCount": 24,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-09",
+            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -96,20 +124,6 @@
             },
             "updatedAt": "2026-01-08",
             "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "homebrew-tap",
-            "description": null,
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Ruby"
-            },
-            "updatedAt": "2026-01-08",
-            "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -194,20 +208,6 @@
             },
             "updatedAt": "2026-01-05",
             "url": "https://github.com/DamianB-BitFlipper/zsh-ai",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "mailspring-avatars",
-            "description": "Avatars for Mailspring",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2025-12-23",
-            "url": "https://github.com/DamianB-BitFlipper/mailspring-avatars",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
