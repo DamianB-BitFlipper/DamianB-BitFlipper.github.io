@@ -28,13 +28,27 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 290,
+            "stargazerCount": 304,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-17",
+            "updatedAt": "2026-01-18",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-01-17",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -62,20 +76,6 @@
             },
             "updatedAt": "2026-01-16",
             "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-01-16",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
