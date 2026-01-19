@@ -26,9 +26,29 @@
       "repositories": {
         "nodes": [
           {
+            "name": "javelin.el",
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 46,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-18",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "emacs"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 304,
+            "stargazerCount": 313,
             "primaryLanguage": {
               "name": "TypeScript"
             },
@@ -40,13 +60,27 @@
             }
           },
           {
+            "name": "magit-pre-commit.el",
+            "description": "Emacs: pre-commit integration for Magit.",
+            "stargazerCount": 27,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-18",
+            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "DamianB-BitFlipper.github.io",
             "description": "Damian Barabonkov's software engineering online portfolio. ",
             "stargazerCount": 1,
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-01-17",
+            "updatedAt": "2026-01-18",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -68,20 +102,6 @@
             }
           },
           {
-            "name": "magit-pre-commit.el",
-            "description": "Emacs: pre-commit integration for Magit.",
-            "stargazerCount": 26,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-01-16",
-            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "advent-of-code-2025",
             "description": "My 2025 Advent of Code Solutions",
             "stargazerCount": 2,
@@ -93,26 +113,6 @@
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
-            }
-          },
-          {
-            "name": "javelin.el",
-            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 45,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-01-14",
-            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": [
-                {
-                  "topic": {
-                    "name": "emacs"
-                  }
-                }
-              ]
             }
           },
           {
