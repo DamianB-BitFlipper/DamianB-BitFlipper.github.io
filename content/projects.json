@@ -32,7 +32,7 @@
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
-            "updatedAt": "2026-01-23",
+            "updatedAt": "2026-01-24",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -42,11 +42,11 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 350,
+            "stargazerCount": 356,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-23",
+            "updatedAt": "2026-01-24",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -56,7 +56,7 @@
           {
             "name": "scroll-around.el",
             "description": null,
-            "stargazerCount": 4,
+            "stargazerCount": 6,
             "primaryLanguage": {
               "name": "Emacs Lisp"
             },
@@ -68,13 +68,41 @@
             }
           },
           {
+            "name": "kubel",
+            "description": "Emacs extension for controlling Kubernetes with limited permissions",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-23",
+            "url": "https://github.com/DamianB-BitFlipper/kubel",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "magit",
+            "description": "It's Magit! A Git Porcelain inside Emacs.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-23",
+            "url": "https://github.com/DamianB-BitFlipper/magit",
+            "homepageUrl": "https://magit.vc",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "DamianB-BitFlipper.github.io",
             "description": "Damian Barabonkov's software engineering online portfolio. ",
             "stargazerCount": 1,
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-01-22",
+            "updatedAt": "2026-01-23",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
