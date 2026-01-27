@@ -28,13 +28,41 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 365,
+            "stargazerCount": 371,
             "primaryLanguage": {
               "name": "TypeScript"
             },
             "updatedAt": "2026-01-26",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "doomemacs",
+            "description": "An Emacs framework for the stubborn martian hacker",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-26",
+            "url": "https://github.com/DamianB-BitFlipper/doomemacs",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-01-26",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -63,20 +91,6 @@
             "updatedAt": "2026-01-25",
             "url": "https://github.com/DamianB-BitFlipper/melpa",
             "homepageUrl": "https://melpa.org",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-01-25",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -292,20 +306,6 @@
             },
             "updatedAt": "2026-01-05",
             "url": "https://github.com/DamianB-BitFlipper/zsh-ai",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "doomemacs",
-            "description": "An Emacs framework for the stubborn martian hacker",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2025-12-07",
-            "url": "https://github.com/DamianB-BitFlipper/doomemacs",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
