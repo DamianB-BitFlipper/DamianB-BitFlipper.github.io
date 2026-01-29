@@ -26,15 +26,43 @@
       "repositories": {
         "nodes": [
           {
+            "name": "dotfiles-and-configs",
+            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-29",
+            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 379,
+            "stargazerCount": 382,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-01-28",
+            "updatedAt": "2026-01-29",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "magit-pre-commit.el",
+            "description": "Emacs: pre-commit integration for Magit.",
+            "stargazerCount": 29,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-01-28",
+            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -46,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-01-27",
+            "updatedAt": "2026-01-28",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -68,20 +96,6 @@
             }
           },
           {
-            "name": "magit-pre-commit.el",
-            "description": "Emacs: pre-commit integration for Magit.",
-            "stargazerCount": 28,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-01-25",
-            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "melpa",
             "description": "Recipes and build machinery for the biggest Emacs package repo",
             "stargazerCount": 0,
@@ -91,20 +105,6 @@
             "updatedAt": "2026-01-25",
             "url": "https://github.com/DamianB-BitFlipper/melpa",
             "homepageUrl": "https://melpa.org",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dotfiles-and-configs",
-            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-01-24",
-            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
