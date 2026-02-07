@@ -26,15 +26,71 @@
       "repositories": {
         "nodes": [
           {
+            "name": "vfio",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Rust"
+            },
+            "updatedAt": "2026-02-07",
+            "url": "https://github.com/DamianB-BitFlipper/vfio",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "cloud-hypervisor",
+            "description": "A Virtual Machine Monitor for modern Cloud workloads. Features include CPU, memory and device hotplug, support for running Windows and Linux guests, device offload with vhost-user and a minimal compact footprint. Written in Rust with a strong focus on security.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Rust"
+            },
+            "updatedAt": "2026-02-07",
+            "url": "https://github.com/DamianB-BitFlipper/cloud-hypervisor",
+            "homepageUrl": "https://www.cloudhypervisor.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 3808,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-02-07",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 413,
+            "stargazerCount": 419,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-02-06",
+            "updatedAt": "2026-02-07",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-02-06",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -48,34 +104,6 @@
             },
             "updatedAt": "2026-02-06",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 3800,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2026-02-05",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-02-05",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
