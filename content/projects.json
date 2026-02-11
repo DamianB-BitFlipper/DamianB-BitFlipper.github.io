@@ -26,27 +26,13 @@
       "repositories": {
         "nodes": [
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 3823,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2026-02-10",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 433,
+            "stargazerCount": 438,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-02-10",
+            "updatedAt": "2026-02-11",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -54,15 +40,15 @@
             }
           },
           {
-            "name": "infra",
-            "description": "Infrastructure that's powering E2B Cloud.",
-            "stargazerCount": 0,
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 3827,
             "primaryLanguage": {
-              "name": "Go"
+              "name": "Python"
             },
-            "updatedAt": "2026-02-10",
-            "url": "https://github.com/DamianB-BitFlipper/infra",
-            "homepageUrl": "https://e2b.dev",
+            "updatedAt": "2026-02-11",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
@@ -74,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-02-09",
+            "updatedAt": "2026-02-10",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
