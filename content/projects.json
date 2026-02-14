@@ -28,11 +28,11 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 448,
+            "stargazerCount": 450,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-02-12",
+            "updatedAt": "2026-02-13",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -46,9 +46,23 @@
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-02-12",
+            "updatedAt": "2026-02-13",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "scroll-around.el",
+            "description": null,
+            "stargazerCount": 7,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-02-13",
+            "url": "https://github.com/DamianB-BitFlipper/scroll-around.el",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-02-12",
+            "updatedAt": "2026-02-13",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -197,20 +211,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "scroll-around.el",
-            "description": null,
-            "stargazerCount": 6,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-01-23",
-            "url": "https://github.com/DamianB-BitFlipper/scroll-around.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
