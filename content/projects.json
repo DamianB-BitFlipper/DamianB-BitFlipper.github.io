@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 3833,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-02-15",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 450,
+            "stargazerCount": 452,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-02-13",
+            "updatedAt": "2026-02-14",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,15 +54,15 @@
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 3832,
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 1,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "JavaScript"
             },
-            "updatedAt": "2026-02-13",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
-            "homepageUrl": "",
+            "updatedAt": "2026-02-14",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -62,20 +76,6 @@
             },
             "updatedAt": "2026-02-13",
             "url": "https://github.com/DamianB-BitFlipper/scroll-around.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-02-13",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
