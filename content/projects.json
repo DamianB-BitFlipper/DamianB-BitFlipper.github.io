@@ -28,7 +28,7 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 477,
+            "stargazerCount": 481,
             "primaryLanguage": {
               "name": "TypeScript"
             },
@@ -40,27 +40,13 @@
             }
           },
           {
-            "name": "magit-pre-commit.el",
-            "description": "Emacs: pre-commit integration for Magit.",
-            "stargazerCount": 41,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-02-17",
-            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3838,
+            "stargazerCount": 3839,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-02-16",
+            "updatedAt": "2026-02-17",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -74,8 +60,22 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-02-16",
+            "updatedAt": "2026-02-17",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "magit-pre-commit.el",
+            "description": "Emacs: pre-commit integration for Magit.",
+            "stargazerCount": 41,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-02-17",
+            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
