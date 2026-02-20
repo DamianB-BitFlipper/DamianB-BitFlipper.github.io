@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 486,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-02-20",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3843,
+            "stargazerCount": 3846,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-02-19",
+            "updatedAt": "2026-02-20",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,15 +54,15 @@
             }
           },
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 483,
+            "name": "advent-of-code-2025",
+            "description": "My 2025 Advent of Code Solutions",
+            "stargazerCount": 3,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "Python"
             },
-            "updatedAt": "2026-02-18",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
+            "updatedAt": "2026-02-19",
+            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-02-18",
+            "updatedAt": "2026-02-19",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -237,20 +251,6 @@
             "updatedAt": "2026-01-23",
             "url": "https://github.com/DamianB-BitFlipper/magit",
             "homepageUrl": "https://magit.vc",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "advent-of-code-2025",
-            "description": "My 2025 Advent of Code Solutions",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2026-01-15",
-            "url": "https://github.com/DamianB-BitFlipper/advent-of-code-2025",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
