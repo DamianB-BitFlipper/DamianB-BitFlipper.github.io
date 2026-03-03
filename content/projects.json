@@ -26,6 +26,20 @@
       "repositories": {
         "nodes": [
           {
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 3872,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-03-02",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
             "stargazerCount": 508,
@@ -40,15 +54,15 @@
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 3870,
+            "name": "homebrew-tap",
+            "description": null,
+            "stargazerCount": 0,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "Ruby"
             },
-            "updatedAt": "2026-03-01",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
-            "homepageUrl": "",
+            "updatedAt": "2026-03-02",
+            "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -60,22 +74,8 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-03-01",
+            "updatedAt": "2026-03-02",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "homebrew-tap",
-            "description": null,
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Ruby"
-            },
-            "updatedAt": "2026-02-28",
-            "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
