@@ -28,7 +28,7 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3872,
+            "stargazerCount": 3875,
             "primaryLanguage": {
               "name": "Python"
             },
@@ -42,13 +42,41 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 512,
+            "stargazerCount": 513,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-03-04",
+            "updatedAt": "2026-03-05",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "homebrew-tap",
+            "description": null,
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Ruby"
+            },
+            "updatedAt": "2026-03-05",
+            "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-03-05",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -71,34 +99,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-03-04",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "homebrew-tap",
-            "description": null,
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Ruby"
-            },
-            "updatedAt": "2026-03-02",
-            "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
