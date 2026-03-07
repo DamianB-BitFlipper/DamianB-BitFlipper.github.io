@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 515,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-03-06",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3875,
+            "stargazerCount": 3877,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-03-05",
+            "updatedAt": "2026-03-06",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,15 +54,29 @@
             }
           },
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 513,
+            "name": "algo-diploma",
+            "description": "A short and sweet stateful smart contract to issue college graduates their diplomas on the Algorand blockchain.",
+            "stargazerCount": 6,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "Python"
             },
-            "updatedAt": "2026-03-05",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
+            "updatedAt": "2026-03-06",
+            "url": "https://github.com/DamianB-BitFlipper/algo-diploma",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-03-06",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -62,20 +90,6 @@
             },
             "updatedAt": "2026-03-05",
             "url": "https://github.com/DamianB-BitFlipper/homebrew-tap",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-03-05",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -874,20 +888,6 @@
             "updatedAt": "2022-12-07",
             "url": "https://github.com/DamianB-BitFlipper/algo-tutorial-debugging",
             "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "algo-diploma",
-            "description": "A short and sweet stateful smart contract to issue college graduates their diplomas on the Algorand blockchain.",
-            "stargazerCount": 7,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2022-12-07",
-            "url": "https://github.com/DamianB-BitFlipper/algo-diploma",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
