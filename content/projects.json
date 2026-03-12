@@ -26,15 +26,29 @@
       "repositories": {
         "nodes": [
           {
-            "name": "dynamic-load-bench",
-            "description": "A memory dynamic load latency benchmark for modern CPUs",
+            "name": "cloud-hypervisor",
+            "description": "A Virtual Machine Monitor for modern Cloud workloads. Features include CPU, memory and device hotplug, support for running Windows and Linux guests, device offload with vhost-user and a minimal compact footprint. Written in Rust with a strong focus on security.",
             "stargazerCount": 0,
             "primaryLanguage": {
-              "name": "C"
+              "name": "Rust"
+            },
+            "updatedAt": "2026-03-12",
+            "url": "https://github.com/DamianB-BitFlipper/cloud-hypervisor",
+            "homepageUrl": "https://www.cloudhypervisor.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 534,
+            "primaryLanguage": {
+              "name": "TypeScript"
             },
             "updatedAt": "2026-03-11",
-            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
-            "homepageUrl": null,
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
@@ -42,7 +56,7 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3891,
+            "stargazerCount": 3896,
             "primaryLanguage": {
               "name": "Python"
             },
@@ -54,29 +68,29 @@
             }
           },
           {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 2,
+            "name": "dynamic-load-bench",
+            "description": "A memory dynamic load latency benchmark for modern CPUs",
+            "stargazerCount": 1,
             "primaryLanguage": {
-              "name": "JavaScript"
+              "name": "C"
             },
-            "updatedAt": "2026-03-10",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "updatedAt": "2026-03-11",
+            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
           },
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 531,
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 2,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "JavaScript"
             },
-            "updatedAt": "2026-03-09",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
+            "updatedAt": "2026-03-11",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -195,20 +209,6 @@
             "updatedAt": "2026-02-07",
             "url": "https://github.com/DamianB-BitFlipper/vfio",
             "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "cloud-hypervisor",
-            "description": "A Virtual Machine Monitor for modern Cloud workloads. Features include CPU, memory and device hotplug, support for running Windows and Linux guests, device offload with vhost-user and a minimal compact footprint. Written in Rust with a strong focus on security.",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Rust"
-            },
-            "updatedAt": "2026-02-07",
-            "url": "https://github.com/DamianB-BitFlipper/cloud-hypervisor",
-            "homepageUrl": "https://www.cloudhypervisor.org",
             "repositoryTopics": {
               "nodes": []
             }
