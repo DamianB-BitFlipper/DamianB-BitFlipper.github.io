@@ -28,11 +28,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3899,
+            "stargazerCount": 3901,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-03-14",
+            "updatedAt": "2026-03-15",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,27 +40,13 @@
             }
           },
           {
-            "name": "dynamic-load-bench",
-            "description": "A memory dynamic load latency benchmark for modern CPUs",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "C"
-            },
-            "updatedAt": "2026-03-13",
-            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 539,
+            "stargazerCount": 542,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-03-13",
+            "updatedAt": "2026-03-14",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -74,8 +60,22 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-03-13",
+            "updatedAt": "2026-03-14",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dynamic-load-bench",
+            "description": "A memory dynamic load latency benchmark for modern CPUs",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2026-03-13",
+            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
