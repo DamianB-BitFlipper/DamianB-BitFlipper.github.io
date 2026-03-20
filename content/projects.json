@@ -28,12 +28,26 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3915,
+            "stargazerCount": 3918,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-03-18",
+            "updatedAt": "2026-03-20",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "uttertype",
+            "description": "Short code for dictation using OpenAI Whisper for transcription.",
+            "stargazerCount": 5,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-03-19",
+            "url": "https://github.com/DamianB-BitFlipper/uttertype",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -42,13 +56,27 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 548,
+            "stargazerCount": 550,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-03-18",
+            "updatedAt": "2026-03-19",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-03-19",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -62,20 +90,6 @@
             },
             "updatedAt": "2026-03-18",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-03-18",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
@@ -533,20 +547,6 @@
             "updatedAt": "2025-05-27",
             "url": "https://github.com/DamianB-BitFlipper/django-clone",
             "homepageUrl": "https://tj-django.github.io/django-clone",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "uttertype",
-            "description": "Short code for dictation using OpenAI Whisper for transcription.",
-            "stargazerCount": 6,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2025-05-15",
-            "url": "https://github.com/DamianB-BitFlipper/uttertype",
-            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
