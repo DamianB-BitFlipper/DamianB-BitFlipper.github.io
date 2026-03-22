@@ -28,11 +28,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3921,
+            "stargazerCount": 3924,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-03-20",
+            "updatedAt": "2026-03-22",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,13 +40,27 @@
             }
           },
           {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-03-22",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 554,
+            "stargazerCount": 553,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-03-20",
+            "updatedAt": "2026-03-21",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -62,20 +76,6 @@
             },
             "updatedAt": "2026-03-20",
             "url": "https://github.com/DamianB-BitFlipper/next-hug",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-03-20",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
