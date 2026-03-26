@@ -26,28 +26,28 @@
       "repositories": {
         "nodes": [
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 555,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-03-24",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
             "stargazerCount": 3928,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-03-24",
+            "updatedAt": "2026-03-26",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 552,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-03-25",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -60,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-03-24",
+            "updatedAt": "2026-03-25",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
