@@ -28,13 +28,47 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 3984,
+            "stargazerCount": 3985,
             "primaryLanguage": {
               "name": "Python"
             },
             "updatedAt": "2026-04-08",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "javelin.el",
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 48,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-04-08",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "emacs"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-04-08",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -51,40 +85,6 @@
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-04-07",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "javelin.el",
-            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 47,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-04-02",
-            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": [
-                {
-                  "topic": {
-                    "name": "emacs"
-                  }
-                }
-              ]
             }
           },
           {
