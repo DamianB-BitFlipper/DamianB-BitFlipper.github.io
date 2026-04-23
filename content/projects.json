@@ -26,13 +26,27 @@
       "repositories": {
         "nodes": [
           {
+            "name": "cloud-hypervisor",
+            "description": "A Virtual Machine Monitor for modern Cloud workloads. Features include CPU, memory and device hotplug, support for running Windows and Linux guests, device offload with vhost-user and a minimal compact footprint. Written in Rust with a strong focus on security.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Rust"
+            },
+            "updatedAt": "2026-04-23",
+            "url": "https://github.com/DamianB-BitFlipper/cloud-hypervisor",
+            "homepageUrl": "https://www.cloudhypervisor.org",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4036,
+            "stargazerCount": 4039,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-04-22",
+            "updatedAt": "2026-04-23",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -42,7 +56,7 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 607,
+            "stargazerCount": 608,
             "primaryLanguage": {
               "name": "TypeScript"
             },
@@ -60,23 +74,9 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-04-21",
+            "updatedAt": "2026-04-22",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "cloud-hypervisor",
-            "description": "A Virtual Machine Monitor for modern Cloud workloads. Features include CPU, memory and device hotplug, support for running Windows and Linux guests, device offload with vhost-user and a minimal compact footprint. Written in Rust with a strong focus on security.",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Rust"
-            },
-            "updatedAt": "2026-04-18",
-            "url": "https://github.com/DamianB-BitFlipper/cloud-hypervisor",
-            "homepageUrl": "https://www.cloudhypervisor.org",
             "repositoryTopics": {
               "nodes": []
             }
