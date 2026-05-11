@@ -28,7 +28,7 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4091,
+            "stargazerCount": 4095,
             "primaryLanguage": {
               "name": "Python"
             },
@@ -42,7 +42,7 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 635,
+            "stargazerCount": 634,
             "primaryLanguage": {
               "name": "TypeScript"
             },
@@ -60,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-05-09",
+            "updatedAt": "2026-05-10",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
