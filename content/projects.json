@@ -28,11 +28,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4095,
+            "stargazerCount": 4100,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-05-10",
+            "updatedAt": "2026-05-12",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -42,13 +42,27 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 634,
+            "stargazerCount": 638,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-05-10",
+            "updatedAt": "2026-05-11",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "JS-OS",
+            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
+            "stargazerCount": 27,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2026-05-11",
+            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-05-10",
+            "updatedAt": "2026-05-11",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -376,20 +390,6 @@
             },
             "updatedAt": "2026-01-05",
             "url": "https://github.com/DamianB-BitFlipper/Guarda-firewall",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "JS-OS",
-            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
-            "stargazerCount": 26,
-            "primaryLanguage": {
-              "name": "C"
-            },
-            "updatedAt": "2026-01-05",
-            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
