@@ -26,29 +26,9 @@
       "repositories": {
         "nodes": [
           {
-            "name": "javelin.el",
-            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 50,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-05-13",
-            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": [
-                {
-                  "topic": {
-                    "name": "emacs"
-                  }
-                }
-              ]
-            }
-          },
-          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4104,
+            "stargazerCount": 4106,
             "primaryLanguage": {
               "name": "Python"
             },
@@ -66,7 +46,7 @@
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-05-12",
+            "updatedAt": "2026-05-13",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -80,11 +60,31 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-05-12",
+            "updatedAt": "2026-05-13",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
+            }
+          },
+          {
+            "name": "javelin.el",
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 50,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-05-13",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "emacs"
+                  }
+                }
+              ]
             }
           },
           {
