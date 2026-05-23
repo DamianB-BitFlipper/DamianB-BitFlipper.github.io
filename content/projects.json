@@ -26,28 +26,42 @@
       "repositories": {
         "nodes": [
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 646,
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4127,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "Python"
             },
-            "updatedAt": "2026-05-22",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "updatedAt": "2026-05-23",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4125,
+            "name": "gh-dash",
+            "description": "A rich terminal UI for GitHub that doesn't break your flow.",
+            "stargazerCount": 0,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "Go"
             },
-            "updatedAt": "2026-05-21",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "updatedAt": "2026-05-22",
+            "url": "https://github.com/DamianB-BitFlipper/gh-dash",
+            "homepageUrl": "https://gh-dash.dev",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 649,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-05-22",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-05-21",
+            "updatedAt": "2026-05-22",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
