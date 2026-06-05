@@ -28,26 +28,12 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 655,
+            "stargazerCount": 657,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-06-04",
+            "updatedAt": "2026-06-05",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dehub",
-            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
-            "stargazerCount": 11,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2026-06-04",
-            "url": "https://github.com/DamianB-BitFlipper/dehub",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -56,12 +42,26 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4161,
+            "stargazerCount": 4162,
             "primaryLanguage": {
               "name": "Python"
             },
             "updatedAt": "2026-06-04",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dehub",
+            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
+            "stargazerCount": 22,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-06-04",
+            "url": "https://github.com/DamianB-BitFlipper/dehub",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -74,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-06-03",
+            "updatedAt": "2026-06-04",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
