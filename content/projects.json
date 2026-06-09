@@ -26,28 +26,42 @@
       "repositories": {
         "nodes": [
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 660,
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4175,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "Python"
             },
-            "updatedAt": "2026-06-07",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "updatedAt": "2026-06-09",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4172,
+            "name": "dehub",
+            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
+            "stargazerCount": 22,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "Go"
             },
-            "updatedAt": "2026-06-07",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "updatedAt": "2026-06-08",
+            "url": "https://github.com/DamianB-BitFlipper/dehub",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 660,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-06-08",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-06-07",
+            "updatedAt": "2026-06-08",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -77,20 +91,6 @@
             "updatedAt": "2026-06-06",
             "url": "https://github.com/DamianB-BitFlipper/stack",
             "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dehub",
-            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
-            "stargazerCount": 22,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2026-06-04",
-            "url": "https://github.com/DamianB-BitFlipper/dehub",
-            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
