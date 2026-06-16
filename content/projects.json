@@ -28,11 +28,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4192,
+            "stargazerCount": 4199,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-06-15",
+            "updatedAt": "2026-06-16",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -46,7 +46,7 @@
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-06-14",
+            "updatedAt": "2026-06-15",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -60,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-06-14",
+            "updatedAt": "2026-06-15",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
