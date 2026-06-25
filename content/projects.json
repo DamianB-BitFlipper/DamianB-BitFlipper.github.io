@@ -28,11 +28,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4228,
+            "stargazerCount": 4231,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-06-24",
+            "updatedAt": "2026-06-25",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -42,7 +42,7 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 671,
+            "stargazerCount": 670,
             "primaryLanguage": {
               "name": "TypeScript"
             },
@@ -60,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-06-23",
+            "updatedAt": "2026-06-24",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
