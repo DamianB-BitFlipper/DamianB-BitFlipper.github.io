@@ -28,13 +28,41 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4252,
+            "stargazerCount": 4257,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-07-03",
+            "updatedAt": "2026-07-05",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dehub",
+            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
+            "stargazerCount": 23,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-07-04",
+            "url": "https://github.com/DamianB-BitFlipper/dehub",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-07-04",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -48,34 +76,6 @@
             },
             "updatedAt": "2026-07-03",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-07-03",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dehub",
-            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
-            "stargazerCount": 22,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2026-06-10",
-            "url": "https://github.com/DamianB-BitFlipper/dehub",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
