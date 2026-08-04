@@ -26,6 +26,54 @@
       "repositories": {
         "nodes": [
           {
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4424,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-08-03",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "javelin.el",
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 50,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-08-03",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "emacs"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-08-03",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
             "stargazerCount": 667,
@@ -37,54 +85,6 @@
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-08-02",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4423,
-            "primaryLanguage": {
-              "name": "Python"
-            },
-            "updatedAt": "2026-08-01",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "javelin.el",
-            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 51,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-07-25",
-            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": [
-                {
-                  "topic": {
-                    "name": "emacs"
-                  }
-                }
-              ]
             }
           },
           {
