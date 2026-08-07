@@ -28,12 +28,26 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4438,
+            "stargazerCount": 4455,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-08-06",
+            "updatedAt": "2026-08-07",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 666,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-08-07",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -46,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-08-05",
+            "updatedAt": "2026-08-06",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -71,20 +85,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 667,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-08-02",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
