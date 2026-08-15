@@ -28,7 +28,7 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4508,
+            "stargazerCount": 4514,
             "primaryLanguage": {
               "name": "Python"
             },
@@ -46,7 +46,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-08-13",
+            "updatedAt": "2026-08-14",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
