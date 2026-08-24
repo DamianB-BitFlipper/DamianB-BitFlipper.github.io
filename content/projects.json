@@ -26,15 +26,15 @@
       "repositories": {
         "nodes": [
           {
-            "name": "JS-OS",
-            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
-            "stargazerCount": 29,
+            "name": "s3collections",
+            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
+            "stargazerCount": 15,
             "primaryLanguage": {
-              "name": "C"
+              "name": "Go"
             },
-            "updatedAt": "2026-08-23",
-            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
-            "homepageUrl": null,
+            "updatedAt": "2026-08-24",
+            "url": "https://github.com/DamianB-BitFlipper/s3collections",
+            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
@@ -42,12 +42,40 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4539,
+            "stargazerCount": 4547,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-08-22",
+            "updatedAt": "2026-08-24",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "honeybadger",
+            "description": "An in-process, replicated KV store. Backed by Raft and BadgerDB.",
+            "stargazerCount": 1,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-08-23",
+            "url": "https://github.com/DamianB-BitFlipper/honeybadger",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 670,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-08-23",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -60,7 +88,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-08-22",
+            "updatedAt": "2026-08-23",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -68,29 +96,15 @@
             }
           },
           {
-            "name": "s3collections",
-            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
-            "stargazerCount": 0,
+            "name": "JS-OS",
+            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
+            "stargazerCount": 29,
             "primaryLanguage": {
-              "name": "Go"
+              "name": "C"
             },
-            "updatedAt": "2026-08-21",
-            "url": "https://github.com/DamianB-BitFlipper/s3collections",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 669,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-08-21",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
+            "updatedAt": "2026-08-23",
+            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -113,20 +127,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "honeybadger",
-            "description": "An in-process, replicated KV store. Backed by Raft and BadgerDB.",
-            "stargazerCount": 0,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2026-08-16",
-            "url": "https://github.com/DamianB-BitFlipper/honeybadger",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
