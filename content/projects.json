@@ -26,28 +26,42 @@
       "repositories": {
         "nodes": [
           {
-            "name": "s3collections",
-            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
-            "stargazerCount": 19,
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4555,
             "primaryLanguage": {
-              "name": "Go"
+              "name": "Python"
             },
-            "updatedAt": "2026-08-25",
-            "url": "https://github.com/DamianB-BitFlipper/s3collections",
+            "updatedAt": "2026-08-26",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4550,
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 671,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "TypeScript"
             },
-            "updatedAt": "2026-08-24",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "updatedAt": "2026-08-25",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "s3collections",
+            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
+            "stargazerCount": 20,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-08-25",
+            "url": "https://github.com/DamianB-BitFlipper/s3collections",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -60,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-08-24",
+            "updatedAt": "2026-08-25",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -77,20 +91,6 @@
             "updatedAt": "2026-08-23",
             "url": "https://github.com/DamianB-BitFlipper/honeybadger",
             "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 670,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-08-23",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
