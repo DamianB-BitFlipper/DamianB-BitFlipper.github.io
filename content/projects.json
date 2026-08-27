@@ -26,14 +26,14 @@
       "repositories": {
         "nodes": [
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4555,
+            "name": "s3collections",
+            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
+            "stargazerCount": 21,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "Go"
             },
-            "updatedAt": "2026-08-26",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "updatedAt": "2026-08-27",
+            "url": "https://github.com/DamianB-BitFlipper/s3collections",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -42,11 +42,11 @@
           {
             "name": "proton-drive-sync",
             "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 671,
+            "stargazerCount": 674,
             "primaryLanguage": {
               "name": "TypeScript"
             },
-            "updatedAt": "2026-08-25",
+            "updatedAt": "2026-08-26",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -54,14 +54,14 @@
             }
           },
           {
-            "name": "s3collections",
-            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
-            "stargazerCount": 20,
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4559,
             "primaryLanguage": {
-              "name": "Go"
+              "name": "Python"
             },
-            "updatedAt": "2026-08-25",
-            "url": "https://github.com/DamianB-BitFlipper/s3collections",
+            "updatedAt": "2026-08-26",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -74,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-08-25",
+            "updatedAt": "2026-08-26",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
