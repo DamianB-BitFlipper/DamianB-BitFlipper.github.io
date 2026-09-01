@@ -28,13 +28,41 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4573,
+            "stargazerCount": 4574,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-08-31",
+            "updatedAt": "2026-09-01",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "s3collections",
+            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
+            "stargazerCount": 22,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-08-31",
+            "url": "https://github.com/DamianB-BitFlipper/s3collections",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-08-31",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -48,34 +76,6 @@
             },
             "updatedAt": "2026-08-30",
             "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-08-30",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "s3collections",
-            "description": "Durable Go data structures and primitives backed directly on S3-compatible storage.",
-            "stargazerCount": 21,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2026-08-27",
-            "url": "https://github.com/DamianB-BitFlipper/s3collections",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
