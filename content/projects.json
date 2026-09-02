@@ -28,13 +28,55 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4574,
+            "stargazerCount": 4577,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-09-01",
+            "updatedAt": "2026-09-02",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 677,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-09-02",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dynamic-load-bench",
+            "description": "A memory dynamic load latency benchmark for modern CPUs",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2026-09-01",
+            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-09-01",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -48,34 +90,6 @@
             },
             "updatedAt": "2026-08-31",
             "url": "https://github.com/DamianB-BitFlipper/s3collections",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-08-31",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 676,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-08-30",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -223,20 +237,6 @@
             "updatedAt": "2026-03-19",
             "url": "https://github.com/DamianB-BitFlipper/uttertype",
             "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dynamic-load-bench",
-            "description": "A memory dynamic load latency benchmark for modern CPUs",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "C"
-            },
-            "updatedAt": "2026-03-13",
-            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
