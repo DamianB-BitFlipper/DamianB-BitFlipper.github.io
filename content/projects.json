@@ -26,27 +26,13 @@
       "repositories": {
         "nodes": [
           {
-            "name": "dotfiles-and-configs",
-            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
-            "stargazerCount": 4,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-09-03",
-            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4586,
+            "stargazerCount": 4587,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-09-02",
+            "updatedAt": "2026-09-03",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -60,8 +46,22 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-09-02",
+            "updatedAt": "2026-09-03",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dotfiles-and-configs",
+            "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
+            "stargazerCount": 4,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-09-03",
+            "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
