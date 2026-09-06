@@ -26,15 +26,43 @@
       "repositories": {
         "nodes": [
           {
+            "name": "codescope",
+            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "Rust"
+            },
+            "updatedAt": "2026-09-06",
+            "url": "https://github.com/DamianB-BitFlipper/codescope",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4589,
+            "stargazerCount": 4590,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-09-04",
+            "updatedAt": "2026-09-05",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "magit-pre-commit.el",
+            "description": "Emacs: pre-commit integration for Magit.",
+            "stargazerCount": 41,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-09-05",
+            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -46,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-09-04",
+            "updatedAt": "2026-09-05",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -155,20 +183,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "magit-pre-commit.el",
-            "description": "Emacs: pre-commit integration for Magit.",
-            "stargazerCount": 40,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-07-21",
-            "url": "https://github.com/DamianB-BitFlipper/magit-pre-commit.el",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
