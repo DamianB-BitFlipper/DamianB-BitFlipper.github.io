@@ -26,9 +26,37 @@
       "repositories": {
         "nodes": [
           {
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4593,
+            "primaryLanguage": {
+              "name": "Python"
+            },
+            "updatedAt": "2026-09-07",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 678,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-09-06",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "codescope",
             "description": "AI-powered TUI workspace for understanding what a PR actually does.",
-            "stargazerCount": 0,
+            "stargazerCount": 1,
             "primaryLanguage": {
               "name": "Rust"
             },
@@ -40,15 +68,29 @@
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4590,
+            "name": "dynamic-load-bench",
+            "description": "A memory dynamic load latency benchmark for modern CPUs",
+            "stargazerCount": 3,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "C"
             },
-            "updatedAt": "2026-09-05",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
-            "homepageUrl": "",
+            "updatedAt": "2026-09-06",
+            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-09-06",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -68,20 +110,6 @@
             }
           },
           {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-09-05",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "dotfiles-and-configs",
             "description": "All of my dotfiles and configs for a fully fledged development setup on Mac.",
             "stargazerCount": 4,
@@ -90,34 +118,6 @@
             },
             "updatedAt": "2026-09-03",
             "url": "https://github.com/DamianB-BitFlipper/dotfiles-and-configs",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 677,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-09-02",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "dynamic-load-bench",
-            "description": "A memory dynamic load latency benchmark for modern CPUs",
-            "stargazerCount": 2,
-            "primaryLanguage": {
-              "name": "C"
-            },
-            "updatedAt": "2026-09-01",
-            "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
