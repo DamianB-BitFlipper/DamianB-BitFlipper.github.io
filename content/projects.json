@@ -26,15 +26,43 @@
       "repositories": {
         "nodes": [
           {
+            "name": "codescope",
+            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
+            "stargazerCount": 2,
+            "primaryLanguage": {
+              "name": "Rust"
+            },
+            "updatedAt": "2026-09-08",
+            "url": "https://github.com/DamianB-BitFlipper/codescope",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4593,
+            "stargazerCount": 4596,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-09-07",
+            "updatedAt": "2026-09-08",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-09-07",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
@@ -54,20 +82,6 @@
             }
           },
           {
-            "name": "codescope",
-            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
-            "stargazerCount": 1,
-            "primaryLanguage": {
-              "name": "Rust"
-            },
-            "updatedAt": "2026-09-06",
-            "url": "https://github.com/DamianB-BitFlipper/codescope",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
             "name": "dynamic-load-bench",
             "description": "A memory dynamic load latency benchmark for modern CPUs",
             "stargazerCount": 3,
@@ -76,20 +90,6 @@
             },
             "updatedAt": "2026-09-06",
             "url": "https://github.com/DamianB-BitFlipper/dynamic-load-bench",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-09-06",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
