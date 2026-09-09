@@ -26,28 +26,28 @@
       "repositories": {
         "nodes": [
           {
-            "name": "codescope",
-            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
-            "stargazerCount": 2,
+            "name": "verifiers",
+            "description": "Our library for RL environments + evals",
+            "stargazerCount": 4600,
             "primaryLanguage": {
-              "name": "Rust"
+              "name": "Python"
             },
-            "updatedAt": "2026-09-08",
-            "url": "https://github.com/DamianB-BitFlipper/codescope",
+            "updatedAt": "2026-09-09",
+            "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
           },
           {
-            "name": "verifiers",
-            "description": "Our library for RL environments + evals",
-            "stargazerCount": 4596,
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 677,
             "primaryLanguage": {
-              "name": "Python"
+              "name": "TypeScript"
             },
             "updatedAt": "2026-09-08",
-            "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -60,7 +60,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-09-07",
+            "updatedAt": "2026-09-08",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -68,14 +68,14 @@
             }
           },
           {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 678,
+            "name": "codescope",
+            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
+            "stargazerCount": 2,
             "primaryLanguage": {
-              "name": "TypeScript"
+              "name": "Rust"
             },
-            "updatedAt": "2026-09-06",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "updatedAt": "2026-09-08",
+            "url": "https://github.com/DamianB-BitFlipper/codescope",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
