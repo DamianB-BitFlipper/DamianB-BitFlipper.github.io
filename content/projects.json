@@ -28,12 +28,54 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4613,
+            "stargazerCount": 4616,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-09-13",
+            "updatedAt": "2026-09-15",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 676,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-09-14",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "dehub",
+            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
+            "stargazerCount": 24,
+            "primaryLanguage": {
+              "name": "Go"
+            },
+            "updatedAt": "2026-09-14",
+            "url": "https://github.com/DamianB-BitFlipper/dehub",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "codescope",
+            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "Rust"
+            },
+            "updatedAt": "2026-09-14",
+            "url": "https://github.com/DamianB-BitFlipper/codescope",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -46,37 +88,9 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-09-13",
+            "updatedAt": "2026-09-14",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "codescope",
-            "description": "AI-powered TUI workspace for understanding what a PR actually does.",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "Rust"
-            },
-            "updatedAt": "2026-09-10",
-            "url": "https://github.com/DamianB-BitFlipper/codescope",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 677,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-09-08",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
-            "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
             }
@@ -183,20 +197,6 @@
                   }
                 }
               ]
-            }
-          },
-          {
-            "name": "dehub",
-            "description": "A TUI to de-GitHub yourself. Control PRs, Actions, Issues, Notifications.",
-            "stargazerCount": 23,
-            "primaryLanguage": {
-              "name": "Go"
-            },
-            "updatedAt": "2026-07-04",
-            "url": "https://github.com/DamianB-BitFlipper/dehub",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
             }
           },
           {
