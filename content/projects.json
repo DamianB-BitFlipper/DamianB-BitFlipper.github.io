@@ -26,15 +26,43 @@
       "repositories": {
         "nodes": [
           {
+            "name": "JS-OS",
+            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
+            "stargazerCount": 30,
+            "primaryLanguage": {
+              "name": "C"
+            },
+            "updatedAt": "2026-09-26",
+            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
             "stargazerCount": 4650,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-09-24",
+            "updatedAt": "2026-09-26",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "computesdk",
+            "description": "A free and open-source toolkit for running other people's code in your applications.",
+            "stargazerCount": 0,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-09-25",
+            "url": "https://github.com/DamianB-BitFlipper/computesdk",
+            "homepageUrl": "https://computesdk.com",
             "repositoryTopics": {
               "nodes": []
             }
@@ -46,7 +74,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-09-24",
+            "updatedAt": "2026-09-25",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
@@ -180,20 +208,6 @@
             },
             "updatedAt": "2026-08-23",
             "url": "https://github.com/DamianB-BitFlipper/honeybadger",
-            "homepageUrl": null,
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "JS-OS",
-            "description": "JS-OS is an operating system that is streaming to become a unix clone, but with some added/better capabilities. This project was started in late 2012 by a high school student. This operating system is meant to be learning tool for both the developer and the user. The code is mostly commented and not too difficult to follow.",
-            "stargazerCount": 29,
-            "primaryLanguage": {
-              "name": "C"
-            },
-            "updatedAt": "2026-08-23",
-            "url": "https://github.com/DamianB-BitFlipper/JS-OS",
             "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
