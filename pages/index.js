@@ -17,7 +17,7 @@ export default function Home() {
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     </Head>
     <main className="profile">
-      <header className="site-header"><a className="wordmark" href="/" aria-label="Damian Barabonkov home">db<span>.</span></a><nav aria-label="Profile links"><a href={github}>GitHub ↗</a><a href="https://x.com/TheBitFlipper">X ↗</a><a href="https://www.linkedin.com/in/damian-barabonkov-5286a2290">LinkedIn ↗</a><a href="/files/Damian_Barabonkov_Resume.pdf">Résumé ↗</a></nav></header>
+      <header className="site-header"><a className="wordmark" href="/" aria-label="Damian Barabonkov home">db<span>.</span></a><nav aria-label="Profile links"><a href={github}>GitHub ↗</a><a href="https://x.com/damian_b">X ↗</a><a href="https://www.linkedin.com/in/damian-barabonkov-5286a2290">LinkedIn ↗</a><a href="/files/Damian_Barabonkov_Resume.pdf">Résumé ↗</a></nav></header>
       <div className="profile-header">
         <div><p className="eyebrow">DISTRIBUTED SYSTEMS · PERFORMANCE · AI</p><h1>Damian<br />Barabonkov<span>.</span></h1><p className="subtitle">Leading Sandboxing at Prime Intellect <span className="location-inline">· San Francisco</span></p></div>
         <img src="/damian_headshot_clean.jpg" alt="Damian Barabonkov" width="160" height="188" />
