@@ -1,252 +1,40 @@
-body{
-    font-family: 'Ubuntu', sans-serif;
-    font-display: swap
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap');
+:root { color-scheme: light; background: #f8f7f4; color: #303830; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+.profile { width: min(100% - 48px, 736px); margin: 0 auto; padding: 24px 0; }
+.site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; margin-bottom: 28px; border-bottom: 1px solid #dedfd7; }
+.wordmark { color: #242925; font-size: 25px; font-weight: 600; letter-spacing: -1.5px; text-decoration: none; }
+.wordmark span, h1 span { color: #44664d; }
+.profile-header { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.profile-header img { width: 160px; height: 188px; flex-shrink: 0; object-fit: cover; object-position: center 35%; border-radius: 5px; }
+h1 { margin: 0; font-size: 54px; font-weight: 500; line-height: 1.05; letter-spacing: -2.5px; }
+.eyebrow { font: 10px 'IBM Plex Mono', monospace; letter-spacing: 1.6px; color: #44664d; margin: 0 0 13px; }
+.subtitle { color: #697267; font-size: 13px; margin: 13px 0 0; }
+.handle { color: #737871; font-size: 12px; margin: 8px 0 0; }
+.handle a { color: #303830; text-decoration: none; }
+.bio { font-size: 15px; line-height: 1.65; color: #50584f; }
+p { margin: 0 0 12px; }
+a { color: #3f6146; text-decoration: underline; text-decoration-color: #b9c5b5; text-underline-offset: 3px; }
+a:hover { color: #213b26; text-decoration-color: currentColor; }
+a:focus-visible { outline: 2px solid #3f6146; outline-offset: 4px; }
+h2 { font-size: 16px; font-weight: 500; color: #303830; margin: 18px 0 8px; padding-top: 15px; border-top: 1px solid #dedfd7; }
+.projects { list-style: none; padding: 0; margin: 0 0 16px; font-size: 13px; line-height: 1.65; }
+.projects li { margin: 5px 0; }
+.projects a { font-weight: 500; }
+.outside { font-size: 13px; color: #737871; }
+.contact { margin: 16px 0 0; font-size: 14px; }
+.email-address { color: #3f6146; white-space: nowrap; }
+nav { display: flex; gap: 23px; font-size: 12px; }
+nav a { text-decoration: none; }
+::selection { background: #dbe6d6; }
+@media (min-width: 720px) and (min-height: 850px) { .profile { padding-top: 48px; } .site-header { margin-bottom: 36px; } }
+@media (max-height: 700px) and (min-width: 720px) { .profile { padding: 16px 0; } .site-header { margin-bottom: 18px; } .profile-header { margin-bottom: 18px; } .profile-header img { width: 140px; height: 164px; } h1 { font-size: 46px; } .bio { font-size: 14px; line-height: 1.55; } }
+@media (max-width: 520px) { .profile { padding: 24px 0; } .profile-header { gap: 16px; } h1 { font-size: 38px; letter-spacing: -1.8px; } .eyebrow { font-size: 8px; letter-spacing: 1px; } .subtitle { font-size: 11px; max-width: 175px; line-height: 1.5; } .profile-header img { width: 105px; height: 132px; } .handle { font-size: 11px; } }
+@media (max-width: 360px) { h1 { font-size: 32px; } .profile-header img { width: 85px; height: 115px; } }
 
-/* Top NavBar styling */
+@media (max-width: 520px) { nav { gap: 14px; font-size: 11px; } }
 
-.top-arrow-up {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #333333;
-}
+.location { color: #737871; font-size: 12px; margin: 8px 0 0; }
 
-.arrow-custom {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid white;
-}
-
-.animateShow {
-    animation: transformDownShow 200ms 1 forwards;
-}
-
-@keyframes transformDownShow {
-    0% {
-        transform: translateY(-10px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-
-input[type=range].ubuntu-slider {
-    outline: none;
-    -webkit-appearance: none;
-    background: linear-gradient(to right, rgba(175, 175, 175, 0.3) 0%, rgba(175, 175, 175, 0.3) 100%);
-    background-position: center;
-    background-size: 99% 3px;
-    background-repeat: no-repeat;
-    /* width: 65%; */
-    height: 6px;
-    border-radius: 50%;
-}
-
-input[type=range].ubuntu-slider::-webkit-slider-thumb {
-    -webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    background-color: #fff;
-    pointer-events: none;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    position: relative;
-}
-
-/* Window's styling */
-.arrow-custom-up {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid white;
-    width: 0;
-}
-
-.arrow-custom-down {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid white;
-    width: 0;
-}
-
-.arrow-custom-left {
-    border-bottom: 5px solid transparent;
-    border-top: 5px solid transparent;
-    border-right: 5px solid white;
-    width: 0;
-}
-
-.arrow-custom-right {
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid white;
-    width: 0;
-}
-
-.window-y-border {
-    height: calc(100% - 10px);
-    width: calc(100% + 10px);
-    cursor: e-resize;
-}
-
-.window-x-border {
-    height: calc(100% + 10px);
-    width: calc(100% - 10px);
-    cursor: n-resize;
-}
-
-.notFocused {
-    filter: brightness(90%);
-}
-
-.root,
-#root,
-#docs-root {
-    --window-transform-x: 0px;
-    --window-transform-y: 0px;
-}
-
-.window-shadow {
-    box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.2);
-}
-
-.closed-window {
-    animation: closeWindow 200ms 1 forwards;
-}
-
-@keyframes closeWindow {
-    0% {
-        opacity: 1;
-        transform: translate(var(--window-transform-x), var(--window-transform-y)) scale(1);
-        visibility: visible;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(var(--window-transform-x), var(--window-transform-y)) scale(0.85);
-        visibility: hidden;
-    }
-}
-
-.windowMainScreen::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: transparent;
-}
-
-.windowMainScreen::-webkit-scrollbar {
-    width: 6px;
-    background-color: transparent;
-}
-
-.windowMainScreen::-webkit-scrollbar-thumb {
-    background-color: #E95420;
-    border-radius: 5px;
-}
-
-/* SideBarApp Scale image onClick */
-.scalable-app-icon {
-    visibility: hidden;
-}
-
-.scalable-app-icon.scale {
-    animation: scaleAppImage 400ms 1 forwards;
-}
-
-@keyframes scaleAppImage {
-    from {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        visibility: visible;
-    }
-
-    to {
-        transform: translate(-50%, -50%) scale(3);
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-/* Context Menu */
-.context-menu-bg {
-    background-color: rgb(43, 43, 43);
-}
-
-.emoji-list>li {
-    padding-left: 10px;
-}
-
-.list-pc {
-    list-style: "🏫";
-}
-
-.list-building {
-    list-style: "👨🏻‍💻";
-}
-
-.list-time {
-    list-style: "🎲";
-}
-
-.list-star {
-    list-style: "🌟";
-}
-
-.list-arrow {
-    list-style: "⇀";
-}
-
-/* App Grid Animation */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.animate-fade-in {
-    animation: fadeIn 0.3s ease-in-out forwards;
-}
-
-.terminal-input-line {
-    position: relative;
-    min-height: 1.25rem;
-    display: block;
-    --cursor-pos: 0;
-}
-
-.terminal-input-line > span {
-    display: block;
-    font-family: inherit;
-    letter-spacing: normal;
-}
-
-.terminal-input-line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: calc(var(--cursor-pos, 0) * 1ch);
-    width: 1ch;
-    height: 1.1em;
-    background-color: #ffffff;
-    opacity: 1;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    animation: var(--cursor-animation, none);
-}
-
-@keyframes blinkCursor {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
+.location-inline { color: #737871; white-space: nowrap; }

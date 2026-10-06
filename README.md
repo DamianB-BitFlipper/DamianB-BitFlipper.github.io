@@ -1,22 +1,15 @@
-# Web simulation of UbuntuOS
+# Damian Barabonkov
 
-This is a personal portfolio website of theme Ubuntu 20.04, made using Next.js & tailwind CSS.
-
-A live version of the site can be visited at [https://www.damianb.dev/](https://www.damianb.dev/).
-
-![Demo](repo_assets/demo.png)
+A minimal personal portfolio built with Next.js, with a compact bio, selected project links, and contact information. Designed to fit within one desktop screen.
 
 ## Local development
 
-1. Install dependencies with `pnpm install`.
-2. Export a GitHub Classic Token so the UI can call the GitHub API:
-   ```bash
-   export NEXT_PUBLIC_GITHUB_API_TOKEN="ghp_yourtoken"
-   ```
-3. Run `pnpm dev` while coding
+Run `pnpm install`, then `pnpm dev`. No GitHub API token is needed in the browser: projects are read from `content/projects.json` at build time.
 
-The content specific to me is located in the `./content` directory.
+Content lives in `content/about.json` and `content/projects.json`. The home page includes a concise introduction and edited summaries in `pages/index.js`. Global styles are in `styles/index.css`, and the portrait is `public/damian_headshot_clean.jpg`.
 
-## Deployment
+## Build and deployment
 
-The site deploys automatically via GitHub Actions (see `.github/workflows/gh-deploy.yml`). It triggers daily at 3 AM UTC or on manual dispatch. The workflow updates `content/projects.json` from the GitHub API, builds the Next.js app with pnpm, and deploys to GitHub Pages on the `gh-pages` branch.
+Run `pnpm build` and `pnpm export` to generate the static site in `out/`.
+
+The existing GitHub Actions workflow updates repository data daily and deploys to the `gh-pages` branch. It can also be triggered manually.

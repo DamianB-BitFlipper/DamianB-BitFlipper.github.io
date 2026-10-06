@@ -4,9 +4,10 @@
     "title": "About Me",
     "image": "./themes/damian.jpg",
     "content": [
-      "I am the second employee and founding AI engineer at [ellamind](https://www.ellamind.com/), where I built [elluminate](https://elluminate.de/), a production LLM evaluation platform, from 0 → 1. I also reproduced popular evaluations on new models as well as designed custom evaluations targeting factual recall, multilingual capability, geographic reasoning, and multi-turn agentic performance. Previously I was a machine learning and software engineer at [QuantCo](https://www.quantco.com/) and began my career as a performance engineering intern at Facebook.",
-      "I hold a BSc and MEng in Computer Science from MIT (6-3) and maintain a strong focus on systems programming, performance engineering and, most recently, applied work with LLMs.",
-      "Outside of work I tinker on hobby programming projects and contribute upstream to open source projects. I stay curious by learning Polish, traveling Eastern Europe and dancing Kizomba."
+      "I lead sandboxing at [Prime Intellect](https://www.primeintellect.ai/), where I designed and built the sandboxing platform: a distributed control plane that schedules workloads across bare-metal CPU and GPU workers, and a node runtime that launches and supervises secure microVMs.",
+      "I build fault-tolerant systems in Go and Rust, working deep in Linux, virtualization, networking, storage, and performance engineering. I own the platform end to end, taking reinforcement learning and agent workloads from design to production.",
+      "Previously, I was the founding AI engineer at [ellamind](https://www.ellamind.com/), building [elluminate](https://elluminate.de/) from zero to one, with earlier engineering roles at [QuantCo](https://www.quantco.com/) and Facebook. I hold a BSc and MEng in Computer Science from MIT.",
+      "Outside of work I contribute to open source, learn Polish, travel Eastern Europe, and dance Kizomba."
     ]
   },
   {
@@ -136,8 +137,8 @@
     "contacts": [
       {
         "label": "Email",
-        "value": "damianb@alum.mit.edu",
-        "href": "mailto:damianb@alum.mit.edu",
+        "value": "dbctl@pm.me",
+        "href": "mailto:dbctl@pm.me",
         "icon": "./themes/apps/email.png"
       },
       {
