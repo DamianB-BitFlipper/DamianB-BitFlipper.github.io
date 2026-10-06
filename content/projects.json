@@ -4,27 +4,35 @@
       "pinnedItems": {
         "nodes": [
           {
-            "name": "proton-drive-sync"
+            "name": "cloud-hypervisor"
+          },
+          {
+            "name": "prime"
+          },
+          {
+            "name": "dynamic-load-bench"
           },
           {
             "name": "JS-OS"
-          },
-          {
-            "name": "javelin.el"
-          },
-          {
-            "name": "algopytest"
-          },
-          {
-            "name": "Guarda-firewall"
-          },
-          {
-            "name": "dotfiles-and-configs"
           }
         ]
       },
       "repositories": {
         "nodes": [
+          {
+            "name": "DamianB-BitFlipper.github.io",
+            "description": "Damian Barabonkov's software engineering online portfolio. ",
+            "stargazerCount": 3,
+            "primaryLanguage": {
+              "name": "JavaScript"
+            },
+            "updatedAt": "2026-10-06",
+            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
+            "homepageUrl": null,
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
@@ -35,20 +43,6 @@
             "updatedAt": "2026-10-05",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "DamianB-BitFlipper.github.io",
-            "description": "Damian Barabonkov's software engineering online portfolio. ",
-            "stargazerCount": 3,
-            "primaryLanguage": {
-              "name": "JavaScript"
-            },
-            "updatedAt": "2026-10-05",
-            "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
-            "homepageUrl": null,
             "repositoryTopics": {
               "nodes": []
             }
