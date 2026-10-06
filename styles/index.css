@@ -4,34 +4,34 @@
 body { margin: 0; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 .profile { width: min(100% - 48px, 736px); margin: 0 auto; padding: 24px 0; }
 .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; margin-bottom: 28px; border-bottom: 1px solid #dedfd7; }
-.wordmark { color: #242925; font-size: 25px; font-weight: 600; letter-spacing: -1.5px; text-decoration: none; }
-.wordmark span, h1 span { color: #44664d; }
+.profile .wordmark { color: #242925; font-size: 25px; font-weight: 600; letter-spacing: -1.5px; text-decoration: none; }
+.wordmark span, .profile-header h1 span { color: #44664d; }
 .profile-header { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-.profile-header img { width: 160px; height: 188px; flex-shrink: 0; object-fit: cover; object-position: center 35%; border-radius: 5px; }
-h1 { margin: 0; font-size: 54px; font-weight: 500; line-height: 1.05; letter-spacing: -2.5px; }
+.profile-header img { width: 160px; height: 188px; display: block; flex-shrink: 0; object-fit: cover; object-position: center 35%; border-radius: 5px; }
+.profile-header h1 { margin: 0; font-size: 54px; font-weight: 500; line-height: 1.05; letter-spacing: -2.5px; }
 .eyebrow { font: 10px 'IBM Plex Mono', monospace; letter-spacing: 1.6px; color: #44664d; margin: 0 0 13px; }
 .subtitle { color: #697267; font-size: 13px; margin: 13px 0 0; }
 .handle { color: #737871; font-size: 12px; margin: 8px 0 0; }
-.handle a { color: #303830; text-decoration: none; }
+.profile .handle a { color: #303830; text-decoration: none; }
 .bio { font-size: 15px; line-height: 1.65; color: #50584f; }
-p { margin: 0 0 12px; }
-a { color: #3f6146; text-decoration: underline; text-decoration-color: #b9c5b5; text-underline-offset: 3px; }
+.bio > p { margin: 0 0 12px; }
+.profile a { color: #3f6146; text-decoration: underline; text-decoration-color: #b9c5b5; text-underline-offset: 3px; }
 a:hover { color: #213b26; text-decoration-color: currentColor; }
 a:focus-visible { outline: 2px solid #3f6146; outline-offset: 4px; }
-h2 { font-size: 16px; font-weight: 500; color: #303830; margin: 18px 0 8px; padding-top: 15px; border-top: 1px solid #dedfd7; }
+.bio h2 { font-size: 16px; font-weight: 500; color: #303830; margin: 18px 0 8px; padding-top: 15px; border-top: 1px solid #dedfd7; }
 .projects { list-style: none; padding: 0; margin: 0 0 16px; font-size: 13px; line-height: 1.65; }
 .projects li { margin: 5px 0; }
 .projects a { font-weight: 500; }
 .outside { font-size: 13px; color: #737871; }
-.contact { margin: 16px 0 0; font-size: 14px; }
+.bio > .contact { margin: 16px 0 0; font-size: 14px; }
 .email-address { color: #3f6146; white-space: nowrap; }
 nav { display: flex; gap: 23px; font-size: 12px; }
-nav a { text-decoration: none; }
+.profile nav a { text-decoration: none; }
 ::selection { background: #dbe6d6; }
 @media (min-width: 720px) and (min-height: 850px) { .profile { padding-top: 48px; } .site-header { margin-bottom: 36px; } }
-@media (max-height: 700px) and (min-width: 720px) { .profile { padding: 16px 0; } .site-header { margin-bottom: 18px; } .profile-header { margin-bottom: 18px; } .profile-header img { width: 140px; height: 164px; } h1 { font-size: 46px; } .bio { font-size: 14px; line-height: 1.55; } }
-@media (max-width: 520px) { .profile { padding: 24px 0; } .profile-header { gap: 16px; } h1 { font-size: 38px; letter-spacing: -1.8px; } .eyebrow { font-size: 8px; letter-spacing: 1px; } .subtitle { font-size: 11px; max-width: 175px; line-height: 1.5; } .profile-header img { width: 105px; height: 132px; } .handle { font-size: 11px; } }
-@media (max-width: 360px) { h1 { font-size: 32px; } .profile-header img { width: 85px; height: 115px; } }
+@media (max-height: 700px) and (min-width: 720px) { .profile { padding: 16px 0; } .site-header { margin-bottom: 18px; } .profile-header { margin-bottom: 18px; } .profile-header img { width: 140px; height: 164px; } .profile-header h1 { font-size: 46px; } .bio { font-size: 14px; line-height: 1.55; } }
+@media (max-width: 520px) { .profile { padding: 24px 0; } .profile-header { gap: 16px; } .profile-header h1 { font-size: 38px; letter-spacing: -1.8px; } .eyebrow { font-size: 8px; letter-spacing: 1px; } .subtitle { font-size: 11px; max-width: 175px; line-height: 1.5; } .profile-header img { width: 105px; height: 132px; } .handle { font-size: 11px; } }
+@media (max-width: 360px) { .profile-header h1 { font-size: 32px; } .profile-header img { width: 85px; height: 115px; } }
 
 @media (max-width: 520px) { nav { gap: 14px; font-size: 11px; } }
 
