@@ -4,9 +4,9 @@
     "title": "About Me",
     "image": "./themes/damian.jpg",
     "content": [
-      "I lead sandboxing at [Prime Intellect](https://www.primeintellect.ai/), where I designed and built the sandboxing platform: a distributed control plane that schedules workloads across bare-metal CPU and GPU workers, and a node runtime that launches and supervises secure microVMs.",
+      "I lead sandboxing at [Prime Intellect](https://www.primeintellect.ai/), where I designed and built the [sandboxing platform](https://www.primeintellect.ai/blog/sandboxes): a distributed control plane that schedules workloads across bare-metal CPU and GPU workers, and a node runtime that launches and supervises secure microVMs.",
       "I build fault-tolerant systems in Go and Rust, working deep in Linux, virtualization, networking, storage, and performance engineering. I own the platform end to end, taking reinforcement learning and agent workloads from design to production.",
-      "Previously, I was the founding AI engineer at [ellamind](https://www.ellamind.com/), building [elluminate](https://elluminate.de/) from zero to one, with earlier engineering roles at [QuantCo](https://www.quantco.com/) and Facebook. I hold a BSc and MEng in Computer Science from MIT.",
+      "Previously, I was the founding AI engineer at [ellamind](https://www.ellamind.com/), building [elluminate](https://www.ellamind.com/products/elluminate) from zero to one, with earlier engineering roles at [QuantCo](https://www.quantco.com/) and Facebook. I hold a BSc and MEng in Computer Science from MIT.",
       "Outside of work I contribute to open source, learn Polish, travel Eastern Europe, and dance Kizomba."
     ]
   },

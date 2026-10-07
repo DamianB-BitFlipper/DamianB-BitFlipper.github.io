@@ -19,16 +19,16 @@ export default function Home() {
     <main className="profile">
       <header className="site-header"><a className="wordmark" href="/" aria-label="Damian Barabonkov home">db<span>.</span></a><nav aria-label="Profile links"><a href={github}>GitHub ↗</a><a href="https://x.com/damian_b">X ↗</a><a href="https://www.linkedin.com/in/damian-barabonkov-5286a2290">LinkedIn ↗</a><a href="/files/Damian_Barabonkov_Resume.pdf">Résumé ↗</a></nav></header>
       <div className="profile-header">
-        <div><p className="eyebrow">DISTRIBUTED SYSTEMS · PERFORMANCE · AI</p><h1>Damian<br />Barabonkov<span>.</span></h1><p className="subtitle">Leading Sandboxing at Prime Intellect <span className="location-inline">· San Francisco</span></p></div>
+        <div><h1>Damian<br />Barabonkov<span>.</span></h1><p className="subtitle">Leading Sandboxing at Prime Intellect</p><p className="location">San Francisco</p></div>
         <img src="/damian_headshot_clean.jpg" alt="Damian Barabonkov" width="160" height="188" />
       </div>
       <div className="bio">
-        <p>I lead sandboxing at <a href="https://www.primeintellect.ai/">Prime Intellect</a>, where I designed and built the sandboxing platform: a distributed control plane that schedules workloads across bare-metal CPU and GPU workers, and a node runtime that launches and supervises secure microVMs.</p>
+        <p>I lead sandboxing at <a href="https://www.primeintellect.ai/">Prime Intellect</a>, where I designed and built the <a href="https://www.primeintellect.ai/blog/sandboxes">sandboxing platform</a>: a distributed control plane that schedules workloads across bare-metal CPU and GPU workers, and a node runtime that launches and supervises secure microVMs.</p>
         <p>I build fault-tolerant systems in Go and Rust, working deep in Linux, virtualization, networking, storage, and performance engineering. I own the platform end to end, taking reinforcement learning and agent workloads from design to production.</p>
-        <p>Previously, I was the founding AI engineer at <a href="https://www.ellamind.com/">ellamind</a>, building <a href="https://elluminate.de/">elluminate</a> from zero to one, with earlier engineering roles at <a href="https://www.quantco.com/">QuantCo</a> and Facebook. I hold a BSc and MEng in Computer Science from MIT.</p>
+        <p>Previously, I was the founding AI engineer at <a href="https://www.ellamind.com/">ellamind</a>, building <a href="https://www.ellamind.com/products/elluminate">elluminate</a> from zero to one, with earlier engineering roles at <a href="https://www.quantco.com/">QuantCo</a> and Facebook. I hold a BSc and MEng in Computer Science from MIT.</p>
         <h2>Selected work</h2>
         <ul className="projects">
-          <li><a href="https://github.com/cloud-hypervisor/cloud-hypervisor">Cloud Hypervisor</a>, contributions including userfaultfd, VFIO BAR mapping, PCIe topology, and ARM snapshotting.</li>
+          <li><a href="https://github.com/cloud-hypervisor/cloud-hypervisor/pulls?q=is%3Apr+state%3Aclosed+author%3ADamianB-BitFlipper">Cloud Hypervisor</a>, contributions including userfaultfd, VFIO BAR mapping, PCIe topology, and ARM snapshotting.</li>
           <li><a href={`${github}/dynamic-load-bench`}>dynamic-load-bench</a>, a memory bandwidth and latency benchmark, included in Phoronix and used at Intel.</li>
           <li><a href={`${github}/JS-OS`}>JS-OS</a>, a learning project to build a Unix-like OS, with multitasking, filesystems, device drivers and a window manager.</li>
         </ul>

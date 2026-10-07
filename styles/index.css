@@ -6,7 +6,7 @@ body { margin: 0; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: an
 .site-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; margin-bottom: 28px; border-bottom: 1px solid #dedfd7; }
 .profile .wordmark { color: #242925; font-size: 25px; font-weight: 600; letter-spacing: -1.5px; text-decoration: none; }
 .wordmark span, .profile-header h1 span { color: #44664d; }
-.profile-header { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.profile-header { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
 .profile-header img { width: 160px; height: 188px; display: block; flex-shrink: 0; object-fit: cover; object-position: center 35%; border-radius: 5px; }
 .profile-header h1 { margin: 0; font-size: 54px; font-weight: 500; line-height: 1.05; letter-spacing: -2.5px; }
 .eyebrow { font: 10px 'IBM Plex Mono', monospace; letter-spacing: 1.6px; color: #44664d; margin: 0 0 13px; }
