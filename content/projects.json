@@ -22,11 +22,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4736,
+            "stargazerCount": 4741,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-10-24",
+            "updatedAt": "2026-10-25",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
@@ -40,7 +40,7 @@
             "primaryLanguage": {
               "name": "JavaScript"
             },
-            "updatedAt": "2026-10-24",
+            "updatedAt": "2026-10-25",
             "url": "https://github.com/DamianB-BitFlipper/DamianB-BitFlipper.github.io",
             "homepageUrl": null,
             "repositoryTopics": {
