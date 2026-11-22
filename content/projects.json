@@ -22,15 +22,49 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4797,
+            "stargazerCount": 4798,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-11-20",
+            "updatedAt": "2026-11-21",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
+            }
+          },
+          {
+            "name": "proton-drive-sync",
+            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
+            "stargazerCount": 692,
+            "primaryLanguage": {
+              "name": "TypeScript"
+            },
+            "updatedAt": "2026-11-21",
+            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": []
+            }
+          },
+          {
+            "name": "javelin.el",
+            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
+            "stargazerCount": 53,
+            "primaryLanguage": {
+              "name": "Emacs Lisp"
+            },
+            "updatedAt": "2026-11-21",
+            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
+            "homepageUrl": "",
+            "repositoryTopics": {
+              "nodes": [
+                {
+                  "topic": {
+                    "name": "emacs"
+                  }
+                }
+              ]
             }
           },
           {
@@ -42,20 +76,6 @@
             },
             "updatedAt": "2026-11-20",
             "url": "https://github.com/DamianB-BitFlipper/dehub",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": []
-            }
-          },
-          {
-            "name": "proton-drive-sync",
-            "description": "Local folders, automatically synced to Proton Drive. (Unofficial Sync Client)",
-            "stargazerCount": 691,
-            "primaryLanguage": {
-              "name": "TypeScript"
-            },
-            "updatedAt": "2026-11-13",
-            "url": "https://github.com/DamianB-BitFlipper/proton-drive-sync",
             "homepageUrl": "",
             "repositoryTopics": {
               "nodes": []
@@ -115,26 +135,6 @@
             "homepageUrl": "https://computesdk.com",
             "repositoryTopics": {
               "nodes": []
-            }
-          },
-          {
-            "name": "javelin.el",
-            "description": "Harpoon for Emacs. Dead simple buffer bookmarks for Emacs, inspired by ThePrimeagen's Harpoon.",
-            "stargazerCount": 52,
-            "primaryLanguage": {
-              "name": "Emacs Lisp"
-            },
-            "updatedAt": "2026-09-17",
-            "url": "https://github.com/DamianB-BitFlipper/javelin.el",
-            "homepageUrl": "",
-            "repositoryTopics": {
-              "nodes": [
-                {
-                  "topic": {
-                    "name": "emacs"
-                  }
-                }
-              ]
             }
           },
           {
