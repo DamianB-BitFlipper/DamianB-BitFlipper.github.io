@@ -22,11 +22,11 @@
           {
             "name": "verifiers",
             "description": "Our library for RL environments + evals",
-            "stargazerCount": 4798,
+            "stargazerCount": 4800,
             "primaryLanguage": {
               "name": "Python"
             },
-            "updatedAt": "2026-11-21",
+            "updatedAt": "2026-11-22",
             "url": "https://github.com/PrimeIntellect-ai/verifiers",
             "homepageUrl": "",
             "repositoryTopics": {
